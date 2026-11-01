@@ -39,3 +39,25 @@ El tema oscuro se activa con `data-ez-theme="dark"` en `html`.
 - `index.html`: catálogo visual.
 
 Prototipo para evaluar estética y API CSS. No se ha modificado Gallery ni ningún otro repositorio.
+
+## Componentes interactivos (módulos ES)
+
+No hay dependencias de terceros ni framework JS. Se importan solo los módulos necesarios:
+
+```js
+import { ezConfirm } from "./js/dialog.js";
+import { ezToast } from "./js/toast.js";
+import { ezThemeToggle } from "./js/theme-toggle.js";
+
+ezThemeToggle(document.querySelector("#theme-toggle"));
+const accepted = await ezConfirm(document.querySelector("#confirm-dialog"));
+if (accepted) ezToast("Operación confirmada", { type: "success" });
+```
+
+- **Diálogo:** se apoya en `<dialog>`, `showModal()` y `<form method="dialog">`; devuelve `Promise<boolean>`. No ejecuta operaciones de negocio.
+- **Toast:** crea una notificación en el DOM con `textContent` (no interpreta HTML), se cierra con botón o automáticamente. Opciones: `type: "info" | "success" | "error"` y `duration` en ms; `duration: 0` evita el cierre automático. Devuelve una función para cerrarla.
+- **Tema:** alterna `data-ez-theme`, sincroniza `aria-pressed` y guarda la preferencia en `localStorage`, si está disponible.
+
+El catálogo `index.html` demuestra los tres componentes. Para probar los módulos ES, servir la carpeta con un servidor HTTP local (por ejemplo `python3 -m http.server 8000`), en lugar de abrirla mediante `file://`.
+
+Los componentes no llaman a la API REST ni contienen reglas de negocio.
