@@ -16,9 +16,9 @@ ez-ui/              la biblioteca: lo único que se copia al proyecto
 │   ├── ez-ui.css         punto de entrada: importa las demás en orden
 │   ├── fonts.css         @font-face de las fuentes incluidas
 │   ├── tokens.css        variables (colores, fuentes, espacios) y tema oscuro
-│   ├── base.css          elementos HTML sin clases, incluidas las tablas
-│   ├── layout.css        contenedor, galería y dos columnas
-│   ├── components.css    navbar, tarjeta, avatar, botón, alerta y etiqueta
+│   ├── base.css          elementos HTML, incluidas las tablas
+│   ├── layout.css        contenedor, dos columnas, desplazamiento y galería
+│   ├── components.css    icono, navbar, tarjeta, avatar, botón, alerta y etiqueta
 │   ├── forms.css         controles de formulario y ayudas
 │   └── interactive.css   diálogo, notificación e indicador de carga
 ├── js/
@@ -33,7 +33,9 @@ ez-ui/              la biblioteca: lo único que se copia al proyecto
 index.html, fundamentos.html, maquetacion.html, componentes.html,
 formularios.html, javascript.html     la web de documentación
 header.html, css/site.css, js/        la web: cabecera, estilos y su JavaScript
+examples/                             ejemplos que necesitan una página aparte
 images/soccer/                        imágenes SVG propias de los ejemplos
+favicon.svg                           icono de la web
 ```
 
 La web dice qué ofrece ez-ui (cada pieza, con un ejemplo y su HTML), no cómo organizar una aplicación con ella. Usa ez-ui sin modificarla: lo suyo va en `css/site.css`, con el prefijo `doc-`.

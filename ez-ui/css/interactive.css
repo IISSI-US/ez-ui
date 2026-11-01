@@ -13,7 +13,7 @@
 
 /* ::backdrop es el fondo que muestra el navegador al abrir el diálogo con showModal(). */
 .ez-dialog::backdrop {
-  background: rgb(10 18 34 / .65);
+  background: rgb(23 20 18 / .65);
 }
 
 /* Alinea los botones al final y permite otra fila si falta espacio. */

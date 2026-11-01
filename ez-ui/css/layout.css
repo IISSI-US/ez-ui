@@ -22,6 +22,12 @@
   }
 }
 
+/* Contenido más ancho que la pantalla, como una tabla con muchas columnas en un
+   móvil: se desplaza a los lados dentro de su marco, sin mover la página. */
+.ez-scroll {
+  overflow-x: auto;
+}
+
 /* Grid crea tantas columnas como quepan. Cada columna mide al menos 17rem,
    salvo en pantallas más estrechas, y comparte el espacio restante con las demás. */
 .ez-gallery {

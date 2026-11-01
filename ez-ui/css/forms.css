@@ -43,19 +43,20 @@ textarea::placeholder {
   margin-bottom: var(--ez-space-4);
 }
 
-.ez-field__hint {
-  display: block;
-  margin-top: .3rem;
-  color: var(--ez-muted);
-  font-size: .9rem;
-}
-
-/* Error de un campo: el mensaje, debajo del control. */
+/* La ayuda y el mensaje de error de un campo, debajo del control. */
+.ez-field__hint,
 .ez-field__error {
   display: block;
   margin-top: .3rem;
-  color: var(--ez-danger);
   font-size: .9rem;
+}
+
+.ez-field__hint {
+  color: var(--ez-muted);
+}
+
+.ez-field__error {
+  color: var(--ez-danger);
 }
 
 /* El código que valida el campo pone aria-invalid="true" en el control erróneo, que

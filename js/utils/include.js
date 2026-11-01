@@ -7,14 +7,14 @@
  * llegue antes de seguir (por ejemplo, antes de buscar los botones de la cabecera).
  */
 async function include(htmlFile, selector) {
-    let response = await fetch(htmlFile);
+  let response = await fetch(htmlFile);
 
-    if (!response.ok) {
-        console.error(`No se ha podido cargar ${htmlFile} (${response.status})`);
-        return;
-    }
+  if (!response.ok) {
+    console.error(`No se ha podido cargar ${htmlFile} (${response.status})`);
+    return;
+  }
 
-    document.querySelector(selector).innerHTML = await response.text();
+  document.querySelector(selector).innerHTML = await response.text();
 }
 
 export { include };

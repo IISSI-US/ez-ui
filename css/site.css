@@ -5,289 +5,287 @@
 /* La cabecera llega con fetch un instante después de pintar la página: se reserva su
    alto para que el contenido no salte hacia abajo al aparecer */
 #page-header {
-    min-height: 5.2rem;
+  min-height: 5.2rem;
 }
 
 /* Marca: «ez» en el color principal */
 .doc-brand-mark {
-    color: var(--ez-primary);
+  color: var(--ez-primary);
 }
 
 /* Enlaces de la cabecera de esta web, en gris, y el de la página actual,
    subrayado (solo en #page-header: no afecta a los ejemplos) */
 #page-header .ez-navbar__links a {
-    color: var(--ez-muted);
+  color: var(--ez-muted);
 }
 
 #page-header .ez-navbar__links a:hover,
 #page-header .ez-navbar__links a[aria-current="page"] {
-    color: var(--ez-text);
+  color: var(--ez-text);
 }
 
 #page-header .ez-navbar__links a[aria-current="page"] {
-    font-weight: 600;
-    text-decoration: underline;
-    text-decoration-color: var(--ez-primary);
-    text-decoration-thickness: 2px;
-    text-underline-offset: .4em;
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: var(--ez-primary);
+  text-decoration-thickness: 2px;
+  text-underline-offset: .4em;
 }
 
 /* Cabecera de cada página: rótulo, título y entradilla */
 .doc-header {
-    padding-block: var(--ez-space-8) var(--ez-space-6);
+  padding-block: var(--ez-space-8) var(--ez-space-6);
 }
 
 .doc-kicker {
-    margin: 0;
-    color: var(--ez-primary);
-    font-size: .8rem;
-    font-weight: 700;
-    letter-spacing: .12em;
-    text-transform: uppercase;
+  margin: 0;
+  color: var(--ez-primary);
+  font-size: .8rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
 }
 
 .doc-header h1 {
-    margin-block: var(--ez-space-2) var(--ez-space-4);
+  margin-block: var(--ez-space-2) var(--ez-space-4);
 }
 
 .doc-lead {
-    max-width: 42rem;
-    color: var(--ez-muted);
-    font-size: 1.25rem;
-    line-height: 1.5;
+  max-width: 42rem;
+  color: var(--ez-muted);
+  font-size: 1.25rem;
+  line-height: 1.5;
 }
 
 /* Contenido y, en pantallas anchas, el índice de la página fijo a la derecha */
 .doc-layout {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr);
-    gap: var(--ez-space-8);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--ez-space-8);
 }
 
 @media (min-width: 64rem) {
-    .doc-layout {
-        grid-template-columns: minmax(0, 1fr) 13rem;
-    }
+  .doc-layout {
+    grid-template-columns: minmax(0, 1fr) 13rem;
+  }
 }
 
 /* Índice de la página: fijo al desplazarse (sticky) */
 .doc-toc {
-    position: sticky;
-    top: var(--ez-space-6);
-    align-self: start;
-    padding-top: var(--ez-space-8);
-    font-size: .95rem;
+  position: sticky;
+  top: var(--ez-space-6);
+  align-self: start;
+  padding-top: var(--ez-space-8);
+  font-size: .95rem;
 }
 
 .doc-toc h2 {
-    margin: 0 0 var(--ez-space-2);
-    color: var(--ez-muted);
-    font-size: .8rem;
-    letter-spacing: .12em;
-    text-transform: uppercase;
+  margin: 0 0 var(--ez-space-2);
+  color: var(--ez-muted);
+  font-size: .8rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
 }
 
 .doc-toc ul {
-    margin: 0;
-    padding: 0 0 0 var(--ez-space-3);
-    border-left: 1px solid var(--ez-border);
-    list-style: none;
+  margin: 0;
+  padding: 0 0 0 var(--ez-space-3);
+  border-left: 1px solid var(--ez-border);
+  list-style: none;
 }
 
 .doc-toc a {
-    color: var(--ez-muted);
-    text-decoration: none;
+  color: var(--ez-muted);
+  text-decoration: none;
 }
 
 .doc-toc a:hover {
-    color: var(--ez-primary);
+  color: var(--ez-primary);
 }
 
 /* El índice solo se ve cuando cabe al lado del contenido */
 @media (max-width: 63.99rem) {
-    .doc-toc {
-        display: none;
-    }
+  .doc-toc {
+    display: none;
+  }
 }
 
 /* Cada apartado (un componente), separado del anterior. scroll-margin-top deja
    sitio por encima al saltar a él con un enlace (componentes.html#card) */
 .doc-section {
-    padding-block: var(--ez-space-8);
-    border-top: 1px solid var(--ez-border);
-    scroll-margin-top: var(--ez-space-4);
+  padding-block: var(--ez-space-8);
+  border-top: 1px solid var(--ez-border);
+  scroll-margin-top: var(--ez-space-4);
 }
 
 .doc-section h3 {
-    margin-top: var(--ez-space-8);
+  margin-top: var(--ez-space-8);
 }
 
 /* Zona donde se ve el ejemplo funcionando, sobre una trama de puntos hecha con
    un degradado radial que se repite cada 16 px */
+.doc-example,
+.doc-demo {
+  border: 1px solid var(--ez-border);
+  background-color: var(--ez-surface);
+  background-image: radial-gradient(var(--ez-border) 1px, transparent 1px);
+  background-size: 16px 16px;
+}
+
+/* Los elementos de un ejemplo, en fila y separados; uno debajo de otro con la
+   variante doc-example--column. El código va justo debajo (esquinas de abajo rectas) */
 .doc-example {
-    padding: var(--ez-space-8);
-    border: 1px solid var(--ez-border);
-    border-radius: var(--ez-radius) var(--ez-radius) 0 0;
-    background-color: var(--ez-surface);
-    background-image: radial-gradient(var(--ez-border) 1px, transparent 1px);
-    background-size: 16px 16px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--ez-space-3);
+  padding: var(--ez-space-8);
+  border-radius: var(--ez-radius) var(--ez-radius) 0 0;
 }
 
 /* Una demostración en un marco (<iframe>), sin el código debajo: una página
    aparte, del ancho de un móvil */
 .doc-demo {
-    margin-bottom: var(--ez-space-6);
-    padding: var(--ez-space-6);
-    border: 1px solid var(--ez-border);
-    border-radius: var(--ez-radius);
-    background-color: var(--ez-surface);
-    background-image: radial-gradient(var(--ez-border) 1px, transparent 1px);
-    background-size: 16px 16px;
+  margin-bottom: var(--ez-space-6);
+  padding: var(--ez-space-6);
+  border-radius: var(--ez-radius);
 }
 
 .doc-demo iframe {
-    display: block;
-    max-width: 100%;
-    margin-inline: auto;
-    border: 1px solid var(--ez-border);
-    border-radius: var(--ez-radius);
-    background: var(--ez-bg);
-}
-
-/* Los elementos de un ejemplo, en fila y separados; uno debajo de otro con la
-   variante doc-example--column. La barra de navegación ocupa todo el ancho (flex: 1) */
-.doc-example {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: var(--ez-space-3);
+  display: block;
+  max-width: 100%;
+  margin-inline: auto;
+  border: 1px solid var(--ez-border);
+  border-radius: var(--ez-radius);
+  background: var(--ez-bg);
 }
 
 .doc-example--column {
-    /* Una columna con Grid y no con Flexbox en columna: dentro de este, Chrome
-       calcula mal el alto de una rejilla con imágenes que usan aspect-ratio */
-    display: grid;
+  /* Una columna con Grid y no con Flexbox en columna: dentro de este, Chrome
+     calcula mal el alto de una rejilla con imágenes que usan aspect-ratio */
+  display: grid;
 }
 
+/* La barra de navegación ocupa todo el ancho (flex: 1) */
 .doc-example > .ez-navbar {
-    flex: 1;
+  flex: 1;
 }
 
 /* En los ejemplos, una página con barra lateral, recuadrada y con algo de alto */
 .doc-example--app > .ez-split {
-    min-height: 16rem;
-    border: 1px solid var(--ez-border);
-    background: var(--ez-bg);
+  min-height: 16rem;
+  border: 1px solid var(--ez-border);
+  background: var(--ez-bg);
 }
 
 /* En los ejemplos, la tarjeta con el ancho que tendría en una galería */
 .doc-example > .ez-card {
-    width: 20rem;
-    max-width: 100%;
+  width: 20rem;
+  max-width: 100%;
 }
 
 /* Código del ejemplo, justo debajo, siempre sobre fondo oscuro; el botón de
    copiar, arriba a la derecha */
 .doc-code {
-    position: relative;
-    margin-bottom: var(--ez-space-6);
+  position: relative;
+  margin-bottom: var(--ez-space-6);
 }
 
 .doc-code pre {
-    margin: 0;
-    /* A la derecha, sitio para el botón de copiar */
-    padding: var(--ez-space-4) 5.5rem var(--ez-space-4) var(--ez-space-6);
-    /* Los bloques largos (una tabla) se desplazan dentro de su propio marco */
-    max-height: 24rem;
-    overflow: auto;
-    border-radius: 0 0 var(--ez-radius) var(--ez-radius);
-    background: #211d1a;
-    color: #eee8e1;
-    font-size: .85rem;
-    line-height: 1.6;
+  margin: 0;
+  /* A la derecha, sitio para el botón de copiar */
+  padding: var(--ez-space-4) 5.5rem var(--ez-space-4) var(--ez-space-6);
+  /* Los bloques largos (una tabla) se desplazan dentro de su propio marco */
+  max-height: 24rem;
+  overflow: auto;
+  border-radius: 0 0 var(--ez-radius) var(--ez-radius);
+  background: #211d1a;
+  color: #eee8e1;
+  font-size: .85rem;
+  line-height: 1.6;
 }
 
 /* Código sin ejemplo encima (un <template>): con todas las esquinas redondeadas */
 .doc-code--alone pre {
-    border-radius: var(--ez-radius);
+  border-radius: var(--ez-radius);
 }
 
 .doc-code__copy {
-    position: absolute;
-    top: var(--ez-space-2);
-    right: var(--ez-space-2);
-    padding: .2rem .6rem;
-    border: 1px solid #4a423c;
-    border-radius: var(--ez-radius-sm);
-    background: transparent;
-    color: #c9bfb5;
-    font-size: .8rem;
+  position: absolute;
+  top: var(--ez-space-2);
+  right: var(--ez-space-2);
+  padding: .2rem .6rem;
+  border: 1px solid #4a423c;
+  border-radius: var(--ez-radius-sm);
+  background: transparent;
+  color: #c9bfb5;
+  font-size: .8rem;
 }
 
 .doc-code__copy:hover {
-    color: #ffffff;
-    border-color: #6d635b;
+  color: #ffffff;
+  border-color: #6d635b;
 }
 
 /* Fragmentos de código dentro del texto */
 :not(pre) > code {
-    padding: .05em .25em;
-    border-radius: var(--ez-radius-sm);
-    background: var(--ez-surface-muted);
+  padding: .05em .25em;
+  border-radius: var(--ez-radius-sm);
+  background: var(--ez-surface-muted);
 }
 
 /* Pie de página */
 .doc-footer {
-    margin-top: var(--ez-space-8);
-    padding-block: var(--ez-space-6);
-    border-top: 1px solid var(--ez-border);
-    color: var(--ez-muted);
-    font-size: .95rem;
+  margin-top: var(--ez-space-8);
+  padding-block: var(--ez-space-6);
+  border-top: 1px solid var(--ez-border);
+  color: var(--ez-muted);
+  font-size: .95rem;
 }
 
 /* La lista de iconos de Fundamentos, en una rejilla con el nombre de cada uno */
 .doc-icons {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr));
-    gap: var(--ez-space-3);
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr));
+  gap: var(--ez-space-3);
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
 .doc-icons .ez-icon {
-    width: 1.5rem;
-    height: 1.5rem;
-    margin-right: var(--ez-space-2);
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-right: var(--ez-space-2);
 }
 
 /* Colores del código de los ejemplos (js/utils/highlight.js), sobre el fondo oscuro
    de los bloques de código */
 .tok-comment {
-    color: #8f857c;
-    font-style: italic;
+  color: #8f857c;
+  font-style: italic;
 }
 
 .tok-punct {
-    color: #a99f95;
+  color: #a99f95;
 }
 
 .tok-tag,
 .tok-keyword {
-    color: #f07a98;
+  color: #f07a98;
 }
 
 .tok-attr,
 .tok-property {
-    color: #e8c07a;
+  color: #e8c07a;
 }
 
 .tok-string {
-    color: #8fd4b4;
+  color: #8fd4b4;
 }
 
 .tok-number,
 .tok-variable {
-    color: #9cc3e0;
+  color: #9cc3e0;
 }

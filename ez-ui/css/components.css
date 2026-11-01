@@ -1,5 +1,13 @@
 /* Componentes: piezas de interfaz que se activan con una clase ez-. */
 
+/* Iconos: los de ez-ui/icons.svg se usan con <svg class="ez-icon"><use href=…>.
+   Toman el tamaño del texto que los rodea (em) y su color (currentColor). */
+.ez-icon {
+  width: 1.2em;
+  height: 1.2em;
+  vertical-align: -.2em;
+}
+
 /* Barra de navegación. Flexbox distribuye sus elementos y permite varias líneas. */
 .ez-navbar {
   background: var(--ez-surface);
@@ -11,10 +19,10 @@
 .ez-navbar__inner {
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: var(--ez-space-4);
   align-items: center;
   justify-content: space-between;
-  padding-block: 1rem;
+  padding-block: var(--ez-space-4);
 }
 
 .ez-navbar__brand {
@@ -31,7 +39,7 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 1rem;
+  gap: var(--ez-space-4);
 }
 
 .ez-navbar__links a {
@@ -172,23 +180,21 @@
   color: var(--ez-on-danger);
 }
 
-/* filter: brightness oscurece el color de la variante, sea cual sea. */
-.ez-button--danger:hover,
-.ez-button--success:hover {
-  filter: brightness(.9);
-}
-
-.ez-button--danger:hover {
-  background: var(--ez-danger);
-}
-
 .ez-button--success {
   background: var(--ez-success);
   color: var(--ez-on-success);
 }
 
+/* Al pasar el ratón, .ez-button:hover pondría el fondo del color principal: estas
+   variantes conservan el suyo y lo oscurecen con filter: brightness. */
+.ez-button--danger:hover {
+  background: var(--ez-danger);
+  filter: brightness(.9);
+}
+
 .ez-button--success:hover {
   background: var(--ez-success);
+  filter: brightness(.9);
 }
 
 /* Respeta la preferencia del usuario de reducir las animaciones. */
