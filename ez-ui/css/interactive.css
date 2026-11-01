@@ -1,4 +1,5 @@
-/* Presentación de los diálogos y las notificaciones creadas con JavaScript. */
+/* Presentación de los componentes con JavaScript: diálogo, botón de tema,
+   notificaciones e indicador de carga. */
 
 /* Diálogo nativo: ocupa el ancho disponible hasta un máximo de 28rem. */
 .ez-dialog {
@@ -23,6 +24,21 @@
   justify-content: flex-end;
   gap: var(--ez-space-2);
   margin-top: var(--ez-space-6);
+}
+
+/* Botón de tema (ezThemeToggle): con el tema claro muestra la luna, y con el oscuro,
+   el sol. El icono depende del tema de la página (data-ez-theme en <html>), así que
+   todos los botones de tema de la página muestran siempre el mismo. */
+.ez-theme-toggle__sun {
+  display: none;
+}
+
+:root[data-ez-theme="dark"] .ez-theme-toggle__sun {
+  display: inline;
+}
+
+:root[data-ez-theme="dark"] .ez-theme-toggle__moon {
+  display: none;
 }
 
 /* Contenedor de notificaciones fijado en la esquina inferior derecha.

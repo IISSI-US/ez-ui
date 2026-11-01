@@ -18,8 +18,17 @@
             <li><a href="formularios.html">Formularios</a></li>
             <li><a href="javascript.html">Con JavaScript</a></li>
             <li>
-                <button id="theme-toggle" class="ez-button ez-button--secondary" type="button">
-                    Modo oscuro
+                <button id="theme-toggle"
+                        class="ez-button ez-button--secondary ez-theme-toggle"
+                        type="button"
+                        aria-label="Cambiar de tema"
+                        title="Cambiar de tema">
+                    <svg class="ez-icon ez-theme-toggle__moon" aria-hidden="true">
+                        <use href="ez-ui/icons.svg#moon"></use>
+                    </svg>
+                    <svg class="ez-icon ez-theme-toggle__sun" aria-hidden="true">
+                        <use href="ez-ui/icons.svg#sun"></use>
+                    </svg>
                 </button>
             </li>
         </ul>

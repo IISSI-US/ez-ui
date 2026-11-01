@@ -5,12 +5,13 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="Componentes de ez-ui con JavaScript: menú plegable, notificación, indicador de carga y diálogo">
-        <script src="js/utils/theme-init.js"></script>
+        <script src="ez-ui/js/theme-init.js"></script>
         <link rel="stylesheet" href="ez-ui/css/ez-ui.css">
         <link rel="stylesheet" href="css/site.css">
         <link rel="icon" href="favicon.svg">
         <script src="js/header.js" type="module"></script>
         <script src="js/javascript.js" type="module"></script>
+        <script src="js/examples/theme-toggle.js" type="module"></script>
         <script src="js/examples/sell-player.js" type="module"></script>
         <script src="js/examples/toasts.js" type="module"></script>
         <script src="js/examples/load-market.js" type="module"></script>
@@ -25,9 +26,9 @@
                     <p class="doc-kicker">Referencia</p>
                     <h1>Con JavaScript</h1>
                     <p class="doc-lead">
-                        Cuatro componentes que necesitan JavaScript, del más sencillo al más
-                        completo: el menú plegable de la barra de navegación, una notificación, un
-                        indicador de carga y un diálogo de confirmación. Cada uno es un módulo de
+                        Cinco componentes que necesitan JavaScript, del más sencillo al más
+                        completo: el menú plegable de la barra de navegación, el botón de tema, una
+                        notificación, un indicador de carga y un diálogo de confirmación. Cada uno es un módulo de
                         <code>ez-ui/js/</code> que se importa con <code>import</code> desde otro
                         módulo.
                     </p>
@@ -81,6 +82,51 @@
                         import { ezNavbar } from "./ez-ui/js/navbar.js";
 
                         ezNavbar(document.querySelector(".ez-navbar"));
+                    </template>
+                </section>
+
+                <section class="doc-section" id="theme">
+                    <h2>Tema claro y oscuro</h2>
+                    <p>
+                        Un botón con un icono que cambia la página entre el tema claro y el
+                        oscuro: muestra la luna con el tema claro y el sol con el oscuro. Pruébalo:
+                        cambia toda esta web, como el de la cabecera.
+                    </p>
+                    <div class="doc-example">
+                        <button id="theme-button"
+                                class="ez-button ez-button--secondary ez-theme-toggle"
+                                type="button"
+                                aria-label="Cambiar de tema"
+                                title="Cambiar de tema">
+                            <svg class="ez-icon ez-theme-toggle__moon" aria-hidden="true">
+                                <use href="ez-ui/icons.svg#moon"></use>
+                            </svg>
+                            <svg class="ez-icon ez-theme-toggle__sun" aria-hidden="true">
+                                <use href="ez-ui/icons.svg#sun"></use>
+                            </svg>
+                        </button>
+                    </div>
+                    <p>
+                        <code>ezThemeToggle(botón)</code> conecta el botón: al pulsarlo, cambia
+                        <code>data-ez-theme</code> en <code>&lt;html&gt;</code> y guarda la
+                        elección en <code>localStorage</code>, que el navegador conserva al cambiar
+                        de página y al cerrarlo. El icono lo elige el CSS, según el tema.
+                    </p>
+                    <template class="doc-example">
+                        import { ezThemeToggle } from "./ez-ui/js/theme.js";
+
+                        ezThemeToggle(document.getElementById("theme-button"));
+                    </template>
+                    <p>
+                        Al cargar cada página, <code>theme-init.js</code> aplica el tema guardado.
+                        Es un script clásico (sin <code>type="module"</code>) en el
+                        <code>&lt;head&gt;</code>, delante de las hojas de estilo: se ejecuta en
+                        cuanto el navegador lo lee, antes de pintar la página. Un módulo se ejecuta
+                        después, y se vería un instante el tema claro.
+                    </p>
+                    <template class="doc-example">
+                        <script src="ez-ui/js/theme-init.js"></script>
+                        <link rel="stylesheet" href="ez-ui/css/ez-ui.css">
                     </template>
                 </section>
 
@@ -192,6 +238,7 @@
                 <h2>En esta página</h2>
                 <ul>
                     <li><a href="#navbar">Menú plegable</a></li>
+                    <li><a href="#theme">Tema claro y oscuro</a></li>
                     <li><a href="#toast">Notificación</a></li>
                     <li><a href="#loading">Indicador de carga</a></li>
                     <li><a href="#dialog">Diálogo</a></li>
@@ -199,8 +246,6 @@
             </nav>
         </div>
 
-        <footer class="ez-container doc-footer">
-            IISSI-2 · Universidad de Sevilla
-        </footer>
+        <div id="page-footer"></div>
     </body>
 </html>

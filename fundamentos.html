@@ -5,7 +5,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="Fundamentos de ez-ui: variables, tema oscuro, fuentes, iconos, elementos HTML y tablas">
-        <script src="js/utils/theme-init.js"></script>
+        <script src="ez-ui/js/theme-init.js"></script>
         <link rel="stylesheet" href="ez-ui/css/ez-ui.css">
         <link rel="stylesheet" href="css/site.css">
         <link rel="icon" href="favicon.svg">
@@ -57,8 +57,9 @@
                         El tema oscuro no cambia ninguna regla de los componentes: solo da otros
                         valores a las mismas variables cuando el elemento
                         <code>&lt;html&gt;</code> tiene el atributo
-                        <code>data-ez-theme="dark"</code>. Pruébalo con el botón «Modo oscuro» de
-                        la cabecera.
+                        <code>data-ez-theme="dark"</code>. Pruébalo con el botón de la luna de la
+                        cabecera, que es un componente de ez-ui
+                        (<a href="javascript.html#theme">botón de tema</a>).
                     </p>
                     <template class="doc-example" data-code='<html lang="es" data-ez-theme="dark">'></template>
                 </section>
@@ -163,6 +164,24 @@
                                     <use href="ez-ui/icons.svg#check"></use>
                                 </svg>
                                 <code>check</code>
+                            </li>
+                            <li>
+                                <svg class="ez-icon" aria-hidden="true">
+                                    <use href="ez-ui/icons.svg#menu"></use>
+                                </svg>
+                                <code>menu</code>
+                            </li>
+                            <li>
+                                <svg class="ez-icon" aria-hidden="true">
+                                    <use href="ez-ui/icons.svg#sun"></use>
+                                </svg>
+                                <code>sun</code>
+                            </li>
+                            <li>
+                                <svg class="ez-icon" aria-hidden="true">
+                                    <use href="ez-ui/icons.svg#moon"></use>
+                                </svg>
+                                <code>moon</code>
                             </li>
                         </ul>
                     </div>
@@ -334,8 +353,6 @@
             </nav>
         </div>
 
-        <footer class="ez-container doc-footer">
-            IISSI-2 · Universidad de Sevilla
-        </footer>
+        <div id="page-footer"></div>
     </body>
 </html>

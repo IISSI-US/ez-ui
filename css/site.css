@@ -234,13 +234,17 @@
   background: var(--ez-surface-muted);
 }
 
-/* Pie de página */
+/* Pie de página, con la firma de la web de la asignatura */
 .doc-footer {
   margin-top: var(--ez-space-8);
-  padding-block: var(--ez-space-6);
-  border-top: 1px solid var(--ez-border);
+  padding-block: var(--ez-space-4);
+  border-top: 2px solid var(--ez-primary);
   color: var(--ez-muted);
-  font-size: .95rem;
+  font-size: .85rem;
+}
+
+.doc-footer strong {
+  color: var(--ez-text);
 }
 
 /* La lista de iconos de Fundamentos, en una rejilla con el nombre de cada uno */

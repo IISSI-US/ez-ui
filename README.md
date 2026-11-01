@@ -23,6 +23,8 @@ ez-ui/              la biblioteca: lo único que se copia al proyecto
 │   └── interactive.css   diálogo, notificación e indicador de carga
 ├── js/
 │   ├── navbar.js         ezNavbar(barra): menú plegable en pantallas estrechas
+│   ├── theme.js          ezThemeToggle(botón): tema claro y oscuro, guardado
+│   ├── theme-init.js     aplica el tema guardado (script clásico, en el <head>)
 │   ├── dialog.js         ezConfirm(dialog)
 │   ├── toast.js          ezToast(mensaje, tipo, duración)
 │   └── loading.js        ezLoading(elemento, promesa)
@@ -32,7 +34,8 @@ ez-ui/              la biblioteca: lo único que se copia al proyecto
 
 index.html, fundamentos.html, maquetacion.html, componentes.html,
 formularios.html, javascript.html     la web de documentación
-header.html, css/site.css, js/        la web: cabecera, estilos y su JavaScript
+header.html, footer.html, css/site.css, js/
+                                      la web: cabecera, pie, estilos y su JavaScript
 examples/                             ejemplos que necesitan una página aparte
 images/soccer/                        imágenes SVG propias de los ejemplos
 favicon.svg                           icono de la web
@@ -48,10 +51,17 @@ Se copia la carpeta `ez-ui/` al proyecto y se enlaza su hoja principal en el `<h
 <link rel="stylesheet" href="ez-ui/css/ez-ui.css">
 ```
 
+Con el botón de tema, delante de la hoja, el script que aplica el tema guardado antes de pintar la página:
+
+```html
+<script src="ez-ui/js/theme-init.js"></script>
+```
+
 Los componentes con JavaScript son módulos que se importan donde se usen:
 
 ```js
 import { ezNavbar } from "./ez-ui/js/navbar.js";
+import { ezThemeToggle } from "./ez-ui/js/theme.js";
 import { ezConfirm } from "./ez-ui/js/dialog.js";
 import { ezToast } from "./ez-ui/js/toast.js";
 import { ezLoading } from "./ez-ui/js/loading.js";
@@ -61,7 +71,7 @@ import { ezLoading } from "./ez-ui/js/loading.js";
 
 - Clases con el prefijo `ez-` y la convención BEM: componente (`.ez-card`), parte (`.ez-card__body`) y variante (`.ez-button--danger`).
 - Variables con el prefijo `--ez-` (`--ez-primary`, `--ez-space-4`). Cambiarlas cambia toda la biblioteca, también dentro de un elemento concreto.
-- Tema oscuro: `data-ez-theme="dark"` en `<html>`. Solo cambia los valores de las variables.
+- Tema oscuro: `data-ez-theme="dark"` en `<html>`. Solo cambia los valores de las variables; el botón de tema (`ezThemeToggle`) lo pone y lo recuerda.
 - Para ampliar ez-ui en un proyecto, una hoja propia enlazada después de la biblioteca, que use sus variables y otro prefijo. La biblioteca no se modifica.
 - Código en inglés; comentarios y textos en español.
 - Sin selectores que dependan de la ausencia de clases: un elemento tiene el estilo de un componente solo si lleva su clase.
