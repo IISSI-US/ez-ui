@@ -8,44 +8,34 @@ Documentación y ejemplos: https://iissi-us.github.io/ez-ui/
 
 Bootstrap resuelve muchos problemas que no tiene una práctica de la asignatura, y a cambio obliga a aprender su sistema de clases, su rejilla y su JavaScript. ez-ui usa lo que ya se explica en clase (variables CSS, Flexbox, Grid, selectores, elementos nativos como `<dialog>`) y cabe en unas 800 líneas, comentadas para que se entiendan. Está pensada para explicarse entera en 2 a 4 horas de clase.
 
-## Estructura
+## Ficheros
 
 ```
-ez-ui/              la biblioteca: lo único que se copia al proyecto
-├── css/
-│   ├── ez-ui.css         punto de entrada: importa las demás en orden
-│   ├── fonts.css         @font-face de las fuentes incluidas
-│   ├── tokens.css        variables (colores, fuentes, espacios) y tema oscuro
-│   ├── base.css          elementos HTML, incluidas las tablas
-│   ├── layout.css        contenedor, dos columnas, desplazamiento y galería
-│   ├── components.css    icono, navbar, tarjeta, avatar, botón, alerta y etiqueta
-│   ├── forms.css         controles de formulario y ayudas
-│   └── interactive.css   diálogo, notificación e indicador de carga
-├── js/
-│   ├── navbar.js         ezNavbar(barra): menú plegable en pantallas estrechas
-│   ├── theme.js          ezThemeToggle(botón): tema claro y oscuro, guardado
-│   ├── theme-init.js     aplica el tema guardado (script clásico, en el <head>)
-│   ├── dialog.js         ezConfirm(dialog)
-│   ├── toast.js          ezToast(mensaje, tipo, duración)
-│   └── loading.js        ezLoading(elemento, promesa)
-├── fonts/            Source Sans 3 y JetBrains Mono (WOFF2, licencia OFL)
-├── icons.svg         iconos de Lucide (licencia ISC): <svg class="ez-icon"><use href="ez-ui/icons.svg#nombre">
-└── LICENSE-lucide.txt
-
-index.html, fundamentos.html, maquetacion.html, componentes.html,
-formularios.html, javascript.html     la web de documentación
-header.html, footer.html, css/site.css, js/
-                                      la web: cabecera, pie, estilos y su JavaScript
-examples/                             ejemplos que necesitan una página aparte
-images/soccer/                        imágenes SVG propias de los ejemplos
-favicon.svg                           icono de la web
+css/
+├── ez-ui.css         punto de entrada: importa las demás en orden
+├── fonts.css         @font-face de las fuentes incluidas
+├── tokens.css        variables (colores, fuentes, espacios) y tema oscuro
+├── base.css          elementos HTML, incluidas las tablas
+├── layout.css        contenedor, dos columnas, desplazamiento y galería
+├── components.css    icono, navbar, tarjeta, avatar, botón, alerta y etiqueta
+├── forms.css         controles de formulario y ayudas
+└── interactive.css   diálogo, botón de tema, notificación e indicador de carga
+js/
+├── navbar.js         ezNavbar(barra): menú plegable en pantallas estrechas
+├── theme.js          ezThemeToggle(botón): tema claro y oscuro, guardado
+├── theme-init.js     aplica el tema guardado (script clásico, en el <head>)
+├── dialog.js         ezConfirm(dialog)
+├── toast.js          ezToast(mensaje, tipo, duración)
+└── loading.js        ezLoading(elemento, promesa)
+fonts/                Source Sans 3 y JetBrains Mono (WOFF2, licencia OFL)
+icons.svg             iconos de Lucide (licencia ISC)
+LICENSE-lucide.txt
+docs/                 la web de documentación (no forma parte de la biblioteca; ver docs/README.md)
 ```
-
-La web dice qué ofrece ez-ui (cada pieza, con un ejemplo y su HTML), no cómo organizar una aplicación con ella. Usa ez-ui sin modificarla: lo suyo va en `css/site.css`, con el prefijo `doc-`.
 
 ## Uso
 
-Se copia la carpeta `ez-ui/` al proyecto y se enlaza su hoja principal en el `<head>` de cada vista:
+La biblioteca son `css/`, `js/`, `fonts/`, `icons.svg` y `LICENSE-lucide.txt`: se copian a una carpeta `ez-ui/` del proyecto (sin `docs/`), y se enlaza la hoja principal en el `<head>` de cada vista:
 
 ```html
 <link rel="stylesheet" href="ez-ui/css/ez-ui.css">
@@ -55,6 +45,14 @@ Con el botón de tema, delante de la hoja, el script que aplica el tema guardado
 
 ```html
 <script src="ez-ui/js/theme-init.js"></script>
+```
+
+Los iconos, con `<use>` y su nombre:
+
+```html
+<svg class="ez-icon" aria-hidden="true">
+    <use href="ez-ui/icons.svg#trophy"></use>
+</svg>
 ```
 
 Los componentes con JavaScript son módulos que se importan donde se usen:
@@ -67,6 +65,25 @@ import { ezToast } from "./ez-ui/js/toast.js";
 import { ezLoading } from "./ez-ui/js/loading.js";
 ```
 
+### Desde una CDN
+
+Cuando el repositorio sea público, [jsDelivr](https://www.jsdelivr.com/) servirá la biblioteca desde GitHub sin copiarla, con la versión fijada por una etiqueta de git (`v1.0.0`):
+
+```html
+<script src="https://cdn.jsdelivr.net/gh/IISSI-US/ez-ui@v1.0.0/js/theme-init.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/IISSI-US/ez-ui@v1.0.0/css/ez-ui.css">
+```
+
+```js
+import { ezNavbar } from "https://cdn.jsdelivr.net/gh/IISSI-US/ez-ui@v1.0.0/js/navbar.js";
+import { ezThemeToggle } from "https://cdn.jsdelivr.net/gh/IISSI-US/ez-ui@v1.0.0/js/theme.js";
+import { ezConfirm } from "https://cdn.jsdelivr.net/gh/IISSI-US/ez-ui@v1.0.0/js/dialog.js";
+import { ezToast } from "https://cdn.jsdelivr.net/gh/IISSI-US/ez-ui@v1.0.0/js/toast.js";
+import { ezLoading } from "https://cdn.jsdelivr.net/gh/IISSI-US/ez-ui@v1.0.0/js/loading.js";
+```
+
+Los iconos (`icons.svg`) sí se copian al proyecto: el navegador no permite `<use href>` con un SVG de otro dominio.
+
 ## Convenciones
 
 - Clases con el prefijo `ez-` y la convención BEM: componente (`.ez-card`), parte (`.ez-card__body`) y variante (`.ez-button--danger`).
@@ -76,35 +93,10 @@ import { ezLoading } from "./ez-ui/js/loading.js";
 - Código en inglés; comentarios y textos en español.
 - Sin selectores que dependan de la ausencia de clases: un elemento tiene el estilo de un componente solo si lleva su clase.
 
-## HTML semántico en los ejemplos
-
-El elemento se elige por el significado del contenido; las clases `ez-*` solo definen su presentación.
-
-- `header`, `nav` y `main` identifican la cabecera, la navegación y el contenido principal. Los enlaces de navegación van en una lista.
-- `section` agrupa un tema con su encabezado; `article`, un contenido independiente, como una tarjeta. Los títulos siguen la jerarquía `h1`, `h2`, `h3`.
-- Las imágenes llevan `alt`, vacío (`alt=""`) si el texto de al lado ya dice lo mismo.
-- Los enlaces navegan; los botones ejecutan acciones, con su `type`.
-- Cada control tiene su `label` (`for` igual al `id` del control); las ayudas se enlazan con `aria-describedby`.
-- `aria-invalid` en un campo erróneo; `aria-busy` mientras se carga un contenido.
-
-## Ejemplos: el Trofeo ez-Soccer
-
-Los ejemplos son de una liga de fútbol inventada entre escuelas y facultades de la universidad. Equipos, jugadores, escudos, camisetas y avatares son inventados; las imágenes son SVG propios, sin derechos de terceros.
-
-## Probar en local
-
-Los módulos ES y `fetch` no funcionan abriendo los ficheros con `file://`: hay que servir la carpeta con un servidor HTTP, por ejemplo:
-
-```bash
-python3 -m http.server 8081
-```
-
-y abrir http://127.0.0.1:8081/.
-
-## Publicación
-
-GitHub Pages publica la raíz de la rama `main` (el repositorio es privado, pero la web es pública): **un push a `main` actualiza la web**. No hace falta compilar; `.nojekyll` evita que GitHub procese la carpeta con Jekyll. Las rutas son relativas para que funcione bajo `/ez-ui/`.
-
 ## Licencias
 
-Las fuentes tienen licencia SIL Open Font License (`ez-ui/fonts/OFL-*.txt`), y los iconos, de [Lucide](https://lucide.dev), licencia ISC (`ez-ui/LICENSE-lucide.txt`).
+Las fuentes tienen licencia SIL Open Font License (`fonts/OFL-*.txt`), y los iconos, de [Lucide](https://lucide.dev), licencia ISC (`LICENSE-lucide.txt`).
+
+## Pruebas y publicación
+
+La web de documentación, cómo probarla en local, las pruebas y cómo se publica están en [docs/README.md](docs/README.md).

@@ -1,0 +1,21 @@
+# Lanza las pruebas de ez-ui (repositorio privado IISSI-US/ez-ui-tests) en cada push.
+# El resultado aparece en el commit (ez-ui-tests, ✔ o ✖). Necesita el secreto
+# EZ_UI_TESTS_TOKEN; sin él, no hace nada.
+name: Pruebas
+
+on:
+  push:
+
+jobs:
+  avisar:
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ secrets.EZ_UI_TESTS_TOKEN }}
+    steps:
+      - name: Lanza las pruebas en ez-ui-tests
+        if: env.GH_TOKEN != ''
+        run: >
+          gh api repos/IISSI-US/ez-ui-tests/dispatches
+          -f event_type=ez-ui-push
+          -f "client_payload[sha]=$GITHUB_SHA"
+          -f "client_payload[ref]=$GITHUB_REF_NAME"

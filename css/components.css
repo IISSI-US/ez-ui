@@ -46,6 +46,16 @@
   text-decoration: none;
 }
 
+/* El enlace de la página actual: el código de la página le pone aria-current="page",
+   que también anuncian los lectores de pantalla. */
+.ez-navbar__links a[aria-current="page"] {
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: var(--ez-primary);
+  text-decoration-thickness: 2px;
+  text-underline-offset: .4em;
+}
+
 /* Menú plegable (ezNavbar): en una pantalla ancha, el botón no se ve. Se escribe
    .ez-navbar .ez-navbar__toggle para que gane a .ez-button, que va después. */
 .ez-navbar .ez-navbar__toggle {
@@ -89,6 +99,7 @@
 .ez-navbar--side .ez-navbar__inner {
   position: sticky;
   top: 0;
+  padding-inline: var(--ez-space-4);
 }
 
 /* Tarjeta. overflow recorta el contenido que sobresale de las esquinas redondeadas. */

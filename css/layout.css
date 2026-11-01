@@ -16,6 +16,13 @@
   gap: var(--ez-space-6);
 }
 
+/* Una columna de Grid no encoge por debajo del ancho de su contenido (una tabla
+   ancha la ensancharía y desbordaría la página): min-width: 0 se lo permite, y lo
+   que no cabe se desplaza dentro de su .ez-scroll. */
+.ez-split > * {
+  min-width: 0;
+}
+
 @media (max-width: 48rem) {
   .ez-split {
     grid-template-columns: 1fr;

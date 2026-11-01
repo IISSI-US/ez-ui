@@ -1,0 +1,43 @@
+# Publica la web en GitHub Pages en cada push a main: monta el sitio con la web (docs/)
+# en la raíz y la biblioteca (la raíz del repositorio) en /ez-ui/, donde la enlazan sus
+# páginas, como la sirve docs/serve.js en local. Pages debe tener como origen
+# «GitHub Actions».
+name: Publicar
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Una publicación a la vez; la más reciente sustituye a la que espera
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  publicar:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Monta el sitio
+        run: |
+          mkdir -p _site/ez-ui
+          cp -r docs/. _site/
+          rm _site/README.md _site/serve.js
+          cp -r css js fonts icons.svg LICENSE-lucide.txt _site/ez-ui/
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+      - id: deployment
+        uses: actions/deploy-pages@v4

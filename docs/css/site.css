@@ -13,8 +13,8 @@
   color: var(--ez-primary);
 }
 
-/* Enlaces de la cabecera de esta web, en gris, y el de la página actual,
-   subrayado (solo en #page-header: no afecta a los ejemplos) */
+/* Enlaces de la cabecera de esta web, en gris; el de la página actual, con el texto
+   normal (ez-ui lo subraya). Solo en #page-header: no afecta a los ejemplos */
 #page-header .ez-navbar__links a {
   color: var(--ez-muted);
 }
@@ -22,14 +22,6 @@
 #page-header .ez-navbar__links a:hover,
 #page-header .ez-navbar__links a[aria-current="page"] {
   color: var(--ez-text);
-}
-
-#page-header .ez-navbar__links a[aria-current="page"] {
-  font-weight: 600;
-  text-decoration: underline;
-  text-decoration-color: var(--ez-primary);
-  text-decoration-thickness: 2px;
-  text-underline-offset: .4em;
 }
 
 /* Cabecera de cada página: rótulo, título y entradilla */

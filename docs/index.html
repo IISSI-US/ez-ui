@@ -30,8 +30,10 @@
                 <section class="doc-section" id="uso">
                     <h2>Cómo se usa</h2>
                     <p>
-                        Se copia la carpeta <code>ez-ui/</code> al proyecto y se enlaza su hoja
-                        principal en el <code>&lt;head&gt;</code> de cada vista:
+                        Se copia la biblioteca (<code>css/</code>, <code>js/</code>,
+                        <code>fonts/</code> e <code>icons.svg</code>) a una carpeta
+                        <code>ez-ui/</code> del proyecto y se enlaza su hoja principal en el
+                        <code>&lt;head&gt;</code> de cada vista:
                     </p>
                     <template class="doc-example">
                         <link rel="stylesheet" href="ez-ui/css/ez-ui.css">
@@ -40,6 +42,37 @@
                         Los elementos HTML ya tienen estilo sin añadir clases (encabezados,
                         párrafos, enlaces, formularios). Los componentes, como las tarjetas o las
                         alertas, se activan con clases que empiezan por <code>ez-</code>.
+                    </p>
+
+                    <h3>Desde una CDN</h3>
+                    <p>
+                        Cuando el repositorio de ez-ui sea público, jsDelivr la servirá desde
+                        GitHub sin copiarla, con la versión fijada por una etiqueta
+                        (<code>v1.0.0</code>). En el <code>&lt;head&gt;</code>, el script del tema y
+                        la hoja:
+                    </p>
+                    <template class="doc-example">
+                        <script src="https://cdn.jsdelivr.net/gh/IISSI-US/ez-ui@v1.0.0/js/theme-init.js"></script>
+                        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/IISSI-US/ez-ui@v1.0.0/css/ez-ui.css">
+                    </template>
+                    <p>
+                        Y los módulos de los componentes con JavaScript:
+                    </p>
+                    <template class="doc-example">
+                        import { ezNavbar } from
+                            "https://cdn.jsdelivr.net/gh/IISSI-US/ez-ui@v1.0.0/js/navbar.js";
+                        import { ezThemeToggle } from
+                            "https://cdn.jsdelivr.net/gh/IISSI-US/ez-ui@v1.0.0/js/theme.js";
+                        import { ezConfirm } from
+                            "https://cdn.jsdelivr.net/gh/IISSI-US/ez-ui@v1.0.0/js/dialog.js";
+                        import { ezToast } from
+                            "https://cdn.jsdelivr.net/gh/IISSI-US/ez-ui@v1.0.0/js/toast.js";
+                        import { ezLoading } from
+                            "https://cdn.jsdelivr.net/gh/IISSI-US/ez-ui@v1.0.0/js/loading.js";
+                    </template>
+                    <p>
+                        Los iconos sí hay que copiarlos (<code>icons.svg</code>): el navegador no
+                        deja usar con <code>&lt;use&gt;</code> un SVG de otro dominio.
                     </p>
                 </section>
 
