@@ -15,18 +15,27 @@
     .demo-photo--three { background: linear-gradient(135deg,#5d5a9d,#b7a5de); }
   </style>
   <script type="module">
-    const root = document.documentElement;
-    const toggle = document.querySelector("#theme-toggle");
-    toggle.addEventListener("click", () => {
-      const dark = root.dataset.ezTheme !== "dark";
-      root.dataset.ezTheme = dark ? "dark" : "light";
-      toggle.setAttribute("aria-pressed", String(dark));
-      toggle.textContent = dark ? "Modo claro" : "Modo oscuro";
+    import { ezConfirm } from "./js/dialog.js";
+    import { ezToast } from "./js/toast.js";
+    import { ezThemeToggle } from "./js/theme-toggle.js";
+
+    ezThemeToggle(document.querySelector("#theme-toggle"));
+
+    document.querySelector("#demo-dialog-button").addEventListener("click", async () => {
+      const confirmed = await ezConfirm(document.querySelector("#demo-dialog"));
+      ezToast(confirmed ? "Acción confirmada (sin borrar datos)." : "Acción cancelada.", {
+        type: confirmed ? "success" : "info"
+      });
     });
-    const form = document.querySelector("#demo-form");
-    form.addEventListener("submit", (event) => {
+
+    document.querySelector("#demo-toast-button").addEventListener("click", () => {
+      ezToast("Fotografía guardada correctamente.", { type: "success" });
+    });
+
+    document.querySelector("#demo-form").addEventListener("submit", (event) => {
       event.preventDefault();
       document.querySelector("#form-feedback").textContent = "Formulario válido (demostración; no se envían datos).";
+      ezToast("Formulario validado.", { type: "success" });
     });
   </script>
 </head>
@@ -46,12 +55,28 @@
     <section class="demo-hero">
       <p class="ez-muted">IISSI-2 · Biblioteca CSS educativa</p>
       <h1>Interfaces sencillas, código comprensible.</h1>
-      <p>HTML semántico, CSS nativo y componentes <code>ez-*</code>. Sin Bootstrap, Sass ni dependencias JavaScript.</p>
+      <p>HTML semántico, CSS nativo y componentes <code>ez-*</code>. Sin Bootstrap ni Sass. Los componentes interactivos usan módulos JavaScript nativos.</p>
       <div class="demo-actions">
         <button type="button">Botón nativo</button>
         <button class="ez-button ez-button--secondary" type="button">Secundario</button>
         <button class="ez-button ez-button--danger" type="button">Eliminar</button>
       </div>
+    </section>
+    <section id="interactivos" class="demo-section">
+      <h2>Componentes interactivos</h2>
+      <p class="ez-muted">Tres módulos ES pequeños: diálogo nativo, toast y selector de tema persistente.</p>
+      <div class="demo-actions">
+        <button id="demo-dialog-button" class="ez-button ez-button--danger" type="button">Abrir confirmación</button>
+        <button id="demo-toast-button" class="ez-button ez-button--secondary" type="button">Mostrar toast</button>
+      </div>
+      <dialog id="demo-dialog" class="ez-dialog" aria-labelledby="demo-dialog-title">
+        <h3 id="demo-dialog-title">¿Eliminar fotografía?</h3>
+        <p>Esta es una demostración: no se eliminará ningún dato.</p>
+        <form method="dialog" class="ez-dialog__actions">
+          <button class="ez-button ez-button--secondary" value="cancel">Cancelar</button>
+          <button class="ez-button ez-button--danger" value="confirm">Confirmar</button>
+        </form>
+      </dialog>
     </section>
     <section id="tarjetas" class="demo-section">
       <h2>Tarjetas y galería</h2>
