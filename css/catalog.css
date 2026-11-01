@@ -1,0 +1,350 @@
+/* Estilos exclusivos del catálogo. La biblioteca reutilizable está en ez-ui.css. */
+.catalog-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem 2rem;
+  padding: .8rem 2rem;
+  background: #263449;
+  color: #fff;
+}
+
+.catalog-header a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.catalog-brand {
+  font-size: 2.3rem;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -.06em;
+}
+
+.catalog-header p {
+  margin: 0;
+}
+
+.catalog-header nav {
+  margin-left: auto;
+}
+
+.catalog-header ul,
+.catalog-sidebar ul,
+.catalog-features {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.catalog-header ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+/* Una columna para el menú y otra para el contenido. */
+.catalog-shell {
+  display: grid;
+  grid-template-columns: 14rem minmax(0, 1fr);
+}
+
+.catalog-sidebar {
+  padding: 1.5rem 1rem;
+  border-right: 1px solid var(--ez-border);
+  background: var(--ez-surface-muted);
+}
+
+.catalog-sidebar ul {
+  position: sticky;
+  top: 1rem;
+}
+
+.catalog-sidebar a {
+  display: flex;
+  align-items: center;
+  gap: .9rem;
+  padding: .7rem 1rem;
+  margin-bottom: .3rem;
+  border-radius: var(--ez-radius-sm);
+  color: var(--ez-text);
+  text-decoration: none;
+}
+
+.catalog-sidebar a:hover,
+.catalog-sidebar a[aria-current="location"] {
+  background: var(--ez-selection);
+  color: var(--ez-primary);
+}
+
+.catalog-sidebar span {
+  width: 1.3rem;
+  font-size: 1.4rem;
+  text-align: center;
+}
+
+.catalog-main {
+  min-width: 0;
+  padding: 1.5rem 2rem;
+}
+
+.catalog-main h1 {
+  margin: 0;
+  font-size: 2.6rem;
+}
+
+.catalog-main h2 {
+  margin: 0 0 .65rem;
+  font-size: 1.35rem;
+}
+
+.catalog-main h3 {
+  font-size: 1.15rem;
+}
+
+.catalog-intro {
+  font-size: 1.1rem;
+}
+
+.catalog-features {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+  margin-block: 1rem;
+}
+
+.catalog-features li {
+  display: flex;
+  align-items: center;
+  gap: .7rem;
+  padding: .75rem 1rem;
+  border-radius: var(--ez-radius-sm);
+  background: var(--ez-surface-muted);
+}
+
+.catalog-features span {
+  color: var(--ez-primary);
+  font-size: 1.4rem;
+}
+
+.demo-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .75rem;
+  align-items: center;
+}
+
+.catalog-buttons {
+  padding-block: .2rem 1rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--ez-border);
+}
+
+/* Tres zonas en pantallas grandes: tarjeta, galería y formulario. */
+.catalog-showcase {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.8fr) minmax(0, 1.2fr);
+  align-items: start;
+  gap: 1.5rem;
+}
+
+.catalog-middle {
+  display: grid;
+  gap: 1.25rem;
+  min-width: 0;
+}
+
+.catalog-gallery {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: .75rem;
+  padding: .75rem;
+}
+
+.catalog-gallery img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: var(--ez-radius-sm);
+}
+
+.catalog-main .ez-panel {
+  padding: 1rem;
+  box-shadow: var(--ez-shadow);
+}
+
+.catalog-main .ez-card__body {
+  padding: 1rem;
+}
+
+.catalog-messages {
+  display: grid;
+  gap: .65rem;
+}
+
+.catalog-messages p {
+  margin: 0;
+}
+
+.catalog-messages span {
+  margin-right: .4rem;
+  font-weight: 700;
+}
+
+.required-mark {
+  color: var(--ez-danger);
+}
+
+#form-feedback {
+  margin-bottom: 0;
+}
+
+#form-feedback:empty {
+  margin: 0;
+}
+
+/* pre conserva los saltos de línea. El desplazamiento queda dentro del panel de código. */
+.catalog-code-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin-block: 1.75rem;
+}
+
+.code-panel {
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid #38475c;
+  border-radius: var(--ez-radius);
+  background: #202938;
+  color: #edf2ff;
+}
+
+.code-panel h3 {
+  padding: .65rem 1rem;
+  margin: 0;
+  border-bottom: 1px solid #38475c;
+  background: #18202d;
+  font-size: 1rem;
+}
+
+.code-badge {
+  margin-right: .65rem;
+  color: #94b7ff;
+}
+
+.code-panel pre {
+  overflow-x: auto;
+  padding: 1rem;
+  margin: 0;
+  font-size: .85rem;
+  line-height: 1.6;
+  tab-size: 2;
+}
+
+.catalog-notes {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2rem;
+}
+
+.catalog-footer {
+  padding-top: 1rem;
+  margin-top: 1.5rem;
+  border-top: 1px solid var(--ez-border);
+  color: var(--ez-muted);
+  font-size: .9rem;
+}
+
+/* El enlace se muestra al recibir el foco para saltar los menús con el teclado. */
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -6rem;
+  z-index: 10;
+  padding: .7rem 1rem;
+  background: var(--ez-surface);
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* En tabletas, el formulario pasa debajo de los dos primeros ejemplos. */
+@media (max-width: 75rem) {
+  .catalog-showcase {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr);
+  }
+
+  .catalog-features {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  #formularios {
+    grid-column: 1 / -1;
+  }
+}
+
+/* En móvil, el menú ocupa una fila y los ejemplos se apilan. */
+@media (max-width: 48rem) {
+  .catalog-header {
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  .catalog-header nav {
+    margin-left: 0;
+  }
+
+  .catalog-header ul {
+    gap: 1rem;
+  }
+
+  .catalog-shell,
+  .catalog-showcase,
+  .catalog-code-grid,
+  .catalog-notes {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .catalog-sidebar {
+    padding: .75rem;
+    border-right: 0;
+    border-bottom: 1px solid var(--ez-border);
+  }
+
+  .catalog-sidebar ul {
+    position: static;
+    display: flex;
+    flex-wrap: wrap;
+    gap: .25rem;
+  }
+
+  .catalog-sidebar a {
+    padding: .4rem .6rem;
+    margin: 0;
+  }
+
+  .catalog-sidebar span {
+    display: none;
+  }
+
+  .catalog-main {
+    padding: 1.25rem 1rem;
+  }
+
+  .catalog-features {
+    grid-template-columns: minmax(0, 1fr);
+    gap: .5rem;
+  }
+}

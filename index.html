@@ -3,119 +3,163 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>ez-ui · Catálogo de componentes</title>
+  <meta name="description" content="ez-ui: biblioteca CSS educativa para IISSI-2. Componentes semánticos, ejemplos y JavaScript nativo.">
+  <title>ez-ui · Interfaz CSS para IISSI-2</title>
   <link rel="stylesheet" href="css/ez-ui.css">
-  <style>
-    .demo-section { margin-block: 2.5rem; }
-    .demo-actions { display: flex; flex-wrap: wrap; gap: .65rem; align-items: center; }
-    .demo-hero { padding-block: 2.5rem 1rem; }
-    .demo-photo { display: grid; place-items: center; aspect-ratio: 4/3; color: #fff; font-size: 3rem; }
-    .demo-photo--one { background: linear-gradient(135deg,#1e7494,#8ed1b2); }
-    .demo-photo--two { background: linear-gradient(135deg,#d66d61,#f0bc83); }
-    .demo-photo--three { background: linear-gradient(135deg,#5d5a9d,#b7a5de); }
-  </style>
-  <script type="module">
-    import { ezConfirm } from "./js/dialog.js";
-    import { ezToast } from "./js/toast.js";
-    import { ezThemeToggle } from "./js/theme-toggle.js";
-
-    ezThemeToggle(document.querySelector("#theme-toggle"));
-
-    document.querySelector("#demo-dialog-button").addEventListener("click", async () => {
-      const confirmed = await ezConfirm(document.querySelector("#demo-dialog"));
-      ezToast(confirmed ? "Acción confirmada (sin borrar datos)." : "Acción cancelada.", {
-        type: confirmed ? "success" : "info"
-      });
-    });
-
-    document.querySelector("#demo-toast-button").addEventListener("click", () => {
-      ezToast("Fotografía guardada correctamente.", { type: "success" });
-    });
-
-    document.querySelector("#demo-form").addEventListener("submit", (event) => {
-      event.preventDefault();
-      document.querySelector("#form-feedback").textContent = "Formulario válido (demostración; no se envían datos).";
-      ezToast("Formulario validado.", { type: "success" });
-    });
-  </script>
+  <link rel="stylesheet" href="css/catalog.css">
+  <script type="module" src="js/catalog.js"></script>
 </head>
 <body>
-  <header class="ez-navbar">
-    <nav class="ez-container ez-navbar__inner" aria-label="Principal">
-      <a class="ez-navbar__brand" href="#">ez-ui</a>
-      <div class="ez-navbar__links">
-        <a href="#tarjetas">Tarjetas</a>
-        <a href="#formularios">Formularios</a>
-        <a href="#mensajes">Mensajes</a>
-        <button class="ez-button ez-button--secondary" type="button" id="theme-toggle" aria-pressed="false">Modo oscuro</button>
-      </div>
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+  <header class="catalog-header">
+    <a class="catalog-brand" href="#inicio">ez-ui</a>
+    <p>Interfaz CSS para IISSI-2</p>
+    <nav aria-label="Principal">
+      <ul>
+        <li><a href="#botones">Componentes</a></li>
+        <li><a href="#formularios">Formularios</a></li>
+        <li><a href="#ejemplos">Ejemplos</a></li>
+      </ul>
     </nav>
+    <button class="ez-button ez-button--secondary" type="button" id="theme-toggle" aria-pressed="false">Modo oscuro</button>
   </header>
-  <main class="ez-container">
-    <section class="demo-hero">
-      <p class="ez-muted">IISSI-2 · Biblioteca CSS educativa</p>
-      <h1>Interfaces sencillas, código comprensible.</h1>
-      <p>HTML semántico, CSS nativo y componentes <code>ez-*</code>. Sin Bootstrap ni Sass. Los componentes interactivos usan módulos JavaScript nativos.</p>
-      <div class="demo-actions">
-        <button type="button">Botón nativo</button>
-        <button class="ez-button ez-button--secondary" type="button">Secundario</button>
-        <button class="ez-button ez-button--danger" type="button">Eliminar</button>
+  <div class="catalog-shell">
+    <nav class="catalog-sidebar" aria-label="Catálogo">
+      <ul>
+          <li><a href="#inicio"><span aria-hidden="true">⌂</span>Inicio</a></li>
+          <li><a href="#botones"><span aria-hidden="true">◇</span>Botones</a></li>
+          <li><a href="#tarjetas"><span aria-hidden="true">▣</span>Tarjetas</a></li>
+          <li><a href="#galeria"><span aria-hidden="true">▧</span>Galería</a></li>
+          <li><a href="#formularios"><span aria-hidden="true">▤</span>Formularios</a></li>
+          <li><a href="#mensajes"><span aria-hidden="true">△</span>Mensajes</a></li>
+          <li><a href="#layout"><span aria-hidden="true">▦</span>Layout</a></li>
+          <li><a href="#temas"><span aria-hidden="true">◐</span>Temas</a></li>
+      </ul>
+    </nav>
+    <main id="contenido" class="catalog-main">
+      <section id="inicio" aria-labelledby="inicio-title">
+        <h1 id="inicio-title">ez-ui</h1>
+        <p class="catalog-intro">Una biblioteca CSS sencilla y moderna para aplicaciones web de IISSI-2.</p>
+        <ul class="catalog-features">
+          <li><span aria-hidden="true">✓</span> HTML nativo + clases ez-*</li>
+          <li><span aria-hidden="true">▯</span> Responsive</li>
+          <li><span aria-hidden="true">☾</span> Tema claro y oscuro</li>
+          <li><span aria-hidden="true">&lt;/&gt;</span> Sin dependencias</li>
+        </ul>
+      </section>
+      <section id="botones" class="catalog-buttons" aria-labelledby="botones-title">
+        <h2 id="botones-title">Botones</h2>
+        <div class="demo-actions">
+          <button type="button" id="demo-primary">Primario</button>
+          <button class="ez-button ez-button--secondary" type="button" id="demo-secondary">Secundario</button>
+          <button class="ez-button ez-button--success" type="button" id="demo-toast-button">Éxito</button>
+          <button class="ez-button ez-button--danger" type="button" id="demo-dialog-button">Peligro</button>
+          <button type="button" disabled>Deshabilitado</button>
+        </div>
+      </section>
+      <div class="catalog-showcase">
+        <section id="tarjetas" aria-labelledby="tarjetas-title">
+          <h2 id="tarjetas-title">Tarjeta</h2>
+          <article class="ez-card">
+            <img class="ez-card__image" src="images/mountain.jpg" alt="Cordillera de montañas con un valle y un lago" width="800" height="600">
+            <div class="ez-card__body">
+              <h3>Paisaje de montaña</h3>
+              <p>Ejemplo de tarjeta con imagen, título, texto y acciones.</p>
+              <a class="ez-button" href="#ejemplos">Ver código</a>
+            </div>
+          </article>
+        </section>
+        <div class="catalog-middle">
+          <section id="galeria" aria-labelledby="galeria-title">
+            <h2 id="galeria-title">Galería</h2>
+            <div class="ez-gallery catalog-gallery ez-panel">
+              <img src="images/cove.jpg" alt="Cala rocosa con una cascada junto al mar" width="600" height="600">
+              <img src="images/forest.jpg" alt="Árboles de un bosque con luz entre las copas" width="600" height="600">
+              <img src="images/coast.jpg" alt="Playa de arena con una palmera junto al agua azul" width="600" height="600">
+            </div>
+          </section>
+          <section id="mensajes" aria-labelledby="mensajes-title">
+            <h2 id="mensajes-title">Mensajes</h2>
+            <div class="catalog-messages">
+              <p class="ez-alert"><span aria-hidden="true">ⓘ</span> Información: operación realizada correctamente.</p>
+              <p class="ez-alert ez-alert--success"><span aria-hidden="true">✓</span> Éxito: la fotografía se ha guardado.</p>
+              <p class="ez-alert ez-alert--error"><span aria-hidden="true">!</span> Error: no se ha podido guardar la fotografía.</p>
+            </div>
+          </section>
+        </div>
+        <section id="formularios" aria-labelledby="formularios-title">
+          <h2 id="formularios-title">Formulario</h2>
+          <form id="demo-form" class="ez-panel">
+            <div class="ez-field">
+              <label for="photo-title">Título <span class="required-mark" aria-hidden="true">*</span></label>
+              <input id="photo-title" name="title" required minlength="3" aria-describedby="photo-title-hint" placeholder="Mi fotografía">
+              <small id="photo-title-hint" class="ez-field__hint">Obligatorio. Al menos tres caracteres.</small>
+            </div>
+            <div class="ez-field">
+              <label for="photo-description">Descripción</label>
+              <textarea id="photo-description" name="description" placeholder="Descripción de la fotografía…"></textarea>
+            </div>
+            <div class="demo-actions">
+              <button type="submit">Guardar</button>
+              <button class="ez-button ez-button--secondary" type="reset">Cancelar</button>
+            </div>
+            <p id="form-feedback" role="status"></p>
+          </form>
+        </section>
       </div>
-    </section>
-    <section id="interactivos" class="demo-section">
-      <h2>Componentes interactivos</h2>
-      <p class="ez-muted">Tres módulos ES pequeños: diálogo nativo, toast y selector de tema persistente.</p>
-      <div class="demo-actions">
-        <button id="demo-dialog-button" class="ez-button ez-button--danger" type="button">Abrir confirmación</button>
-        <button id="demo-toast-button" class="ez-button ez-button--secondary" type="button">Mostrar toast</button>
+      <section id="ejemplos" aria-labelledby="ejemplos-title">
+        <h2 id="ejemplos-title" class="visually-hidden">Ejemplos de código</h2>
+        <div class="catalog-code-grid">
+          <section class="code-panel" aria-labelledby="html-title">
+            <h3 id="html-title"><span class="code-badge">HTML</span> Tarjeta semántica</h3>
+            <pre><code>&lt;article class=&quot;ez-card&quot;&gt;
+  &lt;img class=&quot;ez-card__image&quot; src=&quot;images/mountain.jpg&quot;
+       alt=&quot;Paisaje de montaña&quot; width=&quot;800&quot; height=&quot;600&quot;&gt;
+  &lt;div class=&quot;ez-card__body&quot;&gt;
+    &lt;h3&gt;Paisaje de montaña&lt;/h3&gt;
+    &lt;p&gt;Una tarjeta con imagen, título y texto.&lt;/p&gt;
+    &lt;a class=&quot;ez-button&quot; href=&quot;#formularios&quot;&gt;Ver formulario&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/article&gt;</code></pre>
+          </section>
+          <section class="code-panel" aria-labelledby="css-title">
+            <h3 id="css-title"><span class="code-badge">CSS</span> Galería y tarjetas</h3>
+            <pre><code>.ez-gallery {
+  display: grid;
+  grid-template-columns:
+    repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
+  gap: var(--ez-space-6);
+}
+
+.ez-card {
+  background: var(--ez-surface);
+  border: 1px solid var(--ez-border);
+  border-radius: var(--ez-radius-lg);
+  overflow: hidden;
+}</code></pre>
+          </section>
+        </div>
+      </section>
+      <div class="catalog-notes">
+        <section id="layout" aria-labelledby="layout-title">
+          <h2 id="layout-title">Layout</h2>
+          <p><code>.ez-gallery</code> distribuye los elementos con Grid. <code>.ez-stack</code> separa los elementos en vertical. El catálogo adapta sus columnas al espacio disponible.</p>
+        </section>
+        <section id="temas" aria-labelledby="temas-title">
+          <h2 id="temas-title">Temas</h2>
+          <p>El botón de la cabecera cambia el tema y recuerda tu preferencia. Los colores se definen en <a href="css/tokens.css">tokens.css</a> y se reutilizan con <code>var()</code>.</p>
+        </section>
       </div>
-      <dialog id="demo-dialog" class="ez-dialog" aria-labelledby="demo-dialog-title">
-        <h3 id="demo-dialog-title">¿Eliminar fotografía?</h3>
-        <p>Esta es una demostración: no se eliminará ningún dato.</p>
-        <form method="dialog" class="ez-dialog__actions">
-          <button class="ez-button ez-button--secondary" value="cancel">Cancelar</button>
-          <button class="ez-button ez-button--danger" value="confirm">Confirmar</button>
-        </form>
-      </dialog>
-    </section>
-    <section id="tarjetas" class="demo-section">
-      <h2>Tarjetas y galería</h2>
-      <p class="ez-muted">La rejilla es responsive sin crear filas manualmente en JavaScript.</p>
-      <div class="ez-gallery">
-        <article class="ez-card">
-          <div class="demo-photo demo-photo--one" role="img" aria-label="Ilustración abstracta azul y verde">✦</div>
-          <div class="ez-card__body"><h3>Fotografía uno</h3><p>Un ejemplo de tarjeta para un renderizador.</p><a href="#formularios">Ver formulario</a></div>
-        </article>
-        <article class="ez-card">
-          <div class="demo-photo demo-photo--two" role="img" aria-label="Ilustración abstracta naranja">◈</div>
-          <div class="ez-card__body"><h3>Fotografía dos</h3><p>La presentación es responsabilidad de CSS.</p><a href="#formularios">Ver formulario</a></div>
-        </article>
-        <article class="ez-card">
-          <div class="demo-photo demo-photo--three" role="img" aria-label="Ilustración abstracta violeta">◇</div>
-          <div class="ez-card__body"><h3>Fotografía tres</h3><p>El renderizador solo genera HTML semántico.</p><a href="#formularios">Ver formulario</a></div>
-        </article>
-      </div>
-    </section>
-    <section id="formularios" class="demo-section">
-      <h2>Formularios</h2>
-      <div class="ez-panel">
-        <form id="demo-form">
-          <div class="ez-field"><label for="photo-title">Título</label><input id="photo-title" name="title" required minlength="3" placeholder="Mi fotografía"><small class="ez-field__hint">Al menos tres caracteres.</small></div>
-          <div class="ez-field"><label for="photo-description">Descripción</label><textarea id="photo-description" name="description" placeholder="Describe la imagen"></textarea></div>
-          <div class="ez-field"><label for="photo-visibility">Visibilidad</label><select id="photo-visibility" name="visibility"><option>Pública</option><option>Privada</option></select></div>
-          <button type="submit">Guardar</button>
-          <p id="form-feedback" role="status" aria-live="polite"></p>
-        </form>
-      </div>
-    </section>
-    <section id="mensajes" class="demo-section">
-      <h2>Mensajes de estado</h2>
-      <div class="ez-stack">
-        <div class="ez-alert" role="status">Información: el formulario usa validación HTML5.</div>
-        <div class="ez-alert ez-alert--success" role="status">Éxito: operación completada.</div>
-        <div class="ez-alert ez-alert--error" role="alert">Error: comprueba los datos introducidos.</div>
-      </div>
-    </section>
-  </main>
+      <footer class="catalog-footer">ez-ui · IISSI-2 · HTML semántico, CSS y JavaScript nativos.</footer>
+    </main>
+  </div>
+  <dialog id="demo-dialog" class="ez-dialog" aria-labelledby="demo-dialog-title" aria-describedby="demo-dialog-description">
+    <h2 id="demo-dialog-title">¿Eliminar fotografía?</h2>
+    <p id="demo-dialog-description">Esta es una demostración: no se eliminará ningún dato.</p>
+    <form method="dialog" class="ez-dialog__actions">
+      <button class="ez-button ez-button--secondary" value="cancel">Cancelar</button>
+      <button class="ez-button ez-button--danger" value="confirm">Confirmar</button>
+    </form>
+  </dialog>
 </body>
 </html>
