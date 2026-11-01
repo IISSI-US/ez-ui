@@ -1,7 +1,16 @@
 <nav class="ez-navbar" aria-label="Principal">
     <div class="ez-container ez-navbar__inner">
         <a class="ez-navbar__brand" href="index.html"><span class="doc-brand-mark">ez</span>-ui</a>
-        <ul class="ez-navbar__links">
+        <button class="ez-button ez-button--secondary ez-navbar__toggle"
+                type="button"
+                aria-expanded="false"
+                aria-controls="site-links">
+            <svg class="ez-icon" aria-hidden="true">
+                <use href="ez-ui/icons.svg#menu"></use>
+            </svg>
+            Menú
+        </button>
+        <ul id="site-links" class="ez-navbar__links">
             <li><a href="index.html">Inicio</a></li>
             <li><a href="fundamentos.html">Fundamentos</a></li>
             <li><a href="maquetacion.html">Maquetación</a></li>

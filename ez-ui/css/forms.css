@@ -1,5 +1,5 @@
-/* Controles de formulario y ayudas. Los errores de validación se muestran en un
-   <div id="errors"> encima del formulario, con alertas (ez-alert--error). */
+/* Controles de formulario, ayudas y errores de un campo. Los errores de todo el
+   formulario se muestran encima, en una alerta (ez-alert--error). */
 
 form {
   max-width: 42rem;
@@ -48,6 +48,21 @@ textarea::placeholder {
   margin-top: .3rem;
   color: var(--ez-muted);
   font-size: .9rem;
+}
+
+/* Error de un campo: el mensaje, debajo del control. */
+.ez-field__error {
+  display: block;
+  margin-top: .3rem;
+  color: var(--ez-danger);
+  font-size: .9rem;
+}
+
+/* El código que valida el campo pone aria-invalid="true" en el control erróneo, que
+   los lectores de pantalla anuncian. !important hace que el borde rojo prevalezca
+   sobre el de la regla de los controles, que es más específica. */
+[aria-invalid="true"] {
+  border-color: var(--ez-danger) !important;
 }
 
 /* Estado de los controles desactivados. */

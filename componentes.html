@@ -8,16 +8,12 @@
         <script src="js/utils/theme-init.js"></script>
         <link rel="stylesheet" href="ez-ui/css/ez-ui.css">
         <link rel="stylesheet" href="css/site.css">
-        <script src="js/utils/include.js"></script>
         <script src="js/header.js" type="module"></script>
         <script src="js/componentes.js" type="module"></script>
     </head>
 
     <body>
         <div id="page-header"></div>
-        <script>
-            include("header.html", "#page-header");
-        </script>
 
         <div class="ez-container doc-layout">
             <main>
@@ -116,8 +112,13 @@
                     </p>
                     <div class="doc-example doc-example--column">
                         <div class="ez-alert">El mercado de fichajes cierra el viernes a las 21:00.</div>
-                        <div class="ez-alert ez-alert--success">Tu alineación está confirmada para la jornada 11.</div>
-                        <div class="ez-alert ez-alert--error" role="alert">No tienes saldo suficiente para esta puja.</div>
+                        <div class="ez-alert ez-alert--success">
+                            Tu alineación está confirmada para la jornada 11.
+                        </div>
+                        <div class="ez-alert ez-alert--error"
+                             role="alert">
+                            No tienes saldo suficiente para esta puja.
+                        </div>
                     </div>
 
                     <h3>Con más contenido</h3>
@@ -157,7 +158,10 @@
                         atributo <code>style</code>, sin escribir otra regla.
                     </p>
                     <div class="doc-example">
-                        <img class="ez-avatar" src="images/soccer/avatar-hugo-serrano.svg" alt="Hugo Serrano" style="--ez-avatar-size: 4rem">
+                        <img class="ez-avatar"
+                             src="images/soccer/avatar-hugo-serrano.svg"
+                             alt="Hugo Serrano"
+                             style="--ez-avatar-size: 4rem">
                     </div>
 
                     <h3>Con nombre y etiqueta</h3>
@@ -196,7 +200,9 @@
                     </p>
                     <div class="doc-example">
                         <article class="ez-card">
-                            <img class="ez-card__image" src="images/soccer/shirt-lucia-romero.svg" alt="Camiseta granate con el dorsal 9">
+                            <img class="ez-card__image"
+                                 src="images/soccer/shirt-lucia-romero.svg"
+                                 alt="Camiseta granate con el dorsal 9">
                             <div class="ez-card__body">
                                 <h3>Lucía Romero</h3>
                                 <p>Delantera de la ETSII. Máxima goleadora del trofeo.</p>
@@ -211,7 +217,9 @@
                     </p>
                     <div class="doc-example">
                         <article class="ez-card">
-                            <img class="ez-card__image" src="images/soccer/shirt-pablo-vega.svg" alt="Camiseta azul con el dorsal 4">
+                            <img class="ez-card__image"
+                                 src="images/soccer/shirt-pablo-vega.svg"
+                                 alt="Camiseta azul con el dorsal 4">
                             <div class="ez-card__body">
                                 <h3>Pablo Vega</h3>
                                 <p>Defensa de Arquitectura.</p>
@@ -232,7 +240,9 @@
                     <h4>Jugador en el mercado: etiquetas y botones</h4>
                     <div class="doc-example">
                         <article class="ez-card">
-                            <img class="ez-card__image" src="images/soccer/shirt-hugo-serrano.svg" alt="Camiseta negra con el dorsal 10">
+                            <img class="ez-card__image"
+                                 src="images/soccer/shirt-hugo-serrano.svg"
+                                 alt="Camiseta negra con el dorsal 10">
                             <div class="ez-card__body">
                                 <h3>Hugo Serrano <span class="ez-badge">MC</span></h3>
                                 <p>Derecho · 61 puntos <span class="ez-badge ez-badge--success">Disponible</span></p>
@@ -279,7 +289,9 @@
                     <h4>Lesión: una alerta dentro del cuerpo</h4>
                     <div class="doc-example">
                         <article class="ez-card">
-                            <img class="ez-card__image" src="images/soccer/shirt-mario-gil.svg" alt="Camiseta naranja con el dorsal 5">
+                            <img class="ez-card__image"
+                                 src="images/soccer/shirt-mario-gil.svg"
+                                 alt="Camiseta naranja con el dorsal 5">
                             <div class="ez-card__body">
                                 <h3>Mario Gil <span class="ez-badge">MC</span></h3>
                                 <div class="ez-alert ez-alert--error">Lesionado hasta la jornada 13.</div>
@@ -299,7 +311,8 @@
                         escribe con <code>&lt;nav&gt;</code> y una lista de enlaces
                         (<code>&lt;ul&gt;</code>), que Flexbox pone en fila. En una pantalla
                         estrecha, los enlaces que no caben pasan a la línea siguiente
-                        (<code>flex-wrap: wrap</code>): no hace falta un menú desplegable.
+                        (<code>flex-wrap: wrap</code>); si son muchos, pueden plegarse bajo
+                        un botón con el <a href="javascript.html#navbar">menú plegable</a>.
                     </p>
                     <div class="doc-example">
                         <nav class="ez-navbar" aria-label="Principal">
@@ -325,20 +338,50 @@
                                 <a class="ez-navbar__brand" href="#navbar">Trofeo ez-Soccer</a>
                                 <ul class="ez-navbar__links">
                                     <li><a href="#navbar">Clasificación</a></li>
-                                    <li><a href="#navbar">Mercado <span class="ez-badge ez-badge--primary">3</span></a></li>
+                                    <li>
+                                        <a href="#navbar">
+                                            Mercado <span class="ez-badge ez-badge--primary">3</span>
+                                        </a>
+                                    </li>
                                     <li>
                                         <img class="ez-avatar" src="images/soccer/avatar-irene-campos.svg" alt="">
                                         Irene Campos
                                     </li>
-                                    <li><button class="ez-button ez-button--secondary" type="button">Cerrar sesión</button></li>
+                                    <li>
+                                        <button class="ez-button ez-button--secondary" type="button">Cerrar sesión</button>
+                                    </li>
                                 </ul>
                             </div>
                         </nav>
                     </div>
+
+                    <h3>En el lateral</h3>
                     <p>
-                        Esta web usa la misma barra en su cabecera, que todas las páginas cargan
-                        desde <code>header.html</code>.
+                        Con la variante <code>ez-navbar--side</code>, la misma barra se pone en
+                        columna. Para colocarla a la izquierda del contenido se usan las dos
+                        columnas de <code>ez-split</code>, con la primera estrecha (ver
+                        <a href="maquetacion.html#sidebar">Maquetación</a>); en una pantalla
+                        estrecha, la barra pasa arriba. Al desplazar la página, la barra se queda
+                        fija.
                     </p>
+                    <div class="doc-example doc-example--column doc-example--app">
+                        <div class="ez-split" style="--ez-split-columns: 15rem 1fr">
+                            <nav class="ez-navbar ez-navbar--side" aria-label="Principal">
+                                <div class="ez-container ez-navbar__inner">
+                                    <a class="ez-navbar__brand" href="#navbar">Trofeo ez-Soccer</a>
+                                    <ul class="ez-navbar__links">
+                                        <li><a href="#navbar">Clasificación</a></li>
+                                        <li><a href="#navbar">Mercado</a></li>
+                                        <li><a href="#navbar">Mi equipo</a></li>
+                                    </ul>
+                                </div>
+                            </nav>
+                            <main class="ez-container">
+                                <h3>Clasificación</h3>
+                                <p>La ETSII sigue líder tras la jornada 11.</p>
+                            </main>
+                        </div>
+                    </div>
                 </section>
             </main>
 

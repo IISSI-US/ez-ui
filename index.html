@@ -8,16 +8,12 @@
         <script src="js/utils/theme-init.js"></script>
         <link rel="stylesheet" href="ez-ui/css/ez-ui.css">
         <link rel="stylesheet" href="css/site.css">
-        <script src="js/utils/include.js"></script>
         <script src="js/header.js" type="module"></script>
         <script src="js/index.js" type="module"></script>
     </head>
 
     <body>
         <div id="page-header"></div>
-        <script>
-            include("header.html", "#page-header");
-        </script>
 
         <div class="ez-container doc-layout">
             <main>
@@ -30,18 +26,6 @@
                         dependencias ni compilación.
                     </p>
                 </header>
-
-                <section class="doc-section" id="por-que">
-                    <h2>¿Por qué no Bootstrap?</h2>
-                    <p>
-                        Bootstrap resuelve muchos problemas que no tiene una práctica de la
-                        asignatura, y a cambio obliga a aprender su sistema de clases, su rejilla y
-                        su JavaScript. ez-ui hace lo contrario: usa lo que ya se explica en clase
-                        (variables CSS, Flexbox, Grid, selectores, elementos nativos como
-                        <code>&lt;dialog&gt;</code>) y cabe en unas pocas hojas que se pueden abrir y
-                        entender.
-                    </p>
-                </section>
 
                 <section class="doc-section" id="uso">
                     <h2>Cómo se usa</h2>
@@ -61,16 +45,76 @@
 
                 <section class="doc-section" id="convenciones">
                     <h2>Convenciones</h2>
-                    <ul>
-                        <li>Componente: <code>.ez-card</code>, <code>.ez-button</code>.</li>
-                        <li>Parte de un componente, con dos guiones bajos: <code>.ez-card__body</code>.</li>
-                        <li>Variante, con dos guiones: <code>.ez-button--danger</code>.</li>
-                        <li>Variables: <code>--ez-primary</code>, <code>--ez-space-4</code>.</li>
-                    </ul>
                     <p>
-                        Es la convención BEM (bloque, elemento y modificador): el nombre de una clase
-                        dice a qué componente pertenece y qué papel tiene en él.
+                        Las clases siguen la convención BEM (bloque, elemento y modificador): el
+                        nombre de una clase dice a qué componente pertenece y qué papel tiene en él.
+                        Todas empiezan por <code>ez-</code>, para distinguirlas de las del proyecto.
                     </p>
+
+                    <h3>Componente</h3>
+                    <p>Una clase con el nombre del componente: <code>ez-card</code>, <code>ez-button</code>.</p>
+                    <div class="doc-example">
+                        <button class="ez-button" type="button">Pujar</button>
+                        <span class="ez-badge">DF</span>
+                    </div>
+
+                    <h3>Parte de un componente</h3>
+                    <p>
+                        El nombre del componente, dos guiones bajos y el de la parte:
+                        <code>ez-card__image</code>, <code>ez-card__body</code>,
+                        <code>ez-card__footer</code>. Solo tienen sentido dentro de su componente.
+                    </p>
+                    <div class="doc-example">
+                        <article class="ez-card">
+                            <div class="ez-card__body">
+                                <h3>Nora Iglesias</h3>
+                                <p>Portera de Medicina.</p>
+                            </div>
+                            <footer class="ez-card__footer">
+                                <span>49 puntos</span>
+                                <strong>700.000 €</strong>
+                            </footer>
+                        </article>
+                    </div>
+
+                    <h3>Variante</h3>
+                    <p>
+                        Se añade a la clase del componente, con dos guiones: cambia su aspecto
+                        sin repetir el resto (<code>ez-button ez-button--danger</code>).
+                    </p>
+                    <div class="doc-example">
+                        <button class="ez-button ez-button--danger" type="button">Vender</button>
+                        <span class="ez-badge ez-badge--danger">Lesionado</span>
+                        <div class="ez-alert ez-alert--success">Puja registrada.</div>
+                    </div>
+
+                    <h3>Variables</h3>
+                    <p>
+                        Los colores, las fuentes y los espacios son variables que empiezan por
+                        <code>--ez-</code>. Se usan con <code>var()</code> en la hoja propia del
+                        proyecto, y se pueden cambiar para toda la página o solo dentro de un
+                        elemento (ver <a href="fundamentos.html#variables">Fundamentos</a>).
+                    </p>
+                    <template class="doc-example">
+                        /* css/style.css: un elemento propio con los colores y espacios de ez-ui */
+                        .match-score {
+                            padding: var(--ez-space-2) var(--ez-space-4);
+                            border: 1px solid var(--ez-border);
+                            color: var(--ez-primary);
+                        }
+                    </template>
+
+                    <h3>Clases del proyecto</h3>
+                    <p>
+                        Las clases propias de cada proyecto llevan otro prefijo, o ninguno, para que
+                        no se confundan con las de la biblioteca. En un mismo elemento pueden ir
+                        juntas.
+                    </p>
+                    <template class="doc-example">
+                        <article class="ez-card player-card">
+                            <!-- ez-card: de la biblioteca; player-card: del proyecto -->
+                        </article>
+                    </template>
                 </section>
 
                 <section class="doc-section" id="ampliar">
@@ -115,7 +159,6 @@
             <nav class="doc-toc" aria-label="En esta página">
                 <h2>En esta página</h2>
                 <ul>
-                    <li><a href="#por-que">¿Por qué no Bootstrap?</a></li>
                     <li><a href="#uso">Cómo se usa</a></li>
                     <li><a href="#convenciones">Convenciones</a></li>
                     <li><a href="#ampliar">Cómo ampliar ez-ui</a></li>

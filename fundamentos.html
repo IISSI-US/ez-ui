@@ -4,20 +4,16 @@
         <title>ez-ui · Fundamentos</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="Fundamentos de ez-ui: variables, tema oscuro, fuentes, elementos HTML y tablas">
+        <meta name="description" content="Fundamentos de ez-ui: variables, tema oscuro, fuentes, iconos, elementos HTML y tablas">
         <script src="js/utils/theme-init.js"></script>
         <link rel="stylesheet" href="ez-ui/css/ez-ui.css">
         <link rel="stylesheet" href="css/site.css">
-        <script src="js/utils/include.js"></script>
         <script src="js/header.js" type="module"></script>
         <script src="js/fundamentos.js" type="module"></script>
     </head>
 
     <body>
         <div id="page-header"></div>
-        <script>
-            include("header.html", "#page-header");
-        </script>
 
         <div class="ez-container doc-layout">
             <main>
@@ -64,24 +60,6 @@
                         la cabecera.
                     </p>
                     <template class="doc-example" data-code='<html lang="es" data-ez-theme="dark">'></template>
-                    <p>
-                        El botón de esta web cambia el atributo desde JavaScript
-                        (<code>document.documentElement.dataset.ezTheme = "dark"</code>) y guarda
-                        la preferencia en <code>localStorage</code> para la próxima visita.
-                    </p>
-                    <p>
-                        La preferencia guardada se aplica al cargar cada página con un script
-                        clásico en el <code>&lt;head&gt;</code>, no con un módulo. Un script
-                        clásico se ejecuta en cuanto el navegador lo lee, antes de pintar nada; un
-                        módulo (<code>type="module"</code>), después de leer toda la página. Con un
-                        módulo, la página se vería un instante con el tema claro antes de pasar al
-                        oscuro.
-                    </p>
-                    <template class="doc-example">
-                        <script src="js/utils/theme-init.js"></script>
-                        <link rel="stylesheet" href="ez-ui/css/ez-ui.css">
-                    </template>
-                    <template class="doc-source" data-file="js/utils/theme-init.js"></template>
                 </section>
 
                 <section class="doc-section" id="fonts">
@@ -93,6 +71,144 @@
                         el nombre de cada familia a su fichero; después se usan con
                         <code>font-family</code> como cualquier otra fuente.
                     </p>
+                </section>
+
+                <section class="doc-section" id="icons">
+                    <h2>Iconos</h2>
+                    <p>
+                        ez-ui trae una selección de iconos de <a href="https://lucide.dev">Lucide</a>
+                        (licencia libre ISC) en un solo fichero, <code>ez-ui/icons.svg</code>. Cada
+                        icono es un <code>&lt;symbol&gt;</code> con un nombre, y se muestra con un
+                        <code>&lt;svg&gt;</code> que lo usa: <code>&lt;use href="…#nombre"&gt;</code>.
+                        Con la clase <code>ez-icon</code> toma el tamaño y el color del texto que lo
+                        rodea, así que cambia con él, también en un botón o con el tema oscuro.
+                    </p>
+                    <div class="doc-example">
+                        <ul class="doc-icons">
+                            <li>
+                                <svg class="ez-icon" aria-hidden="true">
+                                    <use href="ez-ui/icons.svg#user"></use>
+                                </svg>
+                                <code>user</code>
+                            </li>
+                            <li>
+                                <svg class="ez-icon" aria-hidden="true">
+                                    <use href="ez-ui/icons.svg#trophy"></use>
+                                </svg>
+                                <code>trophy</code>
+                            </li>
+                            <li>
+                                <svg class="ez-icon" aria-hidden="true">
+                                    <use href="ez-ui/icons.svg#shirt"></use>
+                                </svg>
+                                <code>shirt</code>
+                            </li>
+                            <li>
+                                <svg class="ez-icon" aria-hidden="true">
+                                    <use href="ez-ui/icons.svg#calendar"></use>
+                                </svg>
+                                <code>calendar</code>
+                            </li>
+                            <li>
+                                <svg class="ez-icon" aria-hidden="true">
+                                    <use href="ez-ui/icons.svg#house"></use>
+                                </svg>
+                                <code>house</code>
+                            </li>
+                            <li>
+                                <svg class="ez-icon" aria-hidden="true">
+                                    <use href="ez-ui/icons.svg#search"></use>
+                                </svg>
+                                <code>search</code>
+                            </li>
+                            <li>
+                                <svg class="ez-icon" aria-hidden="true">
+                                    <use href="ez-ui/icons.svg#plus"></use>
+                                </svg>
+                                <code>plus</code>
+                            </li>
+                            <li>
+                                <svg class="ez-icon" aria-hidden="true">
+                                    <use href="ez-ui/icons.svg#pencil"></use>
+                                </svg>
+                                <code>pencil</code>
+                            </li>
+                            <li>
+                                <svg class="ez-icon" aria-hidden="true">
+                                    <use href="ez-ui/icons.svg#trash-2"></use>
+                                </svg>
+                                <code>trash-2</code>
+                            </li>
+                            <li>
+                                <svg class="ez-icon" aria-hidden="true">
+                                    <use href="ez-ui/icons.svg#x"></use>
+                                </svg>
+                                <code>x</code>
+                            </li>
+                            <li>
+                                <svg class="ez-icon" aria-hidden="true">
+                                    <use href="ez-ui/icons.svg#log-out"></use>
+                                </svg>
+                                <code>log-out</code>
+                            </li>
+                            <li>
+                                <svg class="ez-icon" aria-hidden="true">
+                                    <use href="ez-ui/icons.svg#triangle-alert"></use>
+                                </svg>
+                                <code>triangle-alert</code>
+                            </li>
+                            <li>
+                                <svg class="ez-icon" aria-hidden="true">
+                                    <use href="ez-ui/icons.svg#check"></use>
+                                </svg>
+                                <code>check</code>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <h3>Con texto</h3>
+                    <p>
+                        <code>aria-hidden="true"</code> oculta el icono a los lectores de pantalla,
+                        porque el texto de al lado ya dice lo mismo.
+                    </p>
+                    <div class="doc-example">
+                        <span>
+                            <svg class="ez-icon" aria-hidden="true">
+                                <use href="ez-ui/icons.svg#trophy"></use>
+                            </svg>
+                            Campeón: ETSII
+                        </span>
+                        <a class="ez-button" href="#icons">
+                            <svg class="ez-icon" aria-hidden="true">
+                                <use href="ez-ui/icons.svg#user"></use>
+                            </svg>
+                            Mi equipo
+                        </a>
+                        <button class="ez-button ez-button--danger" type="button">
+                            <svg class="ez-icon" aria-hidden="true">
+                                <use href="ez-ui/icons.svg#trash-2"></use>
+                            </svg>
+                            Vender
+                        </button>
+                    </div>
+
+                    <h3>Solo el icono</h3>
+                    <p>
+                        Si un botón solo tiene el icono, necesita un nombre para los lectores de
+                        pantalla, con <code>aria-label</code>.
+                    </p>
+                    <div class="doc-example">
+                        <button class="ez-button ez-button--secondary" type="button" aria-label="Editar">
+                            <svg class="ez-icon" aria-hidden="true">
+                                <use href="ez-ui/icons.svg#pencil"></use>
+                            </svg>
+                        </button>
+                        <button class="ez-button ez-button--secondary" type="button" aria-label="Cerrar">
+                            <svg class="ez-icon" aria-hidden="true">
+                                <use href="ez-ui/icons.svg#x"></use>
+                            </svg>
+                        </button>
+                    </div>
                 </section>
 
                 <section class="doc-section" id="elements">
@@ -119,79 +235,83 @@
                         título va en <code>&lt;caption&gt;</code>, las cabeceras de columna en
                         <code>&lt;thead&gt;</code> con <code>&lt;th&gt;</code>, y los datos en
                         <code>&lt;tbody&gt;</code>. La clase <code>ez-number</code> alinea los
-                        números a la derecha.
+                        números a la derecha. Si la tabla puede ser más ancha que la pantalla, va
+                        dentro de un <code>ez-scroll</code>, que la desplaza a los lados sin mover
+                        la página.
                     </p>
                     <div class="doc-example">
-                        <table>
-                            <caption>Clasificación tras la jornada 11</caption>
-                            <thead>
-                                <tr>
-                                    <th class="ez-number">Pos.</th>
-                                    <th>Equipo</th>
-                                    <th class="ez-number">PJ</th>
-                                    <th class="ez-number">G</th>
-                                    <th class="ez-number">E</th>
-                                    <th class="ez-number">P</th>
-                                    <th class="ez-number">Puntos</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td class="ez-number">1</td>
-                                    <td>ETSII</td>
-                                    <td class="ez-number">11</td>
-                                    <td class="ez-number">8</td>
-                                    <td class="ez-number">2</td>
-                                    <td class="ez-number">1</td>
-                                    <td class="ez-number">26</td>
-                                </tr>
-                                <tr>
-                                    <td class="ez-number">2</td>
-                                    <td>Medicina</td>
-                                    <td class="ez-number">11</td>
-                                    <td class="ez-number">7</td>
-                                    <td class="ez-number">2</td>
-                                    <td class="ez-number">2</td>
-                                    <td class="ez-number">23</td>
-                                </tr>
-                                <tr>
-                                    <td class="ez-number">3</td>
-                                    <td>Arquitectura</td>
-                                    <td class="ez-number">11</td>
-                                    <td class="ez-number">5</td>
-                                    <td class="ez-number">2</td>
-                                    <td class="ez-number">4</td>
-                                    <td class="ez-number">17</td>
-                                </tr>
-                                <tr>
-                                    <td class="ez-number">4</td>
-                                    <td>Derecho</td>
-                                    <td class="ez-number">11</td>
-                                    <td class="ez-number">4</td>
-                                    <td class="ez-number">2</td>
-                                    <td class="ez-number">5</td>
-                                    <td class="ez-number">14</td>
-                                </tr>
-                                <tr>
-                                    <td class="ez-number">5</td>
-                                    <td>Económicas</td>
-                                    <td class="ez-number">11</td>
-                                    <td class="ez-number">2</td>
-                                    <td class="ez-number">2</td>
-                                    <td class="ez-number">7</td>
-                                    <td class="ez-number">8</td>
-                                </tr>
-                                <tr>
-                                    <td class="ez-number">6</td>
-                                    <td>Bellas Artes</td>
-                                    <td class="ez-number">11</td>
-                                    <td class="ez-number">1</td>
-                                    <td class="ez-number">2</td>
-                                    <td class="ez-number">8</td>
-                                    <td class="ez-number">5</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <div class="ez-scroll">
+                            <table>
+                                <caption>Clasificación tras la jornada 11</caption>
+                                <thead>
+                                    <tr>
+                                        <th class="ez-number">Pos.</th>
+                                        <th>Equipo</th>
+                                        <th class="ez-number">PJ</th>
+                                        <th class="ez-number">G</th>
+                                        <th class="ez-number">E</th>
+                                        <th class="ez-number">P</th>
+                                        <th class="ez-number">Puntos</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="ez-number">1</td>
+                                        <td>ETSII</td>
+                                        <td class="ez-number">11</td>
+                                        <td class="ez-number">8</td>
+                                        <td class="ez-number">2</td>
+                                        <td class="ez-number">1</td>
+                                        <td class="ez-number">26</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="ez-number">2</td>
+                                        <td>Medicina</td>
+                                        <td class="ez-number">11</td>
+                                        <td class="ez-number">7</td>
+                                        <td class="ez-number">2</td>
+                                        <td class="ez-number">2</td>
+                                        <td class="ez-number">23</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="ez-number">3</td>
+                                        <td>Arquitectura</td>
+                                        <td class="ez-number">11</td>
+                                        <td class="ez-number">5</td>
+                                        <td class="ez-number">2</td>
+                                        <td class="ez-number">4</td>
+                                        <td class="ez-number">17</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="ez-number">4</td>
+                                        <td>Derecho</td>
+                                        <td class="ez-number">11</td>
+                                        <td class="ez-number">4</td>
+                                        <td class="ez-number">2</td>
+                                        <td class="ez-number">5</td>
+                                        <td class="ez-number">14</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="ez-number">5</td>
+                                        <td>Económicas</td>
+                                        <td class="ez-number">11</td>
+                                        <td class="ez-number">2</td>
+                                        <td class="ez-number">2</td>
+                                        <td class="ez-number">7</td>
+                                        <td class="ez-number">8</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="ez-number">6</td>
+                                        <td>Bellas Artes</td>
+                                        <td class="ez-number">11</td>
+                                        <td class="ez-number">1</td>
+                                        <td class="ez-number">2</td>
+                                        <td class="ez-number">8</td>
+                                        <td class="ez-number">5</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                     <p>
                         PJ: partidos jugados; G, E y P: ganados, empatados y perdidos. Una victoria
@@ -206,6 +326,7 @@
                     <li><a href="#variables">Variables</a></li>
                     <li><a href="#theme">Tema oscuro</a></li>
                     <li><a href="#fonts">Fuentes</a></li>
+                    <li><a href="#icons">Iconos</a></li>
                     <li><a href="#elements">Elementos HTML</a></li>
                     <li><a href="#table">Tablas</a></li>
                 </ul>

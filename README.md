@@ -1,106 +1,98 @@
 # ez-ui
 
-Biblioteca CSS educativa para interfaces web sencillas de IISSI-2. **Propuesta inicial**, todavía no integrada en Gallery.
+Hoja de estilos sencilla para las prácticas de IISSI-2 (Universidad de Sevilla), en lugar de Bootstrap: HTML semántico, CSS que se puede leer entero y unos pocos componentes con JavaScript, sin dependencias ni compilación.
 
-## Objetivos
+Documentación y ejemplos: https://iissi-us.github.io/ez-ui/
 
-- HTML semántico y capacidades nativas del navegador.
-- Estilos base para elementos comunes y clases `ez-*` para componentes y variantes.
-- CSS estándar sin compilación ni dependencias.
-- Separación entre presentación, renderizadores, validadores y API REST.
+## Por qué
 
-## Probar
+Bootstrap resuelve muchos problemas que no tiene una práctica de la asignatura, y a cambio obliga a aprender su sistema de clases, su rejilla y su JavaScript. ez-ui usa lo que ya se explica en clase (variables CSS, Flexbox, Grid, selectores, elementos nativos como `<dialog>`) y cabe en unas 800 líneas, comentadas para que se entiendan. Está pensada para explicarse entera en 2 a 4 horas de clase.
 
-Sirve la carpeta por HTTP y abre `index.html` en el navegador (instrucciones al final). Incluye navegación lateral, tarjetas, galería responsive, botones, formularios, mensajes, extractos de código y selector de tema claro/oscuro.
+## Estructura
+
+```
+ez-ui/              la biblioteca: lo único que se copia al proyecto
+├── css/
+│   ├── ez-ui.css         punto de entrada: importa las demás en orden
+│   ├── fonts.css         @font-face de las fuentes incluidas
+│   ├── tokens.css        variables (colores, fuentes, espacios) y tema oscuro
+│   ├── base.css          elementos HTML sin clases, incluidas las tablas
+│   ├── layout.css        contenedor, galería y dos columnas
+│   ├── components.css    navbar, tarjeta, avatar, botón, alerta y etiqueta
+│   ├── forms.css         controles de formulario y ayudas
+│   └── interactive.css   diálogo, notificación e indicador de carga
+├── js/
+│   ├── navbar.js         ezNavbar(barra): menú plegable en pantallas estrechas
+│   ├── dialog.js         ezConfirm(dialog)
+│   ├── toast.js          ezToast(mensaje, tipo, duración)
+│   └── loading.js        ezLoading(elemento, promesa)
+├── fonts/            Source Sans 3 y JetBrains Mono (WOFF2, licencia OFL)
+├── icons.svg         iconos de Lucide (licencia ISC): <svg class="ez-icon"><use href="ez-ui/icons.svg#nombre">
+└── LICENSE-lucide.txt
+
+index.html, fundamentos.html, maquetacion.html, componentes.html,
+formularios.html, javascript.html     la web de documentación
+header.html, css/site.css, js/        la web: cabecera, estilos y su JavaScript
+images/soccer/                        imágenes SVG propias de los ejemplos
+```
+
+La web dice qué ofrece ez-ui (cada pieza, con un ejemplo y su HTML), no cómo organizar una aplicación con ella. Usa ez-ui sin modificarla: lo suyo va en `css/site.css`, con el prefijo `doc-`.
 
 ## Uso
 
+Se copia la carpeta `ez-ui/` al proyecto y se enlaza su hoja principal en el `<head>` de cada vista:
+
 ```html
-<link rel="stylesheet" href="css/ez-ui.css">
+<link rel="stylesheet" href="ez-ui/css/ez-ui.css">
+```
+
+Los componentes con JavaScript son módulos que se importan donde se usen:
+
+```js
+import { ezNavbar } from "./ez-ui/js/navbar.js";
+import { ezConfirm } from "./ez-ui/js/dialog.js";
+import { ezToast } from "./ez-ui/js/toast.js";
+import { ezLoading } from "./ez-ui/js/loading.js";
 ```
 
 ## Convenciones
 
-- Componentes: `.ez-card`, `.ez-gallery`, `.ez-button`, `.ez-alert`.
-- Elementos: `.ez-card__body`.
-- Variantes: `.ez-button--secondary`, `.ez-alert--error`.
-- Variables: `--ez-primary`, `--ez-space-4`.
-- Los IDs y nombres funcionales no llevan obligatoriamente el prefijo.
+- Clases con el prefijo `ez-` y la convención BEM: componente (`.ez-card`), parte (`.ez-card__body`) y variante (`.ez-button--danger`).
+- Variables con el prefijo `--ez-` (`--ez-primary`, `--ez-space-4`). Cambiarlas cambia toda la biblioteca, también dentro de un elemento concreto.
+- Tema oscuro: `data-ez-theme="dark"` en `<html>`. Solo cambia los valores de las variables.
+- Para ampliar ez-ui en un proyecto, una hoja propia enlazada después de la biblioteca, que use sus variables y otro prefijo. La biblioteca no se modifica.
+- Código en inglés; comentarios y textos en español.
+- Sin selectores que dependan de la ausencia de clases: un elemento tiene el estilo de un componente solo si lleva su clase.
 
-El tema oscuro se activa con `data-ez-theme="dark"` en `html`.
-
-## Archivos
-
-- `css/tokens.css`: tokens y temas.
-- `css/base.css`: HTML nativo.
-- `css/components.css`: layout y componentes.
-- `css/forms.css`: formularios y estados.
-- `css/ez-ui.css`: punto de entrada.
-- `css/catalog.css`: estilos exclusivos del catálogo de ejemplos.
-- `js/catalog.js`: conexión de los controles de demostración.
-- `index.html`: catálogo visual.
-
-Prototipo para evaluar estética y API CSS. No se ha modificado Gallery ni ningún otro repositorio.
-
-## Componentes interactivos (módulos ES)
-
-No hay dependencias de terceros ni framework JS. Se importan solo los módulos necesarios:
-
-```js
-import { ezConfirm } from "./js/dialog.js";
-import { ezToast } from "./js/toast.js";
-import { ezThemeToggle } from "./js/theme-toggle.js";
-
-ezThemeToggle(document.querySelector("#theme-toggle"));
-const accepted = await ezConfirm(document.querySelector("#confirm-dialog"));
-if (accepted) ezToast("Operación confirmada", { type: "success" });
-```
-
-- **Diálogo:** se apoya en `<dialog>`, `showModal()` y `<form method="dialog">`; devuelve `Promise<boolean>`. No ejecuta operaciones de negocio.
-- **Toast:** crea una notificación en el DOM con `textContent` (no interpreta HTML), se cierra con botón o automáticamente. Opciones: `type: "info" | "success" | "error"` y `duration` en ms; `duration: 0` evita el cierre automático. Devuelve una función para cerrarla.
-- **Tema:** alterna `data-ez-theme`, sincroniza `aria-pressed` y guarda la preferencia en `localStorage`, si está disponible.
-
-El catálogo `index.html` demuestra los tres componentes. Para probar los módulos ES, servir la carpeta con un servidor HTTP local (por ejemplo `python3 -m http.server 8000`), en lugar de abrirla mediante `file://`.
-
-Los componentes no llaman a la API REST ni contienen reglas de negocio.
-
-## HTML como ejemplo para el alumnado
+## HTML semántico en los ejemplos
 
 El elemento se elige por el significado del contenido; las clases `ez-*` solo definen su presentación.
 
-- `header`, `nav` y `main` identifican la cabecera, la navegación y el contenido principal. Los enlaces de navegación se agrupan en una lista.
-- `section` agrupa un tema con su encabezado; `article` representa una tarjeta con contenido independiente. Los títulos siguen la jerarquía `h1`, `h2`, `h3`.
-- Las imágenes usan `img` con `alt`. Usa `alt=""` si son meramente decorativas. Añade `figure` y `figcaption` cuando haya una leyenda asociada.
-- Los enlaces navegan; los botones ejecutan acciones. El diálogo usa `dialog` y un formulario con `method="dialog"`.
-- Cada control tiene un `label` asociado. Las instrucciones adicionales se vinculan mediante `aria-describedby`; `required` y `minlength` aprovechan la validación nativa.
-- Los mensajes estáticos son párrafos. Reserva `role="status"` para novedades dinámicas y `role="alert"` para avisos urgentes.
-- `div` es adecuado para agrupar contenido por necesidades de presentación, como la rejilla o el cuerpo de una tarjeta. No se sustituye automáticamente por `section` o `article`.
+- `header`, `nav` y `main` identifican la cabecera, la navegación y el contenido principal. Los enlaces de navegación van en una lista.
+- `section` agrupa un tema con su encabezado; `article`, un contenido independiente, como una tarjeta. Los títulos siguen la jerarquía `h1`, `h2`, `h3`.
+- Las imágenes llevan `alt`, vacío (`alt=""`) si el texto de al lado ya dice lo mismo.
+- Los enlaces navegan; los botones ejecutan acciones, con su `type`.
+- Cada control tiene su `label` (`for` igual al `id` del control); las ayudas se enlazan con `aria-describedby`.
+- `aria-invalid` en un campo erróneo; `aria-busy` mientras se carga un contenido.
 
-Por ejemplo, la misma clase de tarjeta se aplica a un elemento con significado propio:
+## Ejemplos: el Trofeo ez-Soccer
 
-```html
-<article class="ez-card">
-  <img class="ez-card__image" src="images/abstract-one.svg"
-       alt="Ilustración abstracta azul y verde" width="400" height="300">
-  <div class="ez-card__body">
-    <h3>Fotografía uno</h3>
-    <p>Descripción de la fotografía.</p>
-    <a href="fotografia.html">Ver fotografía</a>
-  </div>
-</article>
+Los ejemplos son de una liga de fútbol inventada entre escuelas y facultades de la universidad. Equipos, jugadores, escudos, camisetas y avatares son inventados; las imágenes son SVG propios, sin derechos de terceros.
+
+## Probar en local
+
+Los módulos ES y `fetch` no funcionan abriendo los ficheros con `file://`: hay que servir la carpeta con un servidor HTTP, por ejemplo:
+
+```bash
+python3 -m http.server 8081
 ```
 
-El nivel del encabezado depende de dónde se incluya la tarjeta; aquí se presupone una sección con `h2`.
+y abrir http://127.0.0.1:8081/.
 
-## Publicación en GitHub Pages
+## Publicación
 
-Catálogo: https://iissi-us.github.io/ez-ui/
+GitHub Pages publica la raíz de la rama `main` (el repositorio es privado, pero la web es pública): **un push a `main` actualiza la web**. No hace falta compilar; `.nojekyll` evita que GitHub procese la carpeta con Jekyll. Las rutas son relativas para que funcione bajo `/ez-ui/`.
 
-GitHub Pages publica la raíz de la rama `main`. Al subir cambios a esa rama, GitHub actualiza el catálogo automáticamente. No hace falta compilar ni instalar dependencias. Los enlaces y las rutas de los recursos son relativos para funcionar bajo `/ez-ui/`.
+## Licencias
 
-Las fotografías de demostración se descargan de Unsplash y se sirven desde `images/` para no depender de peticiones externas al visitar el catálogo:
-
-- Montaña: recurso `photo-1464822759023-fed622ff2c3b` de images.unsplash.com.
-- Cala: recurso `photo-1510414842594-a61c69b5ae57` de images.unsplash.com.
-- Bosque: recurso `photo-1448375240586-882707db888b` de images.unsplash.com.
-- Costa: recurso `photo-1519046904884-53103b34b206` de images.unsplash.com.
+Las fuentes tienen licencia SIL Open Font License (`ez-ui/fonts/OFL-*.txt`), y los iconos, de [Lucide](https://lucide.dev), licencia ISC (`ez-ui/LICENSE-lucide.txt`).

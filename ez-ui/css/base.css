@@ -43,6 +43,14 @@ kbd {
   font-variant-ligatures: none;
 }
 
+/* Iconos: los de ez-ui/icons.svg se usan con <svg class="ez-icon"><use href=…>.
+   Toman el tamaño del texto que los rodea (em) y su color (currentColor). */
+.ez-icon {
+  width: 1.2em;
+  height: 1.2em;
+  vertical-align: -.2em;
+}
+
 /* El texto seleccionado con el color del tema. */
 ::selection {
   background: var(--ez-selection);
@@ -135,6 +143,12 @@ thead th {
    selecciona las filas pares. */
 tbody tr:nth-child(even) {
   background: var(--ez-surface-muted);
+}
+
+/* Contenido más ancho que la pantalla, como una tabla con muchas columnas en un
+   móvil: se desplaza a los lados dentro de su marco, sin mover la página. */
+.ez-scroll {
+  overflow-x: auto;
 }
 
 /* Los números, alineados a la derecha y con cifras del mismo ancho, para que las

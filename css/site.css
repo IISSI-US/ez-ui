@@ -2,6 +2,12 @@
    aquí solo va lo que necesita la documentación (cabecera de página, índice,
    ejemplos y bloques de código), con las variables de ez-ui. */
 
+/* La cabecera llega con fetch un instante después de pintar la página: se reserva su
+   alto para que el contenido no salte hacia abajo al aparecer */
+#page-header {
+    min-height: 5.2rem;
+}
+
 /* Marca: «ez» en el color principal */
 .doc-brand-mark {
     color: var(--ez-primary);
@@ -127,6 +133,27 @@
     background-size: 16px 16px;
 }
 
+/* Una demostración en un marco (<iframe>), sin el código debajo: una página
+   aparte, del ancho de un móvil */
+.doc-demo {
+    margin-bottom: var(--ez-space-6);
+    padding: var(--ez-space-6);
+    border: 1px solid var(--ez-border);
+    border-radius: var(--ez-radius);
+    background-color: var(--ez-surface);
+    background-image: radial-gradient(var(--ez-border) 1px, transparent 1px);
+    background-size: 16px 16px;
+}
+
+.doc-demo iframe {
+    display: block;
+    max-width: 100%;
+    margin-inline: auto;
+    border: 1px solid var(--ez-border);
+    border-radius: var(--ez-radius);
+    background: var(--ez-bg);
+}
+
 /* Los elementos de un ejemplo, en fila y separados; uno debajo de otro con la
    variante doc-example--column. La barra de navegación ocupa todo el ancho (flex: 1) */
 .doc-example {
@@ -144,6 +171,13 @@
 
 .doc-example > .ez-navbar {
     flex: 1;
+}
+
+/* En los ejemplos, una página con barra lateral, recuadrada y con algo de alto */
+.doc-example--app > .ez-split {
+    min-height: 16rem;
+    border: 1px solid var(--ez-border);
+    background: var(--ez-bg);
 }
 
 /* En los ejemplos, la tarjeta con el ancho que tendría en una galería */
@@ -209,4 +243,51 @@
     border-top: 1px solid var(--ez-border);
     color: var(--ez-muted);
     font-size: .95rem;
+}
+
+/* La lista de iconos de Fundamentos, en una rejilla con el nombre de cada uno */
+.doc-icons {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr));
+    gap: var(--ez-space-3);
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.doc-icons .ez-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-right: var(--ez-space-2);
+}
+
+/* Colores del código de los ejemplos (js/utils/highlight.js), sobre el fondo oscuro
+   de los bloques de código */
+.tok-comment {
+    color: #8f857c;
+    font-style: italic;
+}
+
+.tok-punct {
+    color: #a99f95;
+}
+
+.tok-tag,
+.tok-keyword {
+    color: #f07a98;
+}
+
+.tok-attr,
+.tok-property {
+    color: #e8c07a;
+}
+
+.tok-string {
+    color: #8fd4b4;
+}
+
+.tok-number,
+.tok-variable {
+    color: #9cc3e0;
 }

@@ -1,25 +1,20 @@
 "use strict";
 
 /**
- * Inserta un fichero HTML (p. ej., la cabecera común) dentro del elemento `selector`.
- * Se usa desde un script clásico (no un módulo), como en los laboratorios:
- *     <div id="page-header"></div>
- *     <script>include("header.html", "#page-header");</script>
- *
- * La petición es síncrona a propósito: cuando se ejecutan los módulos de la vista
- * (que se ejecutan después), la cabecera ya está en la página.
+ * Inserta un fichero HTML (p. ej., la cabecera común) dentro del elemento `selector`:
+ *     await include("header.html", "#page-header");
+ * Es asíncrona: fetch pide el fichero sin bloquear la página, y await espera a que
+ * llegue antes de seguir (por ejemplo, antes de buscar los botones de la cabecera).
  */
-function include(htmlFile, selector) {
-    let xhr = new XMLHttpRequest();
-    xhr.open("GET", htmlFile, false);
-    xhr.addEventListener("load", function () {
-        if (xhr.status === 200) {
-            document.querySelector(selector).innerHTML += xhr.responseText;
-        } else {
-            console.error(htmlFile + " no existe");
-        }
-    });
-    xhr.send();
+async function include(htmlFile, selector) {
+    let response = await fetch(htmlFile);
+
+    if (!response.ok) {
+        console.error(`No se ha podido cargar ${htmlFile} (${response.status})`);
+        return;
+    }
+
+    document.querySelector(selector).innerHTML = await response.text();
 }
 
-window.include = include;
+export { include };

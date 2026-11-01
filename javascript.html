@@ -4,11 +4,10 @@
         <title>ez-ui · Con JavaScript</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="Componentes de ez-ui con JavaScript: notificación, indicador de carga y diálogo">
+        <meta name="description" content="Componentes de ez-ui con JavaScript: menú plegable, notificación, indicador de carga y diálogo">
         <script src="js/utils/theme-init.js"></script>
         <link rel="stylesheet" href="ez-ui/css/ez-ui.css">
         <link rel="stylesheet" href="css/site.css">
-        <script src="js/utils/include.js"></script>
         <script src="js/header.js" type="module"></script>
         <script src="js/javascript.js" type="module"></script>
         <script src="js/examples/sell-player.js" type="module"></script>
@@ -18,9 +17,6 @@
 
     <body>
         <div id="page-header"></div>
-        <script>
-            include("header.html", "#page-header");
-        </script>
 
         <div class="ez-container doc-layout">
             <main>
@@ -28,13 +24,64 @@
                     <p class="doc-kicker">Referencia</p>
                     <h1>Con JavaScript</h1>
                     <p class="doc-lead">
-                        Tres componentes que necesitan JavaScript, del más sencillo al más
-                        completo: una notificación, un indicador de carga y un diálogo de
-                        confirmación. Cada uno es un módulo de
-                        <code>ez-ui/js/</code> que se importa con <code>import</code> desde el
-                        controlador de la vista.
+                        Cuatro componentes que necesitan JavaScript, del más sencillo al más
+                        completo: el menú plegable de la barra de navegación, una notificación, un
+                        indicador de carga y un diálogo de confirmación. Cada uno es un módulo de
+                        <code>ez-ui/js/</code> que se importa con <code>import</code> desde otro
+                        módulo.
                     </p>
                 </header>
+
+                <section class="doc-section" id="navbar">
+                    <h2>Menú plegable</h2>
+                    <p>
+                        En una pantalla estrecha, la barra de navegación muestra un botón «Menú» y
+                        oculta los enlaces hasta que se pulsa. El botón lleva
+                        <code>aria-expanded</code>, que dice si el menú está desplegado, y
+                        <code>aria-controls</code>, con el <code>id</code> de la lista de enlaces.
+                        En una pantalla ancha, el botón no se ve y la barra es la de siempre.
+                    </p>
+                    <p>
+                        Este ejemplo es una página aparte, en un marco del ancho de un móvil:
+                    </p>
+                    <div class="doc-demo">
+                        <iframe src="examples/navbar-movil.html"
+                                title="Barra de navegación en un móvil"
+                                width="375"
+                                height="340"></iframe>
+                    </div>
+                    <template class="doc-example">
+                        <nav class="ez-navbar" aria-label="Principal">
+                            <div class="ez-container ez-navbar__inner">
+                                <a class="ez-navbar__brand" href="#">Trofeo ez-Soccer</a>
+                                <button class="ez-button ez-button--secondary ez-navbar__toggle"
+                                        type="button"
+                                        aria-expanded="false"
+                                        aria-controls="main-links">
+                                    <svg class="ez-icon" aria-hidden="true">
+                                        <use href="ez-ui/icons.svg#menu"></use>
+                                    </svg>
+                                    Menú
+                                </button>
+                                <ul id="main-links" class="ez-navbar__links">
+                                    <li><a href="#">Clasificación</a></li>
+                                    <li><a href="#">Mercado</a></li>
+                                </ul>
+                            </div>
+                        </nav>
+                    </template>
+                    <p>
+                        <code>ezNavbar(barra)</code> conecta el botón: al pulsarlo, cambia
+                        <code>aria-expanded</code> entre <code>"false"</code> y
+                        <code>"true"</code>. El CSS hace el resto: mientras vale
+                        <code>"false"</code>, oculta los enlaces.
+                    </p>
+                    <template class="doc-example">
+                        import { ezNavbar } from "./ez-ui/js/navbar.js";
+
+                        ezNavbar(document.querySelector(".ez-navbar"));
+                    </template>
+                </section>
 
                 <section class="doc-section" id="toast">
                     <h2>Notificación</h2>
@@ -45,8 +92,16 @@
                         mejor una <a href="componentes.html#alert">alerta</a>.
                     </p>
                     <div class="doc-example">
-                        <button id="toast-info" class="ez-button ez-button--secondary" type="button">Información</button>
-                        <button id="toast-success" class="ez-button ez-button--success" type="button">Éxito</button>
+                        <button id="toast-info"
+                                class="ez-button ez-button--secondary"
+                                type="button">
+                            Información
+                        </button>
+                        <button id="toast-success"
+                                class="ez-button ez-button--success"
+                                type="button">
+                            Éxito
+                        </button>
                         <button id="toast-error" class="ez-button ez-button--danger" type="button">Error</button>
                     </div>
                     <p>
@@ -57,7 +112,13 @@
                         Los dos son parámetros con valor por defecto (<code>"info"</code> y
                         <code>4000</code>): si no se pasan, toman ese valor.
                     </p>
-                    <template class="doc-source" data-file="js/examples/toasts.js"></template>
+                    <template class="doc-example">
+                        import { ezToast } from "./ez-ui/js/toast.js";
+
+                        ezToast("El mercado cierra el viernes a las 21:00.");
+                        ezToast("Puja registrada.", "success");
+                        ezToast("No se ha podido registrar la puja.", "error", 0);
+                    </template>
                 </section>
 
                 <section class="doc-section" id="loading">
@@ -78,7 +139,11 @@
                         si la petición falla. Devuelve el resultado de la promesa, así que se usa
                         con <code>await</code> en el mismo sitio donde se esperaría la respuesta.
                     </p>
-                    <template class="doc-source" data-file="js/examples/load-market.js"></template>
+                    <template class="doc-example">
+                        import { ezLoading } from "./ez-ui/js/loading.js";
+
+                        let players = await ezLoading(list, getPlayers());
+                    </template>
                 </section>
 
                 <section class="doc-section" id="dialog">
@@ -92,7 +157,11 @@
                         cualquiera de ellos; el atributo <code>value</code> del botón dice cuál fue.
                     </p>
                     <div class="doc-example">
-                        <button id="sell-button" class="ez-button ez-button--danger" type="button">Vender a Mario Gil</button>
+                        <button id="sell-button"
+                                class="ez-button ez-button--danger"
+                                type="button">
+                            Vender a Mario Gil
+                        </button>
 
                         <dialog id="sell-dialog" class="ez-dialog" aria-labelledby="sell-dialog-title">
                             <h3 id="sell-dialog-title">¿Vender a Mario Gil?</h3>
@@ -110,13 +179,18 @@
                         <code>value="confirm"</code>. Es una alternativa a <code>confirm()</code>,
                         que no se puede adaptar al aspecto de la aplicación.
                     </p>
-                    <template class="doc-source" data-file="js/examples/sell-player.js"></template>
+                    <template class="doc-example">
+                        import { ezConfirm } from "./ez-ui/js/dialog.js";
+
+                        let confirmed = await ezConfirm(document.getElementById("sell-dialog"));
+                    </template>
                 </section>
             </main>
 
             <nav class="doc-toc" aria-label="En esta página">
                 <h2>En esta página</h2>
                 <ul>
+                    <li><a href="#navbar">Menú plegable</a></li>
                     <li><a href="#toast">Notificación</a></li>
                     <li><a href="#loading">Indicador de carga</a></li>
                     <li><a href="#dialog">Diálogo</a></li>

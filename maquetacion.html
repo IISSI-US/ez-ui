@@ -8,16 +8,12 @@
         <script src="js/utils/theme-init.js"></script>
         <link rel="stylesheet" href="ez-ui/css/ez-ui.css">
         <link rel="stylesheet" href="css/site.css">
-        <script src="js/utils/include.js"></script>
         <script src="js/header.js" type="module"></script>
         <script src="js/maquetacion.js" type="module"></script>
     </head>
 
     <body>
         <div id="page-header"></div>
-        <script>
-            include("header.html", "#page-header");
-        </script>
 
         <div class="ez-container doc-layout">
             <main>
@@ -62,7 +58,9 @@
                     <div class="doc-example doc-example--column">
                         <div class="ez-gallery">
                             <article class="ez-card">
-                                <img class="ez-card__image" src="images/soccer/shirt-lucia-romero.svg" alt="Camiseta granate con el dorsal 9">
+                                <img class="ez-card__image"
+                                     src="images/soccer/shirt-lucia-romero.svg"
+                                     alt="Camiseta granate con el dorsal 9">
                                 <div class="ez-card__body">
                                     <h3>Lucía Romero <span class="ez-badge">DC</span></h3>
                                     <p>ETSII · 72 puntos <span class="ez-badge ez-badge--success">Disponible</span></p>
@@ -73,7 +71,9 @@
                                 </footer>
                             </article>
                             <article class="ez-card">
-                                <img class="ez-card__image" src="images/soccer/shirt-hugo-serrano.svg" alt="Camiseta negra con el dorsal 10">
+                                <img class="ez-card__image"
+                                     src="images/soccer/shirt-hugo-serrano.svg"
+                                     alt="Camiseta negra con el dorsal 10">
                                 <div class="ez-card__body">
                                     <h3>Hugo Serrano <span class="ez-badge">MC</span></h3>
                                     <p>Derecho · 61 puntos <span class="ez-badge ez-badge--success">Disponible</span></p>
@@ -84,7 +84,9 @@
                                 </footer>
                             </article>
                             <article class="ez-card">
-                                <img class="ez-card__image" src="images/soccer/shirt-irene-campos.svg" alt="Camiseta morada con el dorsal 7">
+                                <img class="ez-card__image"
+                                     src="images/soccer/shirt-irene-campos.svg"
+                                     alt="Camiseta morada con el dorsal 7">
                                 <div class="ez-card__body">
                                     <h3>Irene Campos <span class="ez-badge">MC</span></h3>
                                     <p>Económicas · 58 puntos <span class="ez-badge ez-badge--success">Disponible</span></p>
@@ -95,7 +97,9 @@
                                 </footer>
                             </article>
                             <article class="ez-card">
-                                <img class="ez-card__image" src="images/soccer/shirt-pablo-vega.svg" alt="Camiseta azul con el dorsal 4">
+                                <img class="ez-card__image"
+                                     src="images/soccer/shirt-pablo-vega.svg"
+                                     alt="Camiseta azul con el dorsal 4">
                                 <div class="ez-card__body">
                                     <h3>Pablo Vega <span class="ez-badge">DF</span></h3>
                                     <p>Arquitectura · 54 puntos <span class="ez-badge ez-badge--danger">Lesionado</span></p>
@@ -106,7 +110,9 @@
                                 </footer>
                             </article>
                             <article class="ez-card">
-                                <img class="ez-card__image" src="images/soccer/shirt-nora-iglesias.svg" alt="Camiseta verde con el dorsal 1">
+                                <img class="ez-card__image"
+                                     src="images/soccer/shirt-nora-iglesias.svg"
+                                     alt="Camiseta verde con el dorsal 1">
                                 <div class="ez-card__body">
                                     <h3>Nora Iglesias <span class="ez-badge">PT</span></h3>
                                     <p>Medicina · 49 puntos <span class="ez-badge ez-badge--success">Disponible</span></p>
@@ -117,7 +123,9 @@
                                 </footer>
                             </article>
                             <article class="ez-card">
-                                <img class="ez-card__image" src="images/soccer/shirt-mario-gil.svg" alt="Camiseta naranja con el dorsal 5">
+                                <img class="ez-card__image"
+                                     src="images/soccer/shirt-mario-gil.svg"
+                                     alt="Camiseta naranja con el dorsal 5">
                                 <div class="ez-card__body">
                                     <h3>Mario Gil <span class="ez-badge">MC</span></h3>
                                     <p>Bellas Artes · 33 puntos <span class="ez-badge ez-badge--danger">Lesionado</span></p>
@@ -140,10 +148,10 @@
                 <section class="doc-section" id="split">
                     <h2>Dos columnas</h2>
                     <p>
-                        <code>ez-split</code> pone sus dos hijos en dos columnas: la primera ocupa
-                        el doble que la segunda (<code>2fr 1fr</code>). En una pantalla estrecha
-                        pasan a una sola columna, una debajo de otra. Sirve para un contenido
-                        principal con información secundaria al lado.
+                        <code>ez-split</code> pone sus hijos en columnas: por defecto, dos, y la
+                        primera ocupa el doble que la segunda (<code>2fr 1fr</code>). En una
+                        pantalla estrecha pasan a una sola columna, una debajo de otra. Sirve para un
+                        contenido principal con información secundaria al lado.
                     </p>
                     <h3>Clasificación y equipo</h3>
                     <div class="doc-example doc-example--column">
@@ -158,10 +166,26 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr><td class="ez-number">1</td><td>ETSII</td><td class="ez-number">26</td></tr>
-                                    <tr><td class="ez-number">2</td><td>Medicina</td><td class="ez-number">23</td></tr>
-                                    <tr><td class="ez-number">3</td><td>Arquitectura</td><td class="ez-number">17</td></tr>
-                                    <tr><td class="ez-number">4</td><td>Derecho</td><td class="ez-number">14</td></tr>
+                                    <tr>
+                                        <td class="ez-number">1</td>
+                                        <td>ETSII</td>
+                                        <td class="ez-number">26</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="ez-number">2</td>
+                                        <td>Medicina</td>
+                                        <td class="ez-number">23</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="ez-number">3</td>
+                                        <td>Arquitectura</td>
+                                        <td class="ez-number">17</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="ez-number">4</td>
+                                        <td>Derecho</td>
+                                        <td class="ez-number">14</td>
+                                    </tr>
                                 </tbody>
                             </table>
                             <article class="ez-card">
@@ -177,6 +201,38 @@
                         </div>
                     </div>
 
+                    <h3>Otro reparto</h3>
+                    <p>
+                        La variable <code>--ez-split-columns</code> cambia el reparto en un elemento
+                        concreto, con el atributo <code>style</code>: dos columnas iguales
+                        (<code>1fr 1fr</code>), la estrecha a la izquierda (<code>1fr 2fr</code>) o
+                        tres columnas (<code>1fr 1fr 1fr</code>). Admite cualquier valor de
+                        <code>grid-template-columns</code>.
+                    </p>
+                    <div class="doc-example doc-example--column">
+                        <div class="ez-split" style="--ez-split-columns: 1fr 1fr">
+                            <article class="ez-card">
+                                <div class="ez-card__body">
+                                    <h3>ETSII <span class="ez-badge ez-badge--primary">Local</span></h3>
+                                    <p>8 victorias, 2 empates y 1 derrota.</p>
+                                </div>
+                            </article>
+                            <article class="ez-card">
+                                <div class="ez-card__body">
+                                    <h3>Medicina <span class="ez-badge">Visitante</span></h3>
+                                    <p>7 victorias, 2 empates y 2 derrotas.</p>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+                    <div class="doc-example doc-example--column">
+                        <div class="ez-split" style="--ez-split-columns: 1fr 1fr 1fr">
+                            <div class="ez-alert">Partidos: 11</div>
+                            <div class="ez-alert">Goles: 29</div>
+                            <div class="ez-alert">Puntos: 26</div>
+                        </div>
+                    </div>
+
                     <h3>Ficha de un jugador</h3>
                     <p>
                         La tarjeta del jugador ocupa la columna ancha, y sus acciones y avisos, la
@@ -187,7 +243,9 @@
                     <div class="doc-example doc-example--column">
                         <div class="ez-split">
                             <article class="ez-card">
-                                <img class="ez-card__image" src="images/soccer/shirt-pablo-vega.svg" alt="Camiseta azul con el dorsal 4">
+                                <img class="ez-card__image"
+                                     src="images/soccer/shirt-pablo-vega.svg"
+                                     alt="Camiseta azul con el dorsal 4">
                                 <div class="ez-card__body">
                                     <h3>Pablo Vega <span class="ez-badge">DF</span></h3>
                                     <p>Defensa de Arquitectura. 11 partidos, 2 goles y 54 puntos.</p>
@@ -218,7 +276,9 @@
                                 <button class="ez-button" type="button">Pujar</button>
                             </form>
                             <article class="ez-card">
-                                <img class="ez-card__image" src="images/soccer/shirt-hugo-serrano.svg" alt="Camiseta negra con el dorsal 10">
+                                <img class="ez-card__image"
+                                     src="images/soccer/shirt-hugo-serrano.svg"
+                                     alt="Camiseta negra con el dorsal 10">
                                 <div class="ez-card__body">
                                     <h3>Hugo Serrano <span class="ez-badge">MC</span></h3>
                                     <p>Derecho · 61 puntos</p>
@@ -231,6 +291,32 @@
                         </div>
                     </div>
                 </section>
+
+                <section class="doc-section" id="sidebar">
+                    <h2>Página con barra lateral</h2>
+                    <p>
+                        Una página con la barra de navegación a la izquierda es otro uso de las dos
+                        columnas: <code>ez-split</code> en el <code>&lt;body&gt;</code>, con la
+                        primera columna estrecha. En <code>header.html</code>, la barra lleva la
+                        variante <code>ez-navbar ez-navbar--side</code> (ver
+                        <a href="componentes.html#navbar">Componentes</a>), y el contenido, su
+                        <code>ez-container</code>: <code>ez-split</code> reparte la página en
+                        columnas, y <code>ez-container</code> centra el contenido dentro de la
+                        suya.
+                    </p>
+                    <template class="doc-example" data-code="&lt;body class=&quot;ez-split&quot; style=&quot;--ez-split-columns: 15rem 1fr&quot;&gt;
+    &lt;nav class=&quot;ez-navbar ez-navbar--side&quot; aria-label=&quot;Principal&quot;&gt;
+        &lt;!-- Marca y enlaces --&gt;
+    &lt;/nav&gt;
+    &lt;main class=&quot;ez-container&quot;&gt;
+        &lt;!-- Contenido de la página --&gt;
+    &lt;/main&gt;
+&lt;/body&gt;"></template>
+                    <p>
+                        En una pantalla estrecha, la barra pasa arriba, como cualquier
+                        <code>ez-split</code>.
+                    </p>
+                </section>
             </main>
 
             <nav class="doc-toc" aria-label="En esta página">
@@ -239,6 +325,7 @@
                     <li><a href="#container">Contenedor</a></li>
                     <li><a href="#gallery">Galería</a></li>
                     <li><a href="#split">Dos columnas</a></li>
+                    <li><a href="#sidebar">Página con barra lateral</a></li>
                 </ul>
             </nav>
         </div>

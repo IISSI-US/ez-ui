@@ -38,6 +38,51 @@
   text-decoration: none;
 }
 
+/* Menú plegable (ezNavbar): en una pantalla ancha, el botón no se ve. Se escribe
+   .ez-navbar .ez-navbar__toggle para que gane a .ez-button, que va después. */
+.ez-navbar .ez-navbar__toggle {
+  display: none;
+}
+
+/* En una pantalla estrecha, el botón aparece y los enlaces ocupan una línea entera,
+   uno debajo de otro. Mientras el botón tiene aria-expanded="false", los enlaces
+   no se ven: «~» selecciona la lista que va detrás del botón. */
+@media (max-width: 48rem) {
+  .ez-navbar .ez-navbar__toggle {
+    display: inline-flex;
+  }
+
+  .ez-navbar__links {
+    flex-basis: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .ez-navbar__toggle[aria-expanded="false"] ~ .ez-navbar__links {
+    display: none;
+  }
+}
+
+/* Barra lateral: la misma barra, en columna. La página la coloca a la izquierda del
+   contenido con ez-split (layout.css). sticky la deja fija al desplazar la página. */
+.ez-navbar--side {
+  border-top: 0;
+  border-bottom: 0;
+  border-left: 3px solid var(--ez-primary);
+  border-right: 1px solid var(--ez-border);
+}
+
+.ez-navbar--side .ez-navbar__inner,
+.ez-navbar--side .ez-navbar__links {
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.ez-navbar--side .ez-navbar__inner {
+  position: sticky;
+  top: 0;
+}
+
 /* Tarjeta. overflow recorta el contenido que sobresale de las esquinas redondeadas. */
 .ez-card {
   overflow: hidden;

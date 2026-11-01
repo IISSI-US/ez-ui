@@ -7,11 +7,12 @@
   margin-inline: auto;
 }
 
-/* Dos columnas que pasan a una cuando no caben: la primera ocupa el doble que la
-   segunda (2fr y 1fr reparten el espacio libre en tres partes). */
+/* Dos columnas que pasan a una cuando no caben. Por defecto, la primera ocupa el
+   doble que la segunda (2fr y 1fr reparten el espacio libre en tres partes);
+   --ez-split-columns permite otro reparto en un elemento concreto (1fr 1fr). */
 .ez-split {
   display: grid;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: var(--ez-split-columns, 2fr 1fr);
   gap: var(--ez-space-6);
 }
 
