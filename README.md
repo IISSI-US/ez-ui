@@ -65,25 +65,6 @@ import { ezToast } from "./ez-ui/js/toast.js";
 import { ezLoading } from "./ez-ui/js/loading.js";
 ```
 
-### Desde una CDN
-
-Cuando el repositorio sea público, [jsDelivr](https://www.jsdelivr.com/) servirá la biblioteca desde GitHub sin copiarla, con la versión fijada por una etiqueta de git (`v1.0.0`):
-
-```html
-<script src="https://cdn.jsdelivr.net/gh/IISSI-US/ez-ui@v1.0.0/js/theme-init.js"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/IISSI-US/ez-ui@v1.0.0/css/ez-ui.css">
-```
-
-```js
-import { ezNavbar } from "https://cdn.jsdelivr.net/gh/IISSI-US/ez-ui@v1.0.0/js/navbar.js";
-import { ezThemeToggle } from "https://cdn.jsdelivr.net/gh/IISSI-US/ez-ui@v1.0.0/js/theme.js";
-import { ezConfirm } from "https://cdn.jsdelivr.net/gh/IISSI-US/ez-ui@v1.0.0/js/dialog.js";
-import { ezToast } from "https://cdn.jsdelivr.net/gh/IISSI-US/ez-ui@v1.0.0/js/toast.js";
-import { ezLoading } from "https://cdn.jsdelivr.net/gh/IISSI-US/ez-ui@v1.0.0/js/loading.js";
-```
-
-Los iconos (`icons.svg`) sí se copian al proyecto: el navegador no permite `<use href>` con un SVG de otro dominio.
-
 ## Convenciones
 
 - Clases con el prefijo `ez-` y la convención BEM: componente (`.ez-card`), parte (`.ez-card__body`) y variante (`.ez-button--danger`).
