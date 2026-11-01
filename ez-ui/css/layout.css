@@ -1,0 +1,30 @@
+/* Maquetación: clases para distribuir el contenido en la página. */
+
+/* Contenedor centrado: deja margen lateral y limita el ancho en pantallas grandes.
+   min() elige el menor de los dos valores. */
+.ez-container {
+  width: min(100% - 2rem, 70rem);
+  margin-inline: auto;
+}
+
+/* Dos columnas que pasan a una cuando no caben: la primera ocupa el doble que la
+   segunda (2fr y 1fr reparten el espacio libre en tres partes). */
+.ez-split {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: var(--ez-space-6);
+}
+
+@media (max-width: 48rem) {
+  .ez-split {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Grid crea tantas columnas como quepan. Cada columna mide al menos 17rem,
+   salvo en pantallas más estrechas, y comparte el espacio restante con las demás. */
+.ez-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
+  gap: var(--ez-space-6);
+}

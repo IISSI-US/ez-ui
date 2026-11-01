@@ -1,0 +1,212 @@
+/* Estilos propios de la web de documentación. La biblioteca está en ez-ui/css/:
+   aquí solo va lo que necesita la documentación (cabecera de página, índice,
+   ejemplos y bloques de código), con las variables de ez-ui. */
+
+/* Marca: «ez» en el color principal */
+.doc-brand-mark {
+    color: var(--ez-primary);
+}
+
+/* Enlaces de la cabecera de esta web, en gris, y el de la página actual,
+   subrayado (solo en #page-header: no afecta a los ejemplos) */
+#page-header .ez-navbar__links a {
+    color: var(--ez-muted);
+}
+
+#page-header .ez-navbar__links a:hover,
+#page-header .ez-navbar__links a[aria-current="page"] {
+    color: var(--ez-text);
+}
+
+#page-header .ez-navbar__links a[aria-current="page"] {
+    font-weight: 600;
+    text-decoration: underline;
+    text-decoration-color: var(--ez-primary);
+    text-decoration-thickness: 2px;
+    text-underline-offset: .4em;
+}
+
+/* Cabecera de cada página: rótulo, título y entradilla */
+.doc-header {
+    padding-block: var(--ez-space-8) var(--ez-space-6);
+}
+
+.doc-kicker {
+    margin: 0;
+    color: var(--ez-primary);
+    font-size: .8rem;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+}
+
+.doc-header h1 {
+    margin-block: var(--ez-space-2) var(--ez-space-4);
+}
+
+.doc-lead {
+    max-width: 42rem;
+    color: var(--ez-muted);
+    font-size: 1.25rem;
+    line-height: 1.5;
+}
+
+/* Contenido y, en pantallas anchas, el índice de la página fijo a la derecha */
+.doc-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--ez-space-8);
+}
+
+@media (min-width: 64rem) {
+    .doc-layout {
+        grid-template-columns: minmax(0, 1fr) 13rem;
+    }
+}
+
+/* Índice de la página: fijo al desplazarse (sticky) */
+.doc-toc {
+    position: sticky;
+    top: var(--ez-space-6);
+    align-self: start;
+    padding-top: var(--ez-space-8);
+    font-size: .95rem;
+}
+
+.doc-toc h2 {
+    margin: 0 0 var(--ez-space-2);
+    color: var(--ez-muted);
+    font-size: .8rem;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+}
+
+.doc-toc ul {
+    margin: 0;
+    padding: 0 0 0 var(--ez-space-3);
+    border-left: 1px solid var(--ez-border);
+    list-style: none;
+}
+
+.doc-toc a {
+    color: var(--ez-muted);
+    text-decoration: none;
+}
+
+.doc-toc a:hover {
+    color: var(--ez-primary);
+}
+
+/* El índice solo se ve cuando cabe al lado del contenido */
+@media (max-width: 63.99rem) {
+    .doc-toc {
+        display: none;
+    }
+}
+
+/* Cada apartado (un componente), separado del anterior. scroll-margin-top deja
+   sitio por encima al saltar a él con un enlace (componentes.html#card) */
+.doc-section {
+    padding-block: var(--ez-space-8);
+    border-top: 1px solid var(--ez-border);
+    scroll-margin-top: var(--ez-space-4);
+}
+
+.doc-section h3 {
+    margin-top: var(--ez-space-8);
+}
+
+/* Zona donde se ve el ejemplo funcionando, sobre una trama de puntos hecha con
+   un degradado radial que se repite cada 16 px */
+.doc-example {
+    padding: var(--ez-space-8);
+    border: 1px solid var(--ez-border);
+    border-radius: var(--ez-radius) var(--ez-radius) 0 0;
+    background-color: var(--ez-surface);
+    background-image: radial-gradient(var(--ez-border) 1px, transparent 1px);
+    background-size: 16px 16px;
+}
+
+/* Los elementos de un ejemplo, en fila y separados; uno debajo de otro con la
+   variante doc-example--column. La barra de navegación ocupa todo el ancho (flex: 1) */
+.doc-example {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--ez-space-3);
+}
+
+.doc-example--column {
+    /* Una columna con Grid y no con Flexbox en columna: dentro de este, Chrome
+       calcula mal el alto de una rejilla con imágenes que usan aspect-ratio */
+    display: grid;
+}
+
+.doc-example > .ez-navbar {
+    flex: 1;
+}
+
+/* En los ejemplos, la tarjeta con el ancho que tendría en una galería */
+.doc-example > .ez-card {
+    width: 20rem;
+    max-width: 100%;
+}
+
+/* Código del ejemplo, justo debajo, siempre sobre fondo oscuro; el botón de
+   copiar, arriba a la derecha */
+.doc-code {
+    position: relative;
+    margin-bottom: var(--ez-space-6);
+}
+
+.doc-code pre {
+    margin: 0;
+    /* A la derecha, sitio para el botón de copiar */
+    padding: var(--ez-space-4) 5.5rem var(--ez-space-4) var(--ez-space-6);
+    /* Los bloques largos (una tabla) se desplazan dentro de su propio marco */
+    max-height: 24rem;
+    overflow: auto;
+    border-radius: 0 0 var(--ez-radius) var(--ez-radius);
+    background: #211d1a;
+    color: #eee8e1;
+    font-size: .85rem;
+    line-height: 1.6;
+}
+
+/* Código sin ejemplo encima (un <template>): con todas las esquinas redondeadas */
+.doc-code--alone pre {
+    border-radius: var(--ez-radius);
+}
+
+.doc-code__copy {
+    position: absolute;
+    top: var(--ez-space-2);
+    right: var(--ez-space-2);
+    padding: .2rem .6rem;
+    border: 1px solid #4a423c;
+    border-radius: var(--ez-radius-sm);
+    background: transparent;
+    color: #c9bfb5;
+    font-size: .8rem;
+}
+
+.doc-code__copy:hover {
+    color: #ffffff;
+    border-color: #6d635b;
+}
+
+/* Fragmentos de código dentro del texto */
+:not(pre) > code {
+    padding: .05em .25em;
+    border-radius: var(--ez-radius-sm);
+    background: var(--ez-surface-muted);
+}
+
+/* Pie de página */
+.doc-footer {
+    margin-top: var(--ez-space-8);
+    padding-block: var(--ez-space-6);
+    border-top: 1px solid var(--ez-border);
+    color: var(--ez-muted);
+    font-size: .95rem;
+}

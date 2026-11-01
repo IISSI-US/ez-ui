@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <title>ez-ui · Con JavaScript</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="Componentes de ez-ui con JavaScript: notificación, indicador de carga y diálogo">
+        <script src="js/utils/theme-init.js"></script>
+        <link rel="stylesheet" href="ez-ui/css/ez-ui.css">
+        <link rel="stylesheet" href="css/site.css">
+        <script src="js/utils/include.js"></script>
+        <script src="js/header.js" type="module"></script>
+        <script src="js/javascript.js" type="module"></script>
+        <script src="js/examples/sell-player.js" type="module"></script>
+        <script src="js/examples/toasts.js" type="module"></script>
+        <script src="js/examples/load-market.js" type="module"></script>
+    </head>
+
+    <body>
+        <div id="page-header"></div>
+        <script>
+            include("header.html", "#page-header");
+        </script>
+
+        <div class="ez-container doc-layout">
+            <main>
+                <header class="doc-header">
+                    <p class="doc-kicker">Referencia</p>
+                    <h1>Con JavaScript</h1>
+                    <p class="doc-lead">
+                        Tres componentes que necesitan JavaScript, del más sencillo al más
+                        completo: una notificación, un indicador de carga y un diálogo de
+                        confirmación. Cada uno es un módulo de
+                        <code>ez-ui/js/</code> que se importa con <code>import</code> desde el
+                        controlador de la vista.
+                    </p>
+                </header>
+
+                <section class="doc-section" id="toast">
+                    <h2>Notificación</h2>
+                    <p>
+                        Un aviso breve en una esquina de la pantalla, que se cierra solo a los
+                        cuatro segundos: «Puja registrada», «Venta cancelada». Para un mensaje que
+                        el usuario tiene que leer con calma, como los errores de un formulario,
+                        mejor una <a href="componentes.html#alert">alerta</a>.
+                    </p>
+                    <div class="doc-example">
+                        <button id="toast-info" class="ez-button ez-button--secondary" type="button">Información</button>
+                        <button id="toast-success" class="ez-button ez-button--success" type="button">Éxito</button>
+                        <button id="toast-error" class="ez-button ez-button--danger" type="button">Error</button>
+                    </div>
+                    <p>
+                        <code>ezToast(mensaje, tipo, duración)</code> crea la notificación con el DOM
+                        y la añade a la página. El tipo es <code>"info"</code>,
+                        <code>"success"</code> o <code>"error"</code>, y la duración, los
+                        milisegundos que tarda en cerrarse (con <code>0</code>, no se cierra sola).
+                        Los dos son parámetros con valor por defecto (<code>"info"</code> y
+                        <code>4000</code>): si no se pasan, toman ese valor.
+                    </p>
+                    <template class="doc-source" data-file="js/examples/toasts.js"></template>
+                </section>
+
+                <section class="doc-section" id="loading">
+                    <h2>Indicador de carga</h2>
+                    <p>
+                        Muestra que algo se está cargando mientras llega la respuesta de la API, en
+                        el mismo sitio donde van a aparecer los datos. Un elemento con el atributo
+                        <code>aria-busy="true"</code> muestra un círculo que gira, y los lectores de
+                        pantalla saben que su contenido se está actualizando.
+                    </p>
+                    <div class="doc-example doc-example--column">
+                        <p><button id="load-button" class="ez-button" type="button">Cargar el mercado</button></p>
+                        <ul id="market-list"></ul>
+                    </div>
+                    <p>
+                        <code>ezLoading(elemento, promesa)</code> pone <code>aria-busy</code> en el
+                        elemento, espera a la promesa (la petición) y lo quita al terminar, también
+                        si la petición falla. Devuelve el resultado de la promesa, así que se usa
+                        con <code>await</code> en el mismo sitio donde se esperaría la respuesta.
+                    </p>
+                    <template class="doc-source" data-file="js/examples/load-market.js"></template>
+                </section>
+
+                <section class="doc-section" id="dialog">
+                    <h2>Diálogo</h2>
+                    <p>
+                        Pide confirmación antes de una acción que no se puede deshacer, como vender
+                        un jugador. Es un elemento <code>&lt;dialog&gt;</code> del propio HTML: el
+                        navegador lo muestra encima de la página, oscurece el fondo y lo cierra con
+                        la tecla Escape. Sus botones van en un
+                        <code>&lt;form method="dialog"&gt;</code>, que cierra el diálogo al pulsar
+                        cualquiera de ellos; el atributo <code>value</code> del botón dice cuál fue.
+                    </p>
+                    <div class="doc-example">
+                        <button id="sell-button" class="ez-button ez-button--danger" type="button">Vender a Mario Gil</button>
+
+                        <dialog id="sell-dialog" class="ez-dialog" aria-labelledby="sell-dialog-title">
+                            <h3 id="sell-dialog-title">¿Vender a Mario Gil?</h3>
+                            <p>Recibirás 400.000 € y dejará de estar en tu plantilla.</p>
+                            <form method="dialog" class="ez-dialog__actions">
+                                <button class="ez-button ez-button--secondary" value="cancel">Cancelar</button>
+                                <button class="ez-button ez-button--danger" value="confirm">Vender</button>
+                            </form>
+                        </dialog>
+                    </div>
+                    <p>
+                        <code>ezConfirm(dialog)</code> abre el diálogo y devuelve una promesa que se
+                        cumple al cerrarlo: con <code>await</code>, el código espera a que el usuario
+                        elija, y recibe <code>true</code> si pulsó el botón con
+                        <code>value="confirm"</code>. Es una alternativa a <code>confirm()</code>,
+                        que no se puede adaptar al aspecto de la aplicación.
+                    </p>
+                    <template class="doc-source" data-file="js/examples/sell-player.js"></template>
+                </section>
+            </main>
+
+            <nav class="doc-toc" aria-label="En esta página">
+                <h2>En esta página</h2>
+                <ul>
+                    <li><a href="#toast">Notificación</a></li>
+                    <li><a href="#loading">Indicador de carga</a></li>
+                    <li><a href="#dialog">Diálogo</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <footer class="ez-container doc-footer">
+            IISSI-2 · Universidad de Sevilla
+        </footer>
+    </body>
+</html>

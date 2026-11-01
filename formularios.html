@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <title>ez-ui · Formularios</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="Formularios con ez-ui: campos, ayudas, validación y mensajes de error">
+        <script src="js/utils/theme-init.js"></script>
+        <link rel="stylesheet" href="ez-ui/css/ez-ui.css">
+        <link rel="stylesheet" href="css/site.css">
+        <script src="js/utils/include.js"></script>
+        <script src="js/header.js" type="module"></script>
+        <script src="js/formularios.js" type="module"></script>
+        <script src="js/examples/bid-form.js" type="module"></script>
+    </head>
+
+    <body>
+        <div id="page-header"></div>
+        <script>
+            include("header.html", "#page-header");
+        </script>
+
+        <div class="ez-container doc-layout">
+            <main>
+                <header class="doc-header">
+                    <p class="doc-kicker">Referencia</p>
+                    <h1>Formularios</h1>
+                    <p class="doc-lead">
+                        Los controles de formulario tienen estilo sin clases. ez-ui solo añade el
+                        grupo de cada campo, con su ayuda. Los errores de validación se muestran
+                        encima del formulario, con alertas.
+                    </p>
+                </header>
+
+                <section class="doc-section" id="field">
+                    <h2>Campo</h2>
+                    <p>
+                        Cada campo va en un <code>ez-field</code>, que lo separa del siguiente: la
+                        etiqueta, el control y, si hace falta, una ayuda (<code>ez-field__hint</code>).
+                        El <code>for</code> de la etiqueta es el <code>id</code> del control: al
+                        pulsar la etiqueta se activa el control, y un lector de pantalla lee la
+                        etiqueta al llegar a él. <code>aria-describedby</code> le dice además dónde
+                        está la ayuda.
+                    </p>
+                    <div class="doc-example doc-example--column">
+                        <form>
+                            <div class="ez-field">
+                                <label for="team-name">Nombre del equipo</label>
+                                <input id="team-name" name="name" type="text" placeholder="Los Galácticos" aria-describedby="team-name-hint">
+                                <small id="team-name-hint" class="ez-field__hint">Entre 3 y 30 caracteres.</small>
+                            </div>
+                        </form>
+                    </div>
+                </section>
+
+                <section class="doc-section" id="controls">
+                    <h2>Controles</h2>
+                    <p>
+                        Los campos de texto, las listas desplegables y las áreas de texto ocupan todo
+                        el ancho del formulario y tienen el mismo aspecto. El tipo del
+                        <code>&lt;input&gt;</code> (<code>email</code>, <code>password</code>,
+                        <code>number</code>) cambia el teclado en el móvil y lo que el navegador
+                        admite.
+                    </p>
+                    <div class="doc-example doc-example--column">
+                        <form>
+                            <div class="ez-field">
+                                <label for="login-email">Email</label>
+                                <input id="login-email" name="email" type="email" placeholder="nombre@alum.us.es">
+                            </div>
+                            <div class="ez-field">
+                                <label for="login-password">Contraseña</label>
+                                <input id="login-password" name="password" type="password">
+                            </div>
+                            <div class="ez-field">
+                                <label for="login-team">Equipo</label>
+                                <select id="login-team" name="team">
+                                    <option>ETSII</option>
+                                    <option>Medicina</option>
+                                    <option>Arquitectura</option>
+                                </select>
+                            </div>
+                            <div class="ez-field">
+                                <label for="login-motto">Lema del equipo</label>
+                                <textarea id="login-motto" name="motto"></textarea>
+                            </div>
+                            <button class="ez-button" type="submit">Crear equipo</button>
+                        </form>
+                    </div>
+                </section>
+
+                <section class="doc-section" id="disabled">
+                    <h2>Desactivado</h2>
+                    <p>
+                        Con <code>disabled</code>, el control no se puede usar y su valor no se envía
+                        con el formulario.
+                    </p>
+                    <div class="doc-example doc-example--column">
+                        <form>
+                            <div class="ez-field">
+                                <label for="disabled-player">Jugador</label>
+                                <input id="disabled-player" name="player" type="text" value="Hugo Serrano" disabled>
+                            </div>
+                        </form>
+                    </div>
+                </section>
+
+                <section class="doc-section" id="validation">
+                    <h2>Validación y mensajes de error</h2>
+                    <p>
+                        Los errores se muestran en un <code>&lt;div id="errors"&gt;</code> encima
+                        del formulario, como alertas de error, igual que los errores de la API. Al
+                        enviar el formulario:
+                    </p>
+                    <ol>
+                        <li>
+                            El controlador recoge sus datos (<code>FormData</code>) y se los pasa al
+                            validador, que devuelve la lista de errores.
+                        </li>
+                        <li>
+                            Vacía <code>#errors</code>, para que no se acumulen los mensajes de
+                            envíos anteriores.
+                        </li>
+                        <li>
+                            Si hay errores, muestra cada uno con
+                            <code>messageRenderer.showErrorMessage()</code>; si no, envía los datos
+                            (aquí, muestra un mensaje de éxito).
+                        </li>
+                    </ol>
+                    <p>
+                        <code>novalidate</code> desactiva la validación del navegador para que se
+                        vean los mensajes propios. Prueba a pujar 900.000, 2.000.000 y
+                        1.300.000 €.
+                    </p>
+                    <div class="doc-example doc-example--column">
+                        <div id="errors"></div>
+                        <form id="bid-form" novalidate>
+                            <div class="ez-field">
+                                <label for="bid-amount">Cantidad (€)</label>
+                                <input id="bid-amount" name="amount" type="number" step="50000" aria-describedby="bid-amount-hint">
+                                <small id="bid-amount-hint" class="ez-field__hint">Precio de salida: 1.200.000 €. Tu saldo: 1.500.000 €.</small>
+                            </div>
+                            <div class="ez-field">
+                                <label for="bid-comment">Comentario para el vendedor</label>
+                                <textarea id="bid-comment" name="comment"></textarea>
+                            </div>
+                            <button class="ez-button" type="submit">Pujar por Hugo Serrano</button>
+                        </form>
+                    </div>
+
+                    <h3>El controlador</h3>
+                    <p>En <code>js/examples/bid-form.js</code>:</p>
+                    <template class="doc-source" data-file="js/examples/bid-form.js"></template>
+
+                    <h3>El validador</h3>
+                    <p>
+                        En <code>js/validators/bids.js</code>. Devuelve los mensajes en una lista: no
+                        sabe nada de la página, así que se puede usar desde cualquier vista.
+                    </p>
+                    <template class="doc-source" data-file="js/validators/bids.js"></template>
+
+                    <h3>El renderizador de mensajes</h3>
+                    <p>
+                        En <code>js/renderers/messages.js</code>. Tiene la misma interfaz que el de la
+                        plantilla de Silence de los laboratorios (<code>showErrorMessage</code>,
+                        <code>showSuccessMessage</code>), y crea con el DOM una alerta de ez-ui por
+                        mensaje.
+                    </p>
+                    <template class="doc-source" data-file="js/renderers/messages.js"></template>
+                </section>
+            </main>
+
+            <nav class="doc-toc" aria-label="En esta página">
+                <h2>En esta página</h2>
+                <ul>
+                    <li><a href="#field">Campo</a></li>
+                    <li><a href="#controls">Controles</a></li>
+                    <li><a href="#disabled">Desactivado</a></li>
+                    <li><a href="#validation">Validación y mensajes de error</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <footer class="ez-container doc-footer">
+            IISSI-2 · Universidad de Sevilla
+        </footer>
+    </body>
+</html>

@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" role="img" aria-label="Camiseta de Hugo Serrano, dorsal 10">
+  <rect width="400" height="300" fill="#f3efe9"/>
+  <path d="M150 50 L120 60 L80 100 L110 135 L135 115 L135 250 L265 250 L265 115 L290 135 L320 100 L280 60 L250 50 C240 70 220 78 200 78 C180 78 160 70 150 50 Z" fill="#26211e" stroke="#e6b85c" stroke-width="4" stroke-linejoin="round"/>
+  <text x="200" y="195" text-anchor="middle" font-family="Arial, sans-serif" font-weight="700" font-size="84" fill="#e6b85c">10</text>
+</svg>

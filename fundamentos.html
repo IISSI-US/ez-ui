@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <title>ez-ui · Fundamentos</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="Fundamentos de ez-ui: variables, tema oscuro, fuentes, elementos HTML y tablas">
+        <script src="js/utils/theme-init.js"></script>
+        <link rel="stylesheet" href="ez-ui/css/ez-ui.css">
+        <link rel="stylesheet" href="css/site.css">
+        <script src="js/utils/include.js"></script>
+        <script src="js/header.js" type="module"></script>
+        <script src="js/fundamentos.js" type="module"></script>
+    </head>
+
+    <body>
+        <div id="page-header"></div>
+        <script>
+            include("header.html", "#page-header");
+        </script>
+
+        <div class="ez-container doc-layout">
+            <main>
+                <header class="doc-header">
+                    <p class="doc-kicker">Referencia</p>
+                    <h1>Fundamentos</h1>
+                    <p class="doc-lead">
+                        Lo que se aplica a toda la página sin escribir ninguna clase: las variables
+                        con los colores y las medidas, el tema oscuro, las fuentes y el estilo de los
+                        elementos HTML.
+                    </p>
+                </header>
+
+                <section class="doc-section" id="variables">
+                    <h2>Variables</h2>
+                    <p>
+                        Los colores, las fuentes, los espacios y los radios de las esquinas están en
+                        variables CSS, definidas en <code>:root</code> (el elemento
+                        <code>&lt;html&gt;</code>), en la hoja <code>tokens.css</code>. El resto de
+                        hojas las usan con <code>var()</code>: para cambiar el color principal de
+                        toda la biblioteca basta con cambiar una variable.
+                    </p>
+                    <p>
+                        Las variables se heredan, como el color del texto: si se redefinen en un
+                        elemento, cambian solo dentro de él. En este ejemplo, el botón de la
+                        derecha está dentro de un <code>&lt;div&gt;</code> que cambia el color
+                        principal a verde:
+                    </p>
+                    <div class="doc-example">
+                        <button class="ez-button" type="button">Pujar</button>
+                        <div style="--ez-primary: #00776d; --ez-primary-hover: #005c54">
+                            <button class="ez-button" type="button">Pujar</button>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="doc-section" id="theme">
+                    <h2>Tema oscuro</h2>
+                    <p>
+                        El tema oscuro no cambia ninguna regla de los componentes: solo da otros
+                        valores a las mismas variables cuando el elemento
+                        <code>&lt;html&gt;</code> tiene el atributo
+                        <code>data-ez-theme="dark"</code>. Pruébalo con el botón «Modo oscuro» de
+                        la cabecera.
+                    </p>
+                    <template class="doc-example" data-code='<html lang="es" data-ez-theme="dark">'></template>
+                    <p>
+                        El botón de esta web cambia el atributo desde JavaScript
+                        (<code>document.documentElement.dataset.ezTheme = "dark"</code>) y guarda
+                        la preferencia en <code>localStorage</code> para la próxima visita.
+                    </p>
+                    <p>
+                        La preferencia guardada se aplica al cargar cada página con un script
+                        clásico en el <code>&lt;head&gt;</code>, no con un módulo. Un script
+                        clásico se ejecuta en cuanto el navegador lo lee, antes de pintar nada; un
+                        módulo (<code>type="module"</code>), después de leer toda la página. Con un
+                        módulo, la página se vería un instante con el tema claro antes de pasar al
+                        oscuro.
+                    </p>
+                    <template class="doc-example">
+                        <script src="js/utils/theme-init.js"></script>
+                        <link rel="stylesheet" href="ez-ui/css/ez-ui.css">
+                    </template>
+                    <template class="doc-source" data-file="js/utils/theme-init.js"></template>
+                </section>
+
+                <section class="doc-section" id="fonts">
+                    <h2>Fuentes</h2>
+                    <p>
+                        ez-ui usa Source Sans 3 para el texto y JetBrains Mono para el código. Las
+                        dos van en la biblioteca (<code>ez-ui/fonts/</code>), con licencia libre, así
+                        que no dependen de ningún servicio externo. <code>@font-face</code> asocia
+                        el nombre de cada familia a su fichero; después se usan con
+                        <code>font-family</code> como cualquier otra fuente.
+                    </p>
+                </section>
+
+                <section class="doc-section" id="elements">
+                    <h2>Elementos HTML</h2>
+                    <p>
+                        Los títulos, los párrafos, los enlaces, el código y los controles de
+                        formulario tienen estilo sin añadir ninguna clase. Se escribe HTML
+                        semántico y ez-ui le da aspecto.
+                    </p>
+                    <div class="doc-example doc-example--column">
+                        <h3>Jornada 11</h3>
+                        <p>
+                            La ETSII gana 3-1 a Medicina y sigue líder. Consulta el
+                            <a href="#table">calendario</a> de la próxima jornada.
+                        </p>
+                    </div>
+                </section>
+
+                <section class="doc-section" id="table">
+                    <h2>Tablas</h2>
+                    <p>
+                        Las tablas tampoco necesitan clases: ocupan todo el ancho, separan las filas
+                        con una línea y colorean las alternas para seguirlas con la vista. El
+                        título va en <code>&lt;caption&gt;</code>, las cabeceras de columna en
+                        <code>&lt;thead&gt;</code> con <code>&lt;th&gt;</code>, y los datos en
+                        <code>&lt;tbody&gt;</code>. La clase <code>ez-number</code> alinea los
+                        números a la derecha.
+                    </p>
+                    <div class="doc-example">
+                        <table>
+                            <caption>Clasificación tras la jornada 11</caption>
+                            <thead>
+                                <tr>
+                                    <th class="ez-number">Pos.</th>
+                                    <th>Equipo</th>
+                                    <th class="ez-number">PJ</th>
+                                    <th class="ez-number">G</th>
+                                    <th class="ez-number">E</th>
+                                    <th class="ez-number">P</th>
+                                    <th class="ez-number">Puntos</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="ez-number">1</td>
+                                    <td>ETSII</td>
+                                    <td class="ez-number">11</td>
+                                    <td class="ez-number">8</td>
+                                    <td class="ez-number">2</td>
+                                    <td class="ez-number">1</td>
+                                    <td class="ez-number">26</td>
+                                </tr>
+                                <tr>
+                                    <td class="ez-number">2</td>
+                                    <td>Medicina</td>
+                                    <td class="ez-number">11</td>
+                                    <td class="ez-number">7</td>
+                                    <td class="ez-number">2</td>
+                                    <td class="ez-number">2</td>
+                                    <td class="ez-number">23</td>
+                                </tr>
+                                <tr>
+                                    <td class="ez-number">3</td>
+                                    <td>Arquitectura</td>
+                                    <td class="ez-number">11</td>
+                                    <td class="ez-number">5</td>
+                                    <td class="ez-number">2</td>
+                                    <td class="ez-number">4</td>
+                                    <td class="ez-number">17</td>
+                                </tr>
+                                <tr>
+                                    <td class="ez-number">4</td>
+                                    <td>Derecho</td>
+                                    <td class="ez-number">11</td>
+                                    <td class="ez-number">4</td>
+                                    <td class="ez-number">2</td>
+                                    <td class="ez-number">5</td>
+                                    <td class="ez-number">14</td>
+                                </tr>
+                                <tr>
+                                    <td class="ez-number">5</td>
+                                    <td>Económicas</td>
+                                    <td class="ez-number">11</td>
+                                    <td class="ez-number">2</td>
+                                    <td class="ez-number">2</td>
+                                    <td class="ez-number">7</td>
+                                    <td class="ez-number">8</td>
+                                </tr>
+                                <tr>
+                                    <td class="ez-number">6</td>
+                                    <td>Bellas Artes</td>
+                                    <td class="ez-number">11</td>
+                                    <td class="ez-number">1</td>
+                                    <td class="ez-number">2</td>
+                                    <td class="ez-number">8</td>
+                                    <td class="ez-number">5</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p>
+                        PJ: partidos jugados; G, E y P: ganados, empatados y perdidos. Una victoria
+                        vale 3 puntos y un empate, 1.
+                    </p>
+                </section>
+            </main>
+
+            <nav class="doc-toc" aria-label="En esta página">
+                <h2>En esta página</h2>
+                <ul>
+                    <li><a href="#variables">Variables</a></li>
+                    <li><a href="#theme">Tema oscuro</a></li>
+                    <li><a href="#fonts">Fuentes</a></li>
+                    <li><a href="#elements">Elementos HTML</a></li>
+                    <li><a href="#table">Tablas</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <footer class="ez-container doc-footer">
+            IISSI-2 · Universidad de Sevilla
+        </footer>
+    </body>
+</html>

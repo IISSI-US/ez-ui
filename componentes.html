@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <title>ez-ui · Componentes</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="Componentes de ez-ui: etiqueta, botón, alerta, avatar, tarjeta y barra de navegación">
+        <script src="js/utils/theme-init.js"></script>
+        <link rel="stylesheet" href="ez-ui/css/ez-ui.css">
+        <link rel="stylesheet" href="css/site.css">
+        <script src="js/utils/include.js"></script>
+        <script src="js/header.js" type="module"></script>
+        <script src="js/componentes.js" type="module"></script>
+    </head>
+
+    <body>
+        <div id="page-header"></div>
+        <script>
+            include("header.html", "#page-header");
+        </script>
+
+        <div class="ez-container doc-layout">
+            <main>
+                <header class="doc-header">
+                    <p class="doc-kicker">Referencia</p>
+                    <h1>Componentes</h1>
+                    <p class="doc-lead">
+                        Piezas de interfaz que se activan con una clase <code>ez-</code>, de la más
+                        sencilla a la más completa. Las últimas combinan las primeras. Los ejemplos
+                        son del Trofeo ez-Soccer, una liga de fútbol entre las escuelas y facultades
+                        de la universidad.
+                    </p>
+                </header>
+
+                <section class="doc-section" id="badge">
+                    <h2>Etiqueta</h2>
+                    <p>
+                        Una palabra o abreviatura destacada dentro del texto: la posición de un
+                        jugador, el estado de un partido. Se escribe con un
+                        <code>&lt;span&gt;</code>, y una segunda clase con dos guiones cambia su
+                        color.
+                    </p>
+                    <div class="doc-example">
+                        <span class="ez-badge">DF</span>
+                        <span class="ez-badge ez-badge--primary">En juego</span>
+                        <span class="ez-badge ez-badge--success">Disponible</span>
+                        <span class="ez-badge ez-badge--danger">Lesionado</span>
+                    </div>
+
+                    <h3>Dentro de un texto</h3>
+                    <p>
+                        Su tamaño es relativo al del texto que la rodea (<code>em</code>), así que
+                        sirve igual en un título que en un párrafo.
+                    </p>
+                    <div class="doc-example doc-example--column">
+                        <h3>Mario Gil <span class="ez-badge">MC</span></h3>
+                        <p>Vuelve tras su lesión <span class="ez-badge ez-badge--success">Disponible</span></p>
+                    </div>
+                </section>
+
+                <section class="doc-section" id="button">
+                    <h2>Botón</h2>
+                    <p>
+                        La clase <code>ez-button</code> da aspecto de botón a un
+                        <code>&lt;button&gt;</code> o a un enlace. Se usa <code>&lt;button&gt;</code>
+                        para las acciones (pujar, vender) y <code>&lt;a&gt;</code> para ir a otra
+                        página, aunque se vean igual. En un <code>&lt;button&gt;</code> se indica su
+                        tipo: <code>type="submit"</code> envía el formulario y
+                        <code>type="button"</code> no hace nada por sí solo.
+                    </p>
+                    <div class="doc-example">
+                        <button class="ez-button" type="button">Pujar</button>
+                        <a class="ez-button" href="#button">Ver el mercado</a>
+                    </div>
+
+                    <h3>Variantes</h3>
+                    <p>
+                        Como en la etiqueta, una segunda clase cambia el color según el tipo de
+                        acción: secundaria, peligrosa o de éxito.
+                    </p>
+                    <div class="doc-example">
+                        <button class="ez-button ez-button--secondary" type="button">Cancelar</button>
+                        <button class="ez-button ez-button--danger" type="button">Vender jugador</button>
+                        <button class="ez-button ez-button--success" type="button">Confirmar alineación</button>
+                    </div>
+
+                    <h3>Desactivado</h3>
+                    <p>
+                        Con el atributo <code>disabled</code>, el botón no responde y se ve más
+                        claro. Se puede activar y desactivar desde JavaScript con
+                        <code>button.disabled = true</code>.
+                    </p>
+                    <div class="doc-example">
+                        <button class="ez-button" type="button" disabled>Plantilla completa</button>
+                    </div>
+
+                    <h3>Con una etiqueta</h3>
+                    <p>
+                        Una etiqueta dentro del botón muestra un dato que acompaña a la acción.
+                    </p>
+                    <div class="doc-example">
+                        <a class="ez-button ez-button--secondary" href="#button">
+                            Pujas recibidas <span class="ez-badge ez-badge--primary">3</span>
+                        </a>
+                    </div>
+                </section>
+
+                <section class="doc-section" id="alert">
+                    <h2>Alerta</h2>
+                    <p>
+                        Un mensaje que se queda en la página hasta que cambia: un error al cargar
+                        los datos, los errores de un formulario. El borde izquierdo y el fondo
+                        indican si es información, éxito o error. Los errores llevan
+                        <code>role="alert"</code> para que los lectores de pantalla los anuncien
+                        en cuanto aparecen.
+                    </p>
+                    <div class="doc-example doc-example--column">
+                        <div class="ez-alert">El mercado de fichajes cierra el viernes a las 21:00.</div>
+                        <div class="ez-alert ez-alert--success">Tu alineación está confirmada para la jornada 11.</div>
+                        <div class="ez-alert ez-alert--error" role="alert">No tienes saldo suficiente para esta puja.</div>
+                    </div>
+
+                    <h3>Con más contenido</h3>
+                    <p>
+                        Dentro de una alerta puede ir un título, un párrafo o un botón.
+                    </p>
+                    <div class="doc-example doc-example--column">
+                        <div class="ez-alert ez-alert--error" role="alert">
+                            <strong>Alineación incompleta.</strong>
+                            Faltan un portero y un defensa para la jornada 12.
+                            <a class="ez-button ez-button--secondary" href="#alert">Completar la alineación</a>
+                        </div>
+                    </div>
+                    <p>
+                        Para un aviso breve que desaparece solo («Puja registrada»), mejor una
+                        notificación: ver <a href="javascript.html#toast">Con JavaScript</a>.
+                    </p>
+                </section>
+
+                <section class="doc-section" id="avatar">
+                    <h2>Avatar</h2>
+                    <p>
+                        Una imagen recortada en círculo, para la foto de una persona. Si la imagen
+                        no es cuadrada, se recorta sin deformarse. El texto alternativo va vacío
+                        (<code>alt=""</code>) cuando el nombre ya aparece al lado: así un lector de
+                        pantalla no lo lee dos veces.
+                    </p>
+                    <div class="doc-example">
+                        <img class="ez-avatar" src="images/soccer/avatar-irene-campos.svg" alt="">
+                        <span>Irene Campos</span>
+                    </div>
+
+                    <h3>Otro tamaño</h3>
+                    <p>
+                        El tamaño es una variable, <code>--ez-avatar-size</code> (por defecto,
+                        <code>2rem</code>), que se puede cambiar en un elemento concreto con el
+                        atributo <code>style</code>, sin escribir otra regla.
+                    </p>
+                    <div class="doc-example">
+                        <img class="ez-avatar" src="images/soccer/avatar-hugo-serrano.svg" alt="Hugo Serrano" style="--ez-avatar-size: 4rem">
+                    </div>
+
+                    <h3>Con nombre y etiqueta</h3>
+                    <p>
+                        Avatar, nombre y etiqueta forman la línea de un jugador en una lista.
+                    </p>
+                    <div class="doc-example doc-example--column">
+                        <p>
+                            <img class="ez-avatar" src="images/soccer/avatar-nora-iglesias.svg" alt="">
+                            Nora Iglesias <span class="ez-badge">PT</span>
+                        </p>
+                        <p>
+                            <img class="ez-avatar" src="images/soccer/avatar-pablo-vega.svg" alt="">
+                            Pablo Vega <span class="ez-badge">DF</span>
+                            <span class="ez-badge ez-badge--danger">Lesionado</span>
+                        </p>
+                    </div>
+                </section>
+
+                <section class="doc-section" id="card">
+                    <h2>Tarjeta</h2>
+                    <p>
+                        Agrupa la información de un elemento (un jugador, un equipo, un partido) en
+                        un bloque con borde y sombra. Se escribe con un <code>&lt;article&gt;</code>,
+                        porque cada tarjeta tiene sentido por sí sola, y tiene tres partes, todas
+                        opcionales: la imagen (<code>ez-card__image</code>), el cuerpo
+                        (<code>ez-card__body</code>) y el pie (<code>ez-card__footer</code>). Dentro
+                        de cada parte va cualquier contenido, también los componentes anteriores.
+                    </p>
+
+                    <h3>Imagen y cuerpo</h3>
+                    <p>
+                        La imagen se recorta para mantener la proporción 4:3 sin deformarse
+                        (<code>aspect-ratio</code> y <code>object-fit: cover</code>): todas las
+                        tarjetas de una lista tienen la imagen del mismo tamaño.
+                    </p>
+                    <div class="doc-example">
+                        <article class="ez-card">
+                            <img class="ez-card__image" src="images/soccer/shirt-lucia-romero.svg" alt="Camiseta granate con el dorsal 9">
+                            <div class="ez-card__body">
+                                <h3>Lucía Romero</h3>
+                                <p>Delantera de la ETSII. Máxima goleadora del trofeo.</p>
+                            </div>
+                        </article>
+                    </div>
+
+                    <h3>Con pie</h3>
+                    <p>
+                        El pie separa del cuerpo la información secundaria. Sus elementos se
+                        reparten a los dos extremos con Flexbox.
+                    </p>
+                    <div class="doc-example">
+                        <article class="ez-card">
+                            <img class="ez-card__image" src="images/soccer/shirt-pablo-vega.svg" alt="Camiseta azul con el dorsal 4">
+                            <div class="ez-card__body">
+                                <h3>Pablo Vega</h3>
+                                <p>Defensa de Arquitectura.</p>
+                            </div>
+                            <footer class="ez-card__footer">
+                                <span>54 puntos</span>
+                                <strong>850.000 €</strong>
+                            </footer>
+                        </article>
+                    </div>
+
+                    <h3>Composiciones</h3>
+                    <p>
+                        Las mismas tres partes, con etiquetas, botones y avatares dentro, dan
+                        tarjetas para casi todo.
+                    </p>
+
+                    <h4>Jugador en el mercado: etiquetas y botones</h4>
+                    <div class="doc-example">
+                        <article class="ez-card">
+                            <img class="ez-card__image" src="images/soccer/shirt-hugo-serrano.svg" alt="Camiseta negra con el dorsal 10">
+                            <div class="ez-card__body">
+                                <h3>Hugo Serrano <span class="ez-badge">MC</span></h3>
+                                <p>Derecho · 61 puntos <span class="ez-badge ez-badge--success">Disponible</span></p>
+                            </div>
+                            <footer class="ez-card__footer">
+                                <strong>1.200.000 €</strong>
+                                <button class="ez-button" type="button">Pujar</button>
+                            </footer>
+                        </article>
+                    </div>
+
+                    <h4>Mánager: sin imagen, con avatar</h4>
+                    <div class="doc-example">
+                        <article class="ez-card">
+                            <div class="ez-card__body">
+                                <h3>
+                                    <img class="ez-avatar" src="images/soccer/avatar-irene-campos.svg" alt="">
+                                    Irene Campos <span class="ez-badge ez-badge--primary">1.º</span>
+                                </h3>
+                                <p>Mánager de Los Galácticos de la ETSII.</p>
+                            </div>
+                            <footer class="ez-card__footer">
+                                <span>681 puntos</span>
+                                <span>1.500.000 € de saldo</span>
+                            </footer>
+                        </article>
+                    </div>
+
+                    <h4>Partido: escudos y marcador en el pie</h4>
+                    <div class="doc-example">
+                        <article class="ez-card">
+                            <div class="ez-card__body">
+                                <h3>Jornada 11 <span class="ez-badge ez-badge--primary">En juego</span></h3>
+                                <p>Pabellón de la ETSII, 18:00.</p>
+                            </div>
+                            <footer class="ez-card__footer">
+                                <img src="images/soccer/crest-etsii.svg" alt="ETSII" width="48" height="48">
+                                <strong>3 - 1</strong>
+                                <img src="images/soccer/crest-medicina.svg" alt="Medicina" width="48" height="48">
+                            </footer>
+                        </article>
+                    </div>
+
+                    <h4>Lesión: una alerta dentro del cuerpo</h4>
+                    <div class="doc-example">
+                        <article class="ez-card">
+                            <img class="ez-card__image" src="images/soccer/shirt-mario-gil.svg" alt="Camiseta naranja con el dorsal 5">
+                            <div class="ez-card__body">
+                                <h3>Mario Gil <span class="ez-badge">MC</span></h3>
+                                <div class="ez-alert ez-alert--error">Lesionado hasta la jornada 13.</div>
+                            </div>
+                            <footer class="ez-card__footer">
+                                <button class="ez-button ez-button--secondary" type="button">Ver ficha</button>
+                                <button class="ez-button ez-button--danger" type="button">Vender</button>
+                            </footer>
+                        </article>
+                    </div>
+                </section>
+
+                <section class="doc-section" id="navbar">
+                    <h2>Barra de navegación</h2>
+                    <p>
+                        La cabecera con el nombre de la aplicación y los enlaces a sus páginas. Se
+                        escribe con <code>&lt;nav&gt;</code> y una lista de enlaces
+                        (<code>&lt;ul&gt;</code>), que Flexbox pone en fila. En una pantalla
+                        estrecha, los enlaces que no caben pasan a la línea siguiente
+                        (<code>flex-wrap: wrap</code>): no hace falta un menú desplegable.
+                    </p>
+                    <div class="doc-example">
+                        <nav class="ez-navbar" aria-label="Principal">
+                            <div class="ez-container ez-navbar__inner">
+                                <a class="ez-navbar__brand" href="#navbar">Trofeo ez-Soccer</a>
+                                <ul class="ez-navbar__links">
+                                    <li><a href="#navbar">Clasificación</a></li>
+                                    <li><a href="#navbar">Mercado</a></li>
+                                    <li><a href="#navbar">Mi equipo</a></li>
+                                </ul>
+                            </div>
+                        </nav>
+                    </div>
+
+                    <h3>Con avatar y botón</h3>
+                    <p>
+                        En la lista caben otros componentes: el avatar del usuario con su nombre y
+                        un botón para cerrar la sesión.
+                    </p>
+                    <div class="doc-example">
+                        <nav class="ez-navbar" aria-label="Principal">
+                            <div class="ez-container ez-navbar__inner">
+                                <a class="ez-navbar__brand" href="#navbar">Trofeo ez-Soccer</a>
+                                <ul class="ez-navbar__links">
+                                    <li><a href="#navbar">Clasificación</a></li>
+                                    <li><a href="#navbar">Mercado <span class="ez-badge ez-badge--primary">3</span></a></li>
+                                    <li>
+                                        <img class="ez-avatar" src="images/soccer/avatar-irene-campos.svg" alt="">
+                                        Irene Campos
+                                    </li>
+                                    <li><button class="ez-button ez-button--secondary" type="button">Cerrar sesión</button></li>
+                                </ul>
+                            </div>
+                        </nav>
+                    </div>
+                    <p>
+                        Esta web usa la misma barra en su cabecera, que todas las páginas cargan
+                        desde <code>header.html</code>.
+                    </p>
+                </section>
+            </main>
+
+            <nav class="doc-toc" aria-label="En esta página">
+                <h2>En esta página</h2>
+                <ul>
+                    <li><a href="#badge">Etiqueta</a></li>
+                    <li><a href="#button">Botón</a></li>
+                    <li><a href="#alert">Alerta</a></li>
+                    <li><a href="#avatar">Avatar</a></li>
+                    <li><a href="#card">Tarjeta</a></li>
+                    <li><a href="#navbar">Barra de navegación</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <footer class="ez-container doc-footer">
+            IISSI-2 · Universidad de Sevilla
+        </footer>
+    </body>
+</html>
