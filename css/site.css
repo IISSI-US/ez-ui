@@ -37,15 +37,6 @@
   padding-block: var(--ez-space-8) var(--ez-space-6);
 }
 
-.doc-kicker {
-  margin: 0;
-  color: var(--ez-primary);
-  font-size: .8rem;
-  font-weight: 700;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-}
-
 .doc-header h1 {
   margin-block: var(--ez-space-2) var(--ez-space-4);
 }
