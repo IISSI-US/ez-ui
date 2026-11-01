@@ -1,0 +1,25 @@
+.ez-container { width: min(100% - 2rem, 70rem); margin-inline: auto; }
+.ez-stack > * + * { margin-block-start: var(--ez-space-4); }
+.ez-navbar { background: var(--ez-surface); border-bottom: 1px solid var(--ez-border); }
+.ez-navbar__inner { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; justify-content: space-between; padding-block: 1rem; }
+.ez-navbar__brand { font-weight: 800; font-size: 1.2rem; color: var(--ez-text); text-decoration: none; }
+.ez-navbar__links { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; }
+.ez-navbar__links a { text-decoration: none; }
+.ez-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr)); gap: var(--ez-space-6); }
+.ez-card { overflow: hidden; background: var(--ez-surface); border: 1px solid var(--ez-border); border-radius: var(--ez-radius-lg); box-shadow: var(--ez-shadow); }
+.ez-card__image { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+.ez-card__body { padding: var(--ez-space-6); }
+.ez-card__body > :first-child { margin-top: 0; }
+.ez-card__body > :last-child { margin-bottom: 0; }
+.ez-muted { color: var(--ez-muted); }
+.ez-button, button:not([class]) { display: inline-flex; align-items: center; justify-content: center; gap: .4rem; min-height: 2.6rem; padding: .6rem 1rem; border: 1px solid transparent; border-radius: var(--ez-radius-sm); background: var(--ez-primary); color: var(--ez-on-primary); font-weight: 650; text-decoration: none; transition: background .15s ease, transform .15s ease; }
+.ez-button:hover, button:not([class]):hover { background: var(--ez-primary-hover); }
+.ez-button--secondary { background: var(--ez-surface-muted); color: var(--ez-text); border-color: var(--ez-border); }
+.ez-button--secondary:hover { background: var(--ez-border); }
+.ez-button--danger { background: var(--ez-danger); color: #fff; }
+.ez-button--danger:hover { filter: brightness(.9); background: var(--ez-danger); }
+.ez-alert { padding: 1rem 1.2rem; border: 1px solid var(--ez-border); border-left: 4px solid var(--ez-primary); border-radius: var(--ez-radius-sm); background: var(--ez-surface); }
+.ez-alert--error { border-left-color: var(--ez-danger); }
+.ez-alert--success { border-left-color: var(--ez-success); }
+.ez-panel { padding: clamp(1.2rem, 3vw, 2rem); border: 1px solid var(--ez-border); border-radius: var(--ez-radius-lg); background: var(--ez-surface); }
+@media (prefers-reduced-motion: reduce) { .ez-button { transition: none; } }
