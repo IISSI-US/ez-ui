@@ -1,0 +1,14 @@
+form { max-width: 42rem; }
+label { display: block; margin-bottom: .35rem; font-weight: 650; }
+input:not([type="checkbox"]):not([type="radio"]), select, textarea {
+  display: block; width: 100%; min-height: 2.7rem; padding: .65rem .8rem;
+  border: 1px solid var(--ez-border); border-radius: var(--ez-radius-sm);
+  background: var(--ez-surface); color: var(--ez-text);
+}
+textarea { min-height: 7rem; resize: vertical; }
+input::placeholder, textarea::placeholder { color: var(--ez-muted); }
+.ez-field { margin-bottom: var(--ez-space-4); }
+.ez-field__hint { display: block; margin-top: .3rem; color: var(--ez-muted); font-size: .9rem; }
+.ez-field__error { display: block; margin-top: .3rem; color: var(--ez-danger); font-size: .9rem; }
+[aria-invalid="true"] { border-color: var(--ez-danger) !important; }
+input:disabled, select:disabled, textarea:disabled { opacity: .6; cursor: not-allowed; }
