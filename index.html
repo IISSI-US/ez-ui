@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="es" data-ez-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ez-ui · Catálogo de componentes</title>
+  <link rel="stylesheet" href="css/ez-ui.css">
+  <style>
+    .demo-section { margin-block: 2.5rem; }
+    .demo-actions { display: flex; flex-wrap: wrap; gap: .65rem; align-items: center; }
+    .demo-hero { padding-block: 2.5rem 1rem; }
+    .demo-photo { display: grid; place-items: center; aspect-ratio: 4/3; color: #fff; font-size: 3rem; }
+    .demo-photo--one { background: linear-gradient(135deg,#1e7494,#8ed1b2); }
+    .demo-photo--two { background: linear-gradient(135deg,#d66d61,#f0bc83); }
+    .demo-photo--three { background: linear-gradient(135deg,#5d5a9d,#b7a5de); }
+  </style>
+  <script type="module">
+    const root = document.documentElement;
+    const toggle = document.querySelector("#theme-toggle");
+    toggle.addEventListener("click", () => {
+      const dark = root.dataset.ezTheme !== "dark";
+      root.dataset.ezTheme = dark ? "dark" : "light";
+      toggle.setAttribute("aria-pressed", String(dark));
+      toggle.textContent = dark ? "Modo claro" : "Modo oscuro";
+    });
+    const form = document.querySelector("#demo-form");
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+      document.querySelector("#form-feedback").textContent = "Formulario válido (demostración; no se envían datos).";
+    });
+  </script>
+</head>
+<body>
+  <header class="ez-navbar">
+    <nav class="ez-container ez-navbar__inner" aria-label="Principal">
+      <a class="ez-navbar__brand" href="#">ez-ui</a>
+      <div class="ez-navbar__links">
+        <a href="#tarjetas">Tarjetas</a>
+        <a href="#formularios">Formularios</a>
+        <a href="#mensajes">Mensajes</a>
+        <button class="ez-button ez-button--secondary" type="button" id="theme-toggle" aria-pressed="false">Modo oscuro</button>
+      </div>
+    </nav>
+  </header>
+  <main class="ez-container">
+    <section class="demo-hero">
+      <p class="ez-muted">IISSI-2 · Biblioteca CSS educativa</p>
+      <h1>Interfaces sencillas, código comprensible.</h1>
+      <p>HTML semántico, CSS nativo y componentes <code>ez-*</code>. Sin Bootstrap, Sass ni dependencias JavaScript.</p>
+      <div class="demo-actions">
+        <button type="button">Botón nativo</button>
+        <button class="ez-button ez-button--secondary" type="button">Secundario</button>
+        <button class="ez-button ez-button--danger" type="button">Eliminar</button>
+      </div>
+    </section>
+    <section id="tarjetas" class="demo-section">
+      <h2>Tarjetas y galería</h2>
+      <p class="ez-muted">La rejilla es responsive sin crear filas manualmente en JavaScript.</p>
+      <div class="ez-gallery">
+        <article class="ez-card">
+          <div class="demo-photo demo-photo--one" role="img" aria-label="Ilustración abstracta azul y verde">✦</div>
+          <div class="ez-card__body"><h3>Fotografía uno</h3><p>Un ejemplo de tarjeta para un renderizador.</p><a href="#formularios">Ver formulario</a></div>
+        </article>
+        <article class="ez-card">
+          <div class="demo-photo demo-photo--two" role="img" aria-label="Ilustración abstracta naranja">◈</div>
+          <div class="ez-card__body"><h3>Fotografía dos</h3><p>La presentación es responsabilidad de CSS.</p><a href="#formularios">Ver formulario</a></div>
+        </article>
+        <article class="ez-card">
+          <div class="demo-photo demo-photo--three" role="img" aria-label="Ilustración abstracta violeta">◇</div>
+          <div class="ez-card__body"><h3>Fotografía tres</h3><p>El renderizador solo genera HTML semántico.</p><a href="#formularios">Ver formulario</a></div>
+        </article>
+      </div>
+    </section>
+    <section id="formularios" class="demo-section">
+      <h2>Formularios</h2>
+      <div class="ez-panel">
+        <form id="demo-form">
+          <div class="ez-field"><label for="photo-title">Título</label><input id="photo-title" name="title" required minlength="3" placeholder="Mi fotografía"><small class="ez-field__hint">Al menos tres caracteres.</small></div>
+          <div class="ez-field"><label for="photo-description">Descripción</label><textarea id="photo-description" name="description" placeholder="Describe la imagen"></textarea></div>
+          <div class="ez-field"><label for="photo-visibility">Visibilidad</label><select id="photo-visibility" name="visibility"><option>Pública</option><option>Privada</option></select></div>
+          <button type="submit">Guardar</button>
+          <p id="form-feedback" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+    <section id="mensajes" class="demo-section">
+      <h2>Mensajes de estado</h2>
+      <div class="ez-stack">
+        <div class="ez-alert" role="status">Información: el formulario usa validación HTML5.</div>
+        <div class="ez-alert ez-alert--success" role="status">Éxito: operación completada.</div>
+        <div class="ez-alert ez-alert--error" role="alert">Error: comprueba los datos introducidos.</div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
