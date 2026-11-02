@@ -24,12 +24,14 @@
   --ez-selection: #f6dbe3;
   --ez-focus: #e48aa5;
 
-  /* Mensajes: información, éxito y error. */
+  /* Mensajes: información, éxito, aviso y error. */
   --ez-info: #46697d;
   --ez-info-bg: #edf2f5;
   --ez-success: #00776d;
   --ez-success-bg: #e2f2ef;
   --ez-on-success: #ffffff;
+  --ez-warning: #b36b00;
+  --ez-warning-bg: #fdf1dc;
   --ez-danger: #c4291c;
   --ez-danger-bg: #fbe9e6;
   --ez-on-danger: #ffffff;
@@ -71,6 +73,8 @@
   --ez-success: #4fc4b6;
   --ez-success-bg: #142c29;
   --ez-on-success: #171412;
+  --ez-warning: #f2b84b;
+  --ez-warning-bg: #33270f;
   --ez-danger: #ff8a7d;
   --ez-danger-bg: #36191a;
   --ez-on-danger: #171412;

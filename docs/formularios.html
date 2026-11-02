@@ -7,6 +7,8 @@
         <meta name="description" content="Formularios con ez-ui: campos, ayudas, validación y mensajes de error">
         <script src="ez-ui/js/theme-init.js"></script>
         <link rel="stylesheet" href="ez-ui/css/ez-ui.css">
+        <!-- Los iconos de esta web, de Font Awesome (ez-ui no trae iconos) -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
         <link rel="stylesheet" href="css/site.css">
         <link rel="icon" href="favicon.svg">
         <script src="js/header.js" type="module"></script>
@@ -20,8 +22,8 @@
             <main>
                 <header class="doc-header">
                     <h1>Formularios</h1>
-                    <p class="doc-lead">
-                        Los controles de formulario tienen estilo sin clases. ez-ui solo añade el
+                    <p>
+                        Los controles de formulario tienen estilo sin clases. <span class="doc-brand"><span class="doc-brand-mark">ez</span>-ui</span> solo añade el
                         grupo de cada campo, con su ayuda y su mensaje de error.
                     </p>
                 </header>
@@ -38,13 +40,17 @@
                     </p>
                     <div class="doc-example doc-example--column">
                         <form>
+                            <!-- ez-field: etiqueta, control y ayuda de un campo -->
                             <div class="ez-field">
+                                <!-- for: el id del control al que pertenece -->
                                 <label for="team-name">Nombre del equipo</label>
+                                <!-- aria-describedby: el id de la ayuda -->
                                 <input id="team-name"
                                        name="name"
                                        type="text"
                                        placeholder="Los Galácticos"
                                        aria-describedby="team-name-hint">
+                                <!-- ez-field__hint: la ayuda, debajo del control -->
                                 <small id="team-name-hint" class="ez-field__hint">Entre 3 y 30 caracteres.</small>
                             </div>
                         </form>
@@ -62,8 +68,10 @@
                     </p>
                     <div class="doc-example doc-example--column">
                         <form>
+                            <!-- Cada control en su ez-field, con su label -->
                             <div class="ez-field">
                                 <label for="login-email">Email</label>
+                                <!-- type="email": teclado de email en el móvil -->
                                 <input id="login-email" name="email" type="email" placeholder="nombre@alum.us.es">
                             </div>
                             <div class="ez-field">
@@ -82,6 +90,7 @@
                                 <label for="login-motto">Lema del equipo</label>
                                 <textarea id="login-motto" name="motto"></textarea>
                             </div>
+                            <!-- type="submit": envía el formulario -->
                             <button class="ez-button" type="submit">Crear equipo</button>
                         </form>
                     </div>
@@ -97,6 +106,7 @@
                         <form>
                             <div class="ez-field">
                                 <label for="disabled-player">Jugador</label>
+                                <!-- disabled: no se puede usar y no se envía -->
                                 <input id="disabled-player" name="player" type="text" value="Hugo Serrano" disabled>
                             </div>
                         </form>
@@ -114,12 +124,14 @@
                         <form>
                             <div class="ez-field">
                                 <label for="invalid-amount">Cantidad (€)</label>
+                                <!-- aria-invalid: borde rojo; aria-describedby: el error -->
                                 <input id="invalid-amount"
                                        name="amount"
                                        type="number"
                                        value="900000"
                                        aria-invalid="true"
                                        aria-describedby="invalid-amount-error">
+                                <!-- ez-field__error: el mensaje, debajo del control -->
                                 <small id="invalid-amount-error"
                                        class="ez-field__error">
                                     La puja mínima es el precio de salida: 1.200.000 €.

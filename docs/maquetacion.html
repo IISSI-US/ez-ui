@@ -7,6 +7,8 @@
         <meta name="description" content="Maquetación con ez-ui: contenedor, galería y dos columnas">
         <script src="ez-ui/js/theme-init.js"></script>
         <link rel="stylesheet" href="ez-ui/css/ez-ui.css">
+        <!-- Los iconos de esta web, de Font Awesome (ez-ui no trae iconos) -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
         <link rel="stylesheet" href="css/site.css">
         <link rel="icon" href="favicon.svg">
         <script src="js/header.js" type="module"></script>
@@ -20,7 +22,7 @@
             <main>
                 <header class="doc-header">
                     <h1>Maquetación</h1>
-                    <p class="doc-lead">
+                    <p>
                         Tres clases para colocar el contenido en la página: un contenedor centrado,
                         una galería que reparte tarjetas en columnas y una rejilla de dos columnas.
                         Las dos últimas usan CSS Grid y se adaptan solas al ancho de la pantalla.
@@ -36,6 +38,7 @@
                         de la página, debajo de la barra de navegación.
                     </p>
                     <template class="doc-example">
+                        <!-- ez-container: centra el contenido y limita su ancho -->
                         <main class="ez-container">
                             <h1>Mercado de fichajes</h1>
                             <!-- Contenido de la página -->
@@ -53,9 +56,53 @@
                         <code>ez-gallery</code> reparte sus hijos en tantas columnas como quepan,
                         de al menos 17rem cada una, y las que sobran pasan a la fila siguiente. No
                         hay que decir cuántas columnas: con la ventana ancha hay tres o cuatro, y en
-                        un móvil, una. Es la rejilla de una lista de tarjetas.
+                        un móvil, una. Sirve para una galería de fotos, una lista de tarjetas o
+                        cualquier otra cosa.
                     </p>
                     <div class="doc-example doc-example--column">
+                        <!-- ez-gallery: tantas columnas como quepan, de 17rem como mínimo -->
+                        <div class="ez-gallery">
+                            <!-- width y height: la proporción, para reservar su sitio -->
+                            <img src="images/soccer/shirt-lucia-romero.svg"
+                                 alt="Camiseta de Lucía Romero, dorsal 9"
+                                 width="400"
+                                 height="300">
+                            <img src="images/soccer/shirt-hugo-serrano.svg"
+                                 alt="Camiseta de Hugo Serrano, dorsal 10"
+                                 width="400"
+                                 height="300">
+                            <img src="images/soccer/shirt-irene-campos.svg"
+                                 alt="Camiseta de Irene Campos, dorsal 7"
+                                 width="400"
+                                 height="300">
+                            <img src="images/soccer/shirt-pablo-vega.svg"
+                                 alt="Camiseta de Pablo Vega, dorsal 4"
+                                 width="400"
+                                 height="300">
+                            <img src="images/soccer/shirt-nora-iglesias.svg"
+                                 alt="Camiseta de Nora Iglesias, dorsal 1"
+                                 width="400"
+                                 height="300">
+                            <img src="images/soccer/shirt-mario-gil.svg"
+                                 alt="Camiseta de Mario Gil, dorsal 5"
+                                 width="400"
+                                 height="300">
+                        </div>
+                    </div>
+                    <p>
+                        La regla es <code>grid-template-columns: repeat(auto-fit, minmax(17rem,
+                        1fr))</code>: repetir tantas columnas como quepan (<code>auto-fit</code>), y
+                        que cada una mida entre 17rem y una parte del espacio libre
+                        (<code>1fr</code>).
+                    </p>
+
+                    <h3>Una galería de tarjetas</h3>
+                    <p>
+                        Las mismas columnas, con una tarjeta en cada celda: la lista de jugadores
+                        del mercado.
+                    </p>
+                    <div class="doc-example doc-example--column">
+                        <!-- Las mismas columnas, con una tarjeta en cada celda -->
                         <div class="ez-gallery">
                             <article class="ez-card">
                                 <img class="ez-card__image"
@@ -137,12 +184,6 @@
                             </article>
                         </div>
                     </div>
-                    <p>
-                        La regla es <code>grid-template-columns: repeat(auto-fit, minmax(17rem,
-                        1fr))</code>: repetir tantas columnas como quepan (<code>auto-fit</code>), y
-                        que cada una mida entre 17rem y una parte del espacio libre
-                        (<code>1fr</code>).
-                    </p>
                 </section>
 
                 <section class="doc-section" id="split">
@@ -155,7 +196,9 @@
                     </p>
                     <h3>Clasificación y equipo</h3>
                     <div class="doc-example doc-example--column">
+                        <!-- ez-split: dos columnas; la primera, el doble de ancha -->
                         <div class="ez-split">
+                            <!-- Primera columna -->
                             <table>
                                 <caption>Clasificación tras la jornada 11</caption>
                                 <thead>
@@ -188,6 +231,7 @@
                                     </tr>
                                 </tbody>
                             </table>
+                            <!-- Segunda columna -->
                             <article class="ez-card">
                                 <div class="ez-card__body">
                                     <h3>
@@ -210,6 +254,7 @@
                         <code>grid-template-columns</code>.
                     </p>
                     <div class="doc-example doc-example--column">
+                        <!-- --ez-split-columns: otro reparto, aquí dos columnas iguales -->
                         <div class="ez-split" style="--ez-split-columns: 1fr 1fr">
                             <article class="ez-card">
                                 <div class="ez-card__body">
@@ -226,6 +271,7 @@
                         </div>
                     </div>
                     <div class="doc-example doc-example--column">
+                        <!-- Tres columnas iguales -->
                         <div class="ez-split" style="--ez-split-columns: 1fr 1fr 1fr">
                             <div class="ez-alert">Partidos: 11</div>
                             <div class="ez-alert">Goles: 29</div>
@@ -241,6 +287,7 @@
                         principal.
                     </p>
                     <div class="doc-example doc-example--column">
+                        <!-- La tarjeta, en la columna ancha; el aside, en la estrecha -->
                         <div class="ez-split">
                             <article class="ez-card">
                                 <img class="ez-card__image"
@@ -266,6 +313,7 @@
                         <a href="formularios.html">Formularios</a>.
                     </p>
                     <div class="doc-example doc-example--column">
+                        <!-- El formulario, en la columna ancha; la tarjeta, al lado -->
                         <div class="ez-split">
                             <form>
                                 <h3>Pujar por Hugo Serrano</h3>
@@ -297,14 +345,16 @@
                     <p>
                         Una página con la barra de navegación a la izquierda es otro uso de las dos
                         columnas: <code>ez-split</code> en el <code>&lt;body&gt;</code>, con la
-                        primera columna estrecha. En <code>header.html</code>, la barra lleva la
-                        variante <code>ez-navbar ez-navbar--side</code> (ver
+                        primera columna estrecha. La barra lleva la variante
+                        <code>ez-navbar ez-navbar--side</code> (ver
                         <a href="componentes.html#navbar">Componentes</a>), y el contenido, su
                         <code>ez-container</code>: <code>ez-split</code> reparte la página en
                         columnas, y <code>ez-container</code> centra el contenido dentro de la
                         suya.
                     </p>
-                    <template class="doc-example" data-code="&lt;body class=&quot;ez-split&quot; style=&quot;--ez-split-columns: 15rem 1fr&quot;&gt;
+                    <template class="doc-example" data-code="&lt;!-- Dos columnas: la barra, de 15rem, y el contenido --&gt;
+&lt;body class=&quot;ez-split&quot; style=&quot;--ez-split-columns: 15rem 1fr&quot;&gt;
+    &lt;!-- ez-navbar--side: la barra, en columna --&gt;
     &lt;nav class=&quot;ez-navbar ez-navbar--side&quot; aria-label=&quot;Principal&quot;&gt;
         &lt;!-- Marca y enlaces --&gt;
     &lt;/nav&gt;

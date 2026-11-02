@@ -2,15 +2,37 @@
    aquí solo va lo que necesita la documentación (cabecera de página, índice,
    ejemplos y bloques de código), con las variables de ez-ui. */
 
-/* La cabecera llega con fetch un instante después de pintar la página: se reserva su
+/* Alto de la cabecera, para reservarlo y para que lo demás no quede debajo */
+:root {
+  --doc-header-height: 5.2rem;
+}
+
+/* Al saltar a un apartado con un enlace (componentes.html#card), su título queda
+   por debajo de la cabecera fija */
+html {
+  scroll-padding-top: calc(var(--doc-header-height) + var(--ez-space-4));
+}
+
+/* La cabecera, fija arriba al desplazar la página (ver Personalización). Va en su
+   contenedor y no en la barra, que solo es fija mientras se ve su contenedor. La
+   cabecera llega con fetch un instante después de pintar la página: se reserva su
    alto para que el contenido no salte hacia abajo al aparecer */
 #page-header {
-  min-height: 5.2rem;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  min-height: var(--doc-header-height);
 }
 
 /* Marca: «ez» en el color principal */
 .doc-brand-mark {
   color: var(--ez-primary);
+}
+
+/* «ez-ui» en el texto, con el grosor de la marca de la cabecera y sin partirse */
+.doc-brand {
+  font-weight: 800;
+  white-space: nowrap;
 }
 
 /* Enlaces de la cabecera de esta web, en gris; el de la página actual, con el texto
@@ -33,12 +55,6 @@
   margin-block: var(--ez-space-2) var(--ez-space-4);
 }
 
-.doc-lead {
-  max-width: 42rem;
-  color: var(--ez-muted);
-  font-size: 1.25rem;
-  line-height: 1.5;
-}
 
 /* Contenido y, en pantallas anchas, el índice de la página fijo a la derecha */
 .doc-layout {
@@ -56,7 +72,7 @@
 /* Índice de la página: fijo al desplazarse (sticky) */
 .doc-toc {
   position: sticky;
-  top: var(--ez-space-6);
+  top: var(--doc-header-height);
   align-self: start;
   padding-top: var(--ez-space-8);
   font-size: .95rem;
@@ -93,12 +109,10 @@
   }
 }
 
-/* Cada apartado (un componente), separado del anterior. scroll-margin-top deja
-   sitio por encima al saltar a él con un enlace (componentes.html#card) */
+/* Cada apartado (un componente), separado del anterior */
 .doc-section {
   padding-block: var(--ez-space-8);
   border-top: 1px solid var(--ez-border);
-  scroll-margin-top: var(--ez-space-4);
 }
 
 .doc-section h3 {
@@ -167,6 +181,20 @@
   max-width: 100%;
 }
 
+/* El ejemplo de Personalización: las tarjetas con la clase del proyecto player-card,
+   como las personalizaría la hoja propia de un proyecto */
+.player-card {
+  border-top: 4px solid var(--ez-primary);
+}
+
+.player-card .ez-card__image {
+  aspect-ratio: 1;
+}
+
+.player-card .ez-card__body {
+  text-align: center;
+}
+
 /* Código del ejemplo, justo debajo, siempre sobre fondo oscuro; el botón de
    copiar, arriba a la derecha */
 .doc-code {
@@ -230,22 +258,6 @@
   color: var(--ez-text);
 }
 
-/* La lista de iconos de Fundamentos, en una rejilla con el nombre de cada uno */
-.doc-icons {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr));
-  gap: var(--ez-space-3);
-  width: 100%;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.doc-icons .ez-icon {
-  width: 1.5rem;
-  height: 1.5rem;
-  margin-right: var(--ez-space-2);
-}
 
 /* Colores del código de los ejemplos (js/utils/highlight.js), sobre el fondo oscuro
    de los bloques de código */

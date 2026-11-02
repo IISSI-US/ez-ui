@@ -1,6 +1,7 @@
 // Sirve en local la web de ez-ui como la publica GitHub Pages: la web (docs/) en la raíz
 // y la biblioteca (la raíz del repositorio) en /ez-ui/, donde la enlazan las páginas,
-// igual que un proyecto. Sin caché, para ver cada cambio al recargar.
+// igual que un proyecto; también en el proyecto de ejemplo de la página de inicio
+// (/examples/primeros-pasos/ez-ui/). Sin caché, para ver cada cambio al recargar.
 //
 //   node docs/serve.js [puerto]      (por defecto, 8081) y abrir http://127.0.0.1:8081/
 //
@@ -18,7 +19,7 @@ const DOCS = __dirname;
 const LIBRARY = path.join(__dirname, "..");
 
 // Lo que es la biblioteca en la raíz del repositorio (lo demás no se sirve en /ez-ui/)
-const LIBRARY_FILES = ["css", "js", "fonts", "icons.svg", "LICENSE-lucide.txt"];
+const LIBRARY_FILES = ["css", "js", "fonts"];
 
 const TYPES = {
   ".html": "text/html; charset=utf-8",
@@ -29,11 +30,12 @@ const TYPES = {
   ".txt": "text/plain; charset=utf-8",
 };
 
-// El fichero de una ruta: /ez-ui/… de la biblioteca y lo demás de la web. null si la
+// El fichero de una ruta: …/ez-ui/… de la biblioteca y lo demás de la web. null si la
 // ruta no es de ninguna de las dos
 function resolve(urlPath) {
-  if (urlPath.startsWith("/ez-ui/")) {
-    const relative = urlPath.slice("/ez-ui/".length);
+  const library = urlPath.indexOf("/ez-ui/");
+  if (library !== -1) {
+    const relative = urlPath.slice(library + "/ez-ui/".length);
     const first = relative.split("/")[0];
     return LIBRARY_FILES.includes(first) ? path.join(LIBRARY, relative) : null;
   }
@@ -41,7 +43,14 @@ function resolve(urlPath) {
 }
 
 const server = http.createServer((request, response) => {
-  const urlPath = decodeURIComponent(new URL(request.url, "http://localhost").pathname);
+  // Una ruta mal formada (//, %zz) no es de ningún fichero: se responde sin caerse
+  let urlPath;
+  try {
+    urlPath = decodeURIComponent(new URL(request.url, "http://localhost").pathname);
+  } catch {
+    response.writeHead(400, { "Content-Type": "text/plain; charset=utf-8" }).end("Ruta no válida");
+    return;
+  }
   let file = resolve(urlPath);
 
   if (file === null || !file.startsWith(LIBRARY)) {

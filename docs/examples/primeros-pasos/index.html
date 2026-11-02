@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <title>Trofeo ez-Soccer</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Aplica el tema guardado antes de pintar la página -->
+    <script src="ez-ui/js/theme-init.js"></script>
+    <!-- Primero ez-ui y después la hoja propia del proyecto -->
+    <link rel="stylesheet" href="ez-ui/css/ez-ui.css">
+    <link rel="stylesheet" href="css/app.css">
+    <link rel="icon" href="favicon.svg">
+    <script src="js/main.js" type="module"></script>
+  </head>
+
+  <body>
+    <!-- La barra de navegación; main.js le añade el menú plegable -->
+    <nav class="ez-navbar" aria-label="Principal">
+      <div class="ez-container ez-navbar__inner">
+        <a class="ez-navbar__brand" href="index.html">Trofeo ez-Soccer</a>
+        <!-- El botón «Menú», solo en pantallas estrechas -->
+        <button class="ez-button ez-button--secondary ez-navbar__toggle"
+                type="button"
+                aria-expanded="false"
+                aria-controls="main-links">
+          Menú
+        </button>
+        <ul id="main-links" class="ez-navbar__links">
+          <li><a href="index.html" aria-current="page">Inicio</a></li>
+          <li><a href="#">Clasificación</a></li>
+          <li><a href="#">Mercado</a></li>
+          <!-- El botón de tema: cada parte se ve con uno de los temas -->
+          <li>
+            <button id="theme-toggle"
+                    class="ez-button ez-button--secondary ez-theme-toggle"
+                    type="button">
+              <span class="ez-theme-toggle__to-dark">Tema oscuro</span>
+              <span class="ez-theme-toggle__to-light">Tema claro</span>
+            </button>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- ez-container: centra el contenido y limita su ancho -->
+    <main class="ez-container">
+      <h1>Trofeo ez-Soccer</h1>
+      <p class="welcome">La liga de fútbol entre escuelas y facultades.</p>
+
+      <!-- Una tarjeta: el marco (ez-card) y el cuerpo (ez-card__body) -->
+      <article class="ez-card">
+        <div class="ez-card__body">
+          <h2>Jornada 11</h2>
+          <p>La ETSII sigue líder tras ganar 3-1 a Medicina.</p>
+          <a class="ez-button" href="#">Ver la clasificación</a>
+        </div>
+      </article>
+    </main>
+  </body>
+</html>

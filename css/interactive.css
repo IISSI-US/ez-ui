@@ -26,18 +26,20 @@
   margin-top: var(--ez-space-6);
 }
 
-/* Botón de tema (ezThemeToggle): con el tema claro muestra la luna, y con el oscuro,
-   el sol. El icono depende del tema de la página (data-ez-theme en <html>), así que
-   todos los botones de tema de la página muestran siempre el mismo. */
-.ez-theme-toggle__sun {
+/* Botón de tema (ezThemeToggle): con el tema claro muestra su parte __to-dark, y con
+   el oscuro, __to-light. Dentro de cada una va lo que quiera la aplicación: texto, un
+   icono o los dos. Depende del tema de la página (data-ez-theme en <html>), así que
+   todos los botones de tema de la página muestran siempre la misma. Con la clase del
+   botón delante, la regla gana al display que traiga el contenido (un icono). */
+.ez-theme-toggle .ez-theme-toggle__to-light {
   display: none;
 }
 
-:root[data-ez-theme="dark"] .ez-theme-toggle__sun {
+:root[data-ez-theme="dark"] .ez-theme-toggle__to-light {
   display: inline;
 }
 
-:root[data-ez-theme="dark"] .ez-theme-toggle__moon {
+:root[data-ez-theme="dark"] .ez-theme-toggle__to-dark {
   display: none;
 }
 
@@ -73,6 +75,10 @@
 
 .ez-toast--success {
   border-left-color: var(--ez-success);
+}
+
+.ez-toast--warning {
+  border-left-color: var(--ez-warning);
 }
 
 .ez-toast--error {

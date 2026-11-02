@@ -7,6 +7,8 @@
         <meta name="description" content="Componentes de ez-ui: etiqueta, botón, alerta, avatar, tarjeta y barra de navegación">
         <script src="ez-ui/js/theme-init.js"></script>
         <link rel="stylesheet" href="ez-ui/css/ez-ui.css">
+        <!-- Los iconos de esta web, de Font Awesome (ez-ui no trae iconos) -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
         <link rel="stylesheet" href="css/site.css">
         <link rel="icon" href="favicon.svg">
         <script src="js/header.js" type="module"></script>
@@ -20,11 +22,9 @@
             <main>
                 <header class="doc-header">
                     <h1>Componentes</h1>
-                    <p class="doc-lead">
+                    <p>
                         Piezas de interfaz que se activan con una clase <code>ez-</code>, de la más
-                        sencilla a la más completa. Las últimas combinan las primeras. Los ejemplos
-                        son del Trofeo ez-Soccer, una liga de fútbol entre las escuelas y facultades
-                        de la universidad.
+                        sencilla a la más completa. Las últimas combinan las primeras.
                     </p>
                 </header>
 
@@ -37,6 +37,7 @@
                         color.
                     </p>
                     <div class="doc-example">
+                        <!-- ez-badge: la etiqueta; una variante cambia su color -->
                         <span class="ez-badge">DF</span>
                         <span class="ez-badge ez-badge--primary">En juego</span>
                         <span class="ez-badge ez-badge--success">Disponible</span>
@@ -49,6 +50,7 @@
                         sirve igual en un título que en un párrafo.
                     </p>
                     <div class="doc-example doc-example--column">
+                        <!-- Su tamaño sigue al del texto: en un título y en un párrafo -->
                         <h3>Mario Gil <span class="ez-badge">MC</span></h3>
                         <p>Vuelve tras su lesión <span class="ez-badge ez-badge--success">Disponible</span></p>
                     </div>
@@ -65,7 +67,9 @@
                         <code>type="button"</code> no hace nada por sí solo.
                     </p>
                     <div class="doc-example">
+                        <!-- button: una acción -->
                         <button class="ez-button" type="button">Pujar</button>
+                        <!-- a: ir a otra página, con el mismo aspecto -->
                         <a class="ez-button" href="#button">Ver el mercado</a>
                     </div>
 
@@ -75,6 +79,7 @@
                         acción: secundaria, peligrosa o de éxito.
                     </p>
                     <div class="doc-example">
+                        <!-- Variantes: secundaria, peligrosa y de éxito -->
                         <button class="ez-button ez-button--secondary" type="button">Cancelar</button>
                         <button class="ez-button ez-button--danger" type="button">Vender jugador</button>
                         <button class="ez-button ez-button--success" type="button">Confirmar alineación</button>
@@ -87,6 +92,7 @@
                         <code>button.disabled = true</code>.
                     </p>
                     <div class="doc-example">
+                        <!-- disabled: no responde y se ve más claro -->
                         <button class="ez-button" type="button" disabled>Plantilla completa</button>
                     </div>
 
@@ -106,15 +112,20 @@
                     <p>
                         Un mensaje que se queda en la página hasta que cambia: un error al cargar
                         los datos, los errores de un formulario. El borde izquierdo y el fondo
-                        indican si es información, éxito o error. Los errores llevan
+                        indican si es información, éxito, aviso o error. Los errores llevan
                         <code>role="alert"</code> para que los lectores de pantalla los anuncien
                         en cuanto aparecen.
                     </p>
                     <div class="doc-example doc-example--column">
+                        <!-- ez-alert: información; las variantes, éxito, aviso y error -->
                         <div class="ez-alert">El mercado de fichajes cierra el viernes a las 21:00.</div>
                         <div class="ez-alert ez-alert--success">
                             Tu alineación está confirmada para la jornada 11.
                         </div>
+                        <div class="ez-alert ez-alert--warning">
+                            Te queda un cambio de alineación esta jornada.
+                        </div>
+                        <!-- role="alert": los lectores de pantalla la anuncian -->
                         <div class="ez-alert ez-alert--error"
                              role="alert">
                             No tienes saldo suficiente para esta puja.
@@ -126,6 +137,7 @@
                         Dentro de una alerta puede ir un título, un párrafo o un botón.
                     </p>
                     <div class="doc-example doc-example--column">
+                        <!-- Dentro, cualquier contenido: texto, enlaces o botones -->
                         <div class="ez-alert ez-alert--error" role="alert">
                             <strong>Alineación incompleta.</strong>
                             Faltan un portero y un defensa para la jornada 12.
@@ -134,7 +146,7 @@
                     </div>
                     <p>
                         Para un aviso breve que desaparece solo («Puja registrada»), mejor una
-                        notificación: ver <a href="javascript.html#toast">Con JavaScript</a>.
+                        notificación: ver <a href="javascript.html#toast">JavaScript</a>.
                     </p>
                 </section>
 
@@ -147,6 +159,7 @@
                         pantalla no lo lee dos veces.
                     </p>
                     <div class="doc-example">
+                        <!-- ez-avatar: foto en círculo; alt vacío, el nombre va al lado -->
                         <img class="ez-avatar" src="images/soccer/avatar-irene-campos.svg" alt="">
                         <span>Irene Campos</span>
                     </div>
@@ -158,6 +171,7 @@
                         atributo <code>style</code>, sin escribir otra regla.
                     </p>
                     <div class="doc-example">
+                        <!-- --ez-avatar-size: su tamaño, solo en esta imagen -->
                         <img class="ez-avatar"
                              src="images/soccer/avatar-hugo-serrano.svg"
                              alt="Hugo Serrano"
@@ -169,6 +183,7 @@
                         Avatar, nombre y etiqueta forman la línea de un jugador en una lista.
                     </p>
                     <div class="doc-example doc-example--column">
+                        <!-- Una línea por jugador: avatar, nombre y etiquetas -->
                         <p>
                             <img class="ez-avatar" src="images/soccer/avatar-nora-iglesias.svg" alt="">
                             Nora Iglesias <span class="ez-badge">PT</span>
@@ -200,9 +215,11 @@
                     </p>
                     <div class="doc-example">
                         <article class="ez-card">
+                            <!-- ez-card__image: imagen 4:3, de borde a borde -->
                             <img class="ez-card__image"
                                  src="images/soccer/shirt-lucia-romero.svg"
                                  alt="Camiseta granate con el dorsal 9">
+                            <!-- ez-card__body: el contenido, con relleno -->
                             <div class="ez-card__body">
                                 <h3>Lucía Romero</h3>
                                 <p>Delantera de la ETSII. Máxima goleadora del trofeo.</p>
@@ -224,6 +241,7 @@
                                 <h3>Pablo Vega</h3>
                                 <p>Defensa de Arquitectura.</p>
                             </div>
+                            <!-- ez-card__footer: lo secundario, a los dos extremos -->
                             <footer class="ez-card__footer">
                                 <span>54 puntos</span>
                                 <strong>850.000 €</strong>
@@ -247,8 +265,10 @@
                                 <h3>Hugo Serrano <span class="ez-badge">MC</span></h3>
                                 <p>Derecho · 61 puntos <span class="ez-badge ez-badge--success">Disponible</span></p>
                             </div>
+                            <!-- El precio y el botón, en el pie -->
                             <footer class="ez-card__footer">
                                 <strong>1.200.000 €</strong>
+                                <!-- Una etiqueta dentro del botón -->
                                 <button class="ez-button" type="button">Pujar</button>
                             </footer>
                         </article>
@@ -259,6 +279,7 @@
                         <article class="ez-card">
                             <div class="ez-card__body">
                                 <h3>
+                                    <!-- Sin imagen de tarjeta: el avatar, en el título -->
                                     <img class="ez-avatar" src="images/soccer/avatar-irene-campos.svg" alt="">
                                     Irene Campos <span class="ez-badge ez-badge--primary">1.º</span>
                                 </h3>
@@ -278,6 +299,7 @@
                                 <h3>Jornada 11 <span class="ez-badge ez-badge--primary">En juego</span></h3>
                                 <p>Pabellón de la ETSII, 18:00.</p>
                             </div>
+                            <!-- Los escudos y el marcador, en el pie -->
                             <footer class="ez-card__footer">
                                 <img src="images/soccer/crest-etsii.svg" alt="ETSII" width="48" height="48">
                                 <strong>3 - 1</strong>
@@ -294,6 +316,7 @@
                                  alt="Camiseta naranja con el dorsal 5">
                             <div class="ez-card__body">
                                 <h3>Mario Gil <span class="ez-badge">MC</span></h3>
+                                <!-- Una alerta dentro del cuerpo -->
                                 <div class="ez-alert ez-alert--error">Lesionado hasta la jornada 13.</div>
                             </div>
                             <footer class="ez-card__footer">
@@ -316,8 +339,11 @@
                     </p>
                     <div class="doc-example">
                         <nav class="ez-navbar" aria-label="Principal">
+                            <!-- ez-container: el mismo ancho que el contenido -->
                             <div class="ez-container ez-navbar__inner">
+                                <!-- ez-navbar__brand: el nombre de la aplicación -->
                                 <a class="ez-navbar__brand" href="#navbar">Trofeo ez-Soccer</a>
+                                <!-- ez-navbar__links: los enlaces, en fila -->
                                 <ul class="ez-navbar__links">
                                     <li><a href="#navbar">Clasificación</a></li>
                                     <li><a href="#navbar">Mercado</a></li>
@@ -343,10 +369,12 @@
                                             Mercado <span class="ez-badge ez-badge--primary">3</span>
                                         </a>
                                     </li>
+                                    <!-- El usuario: avatar y nombre -->
                                     <li>
                                         <img class="ez-avatar" src="images/soccer/avatar-irene-campos.svg" alt="">
                                         Irene Campos
                                     </li>
+                                    <!-- Un botón, como un enlace más -->
                                     <li>
                                         <button class="ez-button ez-button--secondary" type="button">Cerrar sesión</button>
                                     </li>
@@ -365,7 +393,9 @@
                         fija.
                     </p>
                     <div class="doc-example doc-example--column doc-example--app">
+                        <!-- Dos columnas: la barra, de 15rem, y el contenido -->
                         <div class="ez-split" style="--ez-split-columns: 15rem 1fr">
+                            <!-- ez-navbar--side: la barra, en columna -->
                             <nav class="ez-navbar ez-navbar--side" aria-label="Principal">
                                 <div class="ez-container ez-navbar__inner">
                                     <a class="ez-navbar__brand" href="#navbar">Trofeo ez-Soccer</a>

@@ -1,13 +1,5 @@
 /* Componentes: piezas de interfaz que se activan con una clase ez-. */
 
-/* Iconos: los de ez-ui/icons.svg se usan con <svg class="ez-icon"><use href=…>.
-   Toman el tamaño del texto que los rodea (em) y su color (currentColor). */
-.ez-icon {
-  width: 1.2em;
-  height: 1.2em;
-  vertical-align: -.2em;
-}
-
 /* Barra de navegación. Flexbox distribuye sus elementos y permite varias líneas. */
 .ez-navbar {
   background: var(--ez-surface);
@@ -153,7 +145,8 @@
   vertical-align: middle;
 }
 
-/* Botón. inline-flex alinea el texto (y un icono, si lo hay) en el centro. */
+/* Botón. inline-flex alinea su contenido en el centro: el texto y, si la aplicación
+   lo pone, un icono. */
 .ez-button {
   display: inline-flex;
   align-items: center;
@@ -234,6 +227,11 @@
 .ez-alert--success {
   background: var(--ez-success-bg);
   border-left-color: var(--ez-success);
+}
+
+.ez-alert--warning {
+  background: var(--ez-warning-bg);
+  border-left-color: var(--ez-warning);
 }
 
 /* Etiqueta: una palabra o abreviatura destacada dentro del texto, como la posición
