@@ -12,8 +12,10 @@ label {
 }
 
 /* Aplica estos estilos a inputs excepto casillas y botones de opción,
-   y también a select y textarea. :not(...) excluye los tipos indicados. */
-input:not([type="checkbox"]):not([type="radio"]),
+   y también a select y textarea. :not(...) excluye los tipos indicados, y :where()
+   hace que no sumen especificidad: la regla pesa como un elemento (input), así que
+   cualquier regla con una clase o un atributo, como [aria-invalid], la puede cambiar. */
+input:where(:not([type="checkbox"], [type="radio"])),
 select,
 textarea {
   display: block;
@@ -60,10 +62,10 @@ textarea::placeholder {
 }
 
 /* El código que valida el campo pone aria-invalid="true" en el control erróneo, que
-   los lectores de pantalla anuncian. !important hace que el borde rojo prevalezca
-   sobre el de la regla de los controles, que es más específica. */
+   los lectores de pantalla anuncian. Un atributo es más específico que la regla de
+   los controles (un elemento, gracias a :where), así que el borde rojo gana. */
 [aria-invalid="true"] {
-  border-color: var(--ez-danger) !important;
+  border-color: var(--ez-danger);
 }
 
 /* Estado de los controles desactivados. */
