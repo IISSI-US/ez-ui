@@ -24,7 +24,8 @@
                     <h1>Formularios</h1>
                     <p>
                         Los controles de formulario tienen estilo sin clases. <span class="doc-brand"><span class="doc-brand-mark">ez</span>-ui</span> solo añade el
-                        grupo de cada campo, con su ayuda y su mensaje de error.
+                        grupo de cada campo, con su ayuda y su mensaje de error, y los errores de
+                        todo el formulario se muestran con una alerta.
                     </p>
                 </header>
 
@@ -94,6 +95,19 @@
                             <button class="ez-button" type="submit">Crear equipo</button>
                         </form>
                     </div>
+                    <p>
+                        Todo <code>&lt;form&gt;</code> mide como mucho <code>42rem</code> de ancho,
+                        para que los campos no se estiren de lado a lado en una pantalla ancha. Es
+                        una regla sin clase, así que vale para todos; si un formulario necesita
+                        otro ancho, se cambia con una regla en la hoja propia (ver
+                        <a href="personalizacion.html#component">Personalización</a>):
+                    </p>
+                    <template class="doc-example">
+                        /* css/app.css: el formulario de búsqueda, sin ancho máximo */
+                        .search-form {
+                            max-width: none;
+                        }
+                    </template>
                 </section>
 
                 <section class="doc-section" id="disabled">
@@ -114,11 +128,19 @@
                 </section>
 
                 <section class="doc-section" id="error">
-                    <h2>Error de un campo</h2>
+                    <h2>Errores</h2>
                     <p>
-                        <code>ez-field__error</code> muestra un mensaje de error debajo del
-                        control, y <code>aria-invalid="true"</code> en el control lo pinta con el
-                        borde rojo y avisa a los lectores de pantalla de que es erróneo.
+                        Según a qué afecte, un error se muestra en un sitio distinto: debajo de su
+                        campo, encima de todo el formulario o, si solo es un aviso pasajero, en
+                        una notificación.
+                    </p>
+
+                    <h3>En un campo</h3>
+                    <p>
+                        Un dato mal escrito, como una cantidad por debajo del mínimo.
+                        <code>ez-field__error</code> muestra el mensaje debajo del control, y
+                        <code>aria-invalid="true"</code> en el control lo pinta con el borde rojo y
+                        avisa a los lectores de pantalla de que es erróneo.
                     </p>
                     <div class="doc-example doc-example--column">
                         <form>
@@ -139,6 +161,36 @@
                             </div>
                         </form>
                     </div>
+
+                    <h3>En todo el formulario</h3>
+                    <p>
+                        Un error que no es de un campo concreto, como el de la API al enviar el
+                        formulario (el mercado ya ha cerrado, no hay conexión), va en una
+                        <a href="componentes.html#alert">alerta</a> de error encima del
+                        formulario. <code>role="alert"</code> hace que los lectores de pantalla la
+                        anuncien en cuanto aparece.
+                    </p>
+                    <div class="doc-example doc-example--column">
+                        <!-- El error de la API, encima del formulario -->
+                        <div class="ez-alert ez-alert--error" role="alert">
+                            No se ha podido registrar la puja: el mercado ya ha cerrado.
+                        </div>
+                        <form>
+                            <div class="ez-field">
+                                <label for="api-amount">Cantidad (€)</label>
+                                <input id="api-amount" name="amount" type="number" value="1250000">
+                            </div>
+                            <button class="ez-button" type="submit">Pujar</button>
+                        </form>
+                    </div>
+
+                    <h3>Un aviso pasajero</h3>
+                    <p>
+                        Lo que solo informa de lo que ha pasado («Puja registrada») y no hay que
+                        corregir va en una <a href="javascript.html#toast">notificación</a>, que
+                        se cierra sola. Un error que el usuario tiene que leer con calma para
+                        corregirlo, no: desaparecería antes de tiempo.
+                    </p>
                 </section>
             </main>
 
@@ -148,7 +200,7 @@
                     <li><a href="#field">Campo</a></li>
                     <li><a href="#controls">Controles</a></li>
                     <li><a href="#disabled">Desactivado</a></li>
-                    <li><a href="#error">Error de un campo</a></li>
+                    <li><a href="#error">Errores</a></li>
                 </ul>
             </nav>
         </div>
