@@ -4,7 +4,7 @@
         <title>ez-ui · Componentes</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="Componentes de ez-ui: etiqueta, botón, alerta, avatar, tarjeta y barra de navegación">
+        <meta name="description" content="Componentes de ez-ui: icono, etiqueta, botón, alerta, avatar, tarjeta y barra de navegación">
         <script src="ez-ui/js/theme-init.js"></script>
         <link rel="stylesheet" href="ez-ui/css/ez-ui.css">
         <link rel="stylesheet" href="css/site.css">
@@ -22,11 +22,165 @@
                     <h1>Componentes</h1>
                     <p class="doc-lead">
                         Piezas de interfaz que se activan con una clase <code>ez-</code>, de la más
-                        sencilla a la más completa. Las últimas combinan las primeras. Los ejemplos
-                        son del Trofeo ez-Soccer, una liga de fútbol entre las escuelas y facultades
-                        de la universidad.
+                        sencilla a la más completa. Las últimas combinan las primeras.
                     </p>
                 </header>
+
+                <section class="doc-section" id="icons">
+                    <h2>Icono</h2>
+                    <p>
+                        ez-ui trae una selección de iconos de <a href="https://lucide.dev">Lucide</a>
+                        (licencia libre ISC) en un solo fichero, <code>ez-ui/icons.svg</code>. Cada
+                        icono es un <code>&lt;symbol&gt;</code> con un nombre, y se muestra con un
+                        <code>&lt;svg&gt;</code> que lo usa: <code>&lt;use href="…#nombre"&gt;</code>.
+                        Con la clase <code>ez-icon</code> toma el tamaño y el color del texto que lo
+                        rodea, así que cambia con él, también en un botón o con el tema oscuro.
+                    </p>
+                    <div class="doc-example">
+                        <ul class="doc-icons">
+                            <li>
+                                <svg class="ez-icon" aria-hidden="true">
+                                    <use href="ez-ui/icons.svg#user"></use>
+                                </svg>
+                                <code>user</code>
+                            </li>
+                            <li>
+                                <svg class="ez-icon" aria-hidden="true">
+                                    <use href="ez-ui/icons.svg#trophy"></use>
+                                </svg>
+                                <code>trophy</code>
+                            </li>
+                            <li>
+                                <svg class="ez-icon" aria-hidden="true">
+                                    <use href="ez-ui/icons.svg#shirt"></use>
+                                </svg>
+                                <code>shirt</code>
+                            </li>
+                            <li>
+                                <svg class="ez-icon" aria-hidden="true">
+                                    <use href="ez-ui/icons.svg#calendar"></use>
+                                </svg>
+                                <code>calendar</code>
+                            </li>
+                            <li>
+                                <svg class="ez-icon" aria-hidden="true">
+                                    <use href="ez-ui/icons.svg#house"></use>
+                                </svg>
+                                <code>house</code>
+                            </li>
+                            <li>
+                                <svg class="ez-icon" aria-hidden="true">
+                                    <use href="ez-ui/icons.svg#search"></use>
+                                </svg>
+                                <code>search</code>
+                            </li>
+                            <li>
+                                <svg class="ez-icon" aria-hidden="true">
+                                    <use href="ez-ui/icons.svg#plus"></use>
+                                </svg>
+                                <code>plus</code>
+                            </li>
+                            <li>
+                                <svg class="ez-icon" aria-hidden="true">
+                                    <use href="ez-ui/icons.svg#pencil"></use>
+                                </svg>
+                                <code>pencil</code>
+                            </li>
+                            <li>
+                                <svg class="ez-icon" aria-hidden="true">
+                                    <use href="ez-ui/icons.svg#trash-2"></use>
+                                </svg>
+                                <code>trash-2</code>
+                            </li>
+                            <li>
+                                <svg class="ez-icon" aria-hidden="true">
+                                    <use href="ez-ui/icons.svg#x"></use>
+                                </svg>
+                                <code>x</code>
+                            </li>
+                            <li>
+                                <svg class="ez-icon" aria-hidden="true">
+                                    <use href="ez-ui/icons.svg#log-out"></use>
+                                </svg>
+                                <code>log-out</code>
+                            </li>
+                            <li>
+                                <svg class="ez-icon" aria-hidden="true">
+                                    <use href="ez-ui/icons.svg#triangle-alert"></use>
+                                </svg>
+                                <code>triangle-alert</code>
+                            </li>
+                            <li>
+                                <svg class="ez-icon" aria-hidden="true">
+                                    <use href="ez-ui/icons.svg#check"></use>
+                                </svg>
+                                <code>check</code>
+                            </li>
+                            <li>
+                                <svg class="ez-icon" aria-hidden="true">
+                                    <use href="ez-ui/icons.svg#menu"></use>
+                                </svg>
+                                <code>menu</code>
+                            </li>
+                            <li>
+                                <svg class="ez-icon" aria-hidden="true">
+                                    <use href="ez-ui/icons.svg#sun"></use>
+                                </svg>
+                                <code>sun</code>
+                            </li>
+                            <li>
+                                <svg class="ez-icon" aria-hidden="true">
+                                    <use href="ez-ui/icons.svg#moon"></use>
+                                </svg>
+                                <code>moon</code>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <h3>Con texto</h3>
+                    <p>
+                        <code>aria-hidden="true"</code> oculta el icono a los lectores de pantalla,
+                        porque el texto de al lado ya dice lo mismo.
+                    </p>
+                    <div class="doc-example">
+                        <span>
+                            <svg class="ez-icon" aria-hidden="true">
+                                <use href="ez-ui/icons.svg#trophy"></use>
+                            </svg>
+                            Campeón: ETSII
+                        </span>
+                        <a class="ez-button" href="#icons">
+                            <svg class="ez-icon" aria-hidden="true">
+                                <use href="ez-ui/icons.svg#user"></use>
+                            </svg>
+                            Mi equipo
+                        </a>
+                        <button class="ez-button ez-button--danger" type="button">
+                            <svg class="ez-icon" aria-hidden="true">
+                                <use href="ez-ui/icons.svg#trash-2"></use>
+                            </svg>
+                            Vender
+                        </button>
+                    </div>
+
+                    <h3>Solo el icono</h3>
+                    <p>
+                        Si un botón solo tiene el icono, necesita un nombre para los lectores de
+                        pantalla, con <code>aria-label</code>.
+                    </p>
+                    <div class="doc-example">
+                        <button class="ez-button ez-button--secondary" type="button" aria-label="Editar">
+                            <svg class="ez-icon" aria-hidden="true">
+                                <use href="ez-ui/icons.svg#pencil"></use>
+                            </svg>
+                        </button>
+                        <button class="ez-button ez-button--secondary" type="button" aria-label="Cerrar">
+                            <svg class="ez-icon" aria-hidden="true">
+                                <use href="ez-ui/icons.svg#x"></use>
+                            </svg>
+                        </button>
+                    </div>
+                </section>
 
                 <section class="doc-section" id="badge">
                     <h2>Etiqueta</h2>
@@ -388,6 +542,7 @@
             <nav class="doc-toc" aria-label="En esta página">
                 <h2>En esta página</h2>
                 <ul>
+                    <li><a href="#icons">Icono</a></li>
                     <li><a href="#badge">Etiqueta</a></li>
                     <li><a href="#button">Botón</a></li>
                     <li><a href="#alert">Alerta</a></li>

@@ -47,7 +47,7 @@ jobs:
           cp -r docs/. _site/
           rm _site/README.md _site/serve.js
           cp -r css js fonts icons.svg LICENSE-lucide.txt _site/ez-ui/
-          # El proyecto de ejemplo de Primeros pasos lleva su copia, como un proyecto
+          # El proyecto de ejemplo de la página de inicio lleva su copia, como un proyecto
           cp -r _site/ez-ui _site/examples/primeros-pasos/
 
       - name: Empaqueta las versiones

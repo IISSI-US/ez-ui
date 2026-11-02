@@ -4,7 +4,7 @@
         <title>ez-ui · Inicio</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="ez-ui: hoja de estilos sencilla para las prácticas de IISSI-2">
+        <meta name="description" content="ez-ui: hoja de estilos sencilla para las prácticas de IISSI-2. Un primer proyecto en diez minutos">
         <script src="ez-ui/js/theme-init.js"></script>
         <link rel="stylesheet" href="ez-ui/css/ez-ui.css">
         <link rel="stylesheet" href="css/site.css">
@@ -25,153 +25,159 @@
                         CSS que se puede leer entero y unos pocos componentes con JavaScript, sin
                         dependencias ni compilación.
                     </p>
+                    <p>
+                        Esta página monta un primer proyecto completo en unos minutos: una página
+                        con barra de navegación, menú plegable, botón de tema claro y oscuro, y el
+                        color principal cambiado. Las demás páginas son la referencia de cada
+                        pieza, para consultarlas cuando hagan falta.
+                    </p>
                 </header>
 
-                <section class="doc-section" id="uso">
-                    <h2>Cómo se usa</h2>
+                <section class="doc-section" id="download">
+                    <h2>Descarga</h2>
                     <p>
-                        Se copia la biblioteca (<code>css/</code>, <code>js/</code>,
-                        <code>fonts/</code> e <code>icons.svg</code>) a una carpeta
-                        <code>ez-ui/</code> del proyecto y se enlaza su hoja principal en el
-                        <code>&lt;head&gt;</code> de cada vista:
+                        <a class="ez-button" href="downloads/ez-ui-1.0.0.zip">Descargar ez-ui 1.0.0</a>
+                    </p>
+                    <p>
+                        El ZIP tiene una carpeta <code>ez-ui/</code>, que se descomprime en la raíz
+                        del proyecto, junto a las carpetas propias. La biblioteca no se modifica:
+                        lo del proyecto va fuera de ella. El proyecto queda así:
                     </p>
                     <template class="doc-example">
-                        <link rel="stylesheet" href="ez-ui/css/ez-ui.css">
+                        mi-proyecto/
+                        ├── index.html
+                        ├── css/
+                        │   └── app.css        la hoja propia
+                        ├── js/
+                        │   └── main.js        el JavaScript propio
+                        └── ez-ui/             la biblioteca, tal cual
+                            ├── css/
+                            ├── js/
+                            ├── fonts/
+                            ├── icons.svg
+                            └── VERSION.txt
                     </template>
                     <p>
-                        En <a href="primeros-pasos.html">Primeros pasos</a> está la descarga y una
-                        primera página completa, con su barra de navegación y el botón de tema.
-                    </p>
-                    <p>
-                        Los elementos HTML ya tienen estilo sin añadir clases (encabezados,
-                        párrafos, enlaces, formularios). Los componentes, como las tarjetas o las
-                        alertas, se activan con clases que empiezan por <code>ez-</code>.
+                        <code>ez-ui/VERSION.txt</code> dice qué versión está instalada. Para
+                        actualizarla, se sustituye la carpeta <code>ez-ui/</code> entera por la de
+                        la versión nueva.
                     </p>
                 </section>
 
-                <section class="doc-section" id="convenciones">
-                    <h2>Convenciones</h2>
+                <section class="doc-section" id="html">
+                    <h2>La página</h2>
                     <p>
-                        Las clases siguen la convención BEM (bloque, elemento y modificador): el
-                        nombre de una clase dice a qué componente pertenece y qué papel tiene en él.
-                        Todas empiezan por <code>ez-</code>, para distinguirlas de las del proyecto.
+                        Este es el resultado, en un marco del ancho de un móvil. Pruébalo: el botón
+                        «Menú» abre los enlaces, y el de la luna cambia el tema.
                     </p>
-
-                    <h3>Componente</h3>
-                    <p>Una clase con el nombre del componente: <code>ez-card</code>, <code>ez-button</code>.</p>
-                    <div class="doc-example">
-                        <button class="ez-button" type="button">Pujar</button>
-                        <span class="ez-badge">DF</span>
+                    <div class="doc-demo">
+                        <iframe src="examples/primeros-pasos/index.html"
+                                title="Primera página con ez-ui"
+                                width="375"
+                                height="460"></iframe>
                     </div>
-
-                    <h3>Parte de un componente</h3>
                     <p>
-                        El nombre del componente, dos guiones bajos y el de la parte:
-                        <code>ez-card__image</code>, <code>ez-card__body</code>,
-                        <code>ez-card__footer</code>. Solo tienen sentido dentro de su componente.
+                        Todo lo que se ve está en <code>index.html</code>. En su
+                        <code>&lt;head&gt;</code>, por este orden, van <code>theme-init.js</code>,
+                        que aplica el tema guardado antes de pintar la página; la hoja de ez-ui y,
+                        después, la propia, para que la propia gane; y <code>main.js</code>, con
+                        <code>type="module"</code> para poder usar <code>import</code>.
                     </p>
-                    <div class="doc-example">
-                        <article class="ez-card">
-                            <div class="ez-card__body">
-                                <h3>Nora Iglesias</h3>
-                                <p>Portera de Medicina.</p>
-                            </div>
-                            <footer class="ez-card__footer">
-                                <span>49 puntos</span>
-                                <strong>700.000 €</strong>
-                            </footer>
-                        </article>
-                    </div>
-
-                    <h3>Variante</h3>
+                    <div data-file="examples/primeros-pasos/index.html"></div>
                     <p>
-                        Se añade a la clase del componente, con dos guiones: cambia su aspecto
-                        sin repetir el resto (<code>ez-button ez-button--danger</code>).
+                        La barra de navegación y el botón de tema se explican en
+                        <a href="javascript.html">Con JavaScript</a>, y la tarjeta, en
+                        <a href="componentes.html#card">Componentes</a>.
                     </p>
-                    <div class="doc-example">
-                        <button class="ez-button ez-button--danger" type="button">Vender</button>
-                        <span class="ez-badge ez-badge--danger">Lesionado</span>
-                        <div class="ez-alert ez-alert--success">Puja registrada.</div>
-                    </div>
-
-                    <h3>Variables</h3>
-                    <p>
-                        Los colores, las fuentes y los espacios son variables que empiezan por
-                        <code>--ez-</code>. Se usan con <code>var()</code> en la hoja propia del
-                        proyecto, y se pueden cambiar para toda la página o solo dentro de un
-                        elemento (ver <a href="fundamentos.html#variables">Fundamentos</a>).
-                    </p>
-                    <template class="doc-example">
-                        /* css/style.css: un elemento propio con los colores y espacios de ez-ui */
-                        .match-score {
-                            padding: var(--ez-space-2) var(--ez-space-4);
-                            border: 1px solid var(--ez-border);
-                            color: var(--ez-primary);
-                        }
-                    </template>
-
-                    <h3>Clases del proyecto</h3>
-                    <p>
-                        Las clases propias de cada proyecto llevan otro prefijo, o ninguno, para que
-                        no se confundan con las de la biblioteca. En un mismo elemento pueden ir
-                        juntas.
-                    </p>
-                    <template class="doc-example">
-                        <article class="ez-card player-card">
-                            <!-- ez-card: de la biblioteca; player-card: del proyecto -->
-                        </article>
-                    </template>
                 </section>
 
-                <section class="doc-section" id="ampliar">
-                    <h2>Cómo ampliar ez-ui</h2>
+                <section class="doc-section" id="css">
+                    <h2>La hoja propia</h2>
                     <p>
-                        Lo que necesita un proyecto y no está en ez-ui va en una hoja propia,
-                        enlazada después de la biblioteca. La biblioteca no se modifica: así se
-                        puede actualizar sin perder los cambios, y queda claro qué es de ez-ui y
-                        qué es del proyecto.
+                        Los colores de ez-ui son variables: <code>app.css</code> cambia el color
+                        principal, el granate, por un azul, con un valor para cada tema. También
+                        añade el estilo de una clase propia, <code>welcome</code>, con las variables
+                        de ez-ui para que cambie con el tema oscuro.
                     </p>
-                    <template class="doc-example">
-                        <link rel="stylesheet" href="ez-ui/css/ez-ui.css">
-                        <link rel="stylesheet" href="css/style.css">
-                    </template>
+                    <div data-file="examples/primeros-pasos/css/app.css"></div>
                     <p>
-                        La hoja propia reutiliza las variables de ez-ui
-                        (<code>var(--ez-border)</code>, <code>var(--ez-space-4)</code>) para que
-                        lo nuevo tenga el mismo aspecto y cambie con el tema oscuro, y usa su
-                        propio prefijo para no confundir sus clases con las de la biblioteca.
+                        Qué más se puede cambiar, y cómo, está en
+                        <a href="personalizacion.html">Personalización</a>.
                     </p>
-                    <p>
-                        En <a href="personalizacion.html">Personalización</a> está cómo cambiar
-                        sus variables, sus componentes y sus fuentes.
-                    </p>
-                    <p>
-                        Esta misma web es un ejemplo: su hoja, <code>css/site.css</code>, añade el
-                        índice «En esta página» que se queda fijo a la derecha al desplazarse
-                        (<code>position: sticky</code>), con el prefijo <code>doc-</code>:
-                    </p>
-                    <template class="doc-example">
-                        /* css/site.css: el índice se queda fijo al desplazarse la página */
-                        .doc-toc {
-                            position: sticky;
-                            top: var(--ez-space-6);
-                            align-self: start;
-                        }
+                </section>
 
-                        .doc-toc ul {
-                            border-left: 1px solid var(--ez-border);
-                            list-style: none;
-                        }
+                <section class="doc-section" id="javascript">
+                    <h2>El JavaScript</h2>
+                    <p>
+                        <code>main.js</code> importa dos componentes de ez-ui y los conecta a sus
+                        elementos cuando la página está cargada. No crea la barra ni el botón, que
+                        ya están en el HTML: les añade lo que pasa al pulsarlos.
+                    </p>
+                    <div data-file="examples/primeros-pasos/js/main.js"></div>
+                </section>
+
+                <section class="doc-section" id="server">
+                    <h2>Abrirla con un servidor</h2>
+                    <p>
+                        Los módulos (<code>import</code>) no funcionan al abrir el fichero con doble
+                        clic (<code>file://</code>): la página tiene que llegar de un servidor HTTP.
+                        En Visual Studio Code, con la extensión Live Server, o desde la carpeta del
+                        proyecto:
+                    </p>
+                    <template class="doc-example">
+                        python3 -m http.server 8000
                     </template>
+                    <p>
+                        y se abre http://localhost:8000/. Si algo no se ve bien, la consola de las
+                        herramientas de desarrollo muestra los errores, y la pestaña Red, los
+                        ficheros que no se encuentran (404): casi siempre, una ruta mal escrita.
+                    </p>
+                </section>
+
+                <section class="doc-section" id="reference">
+                    <h2>Y después</h2>
+                    <p>El resto de la web es la referencia, una página por cada parte de ez-ui:</p>
+                    <ul>
+                        <li>
+                            <a href="personalizacion.html">Personalización</a>: los nombres de las
+                            clases, las variables, el tema oscuro y las fuentes, y cómo cambiarlos.
+                        </li>
+                        <li>
+                            <a href="elementos.html">Elementos</a>: el HTML que tiene estilo sin
+                            clases, como los textos y las tablas.
+                        </li>
+                        <li>
+                            <a href="maquetacion.html">Maquetación</a>: contenedor, galería y dos
+                            columnas.
+                        </li>
+                        <li>
+                            <a href="componentes.html">Componentes</a>: iconos, etiquetas, botones,
+                            alertas, avatares, tarjetas y barras de navegación.
+                        </li>
+                        <li>
+                            <a href="formularios.html">Formularios</a>: campos, ayudas y errores.
+                        </li>
+                        <li>
+                            <a href="javascript.html">Con JavaScript</a>: menú plegable, tema,
+                            notificaciones, indicador de carga y diálogo.
+                        </li>
+                    </ul>
+                    <p>
+                        Los ejemplos son del Trofeo ez-Soccer, una liga de fútbol inventada entre
+                        las escuelas y facultades de la universidad.
+                    </p>
                 </section>
             </main>
 
             <nav class="doc-toc" aria-label="En esta página">
                 <h2>En esta página</h2>
                 <ul>
-                    <li><a href="#uso">Cómo se usa</a></li>
-                    <li><a href="#convenciones">Convenciones</a></li>
-                    <li><a href="#ampliar">Cómo ampliar ez-ui</a></li>
+                    <li><a href="#download">Descarga</a></li>
+                    <li><a href="#html">La página</a></li>
+                    <li><a href="#css">La hoja propia</a></li>
+                    <li><a href="#javascript">El JavaScript</a></li>
+                    <li><a href="#server">Abrirla con un servidor</a></li>
+                    <li><a href="#reference">Y después</a></li>
                 </ul>
             </nav>
         </div>

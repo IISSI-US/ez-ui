@@ -1,5 +1,18 @@
-/* Estilos propios del proyecto, enlazados después de ez-ui. Usan sus variables
-   (var(--ez-…)) para que cambien con el tema oscuro. */
+/* Estilos propios del proyecto, enlazados después de ez-ui. */
+
+/* El color principal, azul en lugar del granate de ez-ui; el tema oscuro tiene
+   sus propios valores, así que se cambian también */
+:root {
+  --ez-primary: #245b91;
+  --ez-primary-hover: #1b4570;
+}
+
+:root[data-ez-theme="dark"] {
+  --ez-primary: #8bc5ff;
+  --ez-primary-hover: #b3d9ff;
+}
+
+/* Una clase propia, con las variables de ez-ui para que cambie con el tema */
 .welcome {
   color: var(--ez-muted);
   font-size: 1.25rem;

@@ -17,7 +17,7 @@ serve.js                              servidor local (no se publica)
 README.md                             este fichero (no se publica)
 ```
 
-Las páginas enlazan la biblioteca como `ez-ui/css/ez-ui.css`, igual que un proyecto: al publicar (y en `serve.js`), la biblioteca se copia en `/ez-ui/` del sitio, y también en `examples/primeros-pasos/ez-ui/`, para que el proyecto de ejemplo sea igual que el de un alumno. Por eso la web no se ve bien con otro servidor, como Live Server: no tiene la biblioteca donde la buscan las páginas. La web dice qué ofrece ez-ui (cada pieza, con un ejemplo y su HTML), no cómo organizar una aplicación con ella, y usa ez-ui sin modificarla: lo suyo va en `css/site.css`, con el prefijo `doc-`.
+Las páginas enlazan la biblioteca como `ez-ui/css/ez-ui.css`, igual que un proyecto: al publicar (y en `serve.js`), la biblioteca se copia en `/ez-ui/` del sitio, y también en `examples/primeros-pasos/ez-ui/`, para que el proyecto de ejemplo sea igual que el de un alumno. Por eso la web no se ve bien con otro servidor, como Live Server: no tiene la biblioteca donde la buscan las páginas. La página de inicio monta un primer proyecto completo en unos minutos; las demás son la referencia de cada parte de ez-ui (cada pieza, con un ejemplo y su HTML), sin explicar cómo organizar una aplicación con ella. La web usa ez-ui sin modificarla: lo suyo va en `css/site.css`, con el prefijo `doc-`.
 
 ## HTML semántico en los ejemplos
 
@@ -56,7 +56,7 @@ Los alumnos descargan la biblioteca de la web, porque el repositorio es privado:
 
 1. Esperar al ✔ de las pruebas en el commit de `main` que se va a publicar. Si una etiqueta apunta a un commit sin ✔, su ZIP no se publica (aparece un aviso en Actions).
 2. Crear la etiqueta y subirla: `git tag v1.1.0 && git push origin v1.1.0`. Publica la web con el ZIP nuevo.
-3. Cambiar el enlace de descarga de `primeros-pasos.html` a la versión nueva.
+3. Cambiar el enlace de descarga de `index.html` a la versión nueva.
 
 Cada publicación vuelve a hacer todos los ZIP desde sus etiquetas con `git archive`, que da siempre el mismo fichero: los cambios de `main` no alteran una versión ya publicada, y todas se conservan mientras exista su etiqueta. Por eso una etiqueta publicada no se mueve ni se borra (los laboratorios enlazan su versión): un cambio, por pequeño que sea, es una versión nueva. Versiones: X cuando algo deja de funcionar igual, Y cuando se añade algo, Z para correcciones.
 

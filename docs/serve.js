@@ -1,6 +1,6 @@
 // Sirve en local la web de ez-ui como la publica GitHub Pages: la web (docs/) en la raíz
 // y la biblioteca (la raíz del repositorio) en /ez-ui/, donde la enlazan las páginas,
-// igual que un proyecto; también en el proyecto de ejemplo de Primeros pasos
+// igual que un proyecto; también en el proyecto de ejemplo de la página de inicio
 // (/examples/primeros-pasos/ez-ui/). Sin caché, para ver cada cambio al recargar.
 //
 //   node docs/serve.js [puerto]      (por defecto, 8081) y abrir http://127.0.0.1:8081/

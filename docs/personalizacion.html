@@ -4,7 +4,7 @@
         <title>ez-ui · Personalización</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="Cómo adaptar los estilos y las fuentes de ez-ui sin modificar la biblioteca">
+        <meta name="description" content="Convenciones de ez-ui y cómo adaptar sus estilos, su tema oscuro y sus fuentes sin modificar la biblioteca">
         <script src="ez-ui/js/theme-init.js"></script>
         <link rel="stylesheet" href="ez-ui/css/ez-ui.css">
         <link rel="stylesheet" href="css/site.css">
@@ -21,58 +21,89 @@
                 <header class="doc-header">
                     <h1>Personalización</h1>
                     <p class="doc-lead">
-                        Cómo adaptar ez-ui a un proyecto sin tocar sus ficheros: cambiando sus
-                        variables, sobrescribiendo una regla para todos los componentes o solo
-                        para algunos, y cambiando las fuentes.
+                        Cómo se llaman las clases y las variables de ez-ui, y cómo se adaptan al
+                        proyecto sin tocar la biblioteca: desde un color para toda la página hasta
+                        una regla para unos pocos componentes.
                     </p>
                 </header>
 
-                <section class="doc-section" id="cascade">
-                    <h2>Una hoja propia, después de ez-ui</h2>
+                <section class="doc-section" id="conventions">
+                    <h2>Nombres de las clases</h2>
                     <p>
-                        Los cambios van en una hoja del proyecto, enlazada <strong>después</strong>
-                        de la biblioteca. Los ficheros de <code>ez-ui/</code> no se modifican: así
-                        se puede sustituir la carpeta por una versión nueva sin perder nada.
+                        Las clases siguen la convención BEM (bloque, elemento y modificador): el
+                        nombre de una clase dice a qué componente pertenece y qué papel tiene en él.
+                        Todas empiezan por <code>ez-</code>, para distinguirlas de las del proyecto.
+                    </p>
+                    <ul>
+                        <li>
+                            <strong>Componente</strong>: su nombre (<code>ez-card</code>,
+                            <code>ez-button</code>).
+                        </li>
+                        <li>
+                            <strong>Parte de un componente</strong>: el nombre del componente, dos
+                            guiones bajos y el de la parte (<code>ez-card__body</code>). Solo tiene
+                            sentido dentro de su componente.
+                        </li>
+                        <li>
+                            <strong>Variante</strong>: se añade a la clase del componente, con dos
+                            guiones, y cambia su aspecto sin repetir el resto
+                            (<code>ez-button ez-button--danger</code>).
+                        </li>
+                    </ul>
+                    <div class="doc-example">
+                        <article class="ez-card">
+                            <div class="ez-card__body">
+                                <h3>Mario Gil</h3>
+                                <p>Delantero de la ETSII.</p>
+                                <button class="ez-button ez-button--danger" type="button">Vender</button>
+                            </div>
+                        </article>
+                    </div>
+                    <p>
+                        Las clases del proyecto llevan otro prefijo, o ninguno. En un mismo
+                        elemento pueden ir juntas: <code>ez-card</code> le da el aspecto de
+                        tarjeta, y <code>player-card</code> dice que es la de un jugador.
+                    </p>
+                    <template class="doc-example">
+                        <article class="ez-card player-card">…</article>
+                    </template>
+                </section>
+
+                <section class="doc-section" id="cascade">
+                    <h2>La hoja propia</h2>
+                    <p>
+                        Los cambios van en una hoja del proyecto, enlazada después de la
+                        biblioteca. Los ficheros de <code>ez-ui/</code> no se modifican: así se
+                        puede sustituir la carpeta por una versión nueva sin perder nada.
                     </p>
                     <template class="doc-example">
                         <link rel="stylesheet" href="ez-ui/css/ez-ui.css">
                         <link rel="stylesheet" href="css/app.css">
                     </template>
                     <p>
-                        Cuando dos reglas dan valor a la misma propiedad de un elemento, el
-                        navegador decide con la <strong>cascada</strong>:
+                        Cuando dos reglas dan valor a la misma propiedad de un elemento, gana la de
+                        selector más <strong>específico</strong> (un id pesa más que una clase, y
+                        dos clases más que una) y, si son igual de específicos, la que va
+                        <strong>después</strong>. Por eso la hoja propia va detrás: con el mismo
+                        selector que ez-ui, su regla gana.
                     </p>
-                    <ol>
-                        <li>
-                            Gana el selector más <strong>específico</strong>: un id pesa más que
-                            una clase, y una clase más que un elemento. Dos clases
-                            (<code>.player-card .ez-card__body</code>) pesan más que una
-                            (<code>.ez-card__body</code>).
-                        </li>
-                        <li>
-                            Si los selectores son igual de específicos, gana el que va
-                            <strong>después</strong>. Por eso la hoja propia va detrás de la
-                            biblioteca: con el mismo selector, su regla gana.
-                        </li>
-                    </ol>
                     <p>
-                        Algunas propiedades, como el color y la fuente, se
-                        <strong>heredan</strong>: un elemento que no las define toma las de su
-                        padre. Si una regla no se aplica, las herramientas de desarrollo del
-                        navegador (pestaña Elementos, panel Estilos) muestran qué regla la tacha.
-                        Evita <code>!important</code>: gana a todo y obliga a usarlo también en la
-                        siguiente regla que quiera cambiar lo mismo. ez-ui solo lo usa en
-                        <code>[hidden]</code>, para que el atributo oculte siempre el elemento.
+                        Si una regla no se aplica, las herramientas de desarrollo del navegador
+                        (pestaña Elementos, panel Estilos) muestran qué otra la tacha.
+                        <code>!important</code> no es la solución: gana a todo, y obliga a usarlo
+                        de nuevo en la siguiente regla que quiera cambiar lo mismo.
                     </p>
                 </section>
 
                 <section class="doc-section" id="variables">
-                    <h2>Variables: toda la biblioteca</h2>
+                    <h2>Variables</h2>
                     <p>
-                        Los colores, las fuentes y los espacios son variables de
-                        <code>tokens.css</code> (ver <a href="fundamentos.html#variables">Fundamentos</a>).
-                        Darles otro valor en <code>:root</code> cambia todos los componentes que
-                        las usan, sin escribir ninguna regla de componente:
+                        Los colores, las fuentes, los espacios y los radios de las esquinas son
+                        variables CSS que empiezan por <code>--ez-</code>, definidas en
+                        <code>:root</code> (el elemento <code>&lt;html&gt;</code>) en
+                        <code>tokens.css</code>. El resto de hojas las usan con
+                        <code>var()</code>, así que darles otro valor en la hoja propia cambia
+                        todos los componentes que las usan:
                     </p>
                     <template class="doc-example">
                         /* css/app.css: azul en lugar del granate */
@@ -80,27 +111,63 @@
                             --ez-primary: #245b91;
                             --ez-primary-hover: #1b4570;
                         }
+                    </template>
+                    <p>
+                        Las variables se heredan, como el color del texto: redefinidas en un
+                        elemento, cambian solo dentro de él. Aquí, el botón de la derecha está en
+                        un <code>&lt;div&gt;</code> que cambia el color principal a verde:
+                    </p>
+                    <div class="doc-example">
+                        <button class="ez-button" type="button">Pujar</button>
+                        <div style="--ez-primary: #00776d; --ez-primary-hover: #005c54">
+                            <button class="ez-button" type="button">Pujar</button>
+                        </div>
+                    </div>
+                    <p>
+                        Las hojas propias también las usan, para que lo nuevo tenga el mismo
+                        aspecto que ez-ui y cambie con el tema oscuro:
+                    </p>
+                    <template class="doc-example">
+                        /* css/app.css: un elemento propio con los colores y espacios de ez-ui */
+                        .match-score {
+                            padding: var(--ez-space-2) var(--ez-space-4);
+                            border: 1px solid var(--ez-border);
+                            color: var(--ez-primary);
+                        }
+                    </template>
+                </section>
 
-                        /* El tema oscuro tiene sus propios valores: hay que cambiarlos también */
+                <section class="doc-section" id="theme">
+                    <h2>Tema oscuro</h2>
+                    <p>
+                        El tema oscuro no cambia ninguna regla de los componentes: solo da otros
+                        valores a las mismas variables cuando <code>&lt;html&gt;</code> tiene el
+                        atributo <code>data-ez-theme="dark"</code>, que pone el
+                        <a href="javascript.html#theme">botón de tema</a>.
+                    </p>
+                    <template class="doc-example" data-code='<html lang="es" data-ez-theme="dark">'></template>
+                    <p>
+                        Por eso, al cambiar un color, hay que darle también su valor para el tema
+                        oscuro. <code>:root[data-ez-theme="dark"]</code> es más específico que
+                        <code>:root</code>: sin esta regla, el tema oscuro seguiría con el color
+                        de ez-ui.
+                    </p>
+                    <template class="doc-example">
+                        /* css/app.css */
                         :root[data-ez-theme="dark"] {
                             --ez-primary: #8bc5ff;
                             --ez-primary-hover: #b3d9ff;
                         }
                     </template>
-                    <p>
-                        La segunda regla hace falta porque el tema oscuro redefine los colores con
-                        un selector más específico (<code>:root[data-ez-theme="dark"]</code>), que
-                        gana a <code>:root</code> aunque vaya antes.
-                    </p>
                 </section>
 
                 <section class="doc-section" id="component">
-                    <h2>Un componente: todos o solo algunos</h2>
+                    <h2>Todos los componentes o solo algunos</h2>
                     <p>
-                        Para centrar el texto de una tarjeta no hay variable: se sobrescribe la
-                        regla. Según el selector, cambia en todas las tarjetas o solo en algunas.
-                        Aquí, la de la derecha lleva además la clase <code>player-card</code>, del
-                        proyecto:
+                        Lo que no es una variable, como centrar el texto de una tarjeta, se cambia
+                        con una regla. Según el selector, cambia en todas las tarjetas o solo en
+                        algunas. Aquí, la de la derecha lleva además la clase
+                        <code>player-card</code>:
                     </p>
                     <div class="doc-example">
                         <article class="ez-card">
@@ -117,75 +184,33 @@
                         </article>
                     </div>
                     <p>
-                        Con el mismo selector que la biblioteca, cambian <strong>todas</strong> las
-                        tarjetas (gana por ir después):
+                        Con el mismo selector que ez-ui, cambian <strong>todas</strong> las tarjetas
+                        (la regla gana por ir después). Con la clase del proyecto delante, solo las
+                        <strong>de jugadores</strong> (gana por ser más específica), como en el
+                        ejemplo:
                     </p>
                     <template class="doc-example">
                         /* css/app.css: todas las tarjetas */
                         .ez-card__body {
                             text-align: center;
                         }
-                    </template>
-                    <p>
-                        Con la clase del proyecto delante, cambian <strong>solo las tarjetas de
-                        jugadores</strong> (gana por ser más específico), que es lo que hace el
-                        ejemplo:
-                    </p>
-                    <template class="doc-example">
+
                         /* css/app.css: solo las tarjetas con la clase player-card */
                         .player-card .ez-card__body {
                             text-align: center;
                         }
                     </template>
-                </section>
-
-                <section class="doc-section" id="utility">
-                    <h2>Una clase propia</h2>
                     <p>
-                        Si lo mismo hace falta en elementos distintos, mejor una clase del
-                        proyecto, con su prefijo, que se añade donde se necesite:
+                        Si lo mismo hace falta en elementos distintos, mejor una clase propia que
+                        se añade donde se necesite, como <code>.app-centered</code>. El atributo
+                        <code>style</code> también lo centra, y es lo más rápido para probar un
+                        cambio en el navegador, pero no se puede reutilizar y queda mezclado con
+                        el HTML.
                     </p>
-                    <template class="doc-example">
-                        /* css/app.css */
-                        .app-centered {
-                            text-align: center;
-                        }
-                    </template>
-                    <template class="doc-example">
-                        <div class="ez-card__body app-centered">…</div>
-                    </template>
-                    <p>
-                        El atributo <code>style</code> también lo centra, y es lo más rápido para
-                        probar un cambio en el navegador. Pero queda mezclado con el HTML, no se
-                        puede reutilizar y gana a las hojas de estilo, así que no es la forma
-                        habitual:
-                    </p>
-                    <template class="doc-example">
-                        <div class="ez-card__body" style="text-align: center">…</div>
-                    </template>
-                    <p>En resumen, de lo más general a lo más concreto:</p>
-                    <ul>
-                        <li>
-                            <strong>Una variable</strong> cambia un valor (un color, un espacio) en
-                            toda la biblioteca.
-                        </li>
-                        <li>
-                            <strong>Una regla con el selector de ez-ui</strong> cambia un
-                            componente en todas partes.
-                        </li>
-                        <li>
-                            <strong>Una regla con una clase del proyecto</strong> cambia solo los
-                            componentes que la llevan.
-                        </li>
-                        <li>
-                            <strong>Una clase de utilidad propia</strong> aplica lo mismo a
-                            elementos distintos.
-                        </li>
-                    </ul>
                 </section>
 
                 <section class="doc-section" id="fonts">
-                    <h2>Tipografía y fuentes</h2>
+                    <h2>Fuentes</h2>
                     <p>
                         ez-ui trae sus fuentes en <code>ez-ui/fonts/</code>, con licencia libre
                         OFL: <strong>Source Sans 3</strong> (normal y cursiva) para el texto y
@@ -193,14 +218,12 @@
                         servicio externo, como Google Fonts: funcionan sin conexión.
                     </p>
                     <p>
-                        Usar una fuente propia lleva dos pasos. <code>@font-face</code> la
-                        <strong>declara</strong>: asocia un nombre de familia a un fichero (lo hace
-                        <code>fonts.css</code>). <code>font-family</code> la
-                        <strong>usa</strong>: <code>base.css</code> pone
+                        <code>@font-face</code> <strong>declara</strong> una fuente: asocia un
+                        nombre de familia a un fichero (lo hace <code>fonts.css</code>).
+                        <code>font-family</code> la <strong>usa</strong>: <code>base.css</code> pone
                         <code>var(--ez-font)</code> en <code>&lt;html&gt;</code>, de donde la
-                        heredan los demás elementos (también los controles de formulario), y
-                        <code>var(--ez-font-mono)</code> en <code>code</code>, <code>pre</code> y
-                        <code>kbd</code>.
+                        heredan los demás elementos, y <code>var(--ez-font-mono)</code> en
+                        <code>code</code>, <code>pre</code> y <code>kbd</code>.
                     </p>
                     <template class="doc-example">
                         /* ez-ui/css/fonts.css */
@@ -216,29 +239,20 @@
                             --ez-font: "Source Sans 3", system-ui, "Segoe UI", sans-serif;
                         }
                     </template>
-                    <ul>
-                        <li>
-                            <strong>WOFF2</strong> es el formato comprimido de fuentes para la web.
-                        </li>
-                        <li>
-                            Son <strong>fuentes variables</strong>: un solo fichero tiene todos los
-                            grosores (<code>font-weight: 200 900</code>).
-                        </li>
-                        <li>
-                            <code>font-display: swap</code> muestra el texto con una fuente del
-                            sistema mientras se descarga la propia, en lugar de dejarlo en blanco.
-                        </li>
-                        <li>
-                            Las <strong>alternativas</strong> que siguen en la lista
-                            (<code>system-ui</code>, <code>sans-serif</code>) se usan si la fuente
-                            no carga.
-                        </li>
-                    </ul>
+                    <p>
+                        WOFF2 es el formato comprimido de fuentes para la web. Son fuentes
+                        variables: un solo fichero tiene todos los grosores
+                        (<code>font-weight: 200 900</code>). <code>font-display: swap</code>
+                        muestra el texto con una fuente del sistema mientras se descarga la
+                        propia, y las que siguen en la lista (<code>system-ui</code>,
+                        <code>sans-serif</code>) se usan si no carga.
+                    </p>
 
                     <h3>Otras fuentes</h3>
                     <p>
-                        Para usar otras fuentes basta con cambiar las dos variables en
-                        <code>:root</code>, en la hoja propia:
+                        Basta con cambiar las dos variables en <code>:root</code>. No sirve
+                        cambiarlas dentro de un elemento: <code>&lt;html&gt;</code> calcula su
+                        fuente con la variable, y los demás heredan esa fuente ya calculada.
                     </p>
                     <template class="doc-example">
                         /* css/app.css: fuentes del sistema */
@@ -248,16 +262,9 @@
                         }
                     </template>
                     <p>
-                        <code>--ez-font</code> se cambia en <code>:root</code> y no dentro de un
-                        elemento: <code>&lt;html&gt;</code> calcula su fuente con la variable, y lo
-                        que heredan los demás es esa fuente ya calculada, no la variable.
-                    </p>
-
-                    <h3>Una fuente propia</h3>
-                    <p>
-                        Se declara con <code>@font-face</code> en la hoja propia, con el fichero en
-                        una carpeta del proyecto, y se pone la primera en
-                        <code>--ez-font</code>. <code>fonts.css</code> no se toca.
+                        Una fuente que no está en el sistema se declara con
+                        <code>@font-face</code> en la hoja propia, con el fichero en una carpeta
+                        del proyecto, y se pone la primera en <code>--ez-font</code>:
                     </p>
                     <template class="doc-example">
                         /* css/app.css, con la fuente en fonts/ del proyecto */
@@ -273,21 +280,12 @@
                     </template>
                     <p>
                         La ruta de <code>url()</code> es relativa al fichero CSS que la contiene,
-                        no a la página: desde <code>css/app.css</code>,
-                        <code>../fonts/</code> es la carpeta <code>fonts/</code> del proyecto. Por
-                        lo mismo, <code>ez-ui/css/</code> y <code>ez-ui/fonts/</code> tienen que
-                        seguir juntas dentro de <code>ez-ui/</code>.
-                    </p>
-                    <p>
-                        Para comprobar qué fuente se usa de verdad: en las herramientas de
-                        desarrollo, al inspeccionar un texto, el panel Calculado muestra al final
-                        las fuentes con que se pinta. Si sale la del sistema, la pestaña Red dice si
-                        el fichero <code>.woff2</code> ha dado un error 404 (una ruta mal escrita).
-                    </p>
-                    <p>
-                        El tamaño del texto lo fija <code>base.css</code> en
-                        <code>&lt;html&gt;</code>: <code>1.0625rem</code>, normalmente 17 px. Las
-                        demás medidas en <code>rem</code> son proporcionales a él.
+                        no a la página: desde <code>css/app.css</code>, <code>../fonts/</code> es
+                        la carpeta <code>fonts/</code> del proyecto. Por lo mismo,
+                        <code>ez-ui/css/</code> y <code>ez-ui/fonts/</code> tienen que seguir juntas.
+                        En las herramientas de desarrollo, el panel Calculado de un texto muestra
+                        con qué fuente se pinta; si sale la del sistema, la pestaña Red dice si el
+                        <code>.woff2</code> ha dado un error 404.
                     </p>
                 </section>
             </main>
@@ -295,11 +293,12 @@
             <nav class="doc-toc" aria-label="En esta página">
                 <h2>En esta página</h2>
                 <ul>
-                    <li><a href="#cascade">Una hoja propia</a></li>
+                    <li><a href="#conventions">Nombres de las clases</a></li>
+                    <li><a href="#cascade">La hoja propia</a></li>
                     <li><a href="#variables">Variables</a></li>
-                    <li><a href="#component">Un componente</a></li>
-                    <li><a href="#utility">Una clase propia</a></li>
-                    <li><a href="#fonts">Tipografía y fuentes</a></li>
+                    <li><a href="#theme">Tema oscuro</a></li>
+                    <li><a href="#component">Todos o solo algunos</a></li>
+                    <li><a href="#fonts">Fuentes</a></li>
                 </ul>
             </nav>
         </div>
