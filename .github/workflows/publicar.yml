@@ -34,6 +34,12 @@ jobs:
           cp -r docs/. _site/
           rm _site/README.md _site/serve.js
           cp -r css js fonts icons.svg LICENSE-lucide.txt _site/ez-ui/
+          # Descargas persistentes creadas exclusivamente desde tags versionados.
+          git fetch origin pages-downloads || true
+          if git show-ref --verify --quiet refs/remotes/origin/pages-downloads; then
+            mkdir -p _site/downloads
+            git archive origin/pages-downloads downloads | tar -x -C _site
+          fi
 
       - uses: actions/upload-pages-artifact@v3
         with:
