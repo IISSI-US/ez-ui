@@ -55,6 +55,8 @@
                         <nav class="ez-navbar" aria-label="Principal">
                             <div class="ez-container ez-navbar__inner">
                                 <a class="ez-navbar__brand" href="#">Trofeo ez-Soccer</a>
+                                <!-- El botón «Menú», solo en pantallas estrechas -->
+                                <!-- aria-expanded: si está abierto; aria-controls: qué lista -->
                                 <button class="ez-button ez-button--secondary ez-navbar__toggle"
                                         type="button"
                                         aria-expanded="false"
@@ -64,6 +66,7 @@
                                     </svg>
                                     Menú
                                 </button>
+                                <!-- Los enlaces, que el botón muestra u oculta -->
                                 <ul id="main-links" class="ez-navbar__links">
                                     <li><a href="#">Clasificación</a></li>
                                     <li><a href="#">Mercado</a></li>
@@ -80,6 +83,7 @@
                     <template class="doc-example">
                         import { ezNavbar } from "./ez-ui/js/navbar.js";
 
+                        // Conecta el botón «Menú» de la barra
                         ezNavbar(document.querySelector(".ez-navbar"));
                     </template>
                 </section>
@@ -92,6 +96,8 @@
                         cambia toda esta web, como el de la cabecera.
                     </p>
                     <div class="doc-example">
+                        <!-- ez-theme-toggle: el CSS muestra la luna o el sol según el tema -->
+                        <!-- aria-label: el nombre del botón, que solo tiene iconos -->
                         <button id="theme-button"
                                 class="ez-button ez-button--secondary ez-theme-toggle"
                                 type="button"
@@ -114,6 +120,7 @@
                     <template class="doc-example">
                         import { ezThemeToggle } from "./ez-ui/js/theme.js";
 
+                        // Al pulsarlo, cambia el tema y lo guarda
                         ezThemeToggle(document.getElementById("theme-button"));
                     </template>
                     <p>
@@ -124,6 +131,7 @@
                         después, y se vería un instante el tema claro.
                     </p>
                     <template class="doc-example">
+                        <!-- Script clásico, antes de las hojas: aplica el tema guardado -->
                         <script src="ez-ui/js/theme-init.js"></script>
                         <link rel="stylesheet" href="ez-ui/css/ez-ui.css">
                     </template>
@@ -161,8 +169,11 @@
                     <template class="doc-example">
                         import { ezToast } from "./ez-ui/js/toast.js";
 
+                        // Información, se cierra a los 4 segundos (los valores por defecto)
                         ezToast("El mercado cierra el viernes a las 21:00.");
+                        // Éxito
                         ezToast("Puja registrada.", "success");
+                        // Error, que no se cierra sola (0)
                         ezToast("No se ha podido registrar la puja.", "error", 0);
                     </template>
                 </section>
@@ -177,6 +188,7 @@
                     </p>
                     <div class="doc-example doc-example--column">
                         <p><button id="load-button" class="ez-button" type="button">Cargar el mercado</button></p>
+                        <!-- Aquí aparecen los jugadores; mientras llegan, el indicador -->
                         <ul id="market-list"></ul>
                     </div>
                     <p>
@@ -188,6 +200,7 @@
                     <template class="doc-example">
                         import { ezLoading } from "./ez-ui/js/loading.js";
 
+                        // aria-busy en la lista hasta que getPlayers() responde
                         let players = await ezLoading(list, getPlayers());
                     </template>
                 </section>
@@ -209,9 +222,12 @@
                             Vender a Mario Gil
                         </button>
 
+                        <!-- ez-dialog: oculto hasta que lo abre ezConfirm -->
                         <dialog id="sell-dialog" class="ez-dialog" aria-labelledby="sell-dialog-title">
                             <h3 id="sell-dialog-title">¿Vender a Mario Gil?</h3>
                             <p>Recibirás 400.000 € y dejará de estar en tu plantilla.</p>
+                            <!-- method="dialog": cualquier botón cierra el diálogo -->
+                            <!-- value: dice qué botón se pulsó -->
                             <form method="dialog" class="ez-dialog__actions">
                                 <button class="ez-button ez-button--secondary" type="submit" value="cancel">Cancelar</button>
                                 <button class="ez-button ez-button--danger" type="submit" value="confirm">Vender</button>
@@ -228,6 +244,7 @@
                     <template class="doc-example">
                         import { ezConfirm } from "./ez-ui/js/dialog.js";
 
+                        // Espera a que se cierre: true si se pulsó value="confirm"
                         let confirmed = await ezConfirm(document.getElementById("sell-dialog"));
                     </template>
                 </section>

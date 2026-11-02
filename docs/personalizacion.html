@@ -68,6 +68,7 @@
                         tarjeta, y <code>player-card</code> dice que es la de un jugador.
                     </p>
                     <template class="doc-example">
+                        <!-- ez-card: aspecto de tarjeta; player-card: del proyecto -->
                         <article class="ez-card player-card">…</article>
                     </template>
                 </section>
@@ -120,7 +121,9 @@
                         un <code>&lt;div&gt;</code> que cambia el color principal a verde:
                     </p>
                     <div class="doc-example">
+                        <!-- Con el color principal de ez-ui -->
                         <button class="ez-button" type="button">Pujar</button>
+                        <!-- Otro color principal, solo dentro de este div -->
                         <div style="--ez-primary: #00776d; --ez-primary-hover: #005c54">
                             <button class="ez-button" type="button">Pujar</button>
                         </div>
@@ -155,7 +158,7 @@
                         de <span class="doc-brand"><span class="doc-brand-mark">ez</span>-ui</span>.
                     </p>
                     <template class="doc-example">
-                        /* css/app.css */
+                        /* css/app.css: el azul, más claro para el tema oscuro */
                         :root[data-ez-theme="dark"] {
                             --ez-primary: #8bc5ff;
                             --ez-primary-hover: #b3d9ff;
@@ -172,12 +175,14 @@
                         <code>player-card</code>:
                     </p>
                     <div class="doc-example">
+                        <!-- Sin personalizar: el estilo de ez-ui -->
                         <article class="ez-card">
                             <div class="ez-card__body">
                                 <h3>Jornada 11</h3>
                                 <p>La ETSII sigue líder.</p>
                             </div>
                         </article>
+                        <!-- player-card, clase del proyecto: app.css centra su texto -->
                         <article class="ez-card player-card">
                             <div class="ez-card__body">
                                 <h3>Mario Gil</h3>

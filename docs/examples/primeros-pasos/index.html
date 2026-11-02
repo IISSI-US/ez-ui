@@ -14,9 +14,11 @@
   </head>
 
   <body>
+    <!-- La barra de navegación; main.js le añade el menú plegable -->
     <nav class="ez-navbar" aria-label="Principal">
       <div class="ez-container ez-navbar__inner">
         <a class="ez-navbar__brand" href="index.html">Trofeo ez-Soccer</a>
+        <!-- El botón «Menú», solo en pantallas estrechas -->
         <button class="ez-button ez-button--secondary ez-navbar__toggle"
                 type="button"
                 aria-expanded="false"
@@ -30,6 +32,7 @@
           <li><a href="index.html" aria-current="page">Inicio</a></li>
           <li><a href="#">Clasificación</a></li>
           <li><a href="#">Mercado</a></li>
+          <!-- El botón de tema: la luna o el sol, según el tema -->
           <li>
             <button id="theme-toggle"
                     class="ez-button ez-button--secondary ez-theme-toggle"
@@ -48,10 +51,12 @@
       </div>
     </nav>
 
+    <!-- ez-container: centra el contenido y limita su ancho -->
     <main class="ez-container">
       <h1>Trofeo ez-Soccer</h1>
       <p class="welcome">La liga de fútbol entre escuelas y facultades.</p>
 
+      <!-- Una tarjeta: el marco (ez-card) y el cuerpo (ez-card__body) -->
       <article class="ez-card">
         <div class="ez-card__body">
           <h2>Jornada 11</h2>

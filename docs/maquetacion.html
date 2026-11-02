@@ -36,6 +36,7 @@
                         de la página, debajo de la barra de navegación.
                     </p>
                     <template class="doc-example">
+                        <!-- ez-container: centra el contenido y limita su ancho -->
                         <main class="ez-container">
                             <h1>Mercado de fichajes</h1>
                             <!-- Contenido de la página -->
@@ -56,7 +57,9 @@
                         un móvil, una. Es la rejilla de una lista de tarjetas.
                     </p>
                     <div class="doc-example doc-example--column">
+                        <!-- ez-gallery: tantas columnas como quepan, de 17rem como mínimo -->
                         <div class="ez-gallery">
+                            <!-- Cada hijo, aquí una tarjeta, ocupa una celda -->
                             <article class="ez-card">
                                 <img class="ez-card__image"
                                      src="images/soccer/shirt-lucia-romero.svg"
@@ -155,7 +158,9 @@
                     </p>
                     <h3>Clasificación y equipo</h3>
                     <div class="doc-example doc-example--column">
+                        <!-- ez-split: dos columnas; la primera, el doble de ancha -->
                         <div class="ez-split">
+                            <!-- Primera columna -->
                             <table>
                                 <caption>Clasificación tras la jornada 11</caption>
                                 <thead>
@@ -188,6 +193,7 @@
                                     </tr>
                                 </tbody>
                             </table>
+                            <!-- Segunda columna -->
                             <article class="ez-card">
                                 <div class="ez-card__body">
                                     <h3>
@@ -210,6 +216,7 @@
                         <code>grid-template-columns</code>.
                     </p>
                     <div class="doc-example doc-example--column">
+                        <!-- --ez-split-columns: otro reparto, aquí dos columnas iguales -->
                         <div class="ez-split" style="--ez-split-columns: 1fr 1fr">
                             <article class="ez-card">
                                 <div class="ez-card__body">
@@ -226,6 +233,7 @@
                         </div>
                     </div>
                     <div class="doc-example doc-example--column">
+                        <!-- Tres columnas iguales -->
                         <div class="ez-split" style="--ez-split-columns: 1fr 1fr 1fr">
                             <div class="ez-alert">Partidos: 11</div>
                             <div class="ez-alert">Goles: 29</div>
@@ -241,6 +249,7 @@
                         principal.
                     </p>
                     <div class="doc-example doc-example--column">
+                        <!-- La tarjeta, en la columna ancha; el aside, en la estrecha -->
                         <div class="ez-split">
                             <article class="ez-card">
                                 <img class="ez-card__image"
@@ -266,6 +275,7 @@
                         <a href="formularios.html">Formularios</a>.
                     </p>
                     <div class="doc-example doc-example--column">
+                        <!-- El formulario, en la columna ancha; la tarjeta, al lado -->
                         <div class="ez-split">
                             <form>
                                 <h3>Pujar por Hugo Serrano</h3>
@@ -304,7 +314,9 @@
                         columnas, y <code>ez-container</code> centra el contenido dentro de la
                         suya.
                     </p>
-                    <template class="doc-example" data-code="&lt;body class=&quot;ez-split&quot; style=&quot;--ez-split-columns: 15rem 1fr&quot;&gt;
+                    <template class="doc-example" data-code="&lt;!-- Dos columnas: la barra, de 15rem, y el contenido --&gt;
+&lt;body class=&quot;ez-split&quot; style=&quot;--ez-split-columns: 15rem 1fr&quot;&gt;
+    &lt;!-- ez-navbar--side: la barra, en columna --&gt;
     &lt;nav class=&quot;ez-navbar ez-navbar--side&quot; aria-label=&quot;Principal&quot;&gt;
         &lt;!-- Marca y enlaces --&gt;
     &lt;/nav&gt;
