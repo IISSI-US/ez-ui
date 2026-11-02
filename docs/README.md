@@ -5,9 +5,7 @@ La web de [ez-ui](../README.md): https://iissi-us.github.io/ez-ui/. No forma par
 ## Estructura
 
 ```
-index.html, fundamentos.html, maquetacion.html, componentes.html,
-formularios.html, javascript.html,
-personalizacion.html                  las páginas
+index.html y las demás *.html         las páginas, una por apartado del menú
 header.html, footer.html              cabecera y pie comunes
 css/site.css                          estilos propios de la web (prefijo doc-)
 js/                                   controladores, renderizador de ejemplos y utilidades
