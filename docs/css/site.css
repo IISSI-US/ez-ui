@@ -2,10 +2,26 @@
    aquí solo va lo que necesita la documentación (cabecera de página, índice,
    ejemplos y bloques de código), con las variables de ez-ui. */
 
-/* La cabecera llega con fetch un instante después de pintar la página: se reserva su
+/* Alto de la cabecera, para reservarlo y para que lo demás no quede debajo */
+:root {
+  --doc-header-height: 5.2rem;
+}
+
+/* Al saltar a un apartado con un enlace (componentes.html#card), su título queda
+   por debajo de la cabecera fija */
+html {
+  scroll-padding-top: calc(var(--doc-header-height) + var(--ez-space-4));
+}
+
+/* La cabecera, fija arriba al desplazar la página (ver Personalización). Va en su
+   contenedor y no en la barra, que solo es fija mientras se ve su contenedor. La
+   cabecera llega con fetch un instante después de pintar la página: se reserva su
    alto para que el contenido no salte hacia abajo al aparecer */
 #page-header {
-  min-height: 5.2rem;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  min-height: var(--doc-header-height);
 }
 
 /* Marca: «ez» en el color principal */
@@ -62,7 +78,7 @@
 /* Índice de la página: fijo al desplazarse (sticky) */
 .doc-toc {
   position: sticky;
-  top: var(--ez-space-6);
+  top: var(--doc-header-height);
   align-self: start;
   padding-top: var(--ez-space-8);
   font-size: .95rem;
@@ -99,12 +115,10 @@
   }
 }
 
-/* Cada apartado (un componente), separado del anterior. scroll-margin-top deja
-   sitio por encima al saltar a él con un enlace (componentes.html#card) */
+/* Cada apartado (un componente), separado del anterior */
 .doc-section {
   padding-block: var(--ez-space-8);
   border-top: 1px solid var(--ez-border);
-  scroll-margin-top: var(--ez-space-4);
 }
 
 .doc-section h3 {

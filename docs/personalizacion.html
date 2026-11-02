@@ -20,11 +20,6 @@
             <main>
                 <header class="doc-header">
                     <h1>Personalización</h1>
-                    <p class="doc-lead">
-                        Cómo se llaman las clases y las variables de <span class="doc-brand"><span class="doc-brand-mark">ez</span>-ui</span>, y cómo se adaptan al
-                        proyecto sin tocar sus ficheros: desde un color para toda la página hasta
-                        una regla para unos pocos componentes.
-                    </p>
                 </header>
 
                 <section class="doc-section" id="conventions">
@@ -85,6 +80,7 @@
                         puede sustituir la carpeta por una versión nueva sin perder nada.
                     </p>
                     <template class="doc-example">
+                        <!-- El orden es importante: ez-ui primero, luego la hoja propia  -->
                         <link rel="stylesheet" href="ez-ui/css/ez-ui.css">
                         <link rel="stylesheet" href="css/app.css">
                     </template>
@@ -98,8 +94,6 @@
                     <p>
                         Si una regla no se aplica, las herramientas de desarrollo del navegador
                         (pestaña Elementos, panel Estilos) muestran qué otra la tacha.
-                        <code>!important</code> no es la solución: gana a todo, y obliga a usarlo
-                        de nuevo en la siguiente regla que quiera cambiar lo mismo.
                     </p>
                 </section>
 
@@ -214,6 +208,28 @@
                         <code>style</code> también lo centra, y es lo más rápido para probar un
                         cambio en el navegador, pero no se puede reutilizar y queda mezclado con
                         el HTML.
+                    </p>
+
+                    <h3>La barra de navegación fija</h3>
+                    <p>
+                        <span class="doc-brand"><span class="doc-brand-mark">ez</span>-ui</span> no fija la barra de navegación arriba, porque no todas las
+                        aplicaciones lo quieren: en un móvil ocupa parte de la pantalla. Una regla
+                        en la hoja propia la deja fija al desplazar la página, como en esta web:
+                    </p>
+                    <template class="doc-example">
+                        /* css/app.css: la barra, fija arriba al desplazar la página */
+                        .ez-navbar {
+                            position: sticky;
+                            top: 0;
+                            z-index: 1;
+                        }
+                    </template>
+                    <p>
+                        <code>sticky</code> deja la barra en su sitio hasta que llega al borde de
+                        arriba (<code>top: 0</code>), y ahí se queda; <code>z-index</code> la pone
+                        por encima del contenido que pasa por debajo. Se queda fija mientras se
+                        ve el elemento que la contiene, así que la barra va directamente en el
+                        <code>&lt;body&gt;</code>.
                     </p>
                 </section>
 
