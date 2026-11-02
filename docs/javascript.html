@@ -77,7 +77,10 @@
                         <code>ezNavbar(barra)</code> conecta el botón: al pulsarlo, cambia
                         <code>aria-expanded</code> entre <code>"false"</code> y
                         <code>"true"</code>. El CSS hace el resto: mientras vale
-                        <code>"false"</code>, oculta los enlaces.
+                        <code>"false"</code>, oculta los enlaces. Si no recibe la barra (porque
+                        el <code>querySelector</code> no la encuentra, o porque aún no está en la
+                        página) o a la barra le falta el botón, lanza un error que lo dice en la
+                        consola.
                     </p>
                     <template class="doc-example">
                         import { ezNavbar } from "./ez-ui/js/navbar.js";
