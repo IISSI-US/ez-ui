@@ -12,6 +12,7 @@ js/                                   controladores, renderizador de ejemplos y 
 examples/                             ejemplos que necesitan una página aparte;
                                       primeros-pasos/, un proyecto completo
 images/soccer/                        imágenes SVG propias de los ejemplos
+icons.svg                             iconos propios de la web, que no están en ez-ui
 favicon.svg
 serve.js                              servidor local (no se publica)
 README.md                             este fichero (no se publica)

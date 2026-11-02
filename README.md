@@ -51,7 +51,7 @@ Los iconos, con `<use>` y su nombre:
 
 ```html
 <svg class="ez-icon" aria-hidden="true">
-    <use href="ez-ui/icons.svg#trophy"></use>
+    <use href="ez-ui/icons.svg#pencil"></use>
 </svg>
 ```
 

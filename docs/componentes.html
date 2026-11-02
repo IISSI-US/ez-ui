@@ -29,12 +29,14 @@
                 <section class="doc-section" id="icons">
                     <h2>Icono</h2>
                     <p>
-                        <span class="doc-brand"><span class="doc-brand-mark">ez</span>-ui</span> trae una selección de iconos de <a href="https://lucide.dev">Lucide</a>
-                        (licencia libre ISC) en un solo fichero, <code>ez-ui/icons.svg</code>. Cada
-                        icono es un <code>&lt;symbol&gt;</code> con un nombre, y se muestra con un
-                        <code>&lt;svg&gt;</code> que lo usa: <code>&lt;use href="…#nombre"&gt;</code>.
-                        Con la clase <code>ez-icon</code> toma el tamaño y el color del texto que lo
-                        rodea, así que cambia con él, también en un botón o con el tema oscuro.
+                        <span class="doc-brand"><span class="doc-brand-mark">ez</span>-ui</span> trae los iconos más comunes de una interfaz (añadir, editar, borrar,
+                        buscar, cerrar…), de <a href="https://lucide.dev">Lucide</a> (licencia libre
+                        ISC), en un solo fichero: <code>ez-ui/icons.svg</code>. Cada icono se
+                        muestra con un <code>&lt;svg&gt;</code> que lo usa por su nombre,
+                        <code>&lt;use href="…#nombre"&gt;</code>. Con la clase <code>ez-icon</code>
+                        toma el tamaño y el color del texto que lo rodea, también en un botón o
+                        con el tema oscuro. Cualquier otro icono de Lucide se puede añadir al
+                        proyecto (ver <a href="personalizacion.html#icons">Personalización</a>).
                     </p>
                     <div class="doc-example">
                         <ul class="doc-icons">
@@ -45,18 +47,6 @@
                                     <use href="ez-ui/icons.svg#user"></use>
                                 </svg>
                                 <code>user</code>
-                            </li>
-                            <li>
-                                <svg class="ez-icon" aria-hidden="true">
-                                    <use href="ez-ui/icons.svg#trophy"></use>
-                                </svg>
-                                <code>trophy</code>
-                            </li>
-                            <li>
-                                <svg class="ez-icon" aria-hidden="true">
-                                    <use href="ez-ui/icons.svg#shirt"></use>
-                                </svg>
-                                <code>shirt</code>
                             </li>
                             <li>
                                 <svg class="ez-icon" aria-hidden="true">
@@ -141,16 +131,18 @@
 
                     <h3>Con texto</h3>
                     <p>
-                        <code>aria-hidden="true"</code> oculta el icono a los lectores de pantalla,
-                        porque el texto de al lado ya dice lo mismo.
+                        Un lector de pantalla lee la página en voz alta a quien no la ve. Un icono
+                        junto a un texto no le aporta nada, porque el texto ya dice lo mismo, y
+                        podría anunciarlo como una imagen sin nombre: con
+                        <code>aria-hidden="true"</code>, el lector lo salta.
                     </p>
                     <div class="doc-example">
-                        <!-- aria-hidden: el texto de al lado ya dice lo mismo -->
+                        <!-- aria-hidden: el lector de pantalla salta el icono -->
                         <span>
                             <svg class="ez-icon" aria-hidden="true">
-                                <use href="ez-ui/icons.svg#trophy"></use>
+                                <use href="ez-ui/icons.svg#check"></use>
                             </svg>
-                            Campeón: ETSII
+                            Alineación confirmada
                         </span>
                         <a class="ez-button" href="#icons">
                             <svg class="ez-icon" aria-hidden="true">

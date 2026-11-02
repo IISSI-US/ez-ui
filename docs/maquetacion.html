@@ -54,13 +54,54 @@
                         <code>ez-gallery</code> reparte sus hijos en tantas columnas como quepan,
                         de al menos 17rem cada una, y las que sobran pasan a la fila siguiente. No
                         hay que decir cuántas columnas: con la ventana ancha hay tres o cuatro, y en
-                        un móvil, una. Sirve para una lista de tarjetas, de fotos o de cualquier otra
-                        cosa.
+                        un móvil, una. Sirve para una galería de fotos, una lista de tarjetas o
+                        cualquier otra cosa.
                     </p>
                     <div class="doc-example doc-example--column">
                         <!-- ez-gallery: tantas columnas como quepan, de 17rem como mínimo -->
                         <div class="ez-gallery">
-                            <!-- Cada hijo, aquí una tarjeta, ocupa una celda -->
+                            <!-- width y height: la proporción, para reservar su sitio -->
+                            <img src="images/soccer/shirt-lucia-romero.svg"
+                                 alt="Camiseta de Lucía Romero, dorsal 9"
+                                 width="400"
+                                 height="300">
+                            <img src="images/soccer/shirt-hugo-serrano.svg"
+                                 alt="Camiseta de Hugo Serrano, dorsal 10"
+                                 width="400"
+                                 height="300">
+                            <img src="images/soccer/shirt-irene-campos.svg"
+                                 alt="Camiseta de Irene Campos, dorsal 7"
+                                 width="400"
+                                 height="300">
+                            <img src="images/soccer/shirt-pablo-vega.svg"
+                                 alt="Camiseta de Pablo Vega, dorsal 4"
+                                 width="400"
+                                 height="300">
+                            <img src="images/soccer/shirt-nora-iglesias.svg"
+                                 alt="Camiseta de Nora Iglesias, dorsal 1"
+                                 width="400"
+                                 height="300">
+                            <img src="images/soccer/shirt-mario-gil.svg"
+                                 alt="Camiseta de Mario Gil, dorsal 5"
+                                 width="400"
+                                 height="300">
+                        </div>
+                    </div>
+                    <p>
+                        La regla es <code>grid-template-columns: repeat(auto-fit, minmax(17rem,
+                        1fr))</code>: repetir tantas columnas como quepan (<code>auto-fit</code>), y
+                        que cada una mida entre 17rem y una parte del espacio libre
+                        (<code>1fr</code>).
+                    </p>
+
+                    <h3>Una galería de tarjetas</h3>
+                    <p>
+                        Las mismas columnas, con una tarjeta en cada celda: la lista de jugadores
+                        del mercado.
+                    </p>
+                    <div class="doc-example doc-example--column">
+                        <!-- Las mismas columnas, con una tarjeta en cada celda -->
+                        <div class="ez-gallery">
                             <article class="ez-card">
                                 <img class="ez-card__image"
                                      src="images/soccer/shirt-lucia-romero.svg"
@@ -139,48 +180,6 @@
                                     <button class="ez-button" type="button">Pujar</button>
                                 </footer>
                             </article>
-                        </div>
-                    </div>
-                    <p>
-                        La regla es <code>grid-template-columns: repeat(auto-fit, minmax(17rem,
-                        1fr))</code>: repetir tantas columnas como quepan (<code>auto-fit</code>), y
-                        que cada una mida entre 17rem y una parte del espacio libre
-                        (<code>1fr</code>).
-                    </p>
-
-                    <h3>Una galería de fotos</h3>
-                    <p>
-                        Los hijos pueden ser cualquier elemento, no solo tarjetas. Aquí, imágenes:
-                        cada una ocupa el ancho de su columna, y el alto, en proporción.
-                    </p>
-                    <div class="doc-example doc-example--column">
-                        <!-- Las mismas columnas, con una imagen en cada celda -->
-                        <div class="ez-gallery">
-                            <!-- width y height: la proporción, para reservar su sitio -->
-                            <img src="images/soccer/shirt-lucia-romero.svg"
-                                 alt="Camiseta de Lucía Romero, dorsal 9"
-                                 width="400"
-                                 height="300">
-                            <img src="images/soccer/shirt-hugo-serrano.svg"
-                                 alt="Camiseta de Hugo Serrano, dorsal 10"
-                                 width="400"
-                                 height="300">
-                            <img src="images/soccer/shirt-irene-campos.svg"
-                                 alt="Camiseta de Irene Campos, dorsal 7"
-                                 width="400"
-                                 height="300">
-                            <img src="images/soccer/shirt-pablo-vega.svg"
-                                 alt="Camiseta de Pablo Vega, dorsal 4"
-                                 width="400"
-                                 height="300">
-                            <img src="images/soccer/shirt-nora-iglesias.svg"
-                                 alt="Camiseta de Nora Iglesias, dorsal 1"
-                                 width="400"
-                                 height="300">
-                            <img src="images/soccer/shirt-mario-gil.svg"
-                                 alt="Camiseta de Mario Gil, dorsal 5"
-                                 width="400"
-                                 height="300">
                         </div>
                     </div>
                 </section>

@@ -322,6 +322,66 @@
                         <code>.woff2</code> ha dado un error 404.
                     </p>
                 </section>
+
+                <section class="doc-section" id="icons">
+                    <h2>Iconos propios</h2>
+                    <p>
+                        <span class="doc-brand"><span class="doc-brand-mark">ez</span>-ui</span> solo trae los iconos más comunes de una interfaz (ver
+                        <a href="componentes.html#icons">Componentes</a>). Los demás se buscan en
+                        <a href="https://lucide.dev">lucide.dev</a>, que tiene más de mil con el
+                        mismo estilo; en la página de cada uno, «Copy SVG» copia su código.
+                    </p>
+                    <p>
+                        Para un icono que aparece una sola vez, se pega ese código en el HTML y se
+                        cambian su <code>class</code>, su <code>width</code> y su
+                        <code>height</code> por <code>class="ez-icon"</code>, que le da el tamaño
+                        del texto. <code>stroke="currentColor"</code>, que ya trae, le da su color:
+                    </p>
+                    <template class="doc-example">
+                        <!-- El SVG copiado de lucide.dev, con la clase ez-icon -->
+                        <svg class="ez-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none"
+                             stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                             stroke-linejoin="round">
+                            <!-- Las líneas del icono: path, circle… -->
+                        </svg>
+                    </template>
+                    <p>
+                        Si un icono se repite, mejor un <code>icons.svg</code> propio en la raíz
+                        del proyecto, con el mismo formato que el de <span class="doc-brand"><span class="doc-brand-mark">ez</span>-ui</span>: cada icono es un
+                        <code>&lt;symbol&gt;</code> con su nombre en el <code>id</code>, y dentro,
+                        las líneas del icono copiado.
+                    </p>
+                    <template class="doc-example" data-code='<!-- icons.svg del proyecto: un symbol por icono -->
+<svg xmlns="http://www.w3.org/2000/svg">
+    <symbol id="trophy" viewBox="0 0 24 24">
+        <!-- Los atributos del svg de Lucide y sus líneas -->
+        <g fill="none" stroke="currentColor" stroke-width="2"
+           stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6" />
+            <!-- … -->
+        </g>
+    </symbol>
+</svg>'></template>
+                    <p>
+                        Se usa igual que los de <span class="doc-brand"><span class="doc-brand-mark">ez</span>-ui</span>, pero con el fichero del proyecto. Esta web lo
+                        hace así:
+                    </p>
+                    <div class="doc-example">
+                        <!-- icons.svg, del proyecto; no ez-ui/icons.svg -->
+                        <span>
+                            <svg class="ez-icon" aria-hidden="true">
+                                <use href="icons.svg#trophy"></use>
+                            </svg>
+                            Campeón: ETSII
+                        </span>
+                        <span>
+                            <svg class="ez-icon" aria-hidden="true">
+                                <use href="icons.svg#shirt"></use>
+                            </svg>
+                            Dorsal 9
+                        </span>
+                    </div>
+                </section>
             </main>
 
             <nav class="doc-toc" aria-label="En esta página">
@@ -333,6 +393,7 @@
                     <li><a href="#theme">Tema oscuro</a></li>
                     <li><a href="#component">Todos o solo algunos</a></li>
                     <li><a href="#fonts">Fuentes</a></li>
+                    <li><a href="#icons">Iconos propios</a></li>
                 </ul>
             </nav>
         </div>
