@@ -167,6 +167,12 @@
   max-width: 100%;
 }
 
+/* El ejemplo de Personalización: solo las tarjetas con la clase del proyecto
+   player-card, centradas (como haría la hoja propia de un proyecto) */
+.player-card .ez-card__body {
+  text-align: center;
+}
+
 /* Código del ejemplo, justo debajo, siempre sobre fondo oscuro; el botón de
    copiar, arriba a la derecha */
 .doc-code {
