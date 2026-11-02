@@ -95,6 +95,19 @@
                             <button class="ez-button" type="submit">Crear equipo</button>
                         </form>
                     </div>
+                    <p>
+                        Todo <code>&lt;form&gt;</code> mide como mucho <code>42rem</code> de ancho,
+                        para que los campos no se estiren de lado a lado en una pantalla ancha. Es
+                        una regla sin clase, así que vale para todos; si un formulario necesita
+                        otro ancho, se cambia con una regla en la hoja propia (ver
+                        <a href="personalizacion.html#component">Personalización</a>):
+                    </p>
+                    <template class="doc-example">
+                        /* css/app.css: el formulario de búsqueda, sin ancho máximo */
+                        .search-form {
+                            max-width: none;
+                        }
+                    </template>
                 </section>
 
                 <section class="doc-section" id="disabled">
