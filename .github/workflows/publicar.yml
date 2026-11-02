@@ -7,13 +7,14 @@
 # (ez-ui-X.Y.Z.zip), para descargarla sin acceso al repositorio, que es privado. Cada
 # ZIP se hace con git archive desde su etiqueta, así que sale igual en cada
 # publicación aunque cambie main; solo se publican las etiquetas cuyo commit pasó las
-# pruebas (✔ de ez-ui-tests).
+# pruebas (✔ de ez-ui-tests). Una etiqueta nueva no lanza este flujo: el entorno
+# github-pages solo admite despliegues desde main. Se publica lanzándolo a mano sobre
+# main (Run workflow) o con el siguiente push a main (ver docs/README.md, Versiones).
 name: Publicar
 
 on:
   push:
     branches: [main]
-    tags: ["v*"]
   workflow_dispatch:
 
 permissions:

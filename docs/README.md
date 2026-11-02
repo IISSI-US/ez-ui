@@ -54,9 +54,11 @@ GitHub Pages publica con un flujo de Actions (`.github/workflows/publicar.yml`):
 
 Los alumnos descargan la biblioteca de la web, porque el repositorio es privado: `publicar.yml` pone en `/downloads/` un `ez-ui-X.Y.Z.zip` por cada etiqueta `vX.Y.Z`, con una carpeta `ez-ui/` (`css/`, `js/`, `fonts/` con sus licencias OFL, y `VERSION.txt`). Para publicar una versión:
 
-1. Esperar al ✔ de las pruebas en el commit de `main` que se va a publicar. Si una etiqueta apunta a un commit sin ✔, su ZIP no se publica (aparece un aviso en Actions).
-2. Crear la etiqueta y subirla: `git tag v1.1.0 && git push origin v1.1.0`. Publica la web con el ZIP nuevo.
-3. Cambiar el enlace de descarga de `index.html` a la versión nueva.
+1. Cambiar el enlace de descarga de `index.html` a la versión nueva y subirlo a `main`. Las pruebas solo avisan de que falta la etiqueta.
+2. Esperar al ✔ de las pruebas en ese commit. Si una etiqueta apunta a un commit sin ✔, su ZIP no se publica (aparece un aviso en Actions).
+3. Crear la etiqueta en ese commit y subirla: `git tag -a v1.1.0 -m "ez-ui 1.1.0" && git push origin v1.1.0`.
+4. Publicar: `gh workflow run publicar.yml --ref main` (o Actions → Publicar → Run workflow). La etiqueta no lo lanza sola, porque el entorno `github-pages` solo admite despliegues desde `main`; también lo publica el siguiente push a `main`.
+5. Comprobar la descarga sin sesión de GitHub: `https://iissi-us.github.io/ez-ui/downloads/ez-ui-1.1.0.zip`.
 
 Cada publicación vuelve a hacer todos los ZIP desde sus etiquetas con `git archive`, que da siempre el mismo fichero: los cambios de `main` no alteran una versión ya publicada, y todas se conservan mientras exista su etiqueta. Por eso una etiqueta publicada no se mueve ni se borra (los laboratorios enlazan su versión): un cambio, por pequeño que sea, es una versión nueva. Versiones: X cuando algo deja de funcionar igual, Y cuando se añade algo, Z para correcciones.
 
