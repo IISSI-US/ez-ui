@@ -181,8 +181,16 @@ html {
   max-width: 100%;
 }
 
-/* El ejemplo de Personalización: solo las tarjetas con la clase del proyecto
-   player-card, centradas (como haría la hoja propia de un proyecto) */
+/* El ejemplo de Personalización: las tarjetas con la clase del proyecto player-card,
+   como las personalizaría la hoja propia de un proyecto */
+.player-card {
+  border-top: 4px solid var(--ez-primary);
+}
+
+.player-card .ez-card__image {
+  aspect-ratio: 1;
+}
+
 .player-card .ez-card__body {
   text-align: center;
 }

@@ -174,78 +174,6 @@
                     </template>
                 </section>
 
-                <section class="doc-section" id="component">
-                    <h2>Todos los componentes o solo algunos</h2>
-                    <p>
-                        Lo que no es una variable, como centrar el texto de una tarjeta, se cambia
-                        con una regla. Según el selector, cambia en todas las tarjetas o solo en
-                        algunas. Aquí, la de la derecha lleva además la clase
-                        <code>player-card</code>:
-                    </p>
-                    <div class="doc-example">
-                        <!-- Sin personalizar: el estilo de ez-ui -->
-                        <article class="ez-card">
-                            <div class="ez-card__body">
-                                <h3>Jornada 11</h3>
-                                <p>La ETSII sigue líder.</p>
-                            </div>
-                        </article>
-                        <!-- player-card, clase del proyecto: app.css centra su texto -->
-                        <article class="ez-card player-card">
-                            <div class="ez-card__body">
-                                <h3>Mario Gil</h3>
-                                <p>Delantero de la ETSII.</p>
-                            </div>
-                        </article>
-                    </div>
-                    <p>
-                        Con el mismo selector que <span class="doc-brand"><span class="doc-brand-mark">ez</span>-ui</span>, cambian <strong>todas</strong> las tarjetas
-                        (la regla gana por ir después). Con la clase del proyecto delante, solo las
-                        <strong>de jugadores</strong> (gana por ser más específica), como en el
-                        ejemplo:
-                    </p>
-                    <template class="doc-example">
-                        /* css/app.css: todas las tarjetas */
-                        .ez-card__body {
-                            text-align: center;
-                        }
-
-                        /* css/app.css: solo las tarjetas con la clase player-card */
-                        .player-card .ez-card__body {
-                            text-align: center;
-                        }
-                    </template>
-                    <p>
-                        Si lo mismo hace falta en elementos distintos, mejor una clase propia que
-                        se añade donde se necesite, como <code>.app-centered</code>. El atributo
-                        <code>style</code> también lo centra, y es lo más rápido para probar un
-                        cambio en el navegador, pero no se puede reutilizar y queda mezclado con
-                        el HTML.
-                    </p>
-
-                    <h3>La barra de navegación fija</h3>
-                    <p>
-                        <span class="doc-brand"><span class="doc-brand-mark">ez</span>-ui</span> no fija la barra de navegación arriba, porque no todas las
-                        aplicaciones lo quieren: en un móvil ocupa parte de la pantalla. Una regla
-                        en la hoja propia la deja fija al desplazar la página, como en esta web:
-                    </p>
-                    <template class="doc-example">
-                        /* css/app.css: la barra, fija arriba al desplazar la página */
-                        .ez-navbar {
-                            position: sticky;
-                            top: 0;
-                            z-index: 1;
-                        }
-                    </template>
-                    <p>
-                        <code>sticky</code> deja la barra en su sitio hasta que llega al borde de
-                        arriba (<code>top: 0</code>), y ahí se queda; <code>z-index</code> la pone
-                        por encima del contenido que pasa por debajo. Se queda fija mientras se
-                        ve el elemento que la contiene, así que la barra va directamente en el
-                        <code>&lt;body&gt;</code>.
-                    </p>
-                </section>
-
                 <section class="doc-section" id="fonts">
                     <h2>Fuentes</h2>
                     <p>
@@ -326,6 +254,103 @@
                     </p>
                 </section>
 
+                <section class="doc-section" id="component">
+                    <h2>Todos los componentes o solo algunos</h2>
+                    <p>
+                        Lo que no es una variable se cambia con una regla. Según su selector, la
+                        regla cambia todas las tarjetas o solo algunas. Aquí, la tarjeta del
+                        jugador lleva además la clase del proyecto <code>player-card</code>, y la
+                        del partido, no:
+                    </p>
+                    <div class="doc-example doc-example--column">
+                        <!-- ez-gallery: las tarjetas, en columnas y con el mismo alto -->
+                        <div class="ez-gallery">
+                            <!-- Sin player-card: el estilo de ez-ui -->
+                            <article class="ez-card">
+                                <div class="ez-card__body">
+                                    <h3>Jornada 11</h3>
+                                    <p>La ETSII gana 3-1 a Medicina y sigue líder.</p>
+                                </div>
+                                <footer class="ez-card__footer">
+                                    <span>Pabellón de la ETSII</span>
+                                    <strong>3 - 1</strong>
+                                </footer>
+                            </article>
+                            <!-- player-card, clase del proyecto: la personaliza app.css -->
+                            <article class="ez-card player-card">
+                                <img class="ez-card__image"
+                                     src="images/soccer/shirt-hugo-serrano.svg"
+                                     alt="Camiseta negra con el dorsal 10">
+                                <div class="ez-card__body">
+                                    <h3>Hugo Serrano <span class="ez-badge">MC</span></h3>
+                                    <p>Derecho · 61 puntos</p>
+                                </div>
+                                <footer class="ez-card__footer">
+                                    <strong>1.200.000 €</strong>
+                                    <button class="ez-button" type="button">Pujar</button>
+                                </footer>
+                            </article>
+                        </div>
+                    </div>
+                    <p>
+                        Las tres reglas de <code>app.css</code> empiezan por
+                        <code>.player-card</code>, así que solo cambian las tarjetas que llevan esa
+                        clase, como la del jugador:
+                    </p>
+                    <template class="doc-example">
+                        /* css/app.css: las tarjetas de jugadores */
+
+                        /* Un filete arriba, con el color principal: cambia con el tema */
+                        .player-card {
+                            border-top: 4px solid var(--ez-primary);
+                        }
+
+                        /* La imagen, cuadrada: ez-ui la hace 4:3, pero esta regla es más
+                           específica que la suya (.ez-card__image) y gana */
+                        .player-card .ez-card__image {
+                            aspect-ratio: 1;
+                        }
+
+                        /* El texto, centrado: ez-ui no lo alinea, así que no hay nada que ganar */
+                        .player-card .ez-card__body {
+                            text-align: center;
+                        }
+                    </template>
+                    <p>
+                        Sin <code>.player-card</code> delante, con el mismo selector que <span class="doc-brand"><span class="doc-brand-mark">ez</span>-ui</span>
+                        (<code>.ez-card__body</code>), la regla cambiaría <strong>todas</strong> las
+                        tarjetas, también la del partido: ganaría a la de <span class="doc-brand"><span class="doc-brand-mark">ez</span>-ui</span> por ir después.
+                    </p>
+                    <p>
+                        Si lo mismo hace falta en elementos distintos, mejor una clase propia que
+                        se añade donde se necesite, como <code>.app-centered</code>. El atributo
+                        <code>style</code> también lo cambia, y es lo más rápido para probar en el
+                        navegador, pero no se puede reutilizar y queda mezclado con el HTML.
+                    </p>
+
+                    <h3>La barra de navegación fija</h3>
+                    <p>
+                        <span class="doc-brand"><span class="doc-brand-mark">ez</span>-ui</span> no fija la barra de navegación arriba, porque no todas las
+                        aplicaciones lo quieren: en un móvil ocupa parte de la pantalla. Una regla
+                        en la hoja propia la deja fija al desplazar la página, como en esta web:
+                    </p>
+                    <template class="doc-example">
+                        /* css/app.css: la barra, fija arriba al desplazar la página */
+                        .ez-navbar {
+                            position: sticky;
+                            top: 0;
+                            z-index: 1;
+                        }
+                    </template>
+                    <p>
+                        <code>sticky</code> deja la barra en su sitio hasta que llega al borde de
+                        arriba (<code>top: 0</code>), y ahí se queda; <code>z-index</code> la pone
+                        por encima del contenido que pasa por debajo. Se queda fija mientras se
+                        ve el elemento que la contiene, así que la barra va directamente en el
+                        <code>&lt;body&gt;</code>.
+                    </p>
+                </section>
+
                 <section class="doc-section" id="icons">
                     <h2>Iconos</h2>
                     <p>
@@ -400,8 +425,8 @@
                     <li><a href="#cascade">La hoja propia</a></li>
                     <li><a href="#variables">Variables</a></li>
                     <li><a href="#theme">Tema oscuro</a></li>
-                    <li><a href="#component">Todos o solo algunos</a></li>
                     <li><a href="#fonts">Fuentes</a></li>
+                    <li><a href="#component">Todos o solo algunos</a></li>
                     <li><a href="#icons">Iconos</a></li>
                 </ul>
             </nav>
