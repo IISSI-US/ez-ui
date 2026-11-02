@@ -1,10 +1,10 @@
 /**
  * Muestra un mensaje y devuelve una función para cerrarlo.
- * type: "info", "success" o "error". duration: milisegundos hasta que se cierra solo
+ * type: "info", "success", "warning" o "error". duration: milisegundos hasta que se cierra solo
  * (0, nunca). Los parámetros que no se pasan toman su valor por defecto.
  */
 export function ezToast(message, type = "info", duration = 4000) {
-  const allowedTypes = ["info", "success", "error"];
+  const allowedTypes = ["info", "success", "warning", "error"];
   if (!allowedTypes.includes(type)) {
     throw new TypeError("Tipo de toast desconocido");
   }

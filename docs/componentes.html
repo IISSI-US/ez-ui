@@ -112,15 +112,18 @@
                     <p>
                         Un mensaje que se queda en la página hasta que cambia: un error al cargar
                         los datos, los errores de un formulario. El borde izquierdo y el fondo
-                        indican si es información, éxito o error. Los errores llevan
+                        indican si es información, éxito, aviso o error. Los errores llevan
                         <code>role="alert"</code> para que los lectores de pantalla los anuncien
                         en cuanto aparecen.
                     </p>
                     <div class="doc-example doc-example--column">
-                        <!-- ez-alert: información; las variantes, éxito y error -->
+                        <!-- ez-alert: información; las variantes, éxito, aviso y error -->
                         <div class="ez-alert">El mercado de fichajes cierra el viernes a las 21:00.</div>
                         <div class="ez-alert ez-alert--success">
                             Tu alineación está confirmada para la jornada 11.
+                        </div>
+                        <div class="ez-alert ez-alert--warning">
+                            Te queda un cambio de alineación esta jornada.
                         </div>
                         <!-- role="alert": los lectores de pantalla la anuncian -->
                         <div class="ez-alert ez-alert--error"

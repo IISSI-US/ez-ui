@@ -35,6 +35,15 @@
   overflow-x: auto;
 }
 
+/* En una pantalla estrecha, las celdas no parten su texto: la tabla conserva su ancho
+   y se desplaza, en lugar de estrecharse con cada nombre en varias líneas. */
+@media (max-width: 48rem) {
+  .ez-scroll th,
+  .ez-scroll td {
+    white-space: nowrap;
+  }
+}
+
 /* Grid crea tantas columnas como quepan. Cada columna mide al menos 17rem,
    salvo en pantallas más estrechas, y comparte el espacio restante con las demás. */
 .ez-gallery {

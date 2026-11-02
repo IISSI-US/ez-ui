@@ -11,6 +11,10 @@ function main() {
     ezToast("Puja registrada.", "success");
   });
 
+  document.getElementById("toast-warning").addEventListener("click", function () {
+    ezToast("El mercado cierra en una hora.", "warning");
+  });
+
   // Con duración 0, la notificación sigue abierta hasta que se cierra a mano
   document.getElementById("toast-error").addEventListener("click", function () {
     ezToast("No se ha podido registrar la puja.", "error", 0);

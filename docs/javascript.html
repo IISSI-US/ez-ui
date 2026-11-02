@@ -152,13 +152,19 @@
                                 type="button">
                             Éxito
                         </button>
+                        <button id="toast-warning"
+                                class="ez-button ez-button--secondary"
+                                type="button">
+                            Aviso
+                        </button>
                         <button id="toast-error" class="ez-button ez-button--danger" type="button">Error</button>
                     </div>
                     <p>
                         <code>ezToast(mensaje, tipo, duración)</code> crea la notificación con el DOM
                         y la añade a la página. El tipo es <code>"info"</code>,
-                        <code>"success"</code> o <code>"error"</code>, y la duración, los
-                        milisegundos que tarda en cerrarse (con <code>0</code>, no se cierra sola).
+                        <code>"success"</code>, <code>"warning"</code> o <code>"error"</code>, y la
+                        duración, los milisegundos que tarda en cerrarse (con <code>0</code>, no se
+                        cierra sola).
                         Los dos son parámetros con valor por defecto (<code>"info"</code> y
                         <code>4000</code>): si no se pasan, toman ese valor.
                     </p>
@@ -169,6 +175,8 @@
                         ezToast("El mercado cierra el viernes a las 21:00.");
                         // Éxito
                         ezToast("Puja registrada.", "success");
+                        // Aviso
+                        ezToast("El mercado cierra en una hora.", "warning");
                         // Error, que no se cierra sola (0)
                         ezToast("No se ha podido registrar la puja.", "error", 0);
                     </template>

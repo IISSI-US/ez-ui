@@ -229,6 +229,11 @@
   border-left-color: var(--ez-success);
 }
 
+.ez-alert--warning {
+  background: var(--ez-warning-bg);
+  border-left-color: var(--ez-warning);
+}
+
 /* Etiqueta: una palabra o abreviatura destacada dentro del texto, como la posición
    de un jugador («DF») o su estado. inline-block permite darle relleno sin
    romper la línea; el radio grande la deja con los extremos redondeados. */

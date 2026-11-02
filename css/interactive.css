@@ -77,6 +77,10 @@
   border-left-color: var(--ez-success);
 }
 
+.ez-toast--warning {
+  border-left-color: var(--ez-warning);
+}
+
 .ez-toast--error {
   border-left-color: var(--ez-danger);
 }
