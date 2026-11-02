@@ -50,6 +50,16 @@ Las pruebas de la biblioteca y de la web están en un repositorio privado aparte
 
 GitHub Pages publica con un flujo de Actions (`.github/workflows/publicar.yml`): en cada push a `main` monta el sitio con `docs/` en la raíz (sin `serve.js` ni este README) y la biblioteca en `/ez-ui/`, y lo despliega. El repositorio es privado, pero la web es pública: **un push a `main` actualiza la web**. Las rutas son relativas para que funcione bajo `/ez-ui/`.
 
+## Versiones
+
+Los alumnos descargan la biblioteca de la web, porque el repositorio es privado: `publicar.yml` pone en `/downloads/` un `ez-ui-X.Y.Z.zip` por cada etiqueta `vX.Y.Z`, con una carpeta `ez-ui/` (`css/`, `js/`, `fonts/` con sus licencias OFL, `icons.svg`, `LICENSE-lucide.txt` y `VERSION.txt`). Para publicar una versión:
+
+1. Esperar al ✔ de las pruebas en el commit de `main` que se va a publicar. Si una etiqueta apunta a un commit sin ✔, su ZIP no se publica (aparece un aviso en Actions).
+2. Crear la etiqueta y subirla: `git tag v1.1.0 && git push origin v1.1.0`. Publica la web con el ZIP nuevo.
+3. Cambiar el enlace de descarga de `primeros-pasos.html` a la versión nueva.
+
+Cada publicación vuelve a hacer todos los ZIP desde sus etiquetas con `git archive`, que da siempre el mismo fichero: los cambios de `main` no alteran una versión ya publicada, y todas se conservan mientras exista su etiqueta. Por eso una etiqueta publicada no se mueve ni se borra (los laboratorios enlazan su versión): un cambio, por pequeño que sea, es una versión nueva. Versiones: X cuando algo deja de funcionar igual, Y cuando se añade algo, Z para correcciones.
+
 ## Licencias
 
 Las de la biblioteca (fuentes e iconos) están en el [README de la biblioteca](../README.md). Las imágenes de los ejemplos son propias.

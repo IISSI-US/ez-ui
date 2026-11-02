@@ -35,7 +35,7 @@ docs/                 la web de documentación (no forma parte de la biblioteca;
 
 ## Uso
 
-La biblioteca son `css/`, `js/`, `fonts/`, `icons.svg` y `LICENSE-lucide.txt`: se copian a una carpeta `ez-ui/` del proyecto (sin `docs/`), y se enlaza la hoja principal en el `<head>` de cada vista:
+La biblioteca son `css/`, `js/`, `fonts/`, `icons.svg` y `LICENSE-lucide.txt`. Se descarga de la web como un ZIP por versión (https://iissi-us.github.io/ez-ui/downloads/ez-ui-X.Y.Z.zip, enlazado en Primeros pasos), con todo dentro de una carpeta `ez-ui/` y su versión en `ez-ui/VERSION.txt`. Esa carpeta se pone en la raíz del proyecto, sin modificarla, y se enlaza la hoja principal en el `<head>` de cada vista:
 
 ```html
 <link rel="stylesheet" href="ez-ui/css/ez-ui.css">
