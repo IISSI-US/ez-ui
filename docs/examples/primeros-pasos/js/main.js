@@ -7,7 +7,7 @@ function main() {
   // La barra ya está en el HTML: aquí solo se le añade el menú plegable
   ezNavbar(document.querySelector(".ez-navbar"));
 
-  // El botón de la luna y el sol cambia el tema y lo recuerda
+  // El botón de tema cambia el tema y lo recuerda
   ezThemeToggle(document.getElementById("theme-toggle"));
 }
 

@@ -17,7 +17,7 @@ css/
 ├── tokens.css        variables (colores, fuentes, espacios) y tema oscuro
 ├── base.css          elementos HTML, incluidas las tablas
 ├── layout.css        contenedor, dos columnas, desplazamiento y galería
-├── components.css    icono, navbar, tarjeta, avatar, botón, alerta y etiqueta
+├── components.css    navbar, tarjeta, avatar, botón, alerta y etiqueta
 ├── forms.css         controles de formulario y ayudas
 └── interactive.css   diálogo, botón de tema, notificación e indicador de carga
 js/
@@ -28,14 +28,12 @@ js/
 ├── toast.js          ezToast(mensaje, tipo, duración)
 └── loading.js        ezLoading(elemento, promesa)
 fonts/                Source Sans 3 y JetBrains Mono (WOFF2, licencia OFL)
-icons.svg             iconos de Lucide (licencia ISC)
-LICENSE-lucide.txt
 docs/                 la web de documentación (no forma parte de la biblioteca; ver docs/README.md)
 ```
 
 ## Uso
 
-La biblioteca son `css/`, `js/`, `fonts/`, `icons.svg` y `LICENSE-lucide.txt`. Se descarga de la web como un ZIP por versión (https://iissi-us.github.io/ez-ui/downloads/ez-ui-X.Y.Z.zip, enlazado en la página de inicio), con todo dentro de una carpeta `ez-ui/` y su versión en `ez-ui/VERSION.txt`. Esa carpeta se pone en la raíz del proyecto, sin modificarla, y se enlaza la hoja principal en el `<head>` de cada vista:
+La biblioteca son `css/`, `js/` y `fonts/`. Se descarga de la web como un ZIP por versión (https://iissi-us.github.io/ez-ui/downloads/ez-ui-X.Y.Z.zip, enlazado en la página de inicio), con todo dentro de una carpeta `ez-ui/` y su versión en `ez-ui/VERSION.txt`. Esa carpeta se pone en la raíz del proyecto, sin modificarla, y se enlaza la hoja principal en el `<head>` de cada vista:
 
 ```html
 <link rel="stylesheet" href="ez-ui/css/ez-ui.css">
@@ -45,14 +43,6 @@ Con el botón de tema, delante de la hoja, el script que aplica el tema guardado
 
 ```html
 <script src="ez-ui/js/theme-init.js"></script>
-```
-
-Los iconos, con `<use>` y su nombre:
-
-```html
-<svg class="ez-icon" aria-hidden="true">
-    <use href="ez-ui/icons.svg#pencil"></use>
-</svg>
 ```
 
 Los componentes con JavaScript son módulos que se importan donde se usen:
@@ -71,12 +61,13 @@ import { ezLoading } from "./ez-ui/js/loading.js";
 - Variables con el prefijo `--ez-` (`--ez-primary`, `--ez-space-4`). Cambiarlas cambia toda la biblioteca, también dentro de un elemento concreto.
 - Tema oscuro: `data-ez-theme="dark"` en `<html>`. Solo cambia los valores de las variables; el botón de tema (`ezThemeToggle`) lo pone y lo recuerda.
 - Para ampliar ez-ui en un proyecto, una hoja propia enlazada después de la biblioteca, que use sus variables y otro prefijo. La biblioteca no se modifica.
+- Sin iconos: cada aplicación elige los suyos (Font Awesome, Lucide…), y los componentes funcionan solo con texto. Cómo añadirlos, en Personalización.
 - Código en inglés; comentarios y textos en español.
 - Sin selectores que dependan de la ausencia de clases: un elemento tiene el estilo de un componente solo si lleva su clase.
 
 ## Licencias
 
-Las fuentes tienen licencia SIL Open Font License (`fonts/OFL-*.txt`), y los iconos, de [Lucide](https://lucide.dev), licencia ISC (`LICENSE-lucide.txt`).
+Las fuentes tienen licencia SIL Open Font License (`fonts/OFL-*.txt`).
 
 ## Pruebas y publicación
 

@@ -23,28 +23,19 @@
                 type="button"
                 aria-expanded="false"
                 aria-controls="main-links">
-          <svg class="ez-icon" aria-hidden="true">
-            <use href="ez-ui/icons.svg#menu"></use>
-          </svg>
           Menú
         </button>
         <ul id="main-links" class="ez-navbar__links">
           <li><a href="index.html" aria-current="page">Inicio</a></li>
           <li><a href="#">Clasificación</a></li>
           <li><a href="#">Mercado</a></li>
-          <!-- El botón de tema: la luna o el sol, según el tema -->
+          <!-- El botón de tema: cada parte se ve con uno de los temas -->
           <li>
             <button id="theme-toggle"
                     class="ez-button ez-button--secondary ez-theme-toggle"
-                    type="button"
-                    aria-label="Cambiar de tema"
-                    title="Cambiar de tema">
-              <svg class="ez-icon ez-theme-toggle__moon" aria-hidden="true">
-                <use href="ez-ui/icons.svg#moon"></use>
-              </svg>
-              <svg class="ez-icon ez-theme-toggle__sun" aria-hidden="true">
-                <use href="ez-ui/icons.svg#sun"></use>
-              </svg>
+                    type="button">
+              <span class="ez-theme-toggle__to-dark">Tema oscuro</span>
+              <span class="ez-theme-toggle__to-light">Tema claro</span>
             </button>
           </li>
         </ul>

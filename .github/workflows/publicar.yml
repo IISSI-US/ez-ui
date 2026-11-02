@@ -46,7 +46,7 @@ jobs:
           mkdir -p _site/ez-ui
           cp -r docs/. _site/
           rm _site/README.md _site/serve.js
-          cp -r css js fonts icons.svg LICENSE-lucide.txt _site/ez-ui/
+          cp -r css js fonts _site/ez-ui/
           # El proyecto de ejemplo de la página de inicio lleva su copia, como un proyecto
           cp -r _site/ez-ui _site/examples/primeros-pasos/
 
@@ -65,7 +65,7 @@ jobs:
             git archive --format=zip --prefix=ez-ui/ \
               --add-virtual-file="ez-ui/VERSION.txt:$version"$'\n' \
               -o "_site/downloads/ez-ui-$version.zip" \
-              "$tag" css js fonts icons.svg LICENSE-lucide.txt
+              "$tag" css js fonts
             echo "Publicado ez-ui-$version.zip"
           done
 

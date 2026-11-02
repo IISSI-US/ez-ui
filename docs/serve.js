@@ -19,7 +19,7 @@ const DOCS = __dirname;
 const LIBRARY = path.join(__dirname, "..");
 
 // Lo que es la biblioteca en la raíz del repositorio (lo demás no se sirve en /ez-ui/)
-const LIBRARY_FILES = ["css", "js", "fonts", "icons.svg", "LICENSE-lucide.txt"];
+const LIBRARY_FILES = ["css", "js", "fonts"];
 
 const TYPES = {
   ".html": "text/html; charset=utf-8",
@@ -43,7 +43,14 @@ function resolve(urlPath) {
 }
 
 const server = http.createServer((request, response) => {
-  const urlPath = decodeURIComponent(new URL(request.url, "http://localhost").pathname);
+  // Una ruta mal formada (//, %zz) no es de ningún fichero: se responde sin caerse
+  let urlPath;
+  try {
+    urlPath = decodeURIComponent(new URL(request.url, "http://localhost").pathname);
+  } catch {
+    response.writeHead(400, { "Content-Type": "text/plain; charset=utf-8" }).end("Ruta no válida");
+    return;
+  }
   let file = resolve(urlPath);
 
   if (file === null || !file.startsWith(LIBRARY)) {

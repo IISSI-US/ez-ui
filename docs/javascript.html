@@ -61,9 +61,6 @@
                                         type="button"
                                         aria-expanded="false"
                                         aria-controls="main-links">
-                                    <svg class="ez-icon" aria-hidden="true">
-                                        <use href="ez-ui/icons.svg#menu"></use>
-                                    </svg>
                                     Menú
                                 </button>
                                 <!-- Los enlaces, que el botón muestra u oculta -->
@@ -91,31 +88,28 @@
                 <section class="doc-section" id="theme">
                     <h2>Tema claro y oscuro</h2>
                     <p>
-                        Un botón con un icono que cambia la página entre el tema claro y el
-                        oscuro: muestra la luna con el tema claro y el sol con el oscuro. Pruébalo:
-                        cambia toda esta web, como el de la cabecera.
+                        Un botón que cambia la página entre el tema claro y el oscuro. Tiene dos
+                        partes, y el CSS muestra una según el tema: <code>ez-theme-toggle__to-dark</code>
+                        con el claro y <code>ez-theme-toggle__to-light</code> con el oscuro. Dentro
+                        de cada una va texto, un icono o los dos (ver
+                        <a href="personalizacion.html#icons">Personalización</a>). Pruébalo: cambia
+                        toda esta web, como el de la cabecera.
                     </p>
                     <div class="doc-example">
-                        <!-- ez-theme-toggle: el CSS muestra la luna o el sol según el tema -->
-                        <!-- aria-label: el nombre del botón, que solo tiene iconos -->
                         <button id="theme-button"
                                 class="ez-button ez-button--secondary ez-theme-toggle"
-                                type="button"
-                                aria-label="Cambiar de tema"
-                                title="Cambiar de tema">
-                            <svg class="ez-icon ez-theme-toggle__moon" aria-hidden="true">
-                                <use href="ez-ui/icons.svg#moon"></use>
-                            </svg>
-                            <svg class="ez-icon ez-theme-toggle__sun" aria-hidden="true">
-                                <use href="ez-ui/icons.svg#sun"></use>
-                            </svg>
+                                type="button">
+                            <!-- Se ve con el tema claro -->
+                            <span class="ez-theme-toggle__to-dark">Tema oscuro</span>
+                            <!-- Se ve con el tema oscuro -->
+                            <span class="ez-theme-toggle__to-light">Tema claro</span>
                         </button>
                     </div>
                     <p>
                         <code>ezThemeToggle(botón)</code> conecta el botón: al pulsarlo, cambia
                         <code>data-ez-theme</code> en <code>&lt;html&gt;</code> y guarda la
                         elección en <code>localStorage</code>, que el navegador conserva al cambiar
-                        de página y al cerrarlo. El icono lo elige el CSS, según el tema.
+                        de página y al cerrarlo. Qué parte se ve lo elige el CSS, según el tema.
                     </p>
                     <template class="doc-example">
                         import { ezThemeToggle } from "./ez-ui/js/theme.js";

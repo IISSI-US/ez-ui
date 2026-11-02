@@ -4,7 +4,7 @@
         <title>ez-ui · Personalización</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="Convenciones de ez-ui y cómo adaptar sus estilos, su tema oscuro y sus fuentes sin modificarla">
+        <meta name="description" content="Convenciones de ez-ui y cómo adaptar sus estilos, su tema oscuro, sus fuentes y sus iconos sin modificarla">
         <script src="ez-ui/js/theme-init.js"></script>
         <link rel="stylesheet" href="ez-ui/css/ez-ui.css">
         <link rel="stylesheet" href="css/site.css">
@@ -324,63 +324,85 @@
                 </section>
 
                 <section class="doc-section" id="icons">
-                    <h2>Iconos propios</h2>
+                    <h2>Iconos</h2>
                     <p>
-                        <span class="doc-brand"><span class="doc-brand-mark">ez</span>-ui</span> solo trae los iconos más comunes de una interfaz (ver
-                        <a href="componentes.html#icons">Componentes</a>). Los demás se buscan en
-                        <a href="https://lucide.dev">lucide.dev</a>, que tiene más de mil con el
-                        mismo estilo; en la página de cada uno, «Copy SVG» copia su código.
-                    </p>
-                    <p>
-                        Para un icono que aparece una sola vez, se pega ese código en el HTML y se
-                        cambian su <code>class</code>, su <code>width</code> y su
-                        <code>height</code> por <code>class="ez-icon"</code>, que le da el tamaño
-                        del texto. <code>stroke="currentColor"</code>, que ya trae, le da su color:
+                        <span class="doc-brand"><span class="doc-brand-mark">ez</span>-ui</span> no trae iconos: cada aplicación elige los suyos, y sus componentes
+                        funcionan solo con texto. Lo más sencillo es
+                        <a href="https://fontawesome.com/icons">Font Awesome</a>, que se enlaza
+                        desde un CDN (un servidor público de ficheros), en el
+                        <code>&lt;head&gt;</code>, y se usa con una etiqueta y sus clases:
                     </p>
                     <template class="doc-example">
-                        <!-- El SVG copiado de lucide.dev, con la clase ez-icon -->
-                        <svg class="ez-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none"
-                             stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                             stroke-linejoin="round">
-                            <!-- Las líneas del icono: path, circle… -->
-                        </svg>
+                        <!-- Font Awesome, desde un CDN: necesita conexión a internet -->
+                        <link rel="stylesheet"
+                              href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+                    </template>
+                    <template class="doc-example">
+                        <!-- aria-hidden: el texto de al lado ya dice lo mismo -->
+                        <button class="ez-button" type="button">
+                            <i class="fa-solid fa-plus" aria-hidden="true"></i>
+                            Pujar
+                        </button>
+
+                        <!-- Solo el icono: aria-label da nombre al botón -->
+                        <button class="ez-button ez-button--secondary"
+                                type="button"
+                                aria-label="Editar">
+                            <i class="fa-solid fa-pen" aria-hidden="true"></i>
+                        </button>
                     </template>
                     <p>
-                        Si un icono se repite, mejor un <code>icons.svg</code> propio en la raíz
-                        del proyecto, con el mismo formato que el de <span class="doc-brand"><span class="doc-brand-mark">ez</span>-ui</span>: cada icono es un
-                        <code>&lt;symbol&gt;</code> con su nombre en el <code>id</code>, y dentro,
-                        las líneas del icono copiado.
+                        Los nombres de cada icono (<code>fa-plus</code>, <code>fa-pen</code>) están
+                        en su página. Un icono toma el tamaño y el color del texto que lo rodea,
+                        también dentro de un botón o con el tema oscuro.
                     </p>
-                    <template class="doc-example" data-code='<!-- icons.svg del proyecto: un symbol por icono -->
-<svg xmlns="http://www.w3.org/2000/svg">
-    <symbol id="trophy" viewBox="0 0 24 24">
-        <!-- Los atributos del svg de Lucide y sus líneas -->
-        <g fill="none" stroke="currentColor" stroke-width="2"
-           stroke-linecap="round" stroke-linejoin="round">
-            <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6" />
-            <!-- … -->
-        </g>
-    </symbol>
-</svg>'></template>
                     <p>
-                        Se usa igual que los de <span class="doc-brand"><span class="doc-brand-mark">ez</span>-ui</span>, pero con el fichero del proyecto. Esta web lo
-                        hace así:
+                        Un lector de pantalla lee la página en voz alta a quien no la ve. Un icono
+                        junto a un texto no le aporta nada, así que lleva
+                        <code>aria-hidden="true"</code> para que lo salte. Un botón que solo tiene
+                        el icono necesita un nombre, en <code>aria-label</code>.
                     </p>
-                    <div class="doc-example">
-                        <!-- icons.svg, del proyecto; no ez-ui/icons.svg -->
-                        <span>
-                            <svg class="ez-icon" aria-hidden="true">
-                                <use href="icons.svg#trophy"></use>
-                            </svg>
-                            Campeón: ETSII
-                        </span>
-                        <span>
-                            <svg class="ez-icon" aria-hidden="true">
-                                <use href="icons.svg#shirt"></use>
-                            </svg>
-                            Dorsal 9
-                        </span>
-                    </div>
+
+                    <h3>El botón de tema con iconos</h3>
+                    <p>
+                        Las dos partes del <a href="javascript.html#theme">botón de tema</a> pueden
+                        llevar un icono en lugar del texto. Como el botón se queda sin texto, su
+                        nombre va en <code>aria-label</code>:
+                    </p>
+                    <template class="doc-example">
+                        <button id="theme-toggle"
+                                class="ez-button ez-button--secondary ez-theme-toggle"
+                                type="button"
+                                aria-label="Cambiar de tema">
+                            <!-- La luna, con el tema claro; el sol, con el oscuro -->
+                            <i class="fa-solid fa-moon ez-theme-toggle__to-dark"
+                               aria-hidden="true"></i>
+                            <i class="fa-solid fa-sun ez-theme-toggle__to-light"
+                               aria-hidden="true"></i>
+                        </button>
+                    </template>
+
+                    <h3>Otros iconos</h3>
+                    <p>
+                        Sirve cualquier otra colección. Esta web usa iconos SVG de
+                        <a href="https://lucide.dev">Lucide</a>, sin CDN: los guarda en su propio
+                        <code>icons.svg</code>, cada uno en un <code>&lt;symbol&gt;</code> con su
+                        nombre, y les da el tamaño del texto con una clase propia:
+                    </p>
+                    <template class="doc-example">
+                        <!-- El icono trophy del icons.svg de la web -->
+                        <svg class="doc-icon" aria-hidden="true">
+                            <use href="icons.svg#trophy"></use>
+                        </svg>
+                    </template>
+                    <template class="doc-example">
+                        /* css/site.css: del tamaño del texto (el color, de currentColor) */
+                        .doc-icon {
+                            width: 1.2em;
+                            height: 1.2em;
+                            vertical-align: -.2em;
+                        }
+                    </template>
                 </section>
             </main>
 
@@ -393,7 +415,7 @@
                     <li><a href="#theme">Tema oscuro</a></li>
                     <li><a href="#component">Todos o solo algunos</a></li>
                     <li><a href="#fonts">Fuentes</a></li>
-                    <li><a href="#icons">Iconos propios</a></li>
+                    <li><a href="#icons">Iconos</a></li>
                 </ul>
             </nav>
         </div>

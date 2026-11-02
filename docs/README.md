@@ -12,7 +12,7 @@ js/                                   controladores, renderizador de ejemplos y 
 examples/                             ejemplos que necesitan una página aparte;
                                       primeros-pasos/, un proyecto completo
 images/soccer/                        imágenes SVG propias de los ejemplos
-icons.svg                             iconos propios de la web, que no están en ez-ui
+icons.svg, LICENSE-lucide.txt         iconos de la web, de Lucide (ez-ui no trae iconos)
 favicon.svg
 serve.js                              servidor local (no se publica)
 README.md                             este fichero (no se publica)
@@ -53,7 +53,7 @@ GitHub Pages publica con un flujo de Actions (`.github/workflows/publicar.yml`):
 
 ## Versiones
 
-Los alumnos descargan la biblioteca de la web, porque el repositorio es privado: `publicar.yml` pone en `/downloads/` un `ez-ui-X.Y.Z.zip` por cada etiqueta `vX.Y.Z`, con una carpeta `ez-ui/` (`css/`, `js/`, `fonts/` con sus licencias OFL, `icons.svg`, `LICENSE-lucide.txt` y `VERSION.txt`). Para publicar una versión:
+Los alumnos descargan la biblioteca de la web, porque el repositorio es privado: `publicar.yml` pone en `/downloads/` un `ez-ui-X.Y.Z.zip` por cada etiqueta `vX.Y.Z`, con una carpeta `ez-ui/` (`css/`, `js/`, `fonts/` con sus licencias OFL, y `VERSION.txt`). Para publicar una versión:
 
 1. Esperar al ✔ de las pruebas en el commit de `main` que se va a publicar. Si una etiqueta apunta a un commit sin ✔, su ZIP no se publica (aparece un aviso en Actions).
 2. Crear la etiqueta y subirla: `git tag v1.1.0 && git push origin v1.1.0`. Publica la web con el ZIP nuevo.
@@ -63,4 +63,4 @@ Cada publicación vuelve a hacer todos los ZIP desde sus etiquetas con `git arch
 
 ## Licencias
 
-Las de la biblioteca (fuentes e iconos) están en el [README de la biblioteca](../README.md). Las imágenes de los ejemplos son propias.
+Las de la biblioteca (las fuentes) están en el [README de la biblioteca](../README.md). Los iconos de la web son de [Lucide](https://lucide.dev), licencia ISC (`LICENSE-lucide.txt`). Las imágenes de los ejemplos son propias.
