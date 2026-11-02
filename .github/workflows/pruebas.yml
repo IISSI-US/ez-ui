@@ -1,10 +1,12 @@
-# Lanza las pruebas de ez-ui (repositorio privado IISSI-US/ez-ui-tests) en cada push.
-# El resultado aparece en el commit (ez-ui-tests, ✔ o ✖). Necesita el secreto
-# EZ_UI_TESTS_TOKEN; sin él, no hace nada.
+# Lanza las pruebas de ez-ui (repositorio privado IISSI-US/ez-ui-tests) en cada push a
+# una rama. El resultado aparece en el commit (ez-ui-tests, ✔ o ✖). Necesita el secreto
+# EZ_UI_TESTS_TOKEN; sin él, no hace nada. Una etiqueta no las lanza: su commit ya se
+# probó al subirlo, y volver a probarlo dejaría su estado «en curso».
 name: Pruebas
 
 on:
   push:
+    branches: ["**"]
 
 jobs:
   avisar:
