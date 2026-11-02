@@ -1,0 +1,6 @@
+/* Estilos propios del proyecto, enlazados después de ez-ui. Usan sus variables
+   (var(--ez-…)) para que cambien con el tema oscuro. */
+.welcome {
+  color: var(--ez-muted);
+  font-size: 1.25rem;
+}

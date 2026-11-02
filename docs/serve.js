@@ -1,6 +1,7 @@
 // Sirve en local la web de ez-ui como la publica GitHub Pages: la web (docs/) en la raíz
 // y la biblioteca (la raíz del repositorio) en /ez-ui/, donde la enlazan las páginas,
-// igual que un proyecto. Sin caché, para ver cada cambio al recargar.
+// igual que un proyecto; también en el proyecto de ejemplo de Primeros pasos
+// (/examples/primeros-pasos/ez-ui/). Sin caché, para ver cada cambio al recargar.
 //
 //   node docs/serve.js [puerto]      (por defecto, 8081) y abrir http://127.0.0.1:8081/
 //
@@ -29,11 +30,12 @@ const TYPES = {
   ".txt": "text/plain; charset=utf-8",
 };
 
-// El fichero de una ruta: /ez-ui/… de la biblioteca y lo demás de la web. null si la
+// El fichero de una ruta: …/ez-ui/… de la biblioteca y lo demás de la web. null si la
 // ruta no es de ninguna de las dos
 function resolve(urlPath) {
-  if (urlPath.startsWith("/ez-ui/")) {
-    const relative = urlPath.slice("/ez-ui/".length);
+  const library = urlPath.indexOf("/ez-ui/");
+  if (library !== -1) {
+    const relative = urlPath.slice(library + "/ez-ui/".length);
     const first = relative.split("/")[0];
     return LIBRARY_FILES.includes(first) ? path.join(LIBRARY, relative) : null;
   }

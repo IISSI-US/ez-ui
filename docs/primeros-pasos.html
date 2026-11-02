@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <title>ez-ui · Primeros pasos</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="Primera página con ez-ui: barra de navegación con menú plegable y botón de tema">
+        <script src="ez-ui/js/theme-init.js"></script>
+        <link rel="stylesheet" href="ez-ui/css/ez-ui.css">
+        <link rel="stylesheet" href="css/site.css">
+        <link rel="icon" href="favicon.svg">
+        <script src="js/header.js" type="module"></script>
+        <script src="js/primeros-pasos.js" type="module"></script>
+    </head>
+
+    <body>
+        <div id="page-header"></div>
+
+        <div class="ez-container doc-layout">
+            <main>
+                <header class="doc-header">
+                    <h1>Primeros pasos</h1>
+                    <p class="doc-lead">
+                        Una página completa con ez-ui: barra de navegación con menú plegable, botón
+                        de tema claro y oscuro, y una tarjeta. Tres ficheros propios, sin
+                        instalar nada ni compilar.
+                    </p>
+                </header>
+
+                <section class="doc-section" id="download">
+                    <h2>1. Descarga ez-ui</h2>
+                    <p>
+                        <a class="ez-button" href="downloads/ez-ui-1.0.0.zip">Descargar ez-ui 1.0.0</a>
+                    </p>
+                    <p>
+                        El ZIP tiene una carpeta <code>ez-ui/</code>: se descomprime en la raíz del
+                        proyecto, junto a sus propias carpetas, y no se modifica. El proyecto queda
+                        así:
+                    </p>
+                    <template class="doc-example">
+                        mi-proyecto/
+                        ├── index.html
+                        ├── css/
+                        │   └── app.css        la hoja propia
+                        ├── js/
+                        │   └── main.js        el JavaScript propio
+                        └── ez-ui/             la biblioteca, tal cual
+                            ├── css/
+                            ├── js/
+                            ├── fonts/
+                            ├── icons.svg
+                            └── VERSION.txt
+                    </template>
+                    <p>
+                        <code>ez-ui/VERSION.txt</code> dice qué versión está instalada. Para
+                        actualizarla, se sustituye la carpeta <code>ez-ui/</code> entera por la de
+                        la versión nueva: lo propio está fuera y no se pierde.
+                    </p>
+                </section>
+
+                <section class="doc-section" id="html">
+                    <h2>2. La página</h2>
+                    <p>
+                        Este es el resultado, en un marco del ancho de un móvil. Prueba el botón
+                        «Menú» y el de la luna:
+                    </p>
+                    <div class="doc-demo">
+                        <iframe src="examples/primeros-pasos/index.html"
+                                title="Primera página con ez-ui"
+                                width="375"
+                                height="460"></iframe>
+                    </div>
+                    <p>
+                        Todo lo que se ve está en el HTML: la barra, sus enlaces y los dos botones.
+                        En el <code>&lt;head&gt;</code>, por este orden:
+                    </p>
+                    <ul>
+                        <li>
+                            <code>theme-init.js</code>, un script clásico que aplica el tema
+                            guardado antes de pintar la página (así no se ve un instante el tema
+                            claro);
+                        </li>
+                        <li>
+                            la hoja de ez-ui y, después, la propia, para que lo propio gane;
+                        </li>
+                        <li>
+                            <code>main.js</code>, con <code>type="module"</code> para poder usar
+                            <code>import</code>.
+                        </li>
+                    </ul>
+                    <p>
+                        El botón del menú dice con <code>aria-expanded</code> si el menú está
+                        abierto y con <code>aria-controls</code> qué lista abre (su
+                        <code>id</code>). El de tema solo tiene iconos, así que su nombre va en
+                        <code>aria-label</code>. Los dos llevan <code>type="button"</code>.
+                    </p>
+                    <div data-file="examples/primeros-pasos/index.html"></div>
+                </section>
+
+                <section class="doc-section" id="css">
+                    <h2>3. La hoja propia</h2>
+                    <p>
+                        Es opcional: con ez-ui la página ya tiene estilo. Lo que necesite el
+                        proyecto va aquí, con sus variables (<code>var(--ez-muted)</code>) para que
+                        cambie con el tema oscuro. Cómo cambiar colores, componentes o fuentes está
+                        en <a href="personalizacion.html">Personalización</a>; las fuentes ya van
+                        incluidas en <code>ez-ui/fonts/</code>.
+                    </p>
+                    <div data-file="examples/primeros-pasos/css/app.css"></div>
+                </section>
+
+                <section class="doc-section" id="javascript">
+                    <h2>4. El JavaScript</h2>
+                    <p>
+                        <code>main.js</code> importa los dos componentes y los conecta a sus
+                        elementos cuando la página está cargada. No crea la barra ni el botón, que
+                        ya están en el HTML: les añade lo que pasa al pulsarlos.
+                        <code>ezNavbar</code> abre y cierra el menú en pantallas estrechas, y
+                        <code>ezThemeToggle</code> cambia el tema y lo guarda para la próxima
+                        visita (ver <a href="javascript.html">Con JavaScript</a>).
+                    </p>
+                    <div data-file="examples/primeros-pasos/js/main.js"></div>
+                </section>
+
+                <section class="doc-section" id="run">
+                    <h2>5. Ábrela con un servidor</h2>
+                    <p>
+                        Los módulos (<code>import</code>) no funcionan abriendo el fichero con
+                        doble clic (<code>file://</code>): la página tiene que llegar de un
+                        servidor HTTP. En Visual Studio Code, con la extensión Live Server (botón
+                        «Go Live»), o desde la carpeta del proyecto:
+                    </p>
+                    <template class="doc-example">
+                        python3 -m http.server 8000
+                    </template>
+                    <p>y se abre http://localhost:8000/. Comprueba que:</p>
+                    <ul>
+                        <li>
+                            en una pantalla estrecha (o con la vista de móvil de las herramientas
+                            de desarrollo) aparece «Menú» y abre y cierra los enlaces; en una
+                            ancha, los enlaces se ven sin él;
+                        </li>
+                        <li>el botón de la luna cambia el tema, y al recargar se mantiene;</li>
+                        <li>
+                            la consola no muestra errores ni la pestaña Red ficheros con 404 (casi
+                            siempre, una ruta mal escrita).
+                        </li>
+                    </ul>
+                </section>
+
+                <section class="doc-section" id="learned">
+                    <h2>Qué has aprendido</h2>
+                    <ul>
+                        <li>
+                            El HTML da la estructura con elementos semánticos (<code>nav</code>,
+                            <code>main</code>, <code>article</code>); las clases
+                            <code>ez-</code>, el aspecto.
+                        </li>
+                        <li>La hoja propia va después de ez-ui y usa sus variables.</li>
+                        <li>
+                            Los módulos se importan con <code>import</code> y conectan eventos a
+                            elementos que ya existen.
+                        </li>
+                        <li>
+                            Los atributos ARIA dicen a los lectores de pantalla qué hace cada
+                            botón y en qué estado está.
+                        </li>
+                    </ul>
+                    <p>
+                        Con varias páginas, cada una repetiría la barra. Cómo compartirla entre
+                        ellas se verá en los laboratorios de la asignatura.
+                    </p>
+                </section>
+            </main>
+
+            <nav class="doc-toc" aria-label="En esta página">
+                <h2>En esta página</h2>
+                <ul>
+                    <li><a href="#download">Descarga ez-ui</a></li>
+                    <li><a href="#html">La página</a></li>
+                    <li><a href="#css">La hoja propia</a></li>
+                    <li><a href="#javascript">El JavaScript</a></li>
+                    <li><a href="#run">Ábrela con un servidor</a></li>
+                    <li><a href="#learned">Qué has aprendido</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <div id="page-footer"></div>
+    </body>
+</html>
