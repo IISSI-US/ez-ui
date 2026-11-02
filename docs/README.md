@@ -9,14 +9,15 @@ index.html y las demás *.html         las páginas, una por apartado del menú
 header.html, footer.html              cabecera y pie comunes
 css/site.css                          estilos propios de la web (prefijo doc-)
 js/                                   controladores, renderizador de ejemplos y utilidades
-examples/                             ejemplos que necesitan una página aparte
+examples/                             ejemplos que necesitan una página aparte;
+                                      primeros-pasos/, un proyecto completo
 images/soccer/                        imágenes SVG propias de los ejemplos
 favicon.svg
 serve.js                              servidor local (no se publica)
 README.md                             este fichero (no se publica)
 ```
 
-Las páginas enlazan la biblioteca como `ez-ui/css/ez-ui.css`, igual que un proyecto: al publicar (y en `serve.js`), la biblioteca se copia en `/ez-ui/` del sitio. La web dice qué ofrece ez-ui (cada pieza, con un ejemplo y su HTML), no cómo organizar una aplicación con ella, y usa ez-ui sin modificarla: lo suyo va en `css/site.css`, con el prefijo `doc-`.
+Las páginas enlazan la biblioteca como `ez-ui/css/ez-ui.css`, igual que un proyecto: al publicar (y en `serve.js`), la biblioteca se copia en `/ez-ui/` del sitio, y también en `examples/primeros-pasos/ez-ui/`, para que el proyecto de ejemplo sea igual que el de un alumno. Por eso la web no se ve bien con otro servidor, como Live Server: no tiene la biblioteca donde la buscan las páginas. La web dice qué ofrece ez-ui (cada pieza, con un ejemplo y su HTML), no cómo organizar una aplicación con ella, y usa ez-ui sin modificarla: lo suyo va en `css/site.css`, con el prefijo `doc-`.
 
 ## HTML semántico en los ejemplos
 
