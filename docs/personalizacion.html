@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ez-ui · Personalización de estilos</title>
+    <script src="ez-ui/js/theme-init.js"></script>
+    <link rel="stylesheet" href="ez-ui/css/ez-ui.css">
+    <link rel="stylesheet" href="css/site.css">
+    <link rel="icon" href="favicon.svg">
+    <script src="js/header.js" type="module"></script>
+</head>
+<body>
+<div id="page-header"></div>
+<div class="ez-container doc-layout">
+<main>
+<header class="doc-header">
+<h1>Personalización de estilos</h1>
+<p class="doc-lead">Adapta ez-ui con CSS nativo, sin editar los archivos de la biblioteca.</p>
+</header>
+<section class="doc-section" id="cascada">
+<h2>La cascada y el orden de carga</h2>
+<p>Enlaza primero la biblioteca y después tu hoja de aplicación. Si dos reglas tienen el mismo origen, importancia y especificidad, prevalece la última. Una regla más específica puede prevalecer aunque aparezca antes. Las propiedades heredables, como la tipografía, pasan de padres a hijos salvo que estos las redefinan.</p>
+<pre><code>&lt;link rel="stylesheet" href="ez-ui/css/ez-ui.css"&gt;
+&lt;link rel="stylesheet" href="css/app.css"&gt;</code></pre>
+<p>Evita <code>!important</code> para resolver conflictos normales: comprueba antes el selector y el orden de las reglas.</p>
+</section>
+<section class="doc-section" id="variables">
+<h2>Variables: personalización global</h2>
+<p>Las propiedades personalizadas <code>--ez-*</code> se definen en <code>css/tokens.css</code>. Cambiarlas en <code>:root</code> permite que los componentes reutilicen los nuevos valores mediante <code>var()</code>. Los colores del tema oscuro se definen en <code>:root[data-ez-theme="dark"]</code>; si personalizas colores para ambos temas, define también los valores oscuros.</p>
+<pre><code>/* css/app.css */
+:root {
+    --ez-primary: #245b91;
+    --ez-space-4: 1.25rem;
+}
+:root[data-ez-theme="dark"] {
+    --ez-primary: #8bc5ff;
+}</code></pre>
+<p>Una variable también puede definirse en un contenedor para limitar su alcance a sus descendientes.</p>
+</section>
+<section class="doc-section" id="tarjetas">
+<h2>Una tarjeta, tres alcances</h2>
+<p>En el HTML, <code>ez-card</code> aporta el estilo de la biblioteca y <code>player-card</code> identifica una tarjeta de la aplicación.</p>
+<pre><code>&lt;article class="ez-card player-card"&gt;
+    &lt;div class="ez-card__body"&gt;&lt;h3&gt;Juan Pérez&lt;/h3&gt;&lt;/div&gt;
+&lt;/article&gt;</code></pre>
+<article class="ez-card" style="max-width: 22rem"><div class="ez-card__body" style="text-align: center"><h3>Juan Pérez</h3></div></article>
+<p>Para centrar <strong>todas</strong> las tarjetas, usa <code>.ez-card__body { text-align: center; }</code> en <code>app.css</code>. Para centrar <strong>solo las tarjetas de jugadores</strong>, usa:</p>
+<pre><code>/* css/app.css */
+.player-card .ez-card__body {
+    text-align: center;
+}</code></pre>
+<p>Este selector es más específico que <code>.ez-card__body</code>. Un atributo <code>style="text-align: center"</code> sirve para una prueba puntual, pero dificulta reutilizar estilos. Para una utilidad propia reutilizable, crea una clase como <code>.app-text-center { text-align: center; }</code> y aplícala a los elementos que la necesiten.</p>
+</section>
+<section class="doc-section" id="fuentes">
+<h2>Tipografía y fuentes</h2>
+<p>ez-ui incluye archivos WOFF2 locales de <strong>Source Sans 3</strong> (normal y cursiva) para el texto y <strong>JetBrains Mono</strong> para el código. No depende de Google Fonts ni de conexiones externas. <code>css/ez-ui.css</code> importa <code>fonts.css</code>, que declara las familias con <code>@font-face</code>; después <code>font-family</code> selecciona qué familia usar.</p>
+<p>WOFF2 es un formato comprimido para la web. Estas fuentes son variables: cada archivo cubre varios pesos. <code>font-display: swap</code> muestra inicialmente una fuente alternativa mientras se carga la principal. Las alternativas del sistema mantienen el texto legible si falla la carga.</p>
+<p>En <code>css/tokens.css</code> se definen <code>--ez-font</code> y <code>--ez-font-mono</code>. <code>base.css</code> usa la primera en <code>html</code>, la segunda en <code>code</code>, <code>pre</code> y <code>kbd</code>, y hace que los controles de formulario hereden la fuente. Puedes sustituirlas en tu hoja cargada después de ez-ui:</p>
+<pre><code>/* css/app.css */
+:root {
+    --ez-font: Arial, sans-serif;
+    --ez-font-mono: Consolas, monospace;
+}</code></pre>
+<h3>Una fuente propia (opcional)</h3>
+<pre><code>/* css/app.css */
+@font-face {
+    font-family: "Mi Fuente";
+    src: url("../fonts/mi-fuente.woff2") format("woff2");
+    font-display: swap;
+}
+:root {
+    --ez-font: "Mi Fuente", system-ui, sans-serif;
+}</code></pre>
+<p>La ruta de <code>url(...)</code> es relativa al archivo CSS que la contiene, no al HTML. No edites <code>fonts.css</code>. En las herramientas de desarrollo, inspecciona las fuentes renderizadas en un elemento y la pestaña Red: los WOFF2 deben responder sin errores 404. Al probar el ZIP de distribución, conserva <code>css/</code> y <code>fonts/</code> como carpetas hermanas e incluye los archivos <code>OFL-*.txt</code>. Comprueba la carga con el ejemplo servido por HTTP.</p>
+<p>El tamaño base actual es <code>1.0625rem</code> (normalmente 17 px); conviene comprobar su lectura en móvil antes de plantear cambios.</p>
+</section>
+</main>
+<nav class="doc-toc" aria-label="En esta página"><h2>En esta página</h2><ul>
+<li><a href="#cascada">Cascada</a></li>
+<li><a href="#variables">Variables</a></li>
+<li><a href="#tarjetas">Tarjetas</a></li>
+<li><a href="#fuentes">Tipografía y fuentes</a></li>
+</ul></nav>
+</div>
+<div id="page-footer"></div>
+</body>
+</html>
