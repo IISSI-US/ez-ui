@@ -2,17 +2,25 @@
 # en la raíz y la biblioteca (la raíz del repositorio) en /ez-ui/, donde la enlazan sus
 # páginas, como la sirve docs/serve.js en local. Pages debe tener como origen
 # «GitHub Actions».
+#
+# También publica en /downloads/ un ZIP de la biblioteca por cada etiqueta vX.Y.Z
+# (ez-ui-X.Y.Z.zip), para descargarla sin acceso al repositorio, que es privado. Cada
+# ZIP se hace con git archive desde su etiqueta, así que sale igual en cada
+# publicación aunque cambie main; solo se publican las etiquetas cuyo commit pasó las
+# pruebas (✔ de ez-ui-tests).
 name: Publicar
 
 on:
   push:
     branches: [main]
+    tags: ["v*"]
   workflow_dispatch:
 
 permissions:
   contents: read
   pages: write
   id-token: write
+  statuses: read
 
 # Una publicación a la vez; la más reciente sustituye a la que espera
 concurrency:
@@ -26,7 +34,12 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
+      # La web siempre de main, también al publicar una etiqueta; con todo el historial
+      # y las etiquetas, para empaquetar cada versión
       - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
 
       - name: Monta el sitio
         run: |
@@ -34,12 +47,25 @@ jobs:
           cp -r docs/. _site/
           rm _site/README.md _site/serve.js
           cp -r css js fonts icons.svg LICENSE-lucide.txt _site/ez-ui/
-          # Descargas persistentes creadas exclusivamente desde tags versionados.
-          git fetch origin pages-downloads || true
-          if git show-ref --verify --quiet refs/remotes/origin/pages-downloads; then
-            mkdir -p _site/downloads
-            git archive origin/pages-downloads downloads | tar -x -C _site
-          fi
+
+      - name: Empaqueta las versiones
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p _site/downloads
+          for tag in $(git tag --list 'v[0-9]*.[0-9]*.[0-9]*'); do
+            version="${tag#v}"
+            state=$(gh api "repos/$GITHUB_REPOSITORY/commits/$tag/status" --jq .state)
+            if [ "$state" != "success" ]; then
+              echo "::warning::$tag no se publica: las pruebas de su commit no han pasado ($state)"
+              continue
+            fi
+            git archive --format=zip --prefix=ez-ui/ \
+              --add-virtual-file="ez-ui/VERSION.txt:$version"$'\n' \
+              -o "_site/downloads/ez-ui-$version.zip" \
+              "$tag" css js fonts icons.svg LICENSE-lucide.txt
+            echo "Publicado ez-ui-$version.zip"
+          done
 
       - uses: actions/upload-pages-artifact@v3
         with:
