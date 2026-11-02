@@ -20,7 +20,7 @@
             <main>
                 <header class="doc-header">
                     <h1>Maquetación</h1>
-                    <p class="doc-lead">
+                    <p>
                         Tres clases para colocar el contenido en la página: un contenedor centrado,
                         una galería que reparte tarjetas en columnas y una rejilla de dos columnas.
                         Las dos últimas usan CSS Grid y se adaptan solas al ancho de la pantalla.
@@ -54,7 +54,8 @@
                         <code>ez-gallery</code> reparte sus hijos en tantas columnas como quepan,
                         de al menos 17rem cada una, y las que sobran pasan a la fila siguiente. No
                         hay que decir cuántas columnas: con la ventana ancha hay tres o cuatro, y en
-                        un móvil, una. Es la rejilla de una lista de tarjetas.
+                        un móvil, una. Sirve para una lista de tarjetas, de fotos o de cualquier otra
+                        cosa.
                     </p>
                     <div class="doc-example doc-example--column">
                         <!-- ez-gallery: tantas columnas como quepan, de 17rem como mínimo -->
@@ -146,6 +147,42 @@
                         que cada una mida entre 17rem y una parte del espacio libre
                         (<code>1fr</code>).
                     </p>
+
+                    <h3>Una galería de fotos</h3>
+                    <p>
+                        Los hijos pueden ser cualquier elemento, no solo tarjetas. Aquí, imágenes:
+                        cada una ocupa el ancho de su columna, y el alto, en proporción.
+                    </p>
+                    <div class="doc-example doc-example--column">
+                        <!-- Las mismas columnas, con una imagen en cada celda -->
+                        <div class="ez-gallery">
+                            <!-- width y height: la proporción, para reservar su sitio -->
+                            <img src="images/soccer/shirt-lucia-romero.svg"
+                                 alt="Camiseta de Lucía Romero, dorsal 9"
+                                 width="400"
+                                 height="300">
+                            <img src="images/soccer/shirt-hugo-serrano.svg"
+                                 alt="Camiseta de Hugo Serrano, dorsal 10"
+                                 width="400"
+                                 height="300">
+                            <img src="images/soccer/shirt-irene-campos.svg"
+                                 alt="Camiseta de Irene Campos, dorsal 7"
+                                 width="400"
+                                 height="300">
+                            <img src="images/soccer/shirt-pablo-vega.svg"
+                                 alt="Camiseta de Pablo Vega, dorsal 4"
+                                 width="400"
+                                 height="300">
+                            <img src="images/soccer/shirt-nora-iglesias.svg"
+                                 alt="Camiseta de Nora Iglesias, dorsal 1"
+                                 width="400"
+                                 height="300">
+                            <img src="images/soccer/shirt-mario-gil.svg"
+                                 alt="Camiseta de Mario Gil, dorsal 5"
+                                 width="400"
+                                 height="300">
+                        </div>
+                    </div>
                 </section>
 
                 <section class="doc-section" id="split">

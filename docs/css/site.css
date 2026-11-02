@@ -55,12 +55,6 @@ html {
   margin-block: var(--ez-space-2) var(--ez-space-4);
 }
 
-.doc-lead {
-  max-width: 42rem;
-  color: var(--ez-muted);
-  font-size: 1.25rem;
-  line-height: 1.5;
-}
 
 /* Contenido y, en pantallas anchas, el índice de la página fijo a la derecha */
 .doc-layout {

@@ -4,7 +4,7 @@
         <title>ez-ui · Elementos</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="Elementos HTML con estilo de ez-ui sin clases: textos, enlaces, código y tablas">
+        <meta name="description" content="Elementos HTML con estilo de ez-ui sin clases: textos, imágenes, foco del teclado, hidden y tablas">
         <script src="ez-ui/js/theme-init.js"></script>
         <link rel="stylesheet" href="ez-ui/css/ez-ui.css">
         <link rel="stylesheet" href="css/site.css">
@@ -20,27 +20,83 @@
             <main>
                 <header class="doc-header">
                     <h1>Elementos</h1>
-                    <p class="doc-lead">
-                        Lo que tiene estilo sin escribir ninguna clase: los textos, los enlaces, el
-                        código y las tablas. Se escribe HTML semántico y <span class="doc-brand"><span class="doc-brand-mark">ez</span>-ui</span> le da aspecto.
+                    <p>
+                        Lo que tiene estilo sin escribir ninguna clase: textos, imágenes, el foco
+                        del teclado y tablas. Se escribe HTML semántico y <span class="doc-brand"><span class="doc-brand-mark">ez</span>-ui</span> le da aspecto.
+                        Los controles de formulario tampoco necesitan clases (ver
+                        <a href="formularios.html">Formularios</a>).
                     </p>
                 </header>
 
                 <section class="doc-section" id="text">
                     <h2>Textos</h2>
                     <p>
-                        Los títulos, los párrafos, los enlaces y el código, con las fuentes y los
-                        colores de <span class="doc-brand"><span class="doc-brand-mark">ez</span>-ui</span>. Los controles de formulario también tienen estilo sin
-                        clases (ver <a href="formularios.html">Formularios</a>).
+                        Los títulos, los párrafos y los enlaces, con las fuentes y los colores de
+                        <span class="doc-brand"><span class="doc-brand-mark">ez</span>-ui</span>. El tamaño de <code>h1</code> y <code>h2</code> se adapta al ancho de
+                        la pantalla. <code>code</code> (código) y <code>kbd</code> (una tecla) usan
+                        la fuente monoespaciada.
                     </p>
                     <div class="doc-example doc-example--column">
-                        <!-- Sin clases: ez-ui da estilo a títulos, párrafos y enlaces -->
+                        <!-- Sin clases: títulos, párrafos y enlaces -->
                         <h3>Jornada 11</h3>
                         <p>
-                            La ETSII gana 3-1 a Medicina y sigue líder. Consulta el
-                            <a href="#table">calendario</a> de la próxima jornada.
+                            La ETSII gana 3-1 a Medicina y sigue líder. Consulta la
+                            <a href="#table">clasificación</a>.
+                        </p>
+                        <!-- code: código; kbd: una tecla -->
+                        <p>
+                            El dorsal está en <code>player.number</code>. Para buscar un jugador,
+                            <kbd>Ctrl</kbd> + <kbd>F</kbd>.
                         </p>
                     </div>
+                </section>
+
+                <section class="doc-section" id="images">
+                    <h2>Imágenes</h2>
+                    <p>
+                        Una imagen nunca es más ancha que el elemento que la contiene: en un móvil
+                        se reduce, y el alto cambia en proporción, sin deformarla. Lleva siempre
+                        <code>alt</code>, el texto que la sustituye si no se ve.
+                    </p>
+                    <template class="doc-example">
+                        <!-- Como mucho, el ancho de su contenedor; el alto, en proporción -->
+                        <img src="images/crest-etsii.png" alt="Escudo de la ETSII">
+                    </template>
+                </section>
+
+                <section class="doc-section" id="focus">
+                    <h2>Foco del teclado</h2>
+                    <p>
+                        Al moverse por la página con el tabulador, el elemento activo se rodea
+                        con un contorno del color del tema (<code>:focus-visible</code>), para
+                        saber dónde se está. Con el ratón no aparece. Pruébalo: pulsa en el texto
+                        de encima del ejemplo y después el tabulador.
+                    </p>
+                    <div class="doc-example">
+                        <!-- Sin clases: el contorno aparece al llegar con el tabulador -->
+                        <button class="ez-button" type="button">Pujar</button>
+                        <a href="#focus">Ver el mercado</a>
+                    </div>
+                </section>
+
+                <section class="doc-section" id="hidden">
+                    <h2>El atributo hidden</h2>
+                    <p>
+                        <code>hidden</code> oculta un elemento, también si una clase le da otro
+                        <code>display</code>. Desde JavaScript, se muestra u oculta cambiando la
+                        propiedad <code>hidden</code>:
+                    </p>
+                    <template class="doc-example">
+                        <!-- Oculto hasta que el código lo muestre -->
+                        <p id="empty-market" class="ez-alert" hidden>
+                            No hay jugadores en el mercado.
+                        </p>
+                    </template>
+                    <template class="doc-example">
+                        // Se muestra si la lista está vacía
+                        let message = document.getElementById("empty-market");
+                        message.hidden = players.length !== 0;
+                    </template>
                 </section>
 
                 <section class="doc-section" id="table">
@@ -144,6 +200,9 @@
                 <h2>En esta página</h2>
                 <ul>
                     <li><a href="#text">Textos</a></li>
+                    <li><a href="#images">Imágenes</a></li>
+                    <li><a href="#focus">Foco del teclado</a></li>
+                    <li><a href="#hidden">El atributo hidden</a></li>
                     <li><a href="#table">Tablas</a></li>
                 </ul>
             </nav>
