@@ -4,7 +4,7 @@
         <title>ez-ui · Personalización</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="Convenciones de ez-ui y cómo adaptar sus estilos, su tema oscuro y sus fuentes sin modificar la biblioteca">
+        <meta name="description" content="Convenciones de ez-ui y cómo adaptar sus estilos, su tema oscuro y sus fuentes sin modificarla">
         <script src="ez-ui/js/theme-init.js"></script>
         <link rel="stylesheet" href="ez-ui/css/ez-ui.css">
         <link rel="stylesheet" href="css/site.css">
@@ -21,8 +21,8 @@
                 <header class="doc-header">
                     <h1>Personalización</h1>
                     <p class="doc-lead">
-                        Cómo se llaman las clases y las variables de ez-ui, y cómo se adaptan al
-                        proyecto sin tocar la biblioteca: desde un color para toda la página hasta
+                        Cómo se llaman las clases y las variables de <span class="doc-brand"><span class="doc-brand-mark">ez</span>-ui</span>, y cómo se adaptan al
+                        proyecto sin tocar sus ficheros: desde un color para toda la página hasta
                         una regla para unos pocos componentes.
                     </p>
                 </header>
@@ -80,8 +80,8 @@
                 <section class="doc-section" id="cascade">
                     <h2>La hoja propia</h2>
                     <p>
-                        Los cambios van en una hoja del proyecto, enlazada después de la
-                        biblioteca. Los ficheros de <code>ez-ui/</code> no se modifican: así se
+                        Los cambios van en una hoja del proyecto, enlazada después de
+                        <span class="doc-brand"><span class="doc-brand-mark">ez</span>-ui</span>. Los ficheros de <code>ez-ui/</code> no se modifican: así se
                         puede sustituir la carpeta por una versión nueva sin perder nada.
                     </p>
                     <template class="doc-example">
@@ -93,7 +93,7 @@
                         selector más <strong>específico</strong> (un id pesa más que una clase, y
                         dos clases más que una) y, si son igual de específicos, la que va
                         <strong>después</strong>. Por eso la hoja propia va detrás: con el mismo
-                        selector que ez-ui, su regla gana.
+                        selector que <span class="doc-brand"><span class="doc-brand-mark">ez</span>-ui</span>, su regla gana.
                     </p>
                     <p>
                         Si una regla no se aplica, las herramientas de desarrollo del navegador
@@ -133,7 +133,7 @@
                     </div>
                     <p>
                         Las hojas propias también las usan, para que lo nuevo tenga el mismo
-                        aspecto que ez-ui y cambie con el tema oscuro:
+                        aspecto que <span class="doc-brand"><span class="doc-brand-mark">ez</span>-ui</span> y cambie con el tema oscuro:
                     </p>
                     <template class="doc-example">
                         /* css/app.css: un elemento propio con los colores y espacios de ez-ui */
@@ -158,7 +158,7 @@
                         Por eso, al cambiar un color, hay que darle también su valor para el tema
                         oscuro. <code>:root[data-ez-theme="dark"]</code> es más específico que
                         <code>:root</code>: sin esta regla, el tema oscuro seguiría con el color
-                        de ez-ui.
+                        de <span class="doc-brand"><span class="doc-brand-mark">ez</span>-ui</span>.
                     </p>
                     <template class="doc-example">
                         /* css/app.css */
@@ -192,7 +192,7 @@
                         </article>
                     </div>
                     <p>
-                        Con el mismo selector que ez-ui, cambian <strong>todas</strong> las tarjetas
+                        Con el mismo selector que <span class="doc-brand"><span class="doc-brand-mark">ez</span>-ui</span>, cambian <strong>todas</strong> las tarjetas
                         (la regla gana por ir después). Con la clase del proyecto delante, solo las
                         <strong>de jugadores</strong> (gana por ser más específica), como en el
                         ejemplo:
@@ -220,7 +220,7 @@
                 <section class="doc-section" id="fonts">
                     <h2>Fuentes</h2>
                     <p>
-                        ez-ui trae sus fuentes en <code>ez-ui/fonts/</code>, con licencia libre
+                        <span class="doc-brand"><span class="doc-brand-mark">ez</span>-ui</span> trae sus fuentes en <code>ez-ui/fonts/</code>, con licencia libre
                         OFL: <strong>Source Sans 3</strong> (normal y cursiva) para el texto y
                         <strong>JetBrains Mono</strong> para el código. No dependen de ningún
                         servicio externo, como Google Fonts: funcionan sin conexión.

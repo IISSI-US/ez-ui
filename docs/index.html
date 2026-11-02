@@ -19,7 +19,7 @@
         <div class="ez-container doc-layout">
             <main>
                 <header class="doc-header">
-                    <h1>ez-ui</h1>
+                    <h1><span class="doc-brand-mark">ez</span>-ui</h1>
                     <p class="doc-lead">
                         Una hoja de estilos sencilla para las prácticas de IISSI-2: HTML semántico,
                         CSS que se puede leer entero y unos pocos componentes con JavaScript, sin
@@ -40,8 +40,8 @@
                     </p>
                     <p>
                         El ZIP tiene una carpeta <code>ez-ui/</code>, que se descomprime en la raíz
-                        del proyecto, junto a las carpetas propias. La biblioteca no se modifica:
-                        lo del proyecto va fuera de ella. El proyecto queda así:
+                        del proyecto, junto a las carpetas propias. <span class="doc-brand"><span class="doc-brand-mark">ez</span>-ui</span> no se modifica: lo del
+                        proyecto va fuera de su carpeta. El proyecto queda así:
                     </p>
                     <template class="doc-example">
                         mi-proyecto/
@@ -50,7 +50,7 @@
                         │   └── app.css        la hoja propia
                         ├── js/
                         │   └── main.js        el JavaScript propio
-                        └── ez-ui/             la biblioteca, tal cual
+                        └── ez-ui/             ez-ui, tal cual
                             ├── css/
                             ├── js/
                             ├── fonts/
@@ -79,7 +79,7 @@
                     <p>
                         Todo lo que se ve está en <code>index.html</code>. En su
                         <code>&lt;head&gt;</code>, por este orden, van <code>theme-init.js</code>,
-                        que aplica el tema guardado antes de pintar la página; la hoja de ez-ui y,
+                        que aplica el tema guardado antes de pintar la página; la hoja de <span class="doc-brand"><span class="doc-brand-mark">ez</span>-ui</span> y,
                         después, la propia, para que la propia gane; y <code>main.js</code>, con
                         <code>type="module"</code> para poder usar <code>import</code>.
                     </p>
@@ -94,10 +94,10 @@
                 <section class="doc-section" id="css">
                     <h2>La hoja propia</h2>
                     <p>
-                        Los colores de ez-ui son variables: <code>app.css</code> cambia el color
+                        Los colores de <span class="doc-brand"><span class="doc-brand-mark">ez</span>-ui</span> son variables: <code>app.css</code> cambia el color
                         principal, el granate, por un azul, con un valor para cada tema. También
                         añade el estilo de una clase propia, <code>welcome</code>, con las variables
-                        de ez-ui para que cambie con el tema oscuro.
+                        de <span class="doc-brand"><span class="doc-brand-mark">ez</span>-ui</span> para que cambie con el tema oscuro.
                     </p>
                     <div data-file="examples/primeros-pasos/css/app.css"></div>
                     <p>
@@ -109,7 +109,7 @@
                 <section class="doc-section" id="javascript">
                     <h2>El JavaScript</h2>
                     <p>
-                        <code>main.js</code> importa dos componentes de ez-ui y los conecta a sus
+                        <code>main.js</code> importa dos componentes de <span class="doc-brand"><span class="doc-brand-mark">ez</span>-ui</span> y los conecta a sus
                         elementos cuando la página está cargada. No crea la barra ni el botón, que
                         ya están en el HTML: les añade lo que pasa al pulsarlos.
                     </p>
@@ -136,7 +136,7 @@
 
                 <section class="doc-section" id="reference">
                     <h2>Y después</h2>
-                    <p>El resto de la web es la referencia, una página por cada parte de ez-ui:</p>
+                    <p>El resto de la web es la referencia, una página por cada parte de <span class="doc-brand"><span class="doc-brand-mark">ez</span>-ui</span>:</p>
                     <ul>
                         <li>
                             <a href="personalizacion.html">Personalización</a>: los nombres de las

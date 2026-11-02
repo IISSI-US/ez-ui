@@ -13,6 +13,12 @@
   color: var(--ez-primary);
 }
 
+/* «ez-ui» en el texto, con el grosor de la marca de la cabecera y sin partirse */
+.doc-brand {
+  font-weight: 800;
+  white-space: nowrap;
+}
+
 /* Enlaces de la cabecera de esta web, en gris; el de la página actual, con el texto
    normal (ez-ui lo subraya). Solo en #page-header: no afecta a los ejemplos */
 #page-header .ez-navbar__links a {
