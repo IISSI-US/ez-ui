@@ -7,10 +7,13 @@
         <meta name="description" content="Convenciones de ez-ui y cómo adaptar sus estilos, su tema oscuro, sus fuentes y sus iconos sin modificarla">
         <script src="ez-ui/js/theme-init.js"></script>
         <link rel="stylesheet" href="ez-ui/css/ez-ui.css">
+        <!-- Los iconos de esta web, de Font Awesome (ez-ui no trae iconos) -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
         <link rel="stylesheet" href="css/site.css">
         <link rel="icon" href="favicon.svg">
         <script src="js/header.js" type="module"></script>
         <script src="js/personalizacion.js" type="module"></script>
+        <script src="js/examples/icon-theme-toggle.js" type="module"></script>
     </head>
 
     <body>
@@ -329,33 +332,33 @@
                         <span class="doc-brand"><span class="doc-brand-mark">ez</span>-ui</span> no trae iconos: cada aplicación elige los suyos, y sus componentes
                         funcionan solo con texto. Lo más sencillo es
                         <a href="https://fontawesome.com/icons">Font Awesome</a>, que se enlaza
-                        desde un CDN (un servidor público de ficheros), en el
-                        <code>&lt;head&gt;</code>, y se usa con una etiqueta y sus clases:
+                        desde un CDN (un servidor público de ficheros) en el
+                        <code>&lt;head&gt;</code> de cada página, como hace esta web:
                     </p>
                     <template class="doc-example">
                         <!-- Font Awesome, desde un CDN: necesita conexión a internet -->
                         <link rel="stylesheet"
                               href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
                     </template>
-                    <template class="doc-example">
+                    <p>
+                        Cada icono es una etiqueta <code>&lt;i&gt;</code> con dos clases: el
+                        estilo (<code>fa-solid</code>) y su nombre (<code>fa-plus</code>), que se
+                        busca en su página. Toma el tamaño y el color del texto que lo rodea,
+                        también dentro de un botón o con el tema oscuro:
+                    </p>
+                    <div class="doc-example">
                         <!-- aria-hidden: el texto de al lado ya dice lo mismo -->
                         <button class="ez-button" type="button">
                             <i class="fa-solid fa-plus" aria-hidden="true"></i>
                             Pujar
                         </button>
-
                         <!-- Solo el icono: aria-label da nombre al botón -->
                         <button class="ez-button ez-button--secondary"
                                 type="button"
                                 aria-label="Editar">
                             <i class="fa-solid fa-pen" aria-hidden="true"></i>
                         </button>
-                    </template>
-                    <p>
-                        Los nombres de cada icono (<code>fa-plus</code>, <code>fa-pen</code>) están
-                        en su página. Un icono toma el tamaño y el color del texto que lo rodea,
-                        también dentro de un botón o con el tema oscuro.
-                    </p>
+                    </div>
                     <p>
                         Un lector de pantalla lee la página en voz alta a quien no la ve. Un icono
                         junto a un texto no le aporta nada, así que lleva
@@ -366,11 +369,12 @@
                     <h3>El botón de tema con iconos</h3>
                     <p>
                         Las dos partes del <a href="javascript.html#theme">botón de tema</a> pueden
-                        llevar un icono en lugar del texto. Como el botón se queda sin texto, su
-                        nombre va en <code>aria-label</code>:
+                        ser iconos en lugar de texto, como en la cabecera de esta web. Como el
+                        botón se queda sin texto, su nombre va en <code>aria-label</code>.
+                        Pruébalo:
                     </p>
-                    <template class="doc-example">
-                        <button id="theme-toggle"
+                    <div class="doc-example">
+                        <button id="icon-theme-toggle"
                                 class="ez-button ez-button--secondary ez-theme-toggle"
                                 type="button"
                                 aria-label="Cambiar de tema">
@@ -380,29 +384,12 @@
                             <i class="fa-solid fa-sun ez-theme-toggle__to-light"
                                aria-hidden="true"></i>
                         </button>
-                    </template>
-
-                    <h3>Otros iconos</h3>
+                    </div>
                     <p>
-                        Sirve cualquier otra colección. Esta web usa iconos SVG de
-                        <a href="https://lucide.dev">Lucide</a>, sin CDN: los guarda en su propio
-                        <code>icons.svg</code>, cada uno en un <code>&lt;symbol&gt;</code> con su
-                        nombre, y les da el tamaño del texto con una clase propia:
+                        Sirve igual cualquier otra colección de iconos, como
+                        <a href="https://lucide.dev">Lucide</a>, o unos SVG propios: <span class="doc-brand"><span class="doc-brand-mark">ez</span>-ui</span> no depende
+                        de ninguna.
                     </p>
-                    <template class="doc-example">
-                        <!-- El icono trophy del icons.svg de la web -->
-                        <svg class="doc-icon" aria-hidden="true">
-                            <use href="icons.svg#trophy"></use>
-                        </svg>
-                    </template>
-                    <template class="doc-example">
-                        /* css/site.css: del tamaño del texto (el color, de currentColor) */
-                        .doc-icon {
-                            width: 1.2em;
-                            height: 1.2em;
-                            vertical-align: -.2em;
-                        }
-                    </template>
                 </section>
             </main>
 

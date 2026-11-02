@@ -12,7 +12,6 @@ js/                                   controladores, renderizador de ejemplos y 
 examples/                             ejemplos que necesitan una página aparte;
                                       primeros-pasos/, un proyecto completo
 images/soccer/                        imágenes SVG propias de los ejemplos
-icons.svg, LICENSE-lucide.txt         iconos de la web, de Lucide (ez-ui no trae iconos)
 favicon.svg
 serve.js                              servidor local (no se publica)
 README.md                             este fichero (no se publica)
@@ -63,4 +62,4 @@ Cada publicación vuelve a hacer todos los ZIP desde sus etiquetas con `git arch
 
 ## Licencias
 
-Las de la biblioteca (las fuentes) están en el [README de la biblioteca](../README.md). Los iconos de la web son de [Lucide](https://lucide.dev), licencia ISC (`LICENSE-lucide.txt`). Las imágenes de los ejemplos son propias.
+Las de la biblioteca (las fuentes) están en el [README de la biblioteca](../README.md). Los iconos de la web son de [Font Awesome](https://fontawesome.com) (versión gratuita), cargados desde un CDN: no se distribuyen con la web. Las imágenes de los ejemplos son propias.

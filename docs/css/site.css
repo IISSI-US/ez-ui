@@ -250,13 +250,6 @@ html {
   color: var(--ez-text);
 }
 
-/* Iconos de esta web (icons.svg, de Lucide): del tamaño del texto que los rodea; el
-   color lo toman del texto (currentColor). ez-ui no trae iconos (ver Personalización) */
-.doc-icon {
-  width: 1.2em;
-  height: 1.2em;
-  vertical-align: -.2em;
-}
 
 /* Colores del código de los ejemplos (js/utils/highlight.js), sobre el fondo oscuro
    de los bloques de código */

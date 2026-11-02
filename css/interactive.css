@@ -29,8 +29,9 @@
 /* Botón de tema (ezThemeToggle): con el tema claro muestra su parte __to-dark, y con
    el oscuro, __to-light. Dentro de cada una va lo que quiera la aplicación: texto, un
    icono o los dos. Depende del tema de la página (data-ez-theme en <html>), así que
-   todos los botones de tema de la página muestran siempre la misma. */
-.ez-theme-toggle__to-light {
+   todos los botones de tema de la página muestran siempre la misma. Con la clase del
+   botón delante, la regla gana al display que traiga el contenido (un icono). */
+.ez-theme-toggle .ez-theme-toggle__to-light {
   display: none;
 }
 
