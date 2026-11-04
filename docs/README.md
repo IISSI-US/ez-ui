@@ -32,6 +32,8 @@ El elemento se elige por el significado del contenido; las clases `ez-*` solo de
 
 ## Ejemplos: el Trofeo ez-Soccer
 
+Cada ejemplo se escribe una vez, en un `.doc-example`, y `js/renderers/examples.js` le añade su HTML: al lado, en las dos columnas de un `ez-split` (debajo en un móvil), o debajo si el ejemplo necesita todo el ancho, como una tabla, una galería o una barra de navegación (`doc-example--wide`). `doc-example--column` solo pone sus elementos uno debajo de otro. Un `<template class="doc-example">` muestra solo el código.
+
 Los ejemplos son de una liga de fútbol inventada entre escuelas y facultades de la universidad. Equipos, jugadores, escudos, camisetas y avatares son inventados; las imágenes son SVG propios, sin derechos de terceros.
 
 ## Probar en local
