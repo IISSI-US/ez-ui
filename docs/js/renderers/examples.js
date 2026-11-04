@@ -2,8 +2,15 @@
 
 import { highlight } from "../utils/highlight.js";
 
-// Muestra debajo de cada ejemplo el HTML con el que está hecho. El ejemplo se
+// Muestra junto a cada ejemplo el HTML con el que está hecho. El ejemplo se
 // escribe una sola vez en la página, así que el código mostrado siempre coincide.
+// El código va a la derecha del ejemplo, en dos columnas con ez-split; debajo, si
+// el ejemplo necesita todo el ancho (doc-example--wide)
+
+// Ancho máximo de las líneas de código: el del código debajo del ejemplo y el del
+// código al lado, que tiene menos sitio
+const LINE_WIDTH = 80;
+const SIDE_LINE_WIDTH = 62;
 const exampleRenderer = {
   // Añade el código a todos los ejemplos (.doc-example) de la página. Un ejemplo
   // escrito en un <template> no se muestra (el navegador no pinta su contenido):
@@ -15,20 +22,26 @@ const exampleRenderer = {
       // data-code, para lo que no puede ir dentro de un <template>, como la
       // etiqueta <html>, que el navegador descarta
       let html = example.dataset.code ?? example.innerHTML;
-      let codeBlock = exampleRenderer.asCodeBlock(html);
 
       if (example.tagName === "TEMPLATE") {
+        let codeBlock = exampleRenderer.asCodeBlock(html);
         codeBlock.classList.add("doc-code--alone");
         example.replaceWith(codeBlock);
+      } else if (example.classList.contains("doc-example--wide")) {
+        example.after(exampleRenderer.asCodeBlock(html));
       } else {
-        example.after(codeBlock);
+        // El ejemplo y su código, en las dos columnas de un ez-split
+        let pair = document.createElement("div");
+        pair.className = "ez-split doc-pair";
+        example.replaceWith(pair);
+        pair.append(example, exampleRenderer.asCodeBlock(html, SIDE_LINE_WIDTH));
       }
     }
   },
 
   // Crea el bloque de código, con un botón para copiarlo
-  asCodeBlock: function (html) {
-    let code = wrapLongLines(removeIndentation(writeBooleanAttributes(html)));
+  asCodeBlock: function (html, lineWidth = LINE_WIDTH) {
+    let code = wrapLongLines(removeIndentation(writeBooleanAttributes(html)), lineWidth);
 
     let block = document.createElement("div");
     block.className = "doc-code";
@@ -59,10 +72,10 @@ function writeBooleanAttributes(html) {
   return html.replace(/ (disabled|required|checked|selected|readonly|multiple|hidden|open|autofocus|novalidate)=""/g, " $1");
 }
 
-// Parte las líneas de más de 80 caracteres, para que el código se lea sin
+// Parte las líneas de más de max caracteres, para que el código se lea sin
 // desplazarse a los lados. innerHTML escribe cada etiqueta en una sola línea
-function wrapLongLines(code) {
-  return code.split("\n").flatMap((line) => wrapLine(line, 80)).join("\n");
+function wrapLongLines(code, max) {
+  return code.split("\n").flatMap((line) => wrapLine(line, max)).join("\n");
 }
 
 function wrapLine(line, max) {
@@ -88,6 +101,22 @@ function wrapLine(line, max) {
   let mixed = text.match(/^([^<]+?)\s+(<.+)$/);
   if (mixed) {
     return [indent + mixed[1], ...wrapLine(indent + mixed[2], max)];
+  }
+
+  // Un comentario: el texto, en varias líneas alineadas con la primera
+  let comment = text.match(/^<!--\s*(.*?)\s*-->$/);
+  if (comment) {
+    let lines = [indent + "<!--"];
+    for (let word of comment[1].split(" ")) {
+      let last = lines[lines.length - 1];
+      if (last.length + 1 + word.length > max && last.trim() !== "<!--") {
+        lines.push(indent + "     " + word);
+      } else {
+        lines[lines.length - 1] = last + " " + word;
+      }
+    }
+    lines[lines.length - 1] += " -->";
+    return lines;
   }
 
   // Una etiqueta con varios atributos: uno por línea, alineados con el primero

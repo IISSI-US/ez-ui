@@ -163,8 +163,9 @@ html {
   display: grid;
 }
 
-/* La barra de navegación ocupa todo el ancho (flex: 1) */
-.doc-example > .ez-navbar {
+/* Un ejemplo que necesita todo el ancho, como una barra de navegación o una
+   tabla: su contenido lo ocupa (flex: 1) y el código va debajo */
+.doc-example--wide > * {
   flex: 1;
 }
 
@@ -214,6 +215,47 @@ html {
   color: #eee8e1;
   font-size: .85rem;
   line-height: 1.6;
+}
+
+/* Un ejemplo con su código al lado (js/renderers/examples.js), en las dos columnas
+   de un ez-split, más ancha la del código y sin separación entre ellas. En una
+   pantalla estrecha, ez-split las pone en una: el código vuelve debajo */
+.doc-pair {
+  --ez-split-columns: 2fr 3fr;
+  gap: 0;
+  margin-bottom: var(--ez-space-6);
+}
+
+.doc-pair > .doc-example {
+  justify-content: center;
+  align-content: center;
+  padding: var(--ez-space-6);
+}
+
+/* El fondo del código llena la columna, del alto del ejemplo aunque este sea más
+   alto que el código (un formulario); el par ya va separado de lo siguiente */
+.doc-pair > .doc-code {
+  margin-bottom: 0;
+  border-radius: 0 0 var(--ez-radius) var(--ez-radius);
+  background: #211d1a;
+}
+
+.doc-pair > .doc-code pre {
+  /* El botón de copiar, encima de la primera línea: sitio arriba y no a la derecha,
+     que en esta columna hace falta para el código */
+  padding: 2.75rem var(--ez-space-4) var(--ez-space-4) var(--ez-space-6);
+}
+
+/* Columnas como las de ez-split (layout.css): esquinas redondeadas por fuera */
+@media (min-width: 48.01rem) {
+  .doc-pair > .doc-example {
+    border-radius: var(--ez-radius) 0 0 var(--ez-radius);
+  }
+
+  .doc-pair > .doc-code,
+  .doc-pair > .doc-code pre {
+    border-radius: 0 var(--ez-radius) var(--ez-radius) 0;
+  }
 }
 
 /* Código sin ejemplo encima (un <template>): con todas las esquinas redondeadas */
