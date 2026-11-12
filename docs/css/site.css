@@ -330,3 +330,32 @@ html {
 .tok-variable {
   color: #9cc3e0;
 }
+
+/* El idioma: una bandera por idioma en la cabecera; la del idioma actual, resaltada */
+.doc-lang {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.doc-lang a {
+  display: inline-flex;
+  padding: 0.25rem;
+  border: 2px solid transparent;
+  border-radius: 4px;
+  opacity: 0.6;
+}
+
+.doc-lang a:hover,
+.doc-lang a[aria-current] {
+  opacity: 1;
+}
+
+.doc-lang a[aria-current] {
+  border-color: var(--ez-primary);
+}
+
+.doc-lang img {
+  display: block;
+  border-radius: 2px;
+}

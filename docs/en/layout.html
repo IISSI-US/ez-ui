@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>ez-ui · Layout</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="Layout with ez-ui: container, gallery and two columns">
+        <script src="../ez-ui/js/theme-init.js"></script>
+        <link rel="stylesheet" href="../ez-ui/css/ez-ui.css">
+        <!-- The icons of this site, from Font Awesome (ez-ui brings no icons) -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+        <link rel="stylesheet" href="../css/site.css">
+        <link rel="icon" href="../favicon.svg">
+        <link rel="alternate" hreflang="es" href="../maquetacion.html">
+        <script src="../js/header.js" type="module"></script>
+        <script src="../js/maquetacion.js" type="module"></script>
+    </head>
+
+    <body>
+        <div id="page-header"></div>
+
+        <div class="ez-container doc-layout">
+            <main>
+                <header class="doc-header">
+                    <h1>Layout</h1>
+                    <p>
+                        Three classes to place the content on the page: a centered container, a
+                        gallery that spreads cards in columns and a two-column grid. The last two
+                        use CSS Grid and adapt by themselves to the width of the screen.
+                    </p>
+                </header>
+
+                <section class="doc-section" id="container">
+                    <h2>Container</h2>
+                    <p>
+                        <code>ez-container</code> centers the content and limits its width on large
+                        screens, so that the lines of text are not too long. On small ones it leaves
+                        a margin on each side. It usually wraps all the content of the page, under
+                        the navigation bar.
+                    </p>
+                    <template class="doc-example">
+                        <!-- ez-container: centers the content and limits its width -->
+                        <main class="ez-container">
+                            <h1>Transfer market</h1>
+                            <!-- Content of the page -->
+                        </main>
+                    </template>
+                    <p>
+                        This very page is inside an <code>ez-container</code>: make the browser
+                        window narrower to see how it adjusts.
+                    </p>
+                </section>
+
+                <section class="doc-section" id="gallery">
+                    <h2>Gallery</h2>
+                    <p>
+                        <code>ez-gallery</code> spreads its children in as many columns as fit, at
+                        least 17rem wide each, and the ones left over go to the next row. You do not
+                        say how many columns: with a wide window there are three or four, and on a
+                        phone, one. It is useful for a photo gallery, a list of cards or anything
+                        else.
+                    </p>
+                    <div class="doc-example doc-example--column doc-example--wide">
+                        <!-- ez-gallery: as many columns as fit, at least 17rem wide -->
+                        <div class="ez-gallery">
+                            <!-- width and height: the proportion, to keep its space -->
+                            <img src="../images/soccer/shirt-lucia-romero.svg"
+                                 alt="Shirt of Lucía Romero, number 9"
+                                 width="400"
+                                 height="300">
+                            <img src="../images/soccer/shirt-hugo-serrano.svg"
+                                 alt="Shirt of Hugo Serrano, number 10"
+                                 width="400"
+                                 height="300">
+                            <img src="../images/soccer/shirt-irene-campos.svg"
+                                 alt="Shirt of Irene Campos, number 7"
+                                 width="400"
+                                 height="300">
+                            <img src="../images/soccer/shirt-pablo-vega.svg"
+                                 alt="Shirt of Pablo Vega, number 4"
+                                 width="400"
+                                 height="300">
+                            <img src="../images/soccer/shirt-nora-iglesias.svg"
+                                 alt="Shirt of Nora Iglesias, number 1"
+                                 width="400"
+                                 height="300">
+                            <img src="../images/soccer/shirt-mario-gil.svg"
+                                 alt="Shirt of Mario Gil, number 5"
+                                 width="400"
+                                 height="300">
+                        </div>
+                    </div>
+                    <p>
+                        The rule is <code>grid-template-columns: repeat(auto-fit, minmax(17rem,
+                        1fr))</code>: repeat as many columns as fit (<code>auto-fit</code>), each one
+                        between 17rem and a share of the free space (<code>1fr</code>).
+                    </p>
+
+                    <h3>A gallery of cards</h3>
+                    <p>
+                        The same columns, with a card in each cell: the list of players of the
+                        transfer market.
+                    </p>
+                    <div class="doc-example doc-example--column doc-example--wide">
+                        <!-- The same columns, with a card in each cell -->
+                        <div class="ez-gallery">
+                            <article class="ez-card">
+                                <img class="ez-card__image"
+                                     src="../images/soccer/shirt-lucia-romero.svg"
+                                     alt="Maroon shirt with number 9">
+                                <div class="ez-card__body">
+                                    <h3>Lucía Romero <span class="ez-badge">FW</span></h3>
+                                    <p>ETSII · 72 points <span class="ez-badge ez-badge--success">Available</span></p>
+                                </div>
+                                <footer class="ez-card__footer">
+                                    <strong>€1,500,000</strong>
+                                    <button class="ez-button" type="button">Bid</button>
+                                </footer>
+                            </article>
+                            <article class="ez-card">
+                                <img class="ez-card__image"
+                                     src="../images/soccer/shirt-hugo-serrano.svg"
+                                     alt="Black shirt with number 10">
+                                <div class="ez-card__body">
+                                    <h3>Hugo Serrano <span class="ez-badge">MF</span></h3>
+                                    <p>Law · 61 points <span class="ez-badge ez-badge--success">Available</span></p>
+                                </div>
+                                <footer class="ez-card__footer">
+                                    <strong>€1,200,000</strong>
+                                    <button class="ez-button" type="button">Bid</button>
+                                </footer>
+                            </article>
+                            <article class="ez-card">
+                                <img class="ez-card__image"
+                                     src="../images/soccer/shirt-irene-campos.svg"
+                                     alt="Purple shirt with number 7">
+                                <div class="ez-card__body">
+                                    <h3>Irene Campos <span class="ez-badge">MF</span></h3>
+                                    <p>Economics · 58 points <span class="ez-badge ez-badge--success">Available</span></p>
+                                </div>
+                                <footer class="ez-card__footer">
+                                    <strong>€950,000</strong>
+                                    <button class="ez-button" type="button">Bid</button>
+                                </footer>
+                            </article>
+                            <article class="ez-card">
+                                <img class="ez-card__image"
+                                     src="../images/soccer/shirt-pablo-vega.svg"
+                                     alt="Blue shirt with number 4">
+                                <div class="ez-card__body">
+                                    <h3>Pablo Vega <span class="ez-badge">DF</span></h3>
+                                    <p>Architecture · 54 points <span class="ez-badge ez-badge--danger">Injured</span></p>
+                                </div>
+                                <footer class="ez-card__footer">
+                                    <strong>€850,000</strong>
+                                    <button class="ez-button" type="button">Bid</button>
+                                </footer>
+                            </article>
+                            <article class="ez-card">
+                                <img class="ez-card__image"
+                                     src="../images/soccer/shirt-nora-iglesias.svg"
+                                     alt="Green shirt with number 1">
+                                <div class="ez-card__body">
+                                    <h3>Nora Iglesias <span class="ez-badge">GK</span></h3>
+                                    <p>Medicine · 49 points <span class="ez-badge ez-badge--success">Available</span></p>
+                                </div>
+                                <footer class="ez-card__footer">
+                                    <strong>€700,000</strong>
+                                    <button class="ez-button" type="button">Bid</button>
+                                </footer>
+                            </article>
+                            <article class="ez-card">
+                                <img class="ez-card__image"
+                                     src="../images/soccer/shirt-mario-gil.svg"
+                                     alt="Orange shirt with number 5">
+                                <div class="ez-card__body">
+                                    <h3>Mario Gil <span class="ez-badge">MF</span></h3>
+                                    <p>Fine Arts · 33 points <span class="ez-badge ez-badge--danger">Injured</span></p>
+                                </div>
+                                <footer class="ez-card__footer">
+                                    <strong>€400,000</strong>
+                                    <button class="ez-button" type="button">Bid</button>
+                                </footer>
+                            </article>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="doc-section" id="split">
+                    <h2>Two columns</h2>
+                    <p>
+                        <code>ez-split</code> puts its children in columns: by default, two, and the
+                        first one is twice as wide as the second one (<code>2fr 1fr</code>). On a
+                        narrow screen they become a single column, one under the other. It is useful
+                        for a main content with secondary information next to it.
+                    </p>
+                    <h3>Standings and team</h3>
+                    <div class="doc-example doc-example--column doc-example--wide">
+                        <!-- ez-split: two columns; the first one, twice as wide -->
+                        <div class="ez-split">
+                            <!-- First column -->
+                            <table>
+                                <caption>Standings after matchday 11</caption>
+                                <thead>
+                                    <tr>
+                                        <th class="ez-number">Pos.</th>
+                                        <th>Team</th>
+                                        <th class="ez-number">Points</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="ez-number">1</td>
+                                        <td>ETSII</td>
+                                        <td class="ez-number">26</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="ez-number">2</td>
+                                        <td>Medicine</td>
+                                        <td class="ez-number">23</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="ez-number">3</td>
+                                        <td>Architecture</td>
+                                        <td class="ez-number">17</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="ez-number">4</td>
+                                        <td>Law</td>
+                                        <td class="ez-number">14</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <!-- Second column -->
+                            <article class="ez-card">
+                                <div class="ez-card__body">
+                                    <h3>
+                                        <img class="ez-avatar" src="../images/soccer/avatar-irene-campos.svg" alt="">
+                                        Your team
+                                    </h3>
+                                    <p>Los Galácticos de la ETSII are first with 681 points.</p>
+                                    <a class="ez-button" href="#split">See my team</a>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+
+                    <h3>Another split</h3>
+                    <p>
+                        The <code>--ez-split-columns</code> variable changes the split of a single
+                        element, with the <code>style</code> attribute: two equal columns
+                        (<code>1fr 1fr</code>), the narrow one on the left (<code>1fr 2fr</code>) or
+                        three columns (<code>1fr 1fr 1fr</code>). It accepts any value of
+                        <code>grid-template-columns</code>.
+                    </p>
+                    <div class="doc-example doc-example--column doc-example--wide">
+                        <!-- --ez-split-columns: another split, here two equal columns -->
+                        <div class="ez-split" style="--ez-split-columns: 1fr 1fr">
+                            <article class="ez-card">
+                                <div class="ez-card__body">
+                                    <h3>ETSII <span class="ez-badge ez-badge--primary">Home</span></h3>
+                                    <p>8 wins, 2 draws and 1 loss.</p>
+                                </div>
+                            </article>
+                            <article class="ez-card">
+                                <div class="ez-card__body">
+                                    <h3>Medicine <span class="ez-badge">Away</span></h3>
+                                    <p>7 wins, 2 draws and 2 losses.</p>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+                    <div class="doc-example doc-example--column doc-example--wide">
+                        <!-- Three equal columns -->
+                        <div class="ez-split" style="--ez-split-columns: 1fr 1fr 1fr">
+                            <div class="ez-alert">Matches: 11</div>
+                            <div class="ez-alert">Goals: 29</div>
+                            <div class="ez-alert">Points: 26</div>
+                        </div>
+                    </div>
+
+                    <h3>Profile of a player</h3>
+                    <p>
+                        The card of the player takes the wide column, and its actions and notices,
+                        the narrow one. Any element can be one of the two columns: here the second
+                        one is an <code>&lt;aside&gt;</code>, because its content complements the
+                        main one.
+                    </p>
+                    <div class="doc-example doc-example--column doc-example--wide">
+                        <!-- The card, in the wide column; the aside, in the narrow one -->
+                        <div class="ez-split">
+                            <article class="ez-card">
+                                <img class="ez-card__image"
+                                     src="../images/soccer/shirt-pablo-vega.svg"
+                                     alt="Blue shirt with number 4">
+                                <div class="ez-card__body">
+                                    <h3>Pablo Vega <span class="ez-badge">DF</span></h3>
+                                    <p>Defender of Architecture. 11 matches, 2 goals and 54 points.</p>
+                                </div>
+                            </article>
+                            <aside>
+                                <div class="ez-alert ez-alert--error">Injured until matchday 12.</div>
+                                <p>Market value: <strong>€850,000</strong></p>
+                                <p><button class="ez-button ez-button--danger" type="button">Sell player</button></p>
+                            </aside>
+                        </div>
+                    </div>
+
+                    <h3>Form and summary</h3>
+                    <p>
+                        The form in the wide column and, next to it, the card of what is being
+                        edited, to keep it in sight. The form is explained in
+                        <a href="forms.html">Forms</a>.
+                    </p>
+                    <div class="doc-example doc-example--column doc-example--wide">
+                        <!-- The form, in the wide column; the card, next to it -->
+                        <div class="ez-split">
+                            <form>
+                                <h3>Bid for Hugo Serrano</h3>
+                                <div class="ez-field">
+                                    <label for="split-amount">Amount (€)</label>
+                                    <input id="split-amount" type="number" value="1250000">
+                                </div>
+                                <button class="ez-button" type="button">Bid</button>
+                            </form>
+                            <article class="ez-card">
+                                <img class="ez-card__image"
+                                     src="../images/soccer/shirt-hugo-serrano.svg"
+                                     alt="Black shirt with number 10">
+                                <div class="ez-card__body">
+                                    <h3>Hugo Serrano <span class="ez-badge">MF</span></h3>
+                                    <p>Law · 61 points</p>
+                                </div>
+                                <footer class="ez-card__footer">
+                                    <span>Starting price</span>
+                                    <strong>€1,200,000</strong>
+                                </footer>
+                            </article>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="doc-section" id="sidebar">
+                    <h2>Page with a sidebar</h2>
+                    <p>
+                        A page with the navigation bar on the left is another use of the two
+                        columns: <code>ez-split</code> on the <code>&lt;body&gt;</code>, with a
+                        narrow first column. The bar has the
+                        <code>ez-navbar ez-navbar--side</code> variant (see
+                        <a href="components.html#navbar">Components</a>), and the content, its
+                        <code>ez-container</code>: <code>ez-split</code> splits the page in
+                        columns, and <code>ez-container</code> centers the content inside its own.
+                    </p>
+                    <template class="doc-example" data-code="&lt;!-- Two columns: the bar, 15rem wide, and the content --&gt;
+&lt;body class=&quot;ez-split&quot; style=&quot;--ez-split-columns: 15rem 1fr&quot;&gt;
+    &lt;!-- ez-navbar--side: the bar, in a column --&gt;
+    &lt;nav class=&quot;ez-navbar ez-navbar--side&quot; aria-label=&quot;Main&quot;&gt;
+        &lt;!-- Brand and links --&gt;
+    &lt;/nav&gt;
+    &lt;main class=&quot;ez-container&quot;&gt;
+        &lt;!-- Content of the page --&gt;
+    &lt;/main&gt;
+&lt;/body&gt;"></template>
+                    <p>
+                        On a narrow screen, the bar goes to the top, as in any
+                        <code>ez-split</code>.
+                    </p>
+                </section>
+            </main>
+
+            <nav class="doc-toc" aria-label="On this page">
+                <h2>On this page</h2>
+                <ul>
+                    <li><a href="#container">Container</a></li>
+                    <li><a href="#gallery">Gallery</a></li>
+                    <li><a href="#split">Two columns</a></li>
+                    <li><a href="#sidebar">Page with a sidebar</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <div id="page-footer"></div>
+    </body>
+</html>

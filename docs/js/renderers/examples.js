@@ -2,6 +2,11 @@
 
 import { highlight } from "../utils/highlight.js";
 
+// Los textos de los botones, en el idioma de la página (la web está en español y en inglés)
+const TEXTS = document.documentElement.lang === "en"
+  ? { copy: "Copy", copied: "Copied" }
+  : { copy: "Copiar", copied: "Copiado" };
+
 // Muestra junto a cada ejemplo el HTML con el que está hecho. El ejemplo se
 // escribe una sola vez en la página, así que el código mostrado siempre coincide.
 // El código va a la derecha del ejemplo, en dos columnas con ez-split; debajo, si
@@ -55,10 +60,10 @@ const exampleRenderer = {
     let copyButton = document.createElement("button");
     copyButton.type = "button";
     copyButton.className = "ez-button ez-button--secondary doc-code__copy";
-    copyButton.textContent = "Copiar";
+    copyButton.textContent = TEXTS.copy;
     copyButton.addEventListener("click", async function () {
       await navigator.clipboard.writeText(code);
-      copyButton.textContent = "Copiado";
+      copyButton.textContent = TEXTS.copied;
     });
 
     block.append(copyButton, pre);

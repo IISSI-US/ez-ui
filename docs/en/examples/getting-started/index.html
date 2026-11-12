@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>ez-Soccer Trophy</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Applies the saved theme before the page is drawn -->
+    <script src="ez-ui/js/theme-init.js"></script>
+    <!-- First ez-ui and then the project's own stylesheet -->
+    <link rel="stylesheet" href="ez-ui/css/ez-ui.css">
+    <link rel="stylesheet" href="css/app.css">
+    <link rel="icon" href="favicon.svg">
+    <script src="js/main.js" type="module"></script>
+  </head>
+
+  <body>
+    <!-- The navigation bar; main.js adds the collapsible menu to it -->
+    <nav class="ez-navbar" aria-label="Main">
+      <div class="ez-container ez-navbar__inner">
+        <a class="ez-navbar__brand" href="index.html">ez-Soccer Trophy</a>
+        <!-- The «Menu» button, only on narrow screens -->
+        <button class="ez-button ez-button--secondary ez-navbar__toggle"
+                type="button"
+                aria-expanded="false"
+                aria-controls="main-links">
+          Menu
+        </button>
+        <ul id="main-links" class="ez-navbar__links">
+          <li><a href="index.html" aria-current="page">Home</a></li>
+          <li><a href="#">Standings</a></li>
+          <li><a href="#">Transfer market</a></li>
+          <!-- The theme button: each part is seen with one of the themes -->
+          <li>
+            <button id="theme-toggle"
+                    class="ez-button ez-button--secondary ez-theme-toggle"
+                    type="button">
+              <span class="ez-theme-toggle__to-dark">Dark theme</span>
+              <span class="ez-theme-toggle__to-light">Light theme</span>
+            </button>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- ez-container: centers the content and limits its width -->
+    <main class="ez-container">
+      <h1>ez-Soccer Trophy</h1>
+      <p class="welcome">The football league of the schools and faculties.</p>
+
+      <!-- A card: the frame (ez-card) and the body (ez-card__body) -->
+      <article class="ez-card">
+        <div class="ez-card__body">
+          <h2>Matchday 11</h2>
+          <p>ETSII is still the leader after beating Medicine 3-1.</p>
+          <a class="ez-button" href="#">See the standings</a>
+        </div>
+      </article>
+    </main>
+  </body>
+</html>

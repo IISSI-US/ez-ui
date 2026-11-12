@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>ez-ui · JavaScript</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="ez-ui components with JavaScript: collapsible menu, notification, loading indicator and dialog">
+        <script src="../ez-ui/js/theme-init.js"></script>
+        <link rel="stylesheet" href="../ez-ui/css/ez-ui.css">
+        <!-- The icons of this site, from Font Awesome (ez-ui brings no icons) -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+        <link rel="stylesheet" href="../css/site.css">
+        <link rel="icon" href="../favicon.svg">
+        <link rel="alternate" hreflang="es" href="../javascript.html">
+        <script src="../js/header.js" type="module"></script>
+        <script src="../js/javascript.js" type="module"></script>
+        <script src="../js/examples/theme-toggle.js" type="module"></script>
+        <script src="js/examples/sell-player.js" type="module"></script>
+        <script src="js/examples/toasts.js" type="module"></script>
+        <script src="js/examples/load-market.js" type="module"></script>
+    </head>
+
+    <body>
+        <div id="page-header"></div>
+
+        <div class="ez-container doc-layout">
+            <main>
+                <header class="doc-header">
+                    <h1>JavaScript</h1>
+                    <p>
+                        Five components that need JavaScript, from the simplest to the most
+                        complete: the collapsible menu of the navigation bar, the theme button, a
+                        notification, a loading indicator and a confirmation dialog. Each one is a
+                        module of <code>ez-ui/js/</code> that is imported with <code>import</code>
+                        from another module.
+                    </p>
+                </header>
+
+                <section class="doc-section" id="navbar">
+                    <h2>Collapsible menu</h2>
+                    <p>
+                        On a narrow screen, the navigation bar shows a «Menu» button and hides the
+                        links until it is clicked. The button has <code>aria-expanded</code>, which
+                        says whether the menu is open, and <code>aria-controls</code>, with the
+                        <code>id</code> of the list of links. On a wide screen, the button is not
+                        seen and the bar is the usual one.
+                    </p>
+                    <p>
+                        This example is a separate page, in a frame as wide as a phone:
+                    </p>
+                    <div class="doc-demo">
+                        <iframe src="examples/navbar-mobile.html"
+                                title="Navigation bar on a phone"
+                                width="375"
+                                height="340"></iframe>
+                    </div>
+                    <template class="doc-example">
+                        <nav class="ez-navbar" aria-label="Main">
+                            <div class="ez-container ez-navbar__inner">
+                                <a class="ez-navbar__brand" href="#">ez-Soccer Trophy</a>
+                                <!-- The «Menu» button, only on narrow screens -->
+                                <!-- aria-expanded: whether it is open; aria-controls: which list -->
+                                <button class="ez-button ez-button--secondary ez-navbar__toggle"
+                                        type="button"
+                                        aria-expanded="false"
+                                        aria-controls="main-links">
+                                    Menu
+                                </button>
+                                <!-- The links, which the button shows or hides -->
+                                <ul id="main-links" class="ez-navbar__links">
+                                    <li><a href="#">Standings</a></li>
+                                    <li><a href="#">Transfer market</a></li>
+                                </ul>
+                            </div>
+                        </nav>
+                    </template>
+                    <p>
+                        <code>ezNavbar(bar)</code> connects the button: when it is clicked, it
+                        switches <code>aria-expanded</code> between <code>"false"</code> and
+                        <code>"true"</code>. The CSS does the rest: while it is
+                        <code>"false"</code>, it hides the links. If it does not receive the bar
+                        (because <code>querySelector</code> does not find it, or because it is not
+                        in the page yet) or the bar has no button, it throws an error that says so
+                        in the console.
+                    </p>
+                    <template class="doc-example">
+                        import { ezNavbar } from "./ez-ui/js/navbar.js";
+
+                        // Connects the «Menu» button of the bar
+                        ezNavbar(document.querySelector(".ez-navbar"));
+                    </template>
+                </section>
+
+                <section class="doc-section" id="theme">
+                    <h2>Light and dark theme</h2>
+                    <p>
+                        A button that switches the page between the light and the dark theme. It
+                        has two parts, and the CSS shows one of them depending on the theme:
+                        <code>ez-theme-toggle__to-dark</code> with the light one and
+                        <code>ez-theme-toggle__to-light</code> with the dark one. Each one holds
+                        text, an icon or both (see
+                        <a href="customization.html#icons">Customization</a>). Try it: it changes
+                        this whole site, like the one in the header.
+                    </p>
+                    <div class="doc-example">
+                        <button id="theme-button"
+                                class="ez-button ez-button--secondary ez-theme-toggle"
+                                type="button">
+                            <!-- Seen with the light theme -->
+                            <span class="ez-theme-toggle__to-dark">Dark theme</span>
+                            <!-- Seen with the dark theme -->
+                            <span class="ez-theme-toggle__to-light">Light theme</span>
+                        </button>
+                    </div>
+                    <p>
+                        <code>ezThemeToggle(button)</code> connects the button: when it is clicked,
+                        it changes <code>data-ez-theme</code> in <code>&lt;html&gt;</code> and saves
+                        the choice in <code>localStorage</code>, which the browser keeps when
+                        another page is opened and when it is closed. Which part is seen is chosen
+                        by the CSS, depending on the theme.
+                    </p>
+                    <template class="doc-example">
+                        import { ezThemeToggle } from "./ez-ui/js/theme.js";
+
+                        // When it is clicked, it switches the theme and saves it
+                        ezThemeToggle(document.getElementById("theme-button"));
+                    </template>
+                    <p>
+                        When each page is loaded, <code>theme-init.js</code> applies the saved
+                        theme. It is a classic script (without <code>type="module"</code>) in the
+                        <code>&lt;head&gt;</code>, before the stylesheets: it runs as soon as the
+                        browser reads it, before the page is drawn. A module runs later, and the
+                        light theme would be seen for a moment.
+                    </p>
+                    <template class="doc-example">
+                        <!-- Classic script, before the stylesheets: applies the saved theme -->
+                        <script src="ez-ui/js/theme-init.js"></script>
+                        <link rel="stylesheet" href="ez-ui/css/ez-ui.css">
+                    </template>
+                </section>
+
+                <section class="doc-section" id="toast">
+                    <h2>Notification</h2>
+                    <p>
+                        A short message in a corner of the screen, which closes by itself after
+                        four seconds: «Bid placed», «Sale cancelled». For a message that the user
+                        has to read calmly, such as the errors of a form, better an
+                        <a href="components.html#alert">alert</a>.
+                    </p>
+                    <div class="doc-example">
+                        <button id="toast-info"
+                                class="ez-button ez-button--secondary"
+                                type="button">
+                            Information
+                        </button>
+                        <button id="toast-success"
+                                class="ez-button ez-button--success"
+                                type="button">
+                            Success
+                        </button>
+                        <button id="toast-warning"
+                                class="ez-button ez-button--secondary"
+                                type="button">
+                            Warning
+                        </button>
+                        <button id="toast-error" class="ez-button ez-button--danger" type="button">Error</button>
+                    </div>
+                    <p>
+                        <code>ezToast(message, type, duration)</code> creates the notification with
+                        the DOM and adds it to the page. The type is <code>"info"</code>,
+                        <code>"success"</code>, <code>"warning"</code> or <code>"error"</code>, and
+                        the duration, the milliseconds that it takes to close (with <code>0</code>,
+                        it does not close by itself). Both are parameters with a default value
+                        (<code>"info"</code> and <code>4000</code>): if they are not passed, they
+                        take that value.
+                    </p>
+                    <template class="doc-example">
+                        import { ezToast } from "./ez-ui/js/toast.js";
+
+                        // Information, closes after 4 seconds (the default values)
+                        ezToast("The transfer market closes on Friday at 21:00.");
+                        // Success
+                        ezToast("Bid placed.", "success");
+                        // Warning
+                        ezToast("The transfer market closes in one hour.", "warning");
+                        // Error, which does not close by itself (0)
+                        ezToast("The bid could not be placed.", "error", 0);
+                    </template>
+                </section>
+
+                <section class="doc-section" id="loading">
+                    <h2>Loading indicator</h2>
+                    <p>
+                        It shows that something is loading while the response of the API arrives,
+                        in the same place where the data will appear. An element with the attribute
+                        <code>aria-busy="true"</code> shows a spinning circle, and screen readers
+                        know that its content is being updated.
+                    </p>
+                    <div class="doc-example doc-example--column">
+                        <p><button id="load-button" class="ez-button" type="button">Load the transfer market</button></p>
+                        <!-- The players appear here; while they arrive, the indicator -->
+                        <ul id="market-list"></ul>
+                    </div>
+                    <p>
+                        <code>ezLoading(element, promise)</code> sets <code>aria-busy</code> on the
+                        element, waits for the promise (the request) and removes it when it ends,
+                        also if the request fails. It returns the result of the promise, so it is
+                        used with <code>await</code> in the same place where the response would be
+                        awaited.
+                    </p>
+                    <template class="doc-example">
+                        import { ezLoading } from "./ez-ui/js/loading.js";
+
+                        // aria-busy on the list until getPlayers() responds
+                        let players = await ezLoading(list, getPlayers());
+                    </template>
+                </section>
+
+                <section class="doc-section" id="dialog">
+                    <h2>Dialog</h2>
+                    <p>
+                        It asks for confirmation before an action that cannot be undone, such as
+                        selling a player. It is a <code>&lt;dialog&gt;</code> element of HTML
+                        itself: the browser shows it above the page, darkens the background and
+                        closes it with the Escape key. Its buttons go in a
+                        <code>&lt;form method="dialog"&gt;</code>, which closes the dialog when any
+                        of them is clicked; the <code>value</code> attribute of the button says
+                        which one it was.
+                    </p>
+                    <div class="doc-example">
+                        <button id="sell-button"
+                                class="ez-button ez-button--danger"
+                                type="button">
+                            Sell Mario Gil
+                        </button>
+
+                        <!-- ez-dialog: hidden until ezConfirm opens it -->
+                        <dialog id="sell-dialog" class="ez-dialog" aria-labelledby="sell-dialog-title">
+                            <h3 id="sell-dialog-title">Sell Mario Gil?</h3>
+                            <p>You will receive €400,000 and he will no longer be in your squad.</p>
+                            <!-- method="dialog": any button closes the dialog -->
+                            <!-- value: says which button was clicked -->
+                            <form method="dialog" class="ez-dialog__actions">
+                                <button class="ez-button ez-button--secondary" type="submit" value="cancel">Cancel</button>
+                                <button class="ez-button ez-button--danger" type="submit" value="confirm">Sell</button>
+                            </form>
+                        </dialog>
+                    </div>
+                    <p>
+                        <code>ezConfirm(dialog)</code> opens the dialog and returns a promise that
+                        is fulfilled when it is closed: with <code>await</code>, the code waits
+                        until the user chooses, and receives <code>true</code> if they clicked the
+                        button with <code>value="confirm"</code>. It is an alternative to
+                        <code>confirm()</code>, which cannot be adapted to the look of the
+                        application.
+                    </p>
+                    <template class="doc-example">
+                        import { ezConfirm } from "./ez-ui/js/dialog.js";
+
+                        // Waits until it is closed: true if value="confirm" was clicked
+                        let confirmed = await ezConfirm(document.getElementById("sell-dialog"));
+                    </template>
+                </section>
+            </main>
+
+            <nav class="doc-toc" aria-label="On this page">
+                <h2>On this page</h2>
+                <ul>
+                    <li><a href="#navbar">Collapsible menu</a></li>
+                    <li><a href="#theme">Light and dark theme</a></li>
+                    <li><a href="#toast">Notification</a></li>
+                    <li><a href="#loading">Loading indicator</a></li>
+                    <li><a href="#dialog">Dialog</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <div id="page-footer"></div>
+    </body>
+</html>
