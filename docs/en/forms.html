@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>ez-ui · Forms</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="Forms with ez-ui: fields, help texts, validation and error messages">
+        <script src="../ez-ui/js/theme-init.js"></script>
+        <link rel="stylesheet" href="../ez-ui/css/ez-ui.css">
+        <!-- The icons of this site, from Font Awesome (ez-ui brings no icons) -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+        <link rel="stylesheet" href="../css/site.css">
+        <link rel="icon" href="../favicon.svg">
+        <link rel="alternate" hreflang="es" href="../formularios.html">
+        <script src="../js/header.js" type="module"></script>
+        <script src="../js/formularios.js" type="module"></script>
+    </head>
+
+    <body>
+        <div id="page-header"></div>
+
+        <div class="ez-container doc-layout">
+            <main>
+                <header class="doc-header">
+                    <h1>Forms</h1>
+                    <p>
+                        Form controls have a style without classes. <span class="doc-brand"><span class="doc-brand-mark">ez</span>-ui</span> only adds the group
+                        of each field, with its help text and its error message, and the errors of
+                        the whole form are shown with an alert.
+                    </p>
+                </header>
+
+                <section class="doc-section" id="field">
+                    <h2>Field</h2>
+                    <p>
+                        Each field goes in an <code>ez-field</code>, which separates it from the
+                        next one: the label, the control and, if needed, a help text
+                        (<code>ez-field__hint</code>). The <code>for</code> of the label is the
+                        <code>id</code> of the control: clicking the label activates the control,
+                        and a screen reader reads the label when it reaches it.
+                        <code>aria-describedby</code> also tells it where the help text is.
+                    </p>
+                    <div class="doc-example doc-example--column">
+                        <form>
+                            <!-- ez-field: label, control and help text of a field -->
+                            <div class="ez-field">
+                                <!-- for: the id of the control it belongs to -->
+                                <label for="team-name">Team name</label>
+                                <!-- aria-describedby: the id of the help text -->
+                                <input id="team-name"
+                                       name="name"
+                                       type="text"
+                                       placeholder="Los Galácticos"
+                                       aria-describedby="team-name-hint">
+                                <!-- ez-field__hint: the help text, under the control -->
+                                <small id="team-name-hint" class="ez-field__hint">Between 3 and 30 characters.</small>
+                            </div>
+                        </form>
+                    </div>
+                </section>
+
+                <section class="doc-section" id="controls">
+                    <h2>Controls</h2>
+                    <p>
+                        Text fields, drop-down lists and text areas take the whole width of the
+                        form and have the same look. The type of the <code>&lt;input&gt;</code>
+                        (<code>email</code>, <code>password</code>, <code>number</code>) changes the
+                        keyboard on a phone and what the browser accepts.
+                    </p>
+                    <div class="doc-example doc-example--column">
+                        <form>
+                            <!-- Each control in its ez-field, with its label -->
+                            <div class="ez-field">
+                                <label for="login-email">Email</label>
+                                <!-- type="email": an email keyboard on a phone -->
+                                <input id="login-email" name="email" type="email" placeholder="name@alum.us.es">
+                            </div>
+                            <div class="ez-field">
+                                <label for="login-password">Password</label>
+                                <input id="login-password" name="password" type="password">
+                            </div>
+                            <div class="ez-field">
+                                <label for="login-team">Team</label>
+                                <select id="login-team" name="team">
+                                    <option>ETSII</option>
+                                    <option>Medicine</option>
+                                    <option>Architecture</option>
+                                </select>
+                            </div>
+                            <div class="ez-field">
+                                <label for="login-motto">Team motto</label>
+                                <textarea id="login-motto" name="motto"></textarea>
+                            </div>
+                            <!-- type="submit": sends the form -->
+                            <button class="ez-button" type="submit">Create team</button>
+                        </form>
+                    </div>
+                    <p>
+                        Every <code>&lt;form&gt;</code> is at most <code>42rem</code> wide, so that
+                        the fields do not stretch from side to side on a wide screen. It is a rule
+                        without a class, so it applies to all of them; if a form needs another
+                        width, it is changed with a rule in your own stylesheet (see
+                        <a href="customization.html#component">Customization</a>):
+                    </p>
+                    <template class="doc-example">
+                        /* css/app.css: the search form, without a maximum width */
+                        .search-form {
+                            max-width: none;
+                        }
+                    </template>
+                </section>
+
+                <section class="doc-section" id="disabled">
+                    <h2>Disabled</h2>
+                    <p>
+                        With <code>disabled</code>, the control cannot be used and its value is not
+                        sent with the form.
+                    </p>
+                    <div class="doc-example doc-example--column">
+                        <form>
+                            <div class="ez-field">
+                                <label for="disabled-player">Player</label>
+                                <!-- disabled: it cannot be used and it is not sent -->
+                                <input id="disabled-player" name="player" type="text" value="Hugo Serrano" disabled>
+                            </div>
+                        </form>
+                    </div>
+                </section>
+
+                <section class="doc-section" id="error">
+                    <h2>Errors</h2>
+                    <p>
+                        Depending on what it affects, an error is shown in a different place: under
+                        its field, above the whole form or, if it is just a passing message, in a
+                        notification.
+                    </p>
+
+                    <h3>In a field</h3>
+                    <p>
+                        A wrongly written value, such as an amount below the minimum.
+                        <code>ez-field__error</code> shows the message under the control, and
+                        <code>aria-invalid="true"</code> in the control draws it with a red border
+                        and tells screen readers that it is wrong.
+                    </p>
+                    <div class="doc-example doc-example--column">
+                        <form>
+                            <div class="ez-field">
+                                <label for="invalid-amount">Amount (€)</label>
+                                <!-- aria-invalid: red border; aria-describedby: the error -->
+                                <input id="invalid-amount"
+                                       name="amount"
+                                       type="number"
+                                       value="900000"
+                                       aria-invalid="true"
+                                       aria-describedby="invalid-amount-error">
+                                <!-- ez-field__error: the message, under the control -->
+                                <small id="invalid-amount-error"
+                                       class="ez-field__error">
+                                    The minimum bid is the starting price: €1,200,000.
+                                </small>
+                            </div>
+                        </form>
+                    </div>
+
+                    <h3>In the whole form</h3>
+                    <p>
+                        An error that is not of a given field, such as the one of the API when the
+                        form is sent (the transfer market has already closed, there is no
+                        connection), goes in an error <a href="components.html#alert">alert</a>
+                        above the form. <code>role="alert"</code> makes screen readers announce it
+                        as soon as it appears.
+                    </p>
+                    <div class="doc-example doc-example--column">
+                        <!-- The error of the API, above the form -->
+                        <div class="ez-alert ez-alert--error" role="alert">
+                            The bid could not be registered: the transfer market has already closed.
+                        </div>
+                        <form>
+                            <div class="ez-field">
+                                <label for="api-amount">Amount (€)</label>
+                                <input id="api-amount" name="amount" type="number" value="1250000">
+                            </div>
+                            <button class="ez-button" type="submit">Bid</button>
+                        </form>
+                    </div>
+
+                    <h3>A passing message</h3>
+                    <p>
+                        What only tells what has happened («Bid registered») and does not have to be
+                        corrected goes in a <a href="javascript.html#toast">notification</a>, which
+                        closes by itself. An error that the user has to read calmly to correct it,
+                        does not: it would disappear too soon.
+                    </p>
+                </section>
+            </main>
+
+            <nav class="doc-toc" aria-label="On this page">
+                <h2>On this page</h2>
+                <ul>
+                    <li><a href="#field">Field</a></li>
+                    <li><a href="#controls">Controls</a></li>
+                    <li><a href="#disabled">Disabled</a></li>
+                    <li><a href="#error">Errors</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <div id="page-footer"></div>
+    </body>
+</html>

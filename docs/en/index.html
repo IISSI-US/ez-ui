@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>ez-ui · Home</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="ez-ui: a simple stylesheet for the web projects of IISSI-2. A first project in ten minutes">
+        <script src="../ez-ui/js/theme-init.js"></script>
+        <link rel="stylesheet" href="../ez-ui/css/ez-ui.css">
+        <!-- The icons of this site, from Font Awesome (ez-ui brings no icons) -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+        <link rel="stylesheet" href="../css/site.css">
+        <link rel="icon" href="../favicon.svg">
+        <link rel="alternate" hreflang="es" href="../index.html">
+        <script src="../js/header.js" type="module"></script>
+        <script src="../js/index.js" type="module"></script>
+    </head>
+
+    <body>
+        <div id="page-header"></div>
+
+        <div class="ez-container doc-layout">
+            <main>
+                <header class="doc-header">
+                    <h1><span class="doc-brand-mark">ez</span>-ui</h1>
+                    <p>
+                        A simple stylesheet for the web projects of IISSI-2: semantic HTML, CSS
+                        that can be read from end to end and a few components with JavaScript,
+                        without dependencies or a build step.
+                    </p>
+                    <p>
+                        This page builds a first complete project in a few minutes: a page with a
+                        navigation bar, a collapsible menu, a light and dark theme button, and its
+                        main color changed. The other pages are the reference of each piece, to
+                        look them up when they are needed.
+                    </p>
+                </header>
+
+                <section class="doc-section" id="download">
+                    <h2>Download</h2>
+                    <p>
+                        <a class="ez-button" href="../downloads/ez-ui-1.0.1.zip">Download ez-ui 1.0.1</a>
+                    </p>
+                    <p>
+                        The ZIP has an <code>ez-ui/</code> folder, which is unzipped in the root of
+                        the project, next to the project's own folders. <span class="doc-brand"><span class="doc-brand-mark">ez</span>-ui</span> is not modified: what
+                        belongs to the project goes outside its folder. The project looks like this:
+                    </p>
+                    <template class="doc-example">
+                        my-project/
+                        ├── index.html
+                        ├── css/
+                        │   └── app.css        your own stylesheet
+                        ├── js/
+                        │   └── main.js        your own JavaScript
+                        └── ez-ui/             ez-ui, as it is
+                            ├── css/
+                            ├── js/
+                            ├── fonts/
+                            └── VERSION.txt
+                    </template>
+                    <p>
+                        <code>ez-ui/VERSION.txt</code> says which version is installed. To update
+                        it, the whole <code>ez-ui/</code> folder is replaced by the one of the new
+                        version.
+                    </p>
+                </section>
+
+                <section class="doc-section" id="html">
+                    <h2>The page</h2>
+                    <p>
+                        This is the result, in a frame as wide as a phone. Try it: the «Menu»
+                        button opens the links, and the theme one switches between the light and
+                        the dark theme.
+                    </p>
+                    <div class="doc-demo">
+                        <iframe src="examples/getting-started/index.html"
+                                title="A first page with ez-ui"
+                                width="375"
+                                height="460"></iframe>
+                    </div>
+                    <p>
+                        Everything that is seen is in <code>index.html</code>. In its
+                        <code>&lt;head&gt;</code>, in this order, go <code>theme-init.js</code>,
+                        which applies the saved theme before the page is drawn; the stylesheet of <span class="doc-brand"><span class="doc-brand-mark">ez</span>-ui</span>
+                        and, after it, your own, so that yours wins; and <code>main.js</code>, with
+                        <code>type="module"</code> to be able to use <code>import</code>.
+                    </p>
+                    <div data-file="examples/getting-started/index.html"></div>
+                    <p>
+                        The navigation bar and the theme button are explained in
+                        <a href="javascript.html">JavaScript</a>, and the card, in
+                        <a href="components.html#card">Components</a>.
+                    </p>
+                </section>
+
+                <section class="doc-section" id="css">
+                    <h2>Your own stylesheet</h2>
+                    <p>
+                        The colors of <span class="doc-brand"><span class="doc-brand-mark">ez</span>-ui</span> are variables: <code>app.css</code> changes the main
+                        color, the maroon, for a blue, with a value for each theme. It also adds the
+                        style of a class of the project, <code>welcome</code>, with the variables of
+                        <span class="doc-brand"><span class="doc-brand-mark">ez</span>-ui</span> so that it changes with the dark theme.
+                    </p>
+                    <div data-file="examples/getting-started/css/app.css"></div>
+                    <p>
+                        What else can be changed, and how, is in
+                        <a href="customization.html">Customization</a>.
+                    </p>
+                </section>
+
+                <section class="doc-section" id="javascript">
+                    <h2>The JavaScript</h2>
+                    <p>
+                        <code>main.js</code> imports two components of <span class="doc-brand"><span class="doc-brand-mark">ez</span>-ui</span> and connects them to
+                        their elements when the page is loaded. It does not create the bar or the
+                        button, which are already in the HTML: it adds what happens when they are
+                        clicked.
+                    </p>
+                    <div data-file="examples/getting-started/js/main.js"></div>
+                </section>
+
+                <section class="doc-section" id="server">
+                    <h2>Opening it with a server</h2>
+                    <p>
+                        Modules (<code>import</code>) do not work when the file is opened with a
+                        double click (<code>file://</code>): the page has to come from an HTTP
+                        server. In Visual Studio Code, with the Live Server extension, or from the
+                        folder of the project:
+                    </p>
+                    <template class="doc-example">
+                        python3 -m http.server 8000
+                    </template>
+                    <p>
+                        and http://localhost:8000/ is opened. If something does not look right, the
+                        console of the developer tools shows the errors, and the Network tab, the
+                        files that are not found (404): almost always, a mistyped path.
+                    </p>
+                </section>
+
+                <section class="doc-section" id="pages">
+                    <h2>Several pages</h2>
+                    <p>
+                        With several pages, each one has its navigation bar in the HTML. How not to
+                        repeat it is a decision of each application, not of <span class="doc-brand"><span class="doc-brand-mark">ez</span>-ui</span>: copying it in
+                        each page, generating it with templates in the server, or inserting it with
+                        JavaScript (<code>fetch</code>) from a common file, as this site does.
+                        <span class="doc-brand"><span class="doc-brand-mark">ez</span>-ui</span> only gives its look (<code>ez-navbar</code>) and its collapsible menu
+                        (<code>ezNavbar</code>), which work the same in the three cases. If the bar
+                        is inserted with JavaScript, <code>ezNavbar</code> is called afterwards, when
+                        it is already in the page.
+                    </p>
+                </section>
+
+                <section class="doc-section" id="reference">
+                    <h2>What comes next</h2>
+                    <p>The rest of the site is the reference, a page for each part of <span class="doc-brand"><span class="doc-brand-mark">ez</span>-ui</span>:</p>
+                    <ul>
+                        <li>
+                            <a href="elements.html">Elements</a>: the HTML that has a style without
+                            classes, such as texts and tables.
+                        </li>
+                        <li>
+                            <a href="layout.html">Layout</a>: container, gallery and two columns.
+                        </li>
+                        <li>
+                            <a href="components.html">Components</a>: badges, buttons, alerts,
+                            avatars, cards and navigation bars.
+                        </li>
+                        <li>
+                            <a href="forms.html">Forms</a>: fields, help texts and errors.
+                        </li>
+                        <li>
+                            <a href="javascript.html">JavaScript</a>: collapsible menu, theme,
+                            notifications, loading indicator and dialog.
+                        </li>
+                        <li>
+                            <a href="customization.html">Customization</a>: the names of the
+                            classes, the variables, the dark theme, the fonts and the icons, and how
+                            to change them.
+                        </li>
+                    </ul>
+                    <p>
+                        The examples are from the ez-Soccer Trophy, an invented football league
+                        between the schools and faculties of the university.
+                    </p>
+                </section>
+            </main>
+
+            <nav class="doc-toc" aria-label="On this page">
+                <h2>On this page</h2>
+                <ul>
+                    <li><a href="#download">Download</a></li>
+                    <li><a href="#html">The page</a></li>
+                    <li><a href="#css">Your own stylesheet</a></li>
+                    <li><a href="#javascript">The JavaScript</a></li>
+                    <li><a href="#server">Opening it with a server</a></li>
+                    <li><a href="#pages">Several pages</a></li>
+                    <li><a href="#reference">What comes next</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <div id="page-footer"></div>
+    </body>
+</html>

@@ -1,0 +1,20 @@
+/* The project's own styles, linked after ez-ui. */
+
+/* The main color, blue instead of the maroon of ez-ui; the dark theme has
+   its own values, so they are changed too */
+:root {
+  --ez-primary: #245b91;
+  --ez-primary-hover: #1b4570;
+}
+
+:root[data-ez-theme="dark"] {
+  --ez-primary: #8bc5ff;
+  --ez-primary-hover: #b3d9ff;
+}
+
+/* A class of the project, with the variables of ez-ui so that it changes
+   with the theme */
+.welcome {
+  color: var(--ez-muted);
+  font-size: 1.25rem;
+}

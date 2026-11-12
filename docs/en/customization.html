@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>ez-ui · Customization</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="The conventions of ez-ui and how to adapt its styles, its dark theme, its fonts and its icons without modifying it">
+        <script src="../ez-ui/js/theme-init.js"></script>
+        <link rel="stylesheet" href="../ez-ui/css/ez-ui.css">
+        <!-- The icons of this site, from Font Awesome (ez-ui brings no icons) -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+        <link rel="stylesheet" href="../css/site.css">
+        <link rel="icon" href="../favicon.svg">
+        <link rel="alternate" hreflang="es" href="../personalizacion.html">
+        <script src="../js/header.js" type="module"></script>
+        <script src="../js/personalizacion.js" type="module"></script>
+        <script src="../js/examples/icon-theme-toggle.js" type="module"></script>
+    </head>
+
+    <body>
+        <div id="page-header"></div>
+
+        <div class="ez-container doc-layout">
+            <main>
+                <header class="doc-header">
+                    <h1>Customization</h1>
+                    <p>
+                        How the classes and the variables of <span class="doc-brand"><span class="doc-brand-mark">ez</span>-ui</span> are named, and how they are
+                        adapted to the project without touching its files: from a color for the
+                        whole page to a rule for a few components.
+                    </p>
+                </header>
+
+                <section class="doc-section" id="conventions">
+                    <h2>Names of the classes</h2>
+                    <p>
+                        The classes follow the BEM convention (block, element and modifier): the
+                        name of a class says which component it belongs to and what role it has in
+                        it. All of them start with <code>ez-</code>, to tell them apart from the
+                        project's own.
+                    </p>
+                    <ul>
+                        <li>
+                            <strong>Component</strong>: its name (<code>ez-card</code>,
+                            <code>ez-button</code>).
+                        </li>
+                        <li>
+                            <strong>Part of a component</strong>: the name of the component, two
+                            underscores and the name of the part (<code>ez-card__body</code>). It
+                            only makes sense inside its component.
+                        </li>
+                        <li>
+                            <strong>Variant</strong>: it is added to the class of the component,
+                            with two hyphens, and changes its look without repeating the rest
+                            (<code>ez-button ez-button--danger</code>).
+                        </li>
+                    </ul>
+                    <div class="doc-example">
+                        <!-- Component -->
+                        <article class="ez-card">
+                            <!-- Part of the component -->
+                            <div class="ez-card__body">
+                                <h3>Mario Gil</h3>
+                                <p>ETSII forward.</p>
+                                <!-- Variant -->
+                                <button class="ez-button ez-button--danger" type="button">Sell</button>
+                            </div>
+                        </article>
+                    </div>
+                    <p>
+                        <code>ez-card</code> gives the frame of the card (border, shadow and
+                        background), and <code>ez-card__body</code>, the padding that separates the
+                        content from the border; that is why the content goes inside the body.
+                    </p>
+                    <p>
+                        The project's classes have another prefix, or none. They can go together on
+                        the same element: <code>ez-card</code> gives it the look of a card, and
+                        <code>player-card</code> says that it is a player's card.
+                    </p>
+                    <template class="doc-example">
+                        <!-- ez-card: the look of a card; player-card: the project's own -->
+                        <article class="ez-card player-card">…</article>
+                    </template>
+                </section>
+
+                <section class="doc-section" id="cascade">
+                    <h2>Your own stylesheet</h2>
+                    <p>
+                        The changes go in a stylesheet of the project, linked after
+                        <span class="doc-brand"><span class="doc-brand-mark">ez</span>-ui</span>. The files of <code>ez-ui/</code> are not modified: that way
+                        the folder can be replaced by a new version without losing anything.
+                    </p>
+                    <template class="doc-example">
+                        <!-- The order matters: ez-ui first, then your own stylesheet  -->
+                        <link rel="stylesheet" href="ez-ui/css/ez-ui.css">
+                        <link rel="stylesheet" href="css/app.css">
+                    </template>
+                    <p>
+                        When two rules give a value to the same property of an element, the one
+                        with the more <strong>specific</strong> selector wins (an id weighs more
+                        than a class, and two classes more than one) and, if they are equally
+                        specific, the one that comes <strong>later</strong>. That is why your own
+                        stylesheet goes after it: with the same selector as <span class="doc-brand"><span class="doc-brand-mark">ez</span>-ui</span>, its rule wins.
+                    </p>
+                    <p>
+                        If a rule is not applied, the developer tools of the browser (Elements tab,
+                        Styles panel) show which other rule strikes it out.
+                    </p>
+                </section>
+
+                <section class="doc-section" id="variables">
+                    <h2>Variables</h2>
+                    <p>
+                        The colors, the fonts, the spacing and the radii of the corners are CSS
+                        variables that start with <code>--ez-</code>, defined in
+                        <code>:root</code> (the <code>&lt;html&gt;</code> element) in
+                        <code>tokens.css</code>. The other stylesheets use them with
+                        <code>var()</code>, so giving them another value in your own stylesheet
+                        changes all the components that use them:
+                    </p>
+                    <template class="doc-example">
+                        /* css/app.css: blue instead of the maroon */
+                        :root {
+                            --ez-primary: #245b91;
+                            --ez-primary-hover: #1b4570;
+                        }
+                    </template>
+                    <p>
+                        Variables are inherited, like the color of the text: redefined in an
+                        element, they only change inside it. Here, the button on the right is in a
+                        <code>&lt;div&gt;</code> that changes the main color to green:
+                    </p>
+                    <div class="doc-example">
+                        <!-- With the main color of ez-ui -->
+                        <button class="ez-button" type="button">Bid</button>
+                        <!-- Another main color, only inside this div -->
+                        <div style="--ez-primary: #00776d; --ez-primary-hover: #005c54">
+                            <button class="ez-button" type="button">Bid</button>
+                        </div>
+                    </div>
+                    <p>
+                        Your own stylesheets use them too, so that what is new has the same look
+                        as <span class="doc-brand"><span class="doc-brand-mark">ez</span>-ui</span> and changes with the dark theme:
+                    </p>
+                    <template class="doc-example">
+                        /* css/app.css: an element of the project with the colors and
+                           spacing of ez-ui */
+                        .match-score {
+                            padding: var(--ez-space-2) var(--ez-space-4);
+                            border: 1px solid var(--ez-border);
+                            color: var(--ez-primary);
+                        }
+                    </template>
+                </section>
+
+                <section class="doc-section" id="theme">
+                    <h2>Dark theme</h2>
+                    <p>
+                        The dark theme does not change any rule of the components: it only gives
+                        other values to the same variables when <code>&lt;html&gt;</code> has the
+                        attribute <code>data-ez-theme="dark"</code>, which the
+                        <a href="javascript.html#theme">theme button</a> sets.
+                    </p>
+                    <template class="doc-example" data-code='<html lang="en" data-ez-theme="dark">'></template>
+                    <p>
+                        That is why, when a color is changed, its value for the dark theme has to
+                        be given too. <code>:root[data-ez-theme="dark"]</code> is more specific
+                        than <code>:root</code>: without this rule, the dark theme would keep the
+                        color of <span class="doc-brand"><span class="doc-brand-mark">ez</span>-ui</span>.
+                    </p>
+                    <template class="doc-example">
+                        /* css/app.css: the blue, lighter for the dark theme */
+                        :root[data-ez-theme="dark"] {
+                            --ez-primary: #8bc5ff;
+                            --ez-primary-hover: #b3d9ff;
+                        }
+                    </template>
+                </section>
+
+                <section class="doc-section" id="fonts">
+                    <h2>Fonts</h2>
+                    <p>
+                        <span class="doc-brand"><span class="doc-brand-mark">ez</span>-ui</span> brings its fonts in <code>ez-ui/fonts/</code>, with the free OFL
+                        license: <strong>Source Sans 3</strong> (regular and italic) for the text
+                        and <strong>JetBrains Mono</strong> for the code. They do not depend on any
+                        external service, such as Google Fonts: they work offline.
+                    </p>
+                    <p>
+                        <code>@font-face</code> <strong>declares</strong> a font: it links a family
+                        name to a file (<code>fonts.css</code> does it). <code>font-family</code>
+                        <strong>uses</strong> it: <code>base.css</code> sets
+                        <code>var(--ez-font)</code> on <code>&lt;html&gt;</code>, from which the
+                        other elements inherit it, and <code>var(--ez-font-mono)</code> on
+                        <code>code</code>, <code>pre</code> and <code>kbd</code>.
+                    </p>
+                    <template class="doc-example">
+                        /* ez-ui/css/fonts.css */
+                        @font-face {
+                            font-family: "Source Sans 3";
+                            src: url("../fonts/SourceSans3.woff2") format("woff2");
+                            font-weight: 200 900;
+                            font-display: swap;
+                        }
+
+                        /* ez-ui/css/tokens.css */
+                        :root {
+                            --ez-font: "Source Sans 3", system-ui, "Segoe UI", sans-serif;
+                        }
+                    </template>
+                    <p>
+                        WOFF2 is the compressed font format for the web. They are variable fonts:
+                        a single file has all the weights (<code>font-weight: 200 900</code>).
+                        <code>font-display: swap</code> shows the text with a system font while the
+                        project's own is downloaded, and the next ones in the list
+                        (<code>system-ui</code>, <code>sans-serif</code>) are used if it does not
+                        load.
+                    </p>
+
+                    <h3>Other fonts</h3>
+                    <p>
+                        It is enough to change the two variables in <code>:root</code>. Changing
+                        them inside an element does not work: <code>&lt;html&gt;</code> computes
+                        its font with the variable, and the others inherit that font already
+                        computed.
+                    </p>
+                    <template class="doc-example">
+                        /* css/app.css: system fonts */
+                        :root {
+                            --ez-font: Arial, sans-serif;
+                            --ez-font-mono: Consolas, monospace;
+                        }
+                    </template>
+                    <p>
+                        A font that is not in the system is declared with <code>@font-face</code>
+                        in your own stylesheet, with the file in a folder of the project, and is
+                        put first in <code>--ez-font</code>:
+                    </p>
+                    <template class="doc-example">
+                        /* css/app.css, with the font in the project's fonts/ */
+                        @font-face {
+                            font-family: "My Font";
+                            src: url("../fonts/my-font.woff2") format("woff2");
+                            font-display: swap;
+                        }
+
+                        :root {
+                            --ez-font: "My Font", system-ui, sans-serif;
+                        }
+                    </template>
+                    <p>
+                        The path of <code>url()</code> is relative to the CSS file that contains
+                        it, not to the page: from <code>css/app.css</code>, <code>../fonts/</code>
+                        is the <code>fonts/</code> folder of the project. For the same reason,
+                        <code>ez-ui/css/</code> and <code>ez-ui/fonts/</code> have to stay together.
+                        In the developer tools, the Computed panel of a text shows which font it is
+                        drawn with; if the system one appears, the Network tab says whether the
+                        <code>.woff2</code> has given a 404 error.
+                    </p>
+                </section>
+
+                <section class="doc-section" id="component">
+                    <h2>All the components or only some</h2>
+                    <p>
+                        What is not a variable is changed with a rule. Depending on its selector,
+                        the rule changes all the cards or only some. Here, the player's card also
+                        has the project's class <code>player-card</code>, and the match's card
+                        does not:
+                    </p>
+                    <div class="doc-example doc-example--column doc-example--wide">
+                        <!-- ez-gallery: the cards, in columns and with the same height -->
+                        <div class="ez-gallery">
+                            <!-- Without player-card: the style of ez-ui -->
+                            <article class="ez-card">
+                                <div class="ez-card__body">
+                                    <h3>Matchday 11</h3>
+                                    <p>ETSII beats Medicine 3-1 and is still the leader.</p>
+                                </div>
+                                <footer class="ez-card__footer">
+                                    <span>ETSII sports hall</span>
+                                    <strong>3 - 1</strong>
+                                </footer>
+                            </article>
+                            <!-- player-card, a class of the project: app.css customizes it -->
+                            <article class="ez-card player-card">
+                                <img class="ez-card__image"
+                                     src="../images/soccer/shirt-hugo-serrano.svg"
+                                     alt="Black shirt with the number 10">
+                                <div class="ez-card__body">
+                                    <h3>Hugo Serrano <span class="ez-badge">MF</span></h3>
+                                    <p>Law · 61 points</p>
+                                </div>
+                                <footer class="ez-card__footer">
+                                    <strong>€1,200,000</strong>
+                                    <button class="ez-button" type="button">Bid</button>
+                                </footer>
+                            </article>
+                        </div>
+                    </div>
+                    <p>
+                        The three rules of <code>app.css</code> start with
+                        <code>.player-card</code>, so they only change the cards that have that
+                        class, like the player's:
+                    </p>
+                    <template class="doc-example">
+                        /* css/app.css: the players' cards */
+
+                        /* A strip on top, with the main color: it changes with the theme */
+                        .player-card {
+                            border-top: 4px solid var(--ez-primary);
+                        }
+
+                        /* The image, square: ez-ui makes it 4:3, but this rule is more
+                           specific than its own (.ez-card__image) and wins */
+                        .player-card .ez-card__image {
+                            aspect-ratio: 1;
+                        }
+
+                        /* The text, centered: ez-ui does not align it, so there is nothing to win */
+                        .player-card .ez-card__body {
+                            text-align: center;
+                        }
+                    </template>
+                    <p>
+                        Without <code>.player-card</code> in front, with the same selector as <span class="doc-brand"><span class="doc-brand-mark">ez</span>-ui</span>
+                        (<code>.ez-card__body</code>), the rule would change <strong>all</strong>
+                        the cards, also the match's: it would win over the one of <span class="doc-brand"><span class="doc-brand-mark">ez</span>-ui</span> because it comes later.
+                    </p>
+                    <p>
+                        If the same is needed in different elements, better a class of the project
+                        that is added where it is needed, such as <code>.app-centered</code>. The
+                        <code>style</code> attribute changes it too, and it is the quickest way to
+                        try something in the browser, but it cannot be reused and it stays mixed
+                        with the HTML.
+                    </p>
+
+                    <h3>The fixed navigation bar</h3>
+                    <p>
+                        <span class="doc-brand"><span class="doc-brand-mark">ez</span>-ui</span> does not fix the navigation bar at the top, because not all
+                        applications want it: on a phone it takes up part of the screen. A rule in
+                        your own stylesheet keeps it fixed when the page is scrolled, as in this
+                        site:
+                    </p>
+                    <template class="doc-example">
+                        /* css/app.css: the bar, fixed at the top when the page is scrolled */
+                        .ez-navbar {
+                            position: sticky;
+                            top: 0;
+                            z-index: 1;
+                        }
+                    </template>
+                    <p>
+                        <code>sticky</code> leaves the bar in its place until it reaches the top
+                        edge (<code>top: 0</code>), and there it stays; <code>z-index</code> puts it
+                        above the content that passes below. It stays fixed while the element that
+                        contains it is seen, so the bar goes directly in the
+                        <code>&lt;body&gt;</code>.
+                    </p>
+                </section>
+
+                <section class="doc-section" id="icons">
+                    <h2>Icons</h2>
+                    <p>
+                        <span class="doc-brand"><span class="doc-brand-mark">ez</span>-ui</span> brings no icons: each application chooses its own, and its
+                        components work with text only. The simplest is
+                        <a href="https://fontawesome.com/icons">Font Awesome</a>, which is linked
+                        from a CDN (a public file server) in the <code>&lt;head&gt;</code> of each
+                        page, as this site does:
+                    </p>
+                    <template class="doc-example">
+                        <!-- Font Awesome, from a CDN: it needs an internet connection -->
+                        <link rel="stylesheet"
+                              href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+                    </template>
+                    <p>
+                        Each icon is an <code>&lt;i&gt;</code> tag with two classes: the style
+                        (<code>fa-solid</code>) and its name (<code>fa-plus</code>), which is looked
+                        up in their site. It takes the size and the color of the text around it,
+                        also inside a button or with the dark theme:
+                    </p>
+                    <div class="doc-example">
+                        <!-- aria-hidden: the text next to it already says the same -->
+                        <button class="ez-button" type="button">
+                            <i class="fa-solid fa-plus" aria-hidden="true"></i>
+                            Bid
+                        </button>
+                        <!-- Only the icon: aria-label gives the button a name -->
+                        <button class="ez-button ez-button--secondary"
+                                type="button"
+                                aria-label="Edit">
+                            <i class="fa-solid fa-pen" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                    <p>
+                        A screen reader reads the page aloud to whoever cannot see it. An icon next
+                        to a text adds nothing for it, so it has <code>aria-hidden="true"</code> to
+                        be skipped. A button that only has the icon needs a name, in
+                        <code>aria-label</code>.
+                    </p>
+
+                    <h3>The theme button with icons</h3>
+                    <p>
+                        The two parts of the <a href="javascript.html#theme">theme button</a> can be
+                        icons instead of text, as in the header of this site. As the button has no
+                        text left, its name goes in <code>aria-label</code>. Try it:
+                    </p>
+                    <div class="doc-example">
+                        <button id="icon-theme-toggle"
+                                class="ez-button ez-button--secondary ez-theme-toggle"
+                                type="button"
+                                aria-label="Switch the theme">
+                            <!-- The moon, with the light theme; the sun, with the dark one -->
+                            <i class="fa-solid fa-moon ez-theme-toggle__to-dark"
+                               aria-hidden="true"></i>
+                            <i class="fa-solid fa-sun ez-theme-toggle__to-light"
+                               aria-hidden="true"></i>
+                        </button>
+                    </div>
+                    <p>
+                        Any other icon collection works the same, such as
+                        <a href="https://lucide.dev">Lucide</a>, or your own SVG files: <span class="doc-brand"><span class="doc-brand-mark">ez</span>-ui</span> depends
+                        on none of them.
+                    </p>
+                </section>
+            </main>
+
+            <nav class="doc-toc" aria-label="On this page">
+                <h2>On this page</h2>
+                <ul>
+                    <li><a href="#conventions">Names of the classes</a></li>
+                    <li><a href="#cascade">Your own stylesheet</a></li>
+                    <li><a href="#variables">Variables</a></li>
+                    <li><a href="#theme">Dark theme</a></li>
+                    <li><a href="#fonts">Fonts</a></li>
+                    <li><a href="#component">All or only some</a></li>
+                    <li><a href="#icons">Icons</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <div id="page-footer"></div>
+    </body>
+</html>

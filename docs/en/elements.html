@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>ez-ui · Elements</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="HTML elements styled by ez-ui without classes: texts, images, keyboard focus, hidden and tables">
+        <script src="../ez-ui/js/theme-init.js"></script>
+        <link rel="stylesheet" href="../ez-ui/css/ez-ui.css">
+        <!-- The icons of this site, from Font Awesome (ez-ui brings no icons) -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+        <link rel="stylesheet" href="../css/site.css">
+        <link rel="icon" href="../favicon.svg">
+        <link rel="alternate" hreflang="es" href="../elementos.html">
+        <script src="../js/header.js" type="module"></script>
+        <script src="../js/elementos.js" type="module"></script>
+    </head>
+
+    <body>
+        <div id="page-header"></div>
+
+        <div class="ez-container doc-layout">
+            <main>
+                <header class="doc-header">
+                    <h1>Elements</h1>
+                    <p>
+                        What has a style without writing any class: texts, images, the keyboard
+                        focus and tables. You write semantic HTML and <span class="doc-brand"><span class="doc-brand-mark">ez</span>-ui</span> gives it its look.
+                        The form controls do not need classes either (see
+                        <a href="forms.html">Forms</a>).
+                    </p>
+                </header>
+
+                <section class="doc-section" id="text">
+                    <h2>Texts</h2>
+                    <p>
+                        Headings, paragraphs and links, with the fonts and colors of
+                        <span class="doc-brand"><span class="doc-brand-mark">ez</span>-ui</span>. The size of <code>h1</code> and <code>h2</code> adapts to the width
+                        of the screen. <code>code</code> (code) and <code>kbd</code> (a key) use the
+                        monospaced font.
+                    </p>
+                    <div class="doc-example doc-example--column">
+                        <!-- Without classes: headings, paragraphs and links -->
+                        <h3>Matchday 11</h3>
+                        <p>
+                            ETSII beats Medicine 3-1 and is still the leader. See the
+                            <a href="#table">standings</a>.
+                        </p>
+                        <!-- code: code; kbd: a key -->
+                        <p>
+                            The shirt number is in <code>player.number</code>. To find a player,
+                            <kbd>Ctrl</kbd> + <kbd>F</kbd>.
+                        </p>
+                    </div>
+                </section>
+
+                <section class="doc-section" id="images">
+                    <h2>Images</h2>
+                    <p>
+                        An image is never wider than the element that contains it: on a phone it
+                        shrinks, and its height changes in proportion, without distorting it. It
+                        always has <code>alt</code>, the text that replaces it if it cannot be seen.
+                    </p>
+                    <template class="doc-example">
+                        <!-- At most, the width of its container; the height, in proportion -->
+                        <img src="images/crest-etsii.png" alt="Crest of ETSII">
+                    </template>
+                </section>
+
+                <section class="doc-section" id="focus">
+                    <h2>Keyboard focus</h2>
+                    <p>
+                        When you move through the page with the Tab key, the active element is
+                        surrounded by an outline of the theme color (<code>:focus-visible</code>), so
+                        that you know where you are. With the mouse, it does not appear. Try it:
+                        click on the text above the example and then press Tab.
+                    </p>
+                    <div class="doc-example">
+                        <!-- Without classes: the outline appears when you get there with Tab -->
+                        <button class="ez-button" type="button">Bid</button>
+                        <a href="#focus">See the transfer market</a>
+                    </div>
+                </section>
+
+                <section class="doc-section" id="hidden">
+                    <h2>The hidden attribute</h2>
+                    <p>
+                        <code>hidden</code> hides an element, even if a class gives it another
+                        <code>display</code>. From JavaScript, it is shown or hidden by changing the
+                        <code>hidden</code> property:
+                    </p>
+                    <template class="doc-example">
+                        <!-- Hidden until the code shows it -->
+                        <p id="empty-market" class="ez-alert" hidden>
+                            There are no players in the transfer market.
+                        </p>
+                    </template>
+                    <template class="doc-example">
+                        // Shown if the list is empty
+                        let message = document.getElementById("empty-market");
+                        message.hidden = players.length !== 0;
+                    </template>
+                </section>
+
+                <section class="doc-section" id="table">
+                    <h2>Tables</h2>
+                    <p>
+                        Tables do not need classes either: they take the whole width, separate the
+                        rows with a line and color every other row so that they are easy to follow.
+                        The title goes in <code>&lt;caption&gt;</code>, the column headers in
+                        <code>&lt;thead&gt;</code> with <code>&lt;th&gt;</code>, and the data in
+                        <code>&lt;tbody&gt;</code>. The <code>ez-number</code> class aligns the
+                        numbers to the right. If the table may be wider than the screen, it goes
+                        inside an <code>ez-scroll</code>, which scrolls it sideways without moving
+                        the page; on a narrow screen, its cells do not break the text into several
+                        lines.
+                    </p>
+                    <div class="doc-example doc-example--wide">
+                        <!-- ez-scroll: if the table does not fit, it scrolls sideways -->
+                        <div class="ez-scroll">
+                            <table>
+                                <!-- caption: the title of the table -->
+                                <caption>Standings after matchday 11</caption>
+                                <!-- thead: the headers; ez-number aligns to the right -->
+                                <thead>
+                                    <tr>
+                                        <th class="ez-number">Pos.</th>
+                                        <th>Team</th>
+                                        <th class="ez-number">P</th>
+                                        <th class="ez-number">W</th>
+                                        <th class="ez-number">D</th>
+                                        <th class="ez-number">L</th>
+                                        <th class="ez-number">Points</th>
+                                    </tr>
+                                </thead>
+                                <!-- tbody: the data, one row per team -->
+                                <tbody>
+                                    <tr>
+                                        <td class="ez-number">1</td>
+                                        <td>ETSII</td>
+                                        <td class="ez-number">11</td>
+                                        <td class="ez-number">8</td>
+                                        <td class="ez-number">2</td>
+                                        <td class="ez-number">1</td>
+                                        <td class="ez-number">26</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="ez-number">2</td>
+                                        <td>Medicine</td>
+                                        <td class="ez-number">11</td>
+                                        <td class="ez-number">7</td>
+                                        <td class="ez-number">2</td>
+                                        <td class="ez-number">2</td>
+                                        <td class="ez-number">23</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="ez-number">3</td>
+                                        <td>Architecture</td>
+                                        <td class="ez-number">11</td>
+                                        <td class="ez-number">5</td>
+                                        <td class="ez-number">2</td>
+                                        <td class="ez-number">4</td>
+                                        <td class="ez-number">17</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="ez-number">4</td>
+                                        <td>Law</td>
+                                        <td class="ez-number">11</td>
+                                        <td class="ez-number">4</td>
+                                        <td class="ez-number">2</td>
+                                        <td class="ez-number">5</td>
+                                        <td class="ez-number">14</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="ez-number">5</td>
+                                        <td>Economics</td>
+                                        <td class="ez-number">11</td>
+                                        <td class="ez-number">2</td>
+                                        <td class="ez-number">2</td>
+                                        <td class="ez-number">7</td>
+                                        <td class="ez-number">8</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="ez-number">6</td>
+                                        <td>Fine Arts</td>
+                                        <td class="ez-number">11</td>
+                                        <td class="ez-number">1</td>
+                                        <td class="ez-number">2</td>
+                                        <td class="ez-number">8</td>
+                                        <td class="ez-number">5</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <p>
+                        P: played; W, D and L: won, drawn and lost. A win is worth 3 points and a
+                        draw, 1.
+                    </p>
+                </section>
+            </main>
+
+            <nav class="doc-toc" aria-label="On this page">
+                <h2>On this page</h2>
+                <ul>
+                    <li><a href="#text">Texts</a></li>
+                    <li><a href="#images">Images</a></li>
+                    <li><a href="#focus">Keyboard focus</a></li>
+                    <li><a href="#hidden">The hidden attribute</a></li>
+                    <li><a href="#table">Tables</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <div id="page-footer"></div>
+    </body>
+</html>

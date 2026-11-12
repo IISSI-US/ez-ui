@@ -12,6 +12,10 @@ js/                                   controladores, renderizador de ejemplos y 
 examples/                             ejemplos que necesitan una página aparte;
                                       primeros-pasos/, un proyecto completo
 images/soccer/                        imágenes SVG propias de los ejemplos
+images/flags/                         las banderas del selector de idioma (SVG propios)
+en/                                   la versión en inglés: las mismas páginas, con nombres
+                                      en inglés, su cabecera y pie, los JS de ejemplo con
+                                      textos y su proyecto (examples/getting-started/)
 favicon.svg
 serve.js                              servidor local (no se publica)
 README.md                             este fichero (no se publica)
@@ -36,6 +40,21 @@ Cada ejemplo se escribe una vez, en un `.doc-example`, y `js/renderers/examples.
 
 Los ejemplos son de una liga de fútbol inventada entre escuelas y facultades de la universidad. Equipos, jugadores, escudos, camisetas y avatares son inventados; las imágenes son SVG propios, sin derechos de terceros.
 
+## Dos idiomas
+
+La web está en español (en la raíz, la de los alumnos) y en inglés (en `en/`), con las mismas
+páginas y los nombres en inglés (`elementos.html` → `en/elements.html`; la tabla, en
+`js/header.js`). Las banderas de la cabecera llevan a la misma página en el otro idioma (y al
+mismo apartado: las secciones tienen los mismos `id` en los dos), y cada página anuncia la otra
+con `<link rel="alternate" hreflang>`. Lo común no se duplica: los estilos de la web, las
+imágenes, los controladores de las páginas, el renderizador (que pone sus textos en el idioma de
+la página, `lang`) y la biblioteca. Se duplica el texto: las páginas, la cabecera y el pie, los JS
+de ejemplo que tienen textos o comentarios (`en/js/examples/`) y el proyecto de la portada
+(`en/examples/getting-started/`). La biblioteca tiene sus comentarios en español.
+
+**Un cambio en una página se hace en los dos idiomas**, con las mismas secciones y ejemplos; las
+pruebas lo comprueban.
+
 ## Probar en local
 
 ```bash
@@ -50,11 +69,11 @@ Las pruebas de la biblioteca y de la web están en un repositorio privado aparte
 
 ## Publicación
 
-GitHub Pages publica con un flujo de Actions (`.github/workflows/publicar.yml`): en cada push a `main` monta el sitio con `docs/` en la raíz (sin `serve.js` ni este README) y la biblioteca en `/ez-ui/`, y lo despliega. El repositorio es privado, pero la web es pública: **un push a `main` actualiza la web**. Las rutas son relativas para que funcione bajo `/ez-ui/`.
+GitHub Pages publica con un flujo de Actions (`.github/workflows/publicar.yml`): en cada push a `main` monta el sitio con `docs/` en la raíz (sin `serve.js` ni este README) y la biblioteca en `/ez-ui/`, y lo despliega. **Un push a `main` actualiza la web**. Las rutas son relativas para que funcione bajo `/ez-ui/`.
 
 ## Versiones
 
-Los alumnos descargan la biblioteca de la web, porque el repositorio es privado: `publicar.yml` pone en `/downloads/` un `ez-ui-X.Y.Z.zip` por cada etiqueta `vX.Y.Z`, con una carpeta `ez-ui/` (`css/`, `js/`, `fonts/` con sus licencias OFL, y `VERSION.txt`). Para publicar una versión:
+Los alumnos descargan la biblioteca de la web: `publicar.yml` pone en `/downloads/` un `ez-ui-X.Y.Z.zip` por cada etiqueta `vX.Y.Z`, con una carpeta `ez-ui/` (`css/`, `js/`, `fonts/` con sus licencias OFL, y `VERSION.txt`). Para publicar una versión:
 
 1. Cambiar el enlace de descarga de `index.html` a la versión nueva y subirlo a `main`. Las pruebas solo avisan de que falta la etiqueta.
 2. Esperar al ✔ de las pruebas en ese commit. Si una etiqueta apunta a un commit sin ✔, su ZIP no se publica (aparece un aviso en Actions).

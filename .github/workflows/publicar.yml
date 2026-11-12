@@ -4,7 +4,7 @@
 # «GitHub Actions».
 #
 # También publica en /downloads/ un ZIP de la biblioteca por cada etiqueta vX.Y.Z
-# (ez-ui-X.Y.Z.zip), para descargarla sin acceso al repositorio, que es privado. Cada
+# (ez-ui-X.Y.Z.zip), para descargarla sin clonar el repositorio. Cada
 # ZIP se hace con git archive desde su etiqueta, así que sale igual en cada
 # publicación aunque cambie main; solo se publican las etiquetas cuyo commit pasó las
 # pruebas (✔ de ez-ui-tests). Una etiqueta nueva no lanza este flujo: el entorno
@@ -50,6 +50,7 @@ jobs:
           cp -r css js fonts _site/ez-ui/
           # El proyecto de ejemplo de la página de inicio lleva su copia, como un proyecto
           cp -r _site/ez-ui _site/examples/primeros-pasos/
+          cp -r _site/ez-ui _site/en/examples/getting-started/
 
       - name: Empaqueta las versiones
         env:
